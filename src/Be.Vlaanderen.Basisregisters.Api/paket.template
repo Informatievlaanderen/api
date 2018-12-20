@@ -1,0 +1,80 @@
+type file
+version 1.0.0
+
+id Be.Vlaanderen.Basisregisters.Api
+title Be.Vlaanderen.Basisregisters.Api
+
+authors Basisregisters Vlaanderen
+owners agentschap Informatie Vlaanderen <https://vlaanderen.be/informatie-vlaanderen>
+copyright Copyright (c) agentschap Informatie Vlaanderen
+requireLicenseAcceptance false
+projectUrl https://github.com/Informatievlaanderen/api
+iconUrl https://raw.githubusercontent.com/Informatievlaanderen/build-pipeline/master/logo.png
+licenseUrl https://opensource.org/licenses/MIT
+
+description Common API infrastructure and helpers.
+
+dependencies
+  framework: netstandard20
+    Be.Vlaanderen.Basisregisters.AggregateSource ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.0
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 1.0
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 1.0
+    Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
+
+    Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Core >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Formatters.Json >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Formatters.Xml >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION
+    Microsoft.AspNetCore.ResponseCompression >= LOCKEDVERSION
+    Microsoft.AspNetCore.Diagnostics >= LOCKEDVERSION
+    Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= LOCKEDVERSION
+    Microsoft.AspNetCore.Server.Kestrel >= LOCKEDVERSION
+    Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv >= LOCKEDVERSION
+    Microsoft.EntityFrameworkCore >= LOCKEDVERSION
+    Microsoft.Extensions.Configuration >= LOCKEDVERSION
+    Microsoft.Extensions.Configuration.CommandLine >= LOCKEDVERSION
+    Microsoft.Extensions.Configuration.FileExtensions >= LOCKEDVERSION
+    Microsoft.Extensions.Configuration.Json >= LOCKEDVERSION
+    Microsoft.Extensions.Configuration.EnvironmentVariables >= LOCKEDVERSION
+    Microsoft.Extensions.Options.ConfigurationExtensions >= LOCKEDVERSION
+    Microsoft.Extensions.DependencyInjection >= LOCKEDVERSION
+    Microsoft.VisualStudio.Web.BrowserLink >= LOCKEDVERSION
+    Microsoft.SyndicationFeed.ReaderWriter >= LOCKEDVERSION
+    Swashbuckle.AspNetCore >= LOCKEDVERSION
+    Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
+    System.Text.Encoding.CodePages >= LOCKEDVERSION
+    Polly >= LOCKEDVERSION
+    SqlStreamStore >= LOCKEDVERSION
+    SqlStreamStore.MsSql >= LOCKEDVERSION
+    Autofac >= LOCKEDVERSION
+    Autofac.Extensions.DependencyInjection >= LOCKEDVERSION
+    Newtonsoft.Json >= LOCKEDVERSION
+    Destructurama.JsonNet >= LOCKEDVERSION
+    Serilog >= LOCKEDVERSION
+    Serilog.Settings.Configuration >= LOCKEDVERSION
+    Serilog.Extensions.Logging >= LOCKEDVERSION
+    Serilog.Sinks.Console >= LOCKEDVERSION
+    Serilog.Sinks.File >= LOCKEDVERSION
+    Serilog.Enrichers.Thread >= LOCKEDVERSION
+    Serilog.Enrichers.Environment >= LOCKEDVERSION
+
+files
+  bin\Release\netcoreapp2.2\Be.Vlaanderen.Basisregisters.Api.dll => lib\netcoreapp2.2
+  bin\Release\netcoreapp2.2\Be.Vlaanderen.Basisregisters.Api.pdb => lib\netcoreapp2.2
+  bin\Release\netcoreapp2.2\Be.Vlaanderen.Basisregisters.Api.xml => lib\netcoreapp2.2
+  bin\Release\netcoreapp2.2\Be.Vlaanderen.Basisregisters.Api.xml => content

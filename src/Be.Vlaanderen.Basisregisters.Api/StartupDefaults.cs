@@ -28,6 +28,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Autofac;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Mvc.ApplicationModels;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Net.Http.Headers;
     using Search.Filtering;
     using Search.Pagination;
@@ -42,6 +44,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             string[] xmlCommentPaths,
             string[] corsOrigins)
         {
+            services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
+
             services
                 .AddMvcCore(options =>
                 {

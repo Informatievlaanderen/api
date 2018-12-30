@@ -26,6 +26,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Serilog;
     using SqlStreamStore;
     using Autofac;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Net.Http.Headers;
     using Search.Filtering;
@@ -53,6 +54,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     options.Filters.Add(new DataDogTracingFilter());
                 })
+
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 
                 .AddCors(options => options.AddPolicy(StartupHelpers.AllowSpecificOrigin, corsPolicy => corsPolicy
                     .WithOrigins(corsOrigins)

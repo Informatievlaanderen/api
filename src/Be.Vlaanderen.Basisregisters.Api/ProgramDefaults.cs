@@ -40,6 +40,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 {
                     options.AddServerHeader = false;
 
+                    // Needs to be bigger than traefik timeout, which is 90seconds
+                    // https://github.com/containous/traefik/issues/3237
+                    options.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(120);
+
                     if (environment == "Development")
                         AddDevelopmentPorts(options, httpPort, httpsPort, httpsCertificate?.Invoke());
                 })

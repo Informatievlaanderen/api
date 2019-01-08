@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/informatievlaanderen/api/compare/v1.1.0...v1.1.1) (2019-01-08)
+
+
+### Bug Fixes
+
+* define keep-alive timeout to be higher than traefik timeout ([29ea1de](https://github.com/informatievlaanderen/api/commit/29ea1de))
+
 # [1.1.0](https://github.com/informatievlaanderen/api/compare/v1.0.2...v1.1.0) (2018-12-30)
 
 

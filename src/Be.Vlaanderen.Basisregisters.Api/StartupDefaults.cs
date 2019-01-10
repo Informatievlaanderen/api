@@ -149,6 +149,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             return services;
         }
 
+        [Obsolete("Use UseDefaultForApi(<StartupOptions>) instead.")]
         public static IApplicationBuilder UseDefaultForApi(
             this IApplicationBuilder app,
             IContainer applicationContainer,
@@ -166,18 +167,76 @@ namespace Be.Vlaanderen.Basisregisters.Api
             Action<IApplicationBuilder> afterResponseCompression = null,
             Action<IApplicationBuilder> afterMvc = null,
             Action<IApplicationBuilder> afterSwagger = null)
+            => app.UseDefaultForApi(new StartupOptions
+            {
+                ApplicationContainer = applicationContainer,
+                ServiceProvider = serviceProvider,
+                HostingEnvironment = env,
+                ApplicationLifetime = appLifetime,
+                LoggerFactory = loggerFactory,
+                Api =
+                {
+                    VersionProvider = apiVersionProvider,
+                    Info = apiInfo
+                },
+                Server =
+                {
+                    ServerName = serverName,
+                    PoweredByName = poweredByName
+                },
+                MiddlewareHooks =
+                {
+                    AfterCors = afterCors,
+                    AfterApiExceptionHandler = afterApiExceptionHandler,
+                    AfterMiddleware = afterMiddleware,
+                    AfterResponseCompression = afterResponseCompression,
+                    AfterMvc = afterMvc,
+                    AfterSwagger = afterSwagger
+                }
+            });
+
+        public static IApplicationBuilder UseDefaultForApi(
+            this IApplicationBuilder app,
+            StartupOptions options)
         {
-            if (env.IsDevelopment())
+            if (options.ApplicationContainer == null)
+                throw new ArgumentNullException(nameof(options.ApplicationContainer));
+
+            if (options.ServiceProvider == null)
+                throw new ArgumentNullException(nameof(options.ServiceProvider));
+
+            if (options.HostingEnvironment == null)
+                throw new ArgumentNullException(nameof(options.HostingEnvironment));
+
+            if (options.ApplicationLifetime == null)
+                throw new ArgumentNullException(nameof(options.ApplicationLifetime));
+
+            if (options.LoggerFactory == null)
+                throw new ArgumentNullException(nameof(options.LoggerFactory));
+
+            if (string.IsNullOrWhiteSpace(options.Server.ServerName))
+                options.Server.ServerName = "Vlaamse overheid";
+
+            if (string.IsNullOrWhiteSpace(options.Server.PoweredByName))
+                options.Server.PoweredByName = "Vlaamse overheid - Basisregisters Vlaanderen";
+
+            if (options.Api.VersionProvider == null)
+                throw new ArgumentNullException(nameof(options.Api.VersionProvider));
+
+            if (options.Api.Info == null)
+                throw new ArgumentNullException(nameof(options.Api.Info));
+
+            if (options.HostingEnvironment.IsDevelopment())
                 app
                     .UseDeveloperExceptionPage()
                     .UseDatabaseErrorPage()
                     .UseBrowserLink();
 
             app.UseCors(policyName: StartupHelpers.AllowSpecificOrigin);
-            afterCors?.Invoke(app);
+            options.MiddlewareHooks.AfterCors?.Invoke(app);
 
-            app.UseApiExceptionHandler(loggerFactory, StartupHelpers.AllowSpecificOrigin);
-            afterApiExceptionHandler?.Invoke(app);
+            app.UseApiExceptionHandler(options.LoggerFactory, StartupHelpers.AllowSpecificOrigin);
+            options.MiddlewareHooks.AfterApiExceptionHandler?.Invoke(app);
 
             app
                 .UseMiddleware<EnableRequestRewindMiddleware>()
@@ -187,10 +246,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseMiddleware<AddCorrelationIdMiddleware>()
                 .UseMiddleware<AddCorrelationIdToLogContextMiddleware>()
 
-                .UseMiddleware<AddHttpSecurityHeadersMiddleware>(serverName, poweredByName)
+                .UseMiddleware<AddHttpSecurityHeadersMiddleware>(options.Server.ServerName, options.Server.PoweredByName)
+
                 .UseMiddleware<AddRemoteIpAddressMiddleware>()
+
                 .UseMiddleware<AddVersionHeaderMiddleware>();
-            afterMiddleware?.Invoke(app);
+            options.MiddlewareHooks.AfterMiddleware?.Invoke(app);
 
             app
                 .UseMiddleware<DefaultResponseCompressionQualityMiddleware>(new Dictionary<string, double>
@@ -199,20 +260,57 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     { "gzip", 0.9 }
                 })
                 .UseResponseCompression();
-            afterResponseCompression?.Invoke(app);
+            options.MiddlewareHooks.AfterResponseCompression?.Invoke(app);
+
+            app.UseSwaggerDocumentation(options.Api.VersionProvider, options.Api.Info);
+            options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
             app.UseMvc();
-            afterMvc?.Invoke(app);
-
-            app.UseSwaggerDocumentation(apiVersionProvider, apiInfo);
-            afterSwagger?.Invoke(app);
+            options.MiddlewareHooks.AfterMvc?.Invoke(app);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
-                applicationContainer,
-                appLifetime,
-                serviceProvider.GetService<TraceAgent>());
+                options.ApplicationContainer,
+                options.ApplicationLifetime,
+                options.ServiceProvider.GetService<TraceAgent>());
 
             return app;
+        }
+    }
+
+    public class StartupOptions
+    {
+        public IContainer ApplicationContainer { get; set; }
+        public IServiceProvider ServiceProvider { get; set; }
+        public IHostingEnvironment HostingEnvironment { get; set; }
+        public IApplicationLifetime ApplicationLifetime { get; set; }
+        public ILoggerFactory LoggerFactory { get; set; }
+
+        public ApiOptions Api { get; } = new ApiOptions();
+
+        public class ApiOptions
+        {
+            public IApiVersionDescriptionProvider VersionProvider { get; set; }
+            public Func<string, string> Info { get; set; }
+        }
+
+        public ServerOptions Server { get; } = new ServerOptions();
+
+        public class ServerOptions
+        {
+            public string ServerName { get; set; }
+            public string PoweredByName { get; set; }
+        }
+
+        public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
+
+        public class MiddlewareHookOptions
+        {
+            public Action<IApplicationBuilder> AfterCors { get; set; }
+            public Action<IApplicationBuilder> AfterApiExceptionHandler { get; set; }
+            public Action<IApplicationBuilder> AfterMiddleware { get; set; }
+            public Action<IApplicationBuilder> AfterResponseCompression { get; set; }
+            public Action<IApplicationBuilder> AfterMvc { get; set; }
+            public Action<IApplicationBuilder> AfterSwagger { get; set; }
         }
     }
 

@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/informatievlaanderen/api/compare/v1.2.0...v1.3.0) (2019-01-10)
+
+
+### Features
+
+* allow customisation of header and poweredby name ([139cdb2](https://github.com/informatievlaanderen/api/commit/139cdb2))
+
 # [1.2.0](https://github.com/informatievlaanderen/api/compare/v1.1.1...v1.2.0) (2019-01-10)
 
 

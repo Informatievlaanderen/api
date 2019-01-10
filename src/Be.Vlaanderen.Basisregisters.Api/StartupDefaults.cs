@@ -157,7 +157,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
             IApplicationLifetime appLifetime,
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider,
-            Func<string, string> apiInfo)
+            Func<string, string> apiInfo,
+            Action<IApplicationBuilder> afterCors = null,
+            Action<IApplicationBuilder> afterApiExceptionHandler = null,
+            Action<IApplicationBuilder> afterMiddleware = null,
+            Action<IApplicationBuilder> afterResponseCompression = null,
+            Action<IApplicationBuilder> afterMvc = null,
+            Action<IApplicationBuilder> afterSwagger = null)
         {
             if (env.IsDevelopment())
                 app
@@ -165,11 +171,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     .UseDatabaseErrorPage()
                     .UseBrowserLink();
 
+            app.UseCors(policyName: StartupHelpers.AllowSpecificOrigin);
+            afterCors?.Invoke(app);
+
+            app.UseApiExceptionHandler(loggerFactory, StartupHelpers.AllowSpecificOrigin);
+            afterApiExceptionHandler?.Invoke(app);
+
             app
-                .UseCors(policyName: StartupHelpers.AllowSpecificOrigin)
-
-                .UseApiExceptionHandler(loggerFactory, StartupHelpers.AllowSpecificOrigin)
-
                 .UseMiddleware<EnableRequestRewindMiddleware>()
 
                 // https://github.com/serilog/serilog-aspnetcore/issues/59
@@ -179,18 +187,23 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .UseMiddleware<AddHttpSecurityHeadersMiddleware>()
                 .UseMiddleware<AddRemoteIpAddressMiddleware>()
-                .UseMiddleware<AddVersionHeaderMiddleware>()
+                .UseMiddleware<AddVersionHeaderMiddleware>();
+            afterMiddleware?.Invoke(app);
 
+            app
                 .UseMiddleware<DefaultResponseCompressionQualityMiddleware>(new Dictionary<string, double>
                 {
                     { "br", 1.0 },
                     { "gzip", 0.9 }
                 })
-                .UseResponseCompression()
+                .UseResponseCompression();
+            afterResponseCompression?.Invoke(app);
 
-                .UseMvc()
+            app.UseMvc();
+            afterMvc?.Invoke(app);
 
-                .UseSwaggerDocumentation(apiVersionProvider, apiInfo);
+            app.UseSwaggerDocumentation(apiVersionProvider, apiInfo);
+            afterSwagger?.Invoke(app);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
                 applicationContainer,

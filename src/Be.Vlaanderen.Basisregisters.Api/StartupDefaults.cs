@@ -158,6 +158,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider,
             Func<string, string> apiInfo,
+            string serverName = "Vlaamse overheid",
+            string poweredByName = "Vlaamse overheid - Basisregisters Vlaanderen",
             Action<IApplicationBuilder> afterCors = null,
             Action<IApplicationBuilder> afterApiExceptionHandler = null,
             Action<IApplicationBuilder> afterMiddleware = null,
@@ -185,7 +187,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseMiddleware<AddCorrelationIdMiddleware>()
                 .UseMiddleware<AddCorrelationIdToLogContextMiddleware>()
 
-                .UseMiddleware<AddHttpSecurityHeadersMiddleware>()
+                .UseMiddleware<AddHttpSecurityHeadersMiddleware>(serverName, poweredByName)
                 .UseMiddleware<AddRemoteIpAddressMiddleware>()
                 .UseMiddleware<AddVersionHeaderMiddleware>();
             afterMiddleware?.Invoke(app);

@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/informatievlaanderen/api/compare/v1.1.1...v1.2.0) (2019-01-10)
+
+
+### Features
+
+* add middleware hooks ([6f1d3f3](https://github.com/informatievlaanderen/api/commit/6f1d3f3))
+
 ## [1.1.1](https://github.com/informatievlaanderen/api/compare/v1.1.0...v1.1.1) (2019-01-08)
 
 

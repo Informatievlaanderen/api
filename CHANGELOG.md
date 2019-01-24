@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/informatievlaanderen/api/compare/v1.4.1...v1.4.2) (2019-01-24)
+
+
+### Bug Fixes
+
+* clarify detail for internal server error contains details about the error ([a91b1ef](https://github.com/informatievlaanderen/api/commit/a91b1ef))
+
 ## [1.4.1](https://github.com/informatievlaanderen/api/compare/v1.4.0...v1.4.1) (2019-01-24)
 
 

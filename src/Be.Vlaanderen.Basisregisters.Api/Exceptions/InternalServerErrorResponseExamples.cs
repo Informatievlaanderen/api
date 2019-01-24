@@ -11,7 +11,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             {
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = BasicApiProblem.DefaultTitle,
-                Detail = string.Empty,
+                Detail = "<meer informatie over de interne fout>",
                 ProblemInstanceUri = BasicApiProblem.GetProblemNumber()
             };
         }

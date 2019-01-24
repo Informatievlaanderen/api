@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/informatievlaanderen/api/compare/v1.4.0...v1.4.1) (2019-01-24)
+
+
+### Bug Fixes
+
+* not modified 304 must not contain a body ([df0368e](https://github.com/informatievlaanderen/api/commit/df0368e))
+
 # [1.4.0](https://github.com/informatievlaanderen/api/compare/v1.3.1...v1.4.0) (2019-01-22)
 
 

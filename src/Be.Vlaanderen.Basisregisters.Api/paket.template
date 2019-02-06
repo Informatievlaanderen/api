@@ -19,7 +19,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.AggregateSource ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.0
-    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.1
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse ~> 1.0

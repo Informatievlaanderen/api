@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/informatievlaanderen/api/compare/v1.4.2...v1.4.3) (2019-02-06)
+
+
+### Bug Fixes
+
+* add nuget references to dependencies ([224cfd4](https://github.com/informatievlaanderen/api/commit/224cfd4))
+
 ## [1.4.2](https://github.com/informatievlaanderen/api/compare/v1.4.1...v1.4.2) (2019-01-24)
 
 

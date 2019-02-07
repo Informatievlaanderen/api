@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/informatievlaanderen/api/compare/v1.4.3...v1.5.0) (2019-02-07)
+
+
+### Features
+
+* support nullable Rfc3339SerializableDateTimeOffset in converter ([c9d056a](https://github.com/informatievlaanderen/api/commit/c9d056a))
+
 ## [1.4.3](https://github.com/informatievlaanderen/api/compare/v1.4.2...v1.4.3) (2019-02-06)
 
 

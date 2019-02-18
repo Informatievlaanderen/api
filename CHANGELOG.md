@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/informatievlaanderen/api/compare/v1.5.0...v1.5.1) (2019-02-18)
+
+
+### Bug Fixes
+
+* update Be.Vlaanderen.Basisregisters.AggregateSource dependency ([#3](https://github.com/informatievlaanderen/api/issues/3)) ([fe09359](https://github.com/informatievlaanderen/api/commit/fe09359))
+
 # [1.5.0](https://github.com/informatievlaanderen/api/compare/v1.4.3...v1.5.0) (2019-02-07)
 
 

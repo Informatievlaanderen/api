@@ -71,7 +71,7 @@ nuget Serilog.Enrichers.Environment 2.1.2
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AggregateSource ~> 1.0
+nuget Be.Vlaanderen.Basisregisters.AggregateSource ~> 2.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.2

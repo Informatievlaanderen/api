@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/informatievlaanderen/api/compare/v1.6.0...v1.7.0) (2019-02-24)
+
+
+### Features
+
+* provide default exception handler for easier usage ([14cb620](https://github.com/informatievlaanderen/api/commit/14cb620))
+
 # [1.6.0](https://github.com/informatievlaanderen/api/compare/v1.5.1...v1.6.0) (2019-02-24)
 
 

@@ -235,7 +235,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
             app.UseCors(policyName: StartupHelpers.AllowSpecificOrigin);
             options.MiddlewareHooks.AfterCors?.Invoke(app);
 
-            app.UseApiExceptionHandler(options.LoggerFactory, StartupHelpers.AllowSpecificOrigin);
+            app.UseApiExceptionHandler(
+                options.LoggerFactory,
+                StartupHelpers.AllowSpecificOrigin,
+                options.Api.CustomExceptionHandlers);
             options.MiddlewareHooks.AfterApiExceptionHandler?.Invoke(app);
 
             app
@@ -291,6 +294,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public IApiVersionDescriptionProvider VersionProvider { get; set; }
             public Func<string, string> Info { get; set; }
+            public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
         }
 
         public ServerOptions Server { get; } = new ServerOptions();

@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/informatievlaanderen/api/compare/v1.5.1...v1.6.0) (2019-02-24)
+
+
+### Features
+
+* allow passing in custom exception handlers ([3d4aa78](https://github.com/informatievlaanderen/api/commit/3d4aa78))
+
 ## [1.5.1](https://github.com/informatievlaanderen/api/compare/v1.5.0...v1.5.1) (2019-02-18)
 
 

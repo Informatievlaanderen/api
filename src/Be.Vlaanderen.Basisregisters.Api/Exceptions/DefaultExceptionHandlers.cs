@@ -6,6 +6,28 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Threading.Tasks;
     using AggregateSource;
 
+    public abstract class DefaultExceptionHandler<T> : IExceptionHandler
+        where T : Exception
+    {
+        public Type HandledExceptionType => typeof(T);
+
+        public bool Handles(Exception exception) => null != Cast(exception);
+
+        public Task<BasicApiProblem> GetApiProblemFor(Exception exception)
+        {
+            var typedException = Cast(exception);
+            if (null == typedException)
+                throw new InvalidCastException("Could not cast exception to handled type!");
+
+            var problem = GetApiProblemFor(typedException);
+            return Task.FromResult(problem);
+        }
+
+        private static T Cast(Exception exception) => exception as T;
+
+        protected abstract BasicApiProblem GetApiProblemFor(T exception);
+    }
+
     internal class DefaultExceptionHandlers
     {
         public static IEnumerable<IExceptionHandler> Handlers => new IExceptionHandler[]
@@ -58,28 +80,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemTypeUri = BasicApiProblem.GetTypeUriFor(exception)
                 };
             }
-        }
-
-        private abstract class DefaultExceptionHandler<T> : IExceptionHandler
-            where T : Exception
-        {
-            public Type HandledExceptionType => typeof(T);
-
-            public bool Handles(Exception exception) => null != Cast(exception);
-
-            public Task<BasicApiProblem> GetApiProblemFor(Exception exception)
-            {
-                var typedException = Cast(exception);
-                if (null == typedException)
-                    throw new InvalidCastException("Could not cast exception to handled type!");
-
-                var problem = GetApiProblemFor(typedException);
-                return Task.FromResult(problem);
-            }
-
-            private static T Cast(Exception exception) => exception as T;
-
-            protected abstract BasicApiProblem GetApiProblemFor(T exception);
         }
     }
 }

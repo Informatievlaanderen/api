@@ -3,6 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Net.Http.Headers;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.IO.Compression;
@@ -11,37 +12,46 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
     using System.Threading;
     using System.Threading.Tasks;
 
-    public static class ExtractArchive
+    public class ExtractArchive : IEnumerable
     {
-        public static FileResult CreateResponse(
-            this List<ExtractFile> files,
-            string name,
-            CancellationToken token)
+        private readonly string _fileName;
+        private readonly List<ExtractFile> _files = new List<ExtractFile>();
+
+        public ExtractArchive(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
 
-            name = name.EndsWith(".zip")
+            _fileName = name.EndsWith(".zip")
                 ? name
-                : $"{name.TrimEnd('.')}.zip";
-
-            return CreateCallbackFileStreamResult(name, files, token);
+                : name.TrimEnd('.') + ".zip";
         }
 
-        private static FileResult CreateCallbackFileStreamResult(
+        public void Add(ExtractFile fileWriter)
+        {
+            if (fileWriter != null)
+                _files.Add(fileWriter);
+        }
+
+        public void Add(IEnumerable<ExtractFile> files)
+        {
+            if (files != null)
+                _files.AddRange(files);
+        }
+
+        public FileResult CreateCallbackFileStreamResult(
             string fileName,
             IEnumerable<ExtractFile> files,
             CancellationToken token)
             => new FileCallbackResult(
                     new MediaTypeHeaderValue(MediaTypeNames.Application.Octet),
-                    (stream, _) => Task.Run(() => WriteArchiveContent(stream, files, token), token))
-                { FileDownloadName = fileName };
+                    (stream, _) => Task.Run(() => WriteArchiveContent(stream, token), token)) { FileDownloadName = fileName };
 
-        private static void WriteArchiveContent(Stream archiveStream, IEnumerable<ExtractFile> files, CancellationToken token)
+        private void WriteArchiveContent(Stream archiveStream, CancellationToken token)
         {
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             {
-                foreach (var file in files.Where(file => null != file))
+                foreach (var file in _files.Where(file => null != file))
                 {
                     if (token.IsCancellationRequested)
                         break;
@@ -51,5 +61,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
                 }
             }
         }
+
+        IEnumerator IEnumerable.GetEnumerator() => _files.GetEnumerator();
     }
 }

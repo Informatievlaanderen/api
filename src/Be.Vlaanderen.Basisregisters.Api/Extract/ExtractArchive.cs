@@ -39,9 +39,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
                 _files.AddRange(files);
         }
 
-        public FileResult CreateCallbackFileStreamResult(
+        public FileResult CreateFileCallbackResult(
             string fileName,
-            IEnumerable<ExtractFile> files,
             CancellationToken token)
             => new FileCallbackResult(
                     new MediaTypeHeaderValue(MediaTypeNames.Application.Octet),

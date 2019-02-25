@@ -40,11 +40,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
         }
 
         public FileResult CreateFileCallbackResult(
-            string fileName,
             CancellationToken token)
             => new FileCallbackResult(
                     new MediaTypeHeaderValue(MediaTypeNames.Application.Octet),
-                    (stream, _) => Task.Run(() => WriteArchiveContent(stream, token), token)) { FileDownloadName = fileName };
+                    (stream, _) => Task.Run(() => WriteArchiveContent(stream, token), token)) { FileDownloadName = _fileName };
 
         private void WriteArchiveContent(Stream archiveStream, CancellationToken token)
         {

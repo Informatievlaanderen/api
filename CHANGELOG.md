@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/informatievlaanderen/api/compare/v1.8.1...v1.8.2) (2019-02-25)
+
+
+### Bug Fixes
+
+* remove unneeded parameter on CreateFileCallbackResult ([1a41ce2](https://github.com/informatievlaanderen/api/commit/1a41ce2))
+
 ## [1.8.1](https://github.com/informatievlaanderen/api/compare/v1.8.0...v1.8.1) (2019-02-25)
 
 # [1.8.0](https://github.com/informatievlaanderen/api/compare/v1.7.0...v1.8.0) (2019-02-25)

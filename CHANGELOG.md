@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/informatievlaanderen/api/compare/v1.7.0...v1.8.0) (2019-02-25)
+
+
+### Features
+
+* add extract infrastructure ([e4ff812](https://github.com/informatievlaanderen/api/commit/e4ff812))
+
 # [1.7.0](https://github.com/informatievlaanderen/api/compare/v1.6.0...v1.7.0) (2019-02-24)
 
 

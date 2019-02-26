@@ -16,7 +16,7 @@ description Common API infrastructure and helpers.
 
 dependencies
   framework: netstandard20
-    Be.Vlaanderen.Basisregisters.AggregateSource ~> 2.0
+    Be.Vlaanderen.Basisregisters.AggregateSource ~> 3.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.2

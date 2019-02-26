@@ -56,7 +56,7 @@ nuget SqlStreamStore 1.1.3
 nuget SqlStreamStore.MsSql 1.1.3
 
 nuget Autofac 4.9.1
-nuget Autofac.Extensions.DependencyInjection 4.3.1
+nuget Autofac.Extensions.DependencyInjection 4.4.0
 
 nuget Newtonsoft.Json 12.0.1
 nuget Destructurama.JsonNet 1.2.1
@@ -70,8 +70,10 @@ nuget Serilog.Enrichers.Thread 3.0.0
 nuget Serilog.Enrichers.Environment 2.1.2
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AggregateSource ~> 2.0
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
+
+nuget Be.Vlaanderen.Basisregisters.AggregateSource ~> 3.0
+
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.2
@@ -83,10 +85,13 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress 
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind ~> 1.0
+
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.0
+
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 1.0
+
 nuget Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 
 // TEST STUFF

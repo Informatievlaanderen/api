@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/informatievlaanderen/api/compare/v1.8.4...v1.9.0) (2019-03-15)
+
+
+### Features
+
+* add fluent validation library ([b52b5d1](https://github.com/informatievlaanderen/api/commit/b52b5d1))
+
 ## [1.8.4](https://github.com/informatievlaanderen/api/compare/v1.8.3...v1.8.4) (2019-02-26)
 
 ## [1.8.3](https://github.com/informatievlaanderen/api/compare/v1.8.2...v1.8.3) (2019-02-25)

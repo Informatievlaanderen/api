@@ -59,6 +59,7 @@ dependencies
     Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
     System.Text.Encoding.CodePages >= LOCKEDVERSION
     Polly >= LOCKEDVERSION
+    FluentValidation.AspNetCore >= LOCKEDVERSION
     SqlStreamStore >= LOCKEDVERSION
     SqlStreamStore.MsSql >= LOCKEDVERSION
     Autofac >= LOCKEDVERSION

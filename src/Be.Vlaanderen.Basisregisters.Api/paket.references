@@ -40,6 +40,8 @@ Polly
 Swashbuckle.AspNetCore
 Swashbuckle.AspNetCore.Filters
 
+FluentValidation.AspNetCore
+
 Serilog
 Serilog.Settings.Configuration
 Serilog.Extensions.Logging

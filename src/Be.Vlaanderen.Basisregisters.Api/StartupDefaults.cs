@@ -26,6 +26,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Serilog;
     using SqlStreamStore;
     using Autofac;
+    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -42,7 +43,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             this IServiceCollection services,
             Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> apiInfo,
             string[] xmlCommentPaths,
-            string[] corsOrigins)
+            string[] corsOrigins,
+            Action<FluentValidationMvcConfiguration> fluentValidationConfiguration = null)
         {
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 
@@ -58,6 +60,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     options.Filters.Add(new DataDogTracingFilter());
                 })
+                .AddFluentValidation(fluentValidationConfiguration ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()))
 
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 

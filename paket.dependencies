@@ -58,6 +58,8 @@ nuget SqlStreamStore.MsSql 1.1.3
 nuget Autofac 4.9.1
 nuget Autofac.Extensions.DependencyInjection 4.4.0
 
+nuget FluentValidation.AspNetCore 8.1.3
+
 nuget Newtonsoft.Json 12.0.1
 nuget Destructurama.JsonNet 1.2.1
 

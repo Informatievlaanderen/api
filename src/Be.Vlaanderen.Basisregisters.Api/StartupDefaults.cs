@@ -44,10 +44,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
             this IServiceCollection services,
             Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> apiInfo,
             string[] xmlCommentPaths,
-            string[] corsOrigins,
-            string[] corsMethods,
-            string[] corsHeaders,
-            string[] corsExposedHeaders,
+            string[] corsOrigins = null,
+            string[] corsMethods = null,
+            string[] corsHeaders = null,
+            string[] corsExposedHeaders = null,
             Action<FluentValidationMvcConfiguration> configureFluentValidation = null,
             Action<IMvcCoreBuilder> configureMvcBuilder = null)
         {
@@ -61,7 +61,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 HttpMethod.Put.Method,
                 HttpMethod.Patch.Method,
                 HttpMethod.Delete.Method
-            }.Union(corsMethods).Distinct().ToArray();
+            }.Union(corsMethods ?? new string[] {}).Distinct().ToArray();
 
             var configuredCorsHeaders = new[]
             {
@@ -73,7 +73,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 ExtractFilteringRequestExtension.HeaderName,
                 AddSortingExtension.HeaderName,
                 AddPaginationExtension.HeaderName
-            }.Union(corsHeaders).Distinct().ToArray();
+            }.Union(corsHeaders ?? new string[] { }).Distinct().ToArray();
 
             var configuredCorsExposedHeaders = new[]
             {
@@ -87,7 +87,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 AddHttpSecurityHeadersMiddleware.ContentTypeOptionsHeaderName,
                 AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
                 AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName
-            }.Union(corsExposedHeaders).Distinct().ToArray();
+            }.Union(corsExposedHeaders ?? new string[] { }).Distinct().ToArray();
 
             var mvcBuilder = services
                 .AddMvcCore(options =>
@@ -106,7 +106,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 
                 .AddCors(options => options.AddPolicy(StartupHelpers.AllowSpecificOrigin, corsPolicy => corsPolicy
-                    .WithOrigins(corsOrigins)
+                    .WithOrigins(corsOrigins ?? new string[] { })
                     .WithMethods(configuredCorsMethods)
                     .WithHeaders(configuredCorsHeaders)
                     .WithExposedHeaders(configuredCorsExposedHeaders)

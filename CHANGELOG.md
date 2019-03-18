@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/informatievlaanderen/api/compare/v1.9.0...v1.10.0) (2019-03-18)
+
+
+### Features
+
+* allow configuration of mvccore options and cors headers ([a296537](https://github.com/informatievlaanderen/api/commit/a296537))
+
 # [1.9.0](https://github.com/informatievlaanderen/api/compare/v1.8.4...v1.9.0) (2019-03-15)
 
 

@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/informatievlaanderen/api/compare/v1.10.0...v1.10.1) (2019-03-18)
+
+
+### Bug Fixes
+
+* allow empty cors settings ([4342027](https://github.com/informatievlaanderen/api/commit/4342027))
+
 # [1.10.0](https://github.com/informatievlaanderen/api/compare/v1.9.0...v1.10.0) (2019-03-18)
 
 

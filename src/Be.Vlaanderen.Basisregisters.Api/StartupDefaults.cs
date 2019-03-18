@@ -5,6 +5,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Data.SqlClient;
     using System.IO;
     using System.IO.Compression;
+    using System.Linq;
     using System.Net.Http;
     using System.Text;
     using AspNetCore.Mvc.Formatters.Json;
@@ -44,11 +45,51 @@ namespace Be.Vlaanderen.Basisregisters.Api
             Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> apiInfo,
             string[] xmlCommentPaths,
             string[] corsOrigins,
-            Action<FluentValidationMvcConfiguration> fluentValidationConfiguration = null)
+            string[] corsMethods,
+            string[] corsHeaders,
+            string[] corsExposedHeaders,
+            Action<FluentValidationMvcConfiguration> configureFluentValidation = null,
+            Action<IMvcCoreBuilder> configureMvcBuilder = null)
         {
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 
-            services
+            var configuredCorsMethods = new[]
+            {
+                HttpMethod.Get.Method,
+                HttpMethod.Head.Method,
+                HttpMethod.Post.Method,
+                HttpMethod.Put.Method,
+                HttpMethod.Patch.Method,
+                HttpMethod.Delete.Method
+            }.Union(corsMethods).Distinct().ToArray();
+
+            var configuredCorsHeaders = new[]
+            {
+                HeaderNames.Accept,
+                HeaderNames.ContentType,
+                HeaderNames.Origin,
+                HeaderNames.Authorization,
+                HeaderNames.IfMatch,
+                ExtractFilteringRequestExtension.HeaderName,
+                AddSortingExtension.HeaderName,
+                AddPaginationExtension.HeaderName
+            }.Union(corsHeaders).Distinct().ToArray();
+
+            var configuredCorsExposedHeaders = new[]
+            {
+                HeaderNames.Location,
+                ExtractFilteringRequestExtension.HeaderName,
+                AddSortingExtension.HeaderName,
+                AddPaginationExtension.HeaderName,
+                AddVersionHeaderMiddleware.HeaderName,
+                AddCorrelationIdToResponseMiddleware.HeaderName,
+                AddHttpSecurityHeadersMiddleware.PoweredByHeaderName,
+                AddHttpSecurityHeadersMiddleware.ContentTypeOptionsHeaderName,
+                AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
+                AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName
+            }.Union(corsExposedHeaders).Distinct().ToArray();
+
+            var mvcBuilder = services
                 .AddMvcCore(options =>
                 {
                     options.RespectBrowserAcceptHeader = false;
@@ -60,38 +101,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     options.Filters.Add(new DataDogTracingFilter());
                 })
-                .AddFluentValidation(fluentValidationConfiguration ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()))
+                .AddFluentValidation(configureFluentValidation ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()))
 
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 
                 .AddCors(options => options.AddPolicy(StartupHelpers.AllowSpecificOrigin, corsPolicy => corsPolicy
                     .WithOrigins(corsOrigins)
-                    .WithMethods(
-                        HttpMethod.Get.Method,
-                        HttpMethod.Head.Method,
-                        HttpMethod.Post.Method,
-                        HttpMethod.Put.Method,
-                        HttpMethod.Delete.Method)
-                    .WithHeaders(
-                        HeaderNames.Accept,
-                        HeaderNames.ContentType,
-                        HeaderNames.Origin,
-                        HeaderNames.Authorization,
-                        HeaderNames.IfMatch,
-                        ExtractFilteringRequestExtension.HeaderName,
-                        AddSortingExtension.HeaderName,
-                        AddPaginationExtension.HeaderName)
-                    .WithExposedHeaders(
-                        HeaderNames.Location,
-                        ExtractFilteringRequestExtension.HeaderName,
-                        AddSortingExtension.HeaderName,
-                        AddPaginationExtension.HeaderName,
-                        AddVersionHeaderMiddleware.HeaderName,
-                        AddCorrelationIdToResponseMiddleware.HeaderName,
-                        AddHttpSecurityHeadersMiddleware.PoweredByHeaderName,
-                        AddHttpSecurityHeadersMiddleware.ContentTypeOptionsHeaderName,
-                        AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
-                        AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName)
+                    .WithMethods(configuredCorsMethods)
+                    .WithHeaders(configuredCorsHeaders)
+                    .WithExposedHeaders(configuredCorsExposedHeaders)
                     .SetPreflightMaxAge(TimeSpan.FromSeconds(60 * 15))
                     .AllowCredentials()))
 
@@ -103,9 +121,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .AddXmlDataContractSerializerFormatters()
 
-                .AddApiExplorer()
-                .Services
+                .AddApiExplorer();
 
+            configureMvcBuilder?.Invoke(mvcBuilder);
+
+            mvcBuilder
+                .Services
                 .AddVersionedApiExplorer(options =>
                 {
                     options.GroupNameFormat = "'v'VVV";

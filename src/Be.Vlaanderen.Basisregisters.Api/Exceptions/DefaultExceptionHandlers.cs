@@ -39,9 +39,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         private class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
         {
-            protected override BasicApiProblem GetApiProblemFor(DomainException exception)
-            {
-                return new BasicApiProblem
+            protected override BasicApiProblem GetApiProblemFor(DomainException exception) =>
+                new BasicApiProblem
                 {
                     HttpStatus = (int)HttpStatusCode.BadRequest,
                     Title = BasicApiProblem.DefaultTitle,
@@ -49,14 +48,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemInstanceUri = BasicApiProblem.GetProblemNumber(),
                     ProblemTypeUri = BasicApiProblem.GetTypeUriFor(exception)
                 };
-            }
         }
 
         private class ApiExceptionHandler : DefaultExceptionHandler<ApiException>
         {
-            protected override BasicApiProblem GetApiProblemFor(ApiException exception)
-            {
-                return new BasicApiProblem
+            protected override BasicApiProblem GetApiProblemFor(ApiException exception) =>
+                new BasicApiProblem
                 {
                     HttpStatus = exception.StatusCode,
                     Title = BasicApiProblem.DefaultTitle,
@@ -64,14 +61,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemInstanceUri = BasicApiProblem.GetProblemNumber(),
                     ProblemTypeUri = BasicApiProblem.GetTypeUriFor(exception)
                 };
-            }
         }
 
         private class AggregateNotFoundExceptionHandling : DefaultExceptionHandler<AggregateNotFoundException>
         {
-            protected override BasicApiProblem GetApiProblemFor(AggregateNotFoundException exception)
-            {
-                return new BasicApiProblem
+            protected override BasicApiProblem GetApiProblemFor(AggregateNotFoundException exception) =>
+                new BasicApiProblem
                 {
                     HttpStatus = (int)HttpStatusCode.BadRequest,
                     Title = "Deze actie is niet geldig!",
@@ -79,7 +74,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemInstanceUri = BasicApiProblem.GetProblemNumber(),
                     ProblemTypeUri = BasicApiProblem.GetTypeUriFor(exception)
                 };
-            }
         }
     }
 }

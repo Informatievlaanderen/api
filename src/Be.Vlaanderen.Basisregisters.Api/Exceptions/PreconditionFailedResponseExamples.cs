@@ -5,15 +5,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class PreconditionFailedResponseExamples : IExamplesProvider
     {
-        public object GetExamples()
-        {
-            return new BasicApiProblem
+        public object GetExamples() =>
+            new BasicApiProblem
             {
                 HttpStatus = StatusCodes.Status412PreconditionFailed,
                 Title = BasicApiProblem.DefaultTitle,
                 Detail = "De gevraagde minimum positie van de event store is nog niet bereikt.",
                 ProblemInstanceUri = BasicApiProblem.GetProblemNumber()
             };
-        }
     }
 }

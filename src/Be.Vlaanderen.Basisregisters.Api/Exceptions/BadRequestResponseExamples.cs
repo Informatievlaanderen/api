@@ -5,15 +5,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class BadRequestResponseExamples : IExamplesProvider
     {
-        public object GetExamples()
-        {
-            return new BasicApiProblem
+        public object GetExamples() =>
+            new BasicApiProblem
             {
                 HttpStatus = StatusCodes.Status400BadRequest,
                 Title = BasicApiProblem.DefaultTitle,
                 Detail = string.Empty,
                 ProblemInstanceUri = BasicApiProblem.GetProblemNumber()
             };
-        }
     }
 }

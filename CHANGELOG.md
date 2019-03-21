@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/informatievlaanderen/api/compare/v1.10.1...v1.11.0) (2019-03-21)
+
+
+### Features
+
+* add validation api problem ([6de612c](https://github.com/informatievlaanderen/api/commit/6de612c))
+
 ## [1.10.1](https://github.com/informatievlaanderen/api/compare/v1.10.0...v1.10.1) (2019-03-18)
 
 

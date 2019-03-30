@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/informatievlaanderen/api/compare/v2.0.1...v2.0.2) (2019-03-30)
+
+
+### Bug Fixes
+
+* properly resolve RequestLocalizationOptions ([2f418e4](https://github.com/informatievlaanderen/api/commit/2f418e4))
+
 ## [2.0.1](https://github.com/informatievlaanderen/api/compare/v2.0.0...v2.0.1) (2019-03-30)
 
 

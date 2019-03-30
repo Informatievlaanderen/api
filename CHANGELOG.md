@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/informatievlaanderen/api/compare/v2.0.0...v2.0.1) (2019-03-30)
+
+
+### Bug Fixes
+
+* still provide an overload without sharedresources fallback ([be08d4c](https://github.com/informatievlaanderen/api/commit/be08d4c))
+
 # [2.0.0](https://github.com/informatievlaanderen/api/compare/v1.11.0...v2.0.0) (2019-03-30)
 
 

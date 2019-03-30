@@ -69,6 +69,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
     public static partial class StartupDefaults
     {
+        public class DefaultResources { }
+
+        public static IServiceCollection ConfigureDefaultForApi<T>(
+            this IServiceCollection services,
+            StartupConfigureOptions options) =>
+            services.ConfigureDefaultForApi<T, DefaultResources>(options);
+
         public static IServiceCollection ConfigureDefaultForApi<T, TSharedResources>(
             this IServiceCollection services,
             StartupConfigureOptions options)

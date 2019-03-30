@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/informatievlaanderen/api/compare/v2.0.2...v2.1.0) (2019-03-30)
+
+
+### Features
+
+* add hooks for authorization and localization options ([d96bdc6](https://github.com/informatievlaanderen/api/commit/d96bdc6))
+
 ## [2.0.2](https://github.com/informatievlaanderen/api/compare/v2.0.1...v2.0.2) (2019-03-30)
 
 

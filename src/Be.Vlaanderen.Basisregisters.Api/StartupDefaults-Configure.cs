@@ -11,16 +11,19 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using AspNetCore.Swagger;
     using DataDog.Tracing.AspNetCore;
     using Exceptions;
+    using FluentValidation;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Mvc.Cors.Internal;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.DependencyInjection;
     using FluentValidation.AspNetCore;
     using Localization;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
+    using Microsoft.AspNetCore.Mvc.DataAnnotations;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Localization;
     using Microsoft.Net.Http.Headers;
@@ -62,6 +65,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
         public class MiddlewareHookOptions
         {
             public Action<FluentValidationMvcConfiguration> FluentValidation { get; set; }
+            public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
+            public Action<AuthorizationOptions> Authorization { get; set; }
 
             public Action<IMvcCoreBuilder> AfterMvc { get; set; }
         }
@@ -136,7 +141,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
 
-                .AddDataAnnotationsLocalization()
+                .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization)
 
                 .AddFluentValidation(
                     options.MiddlewareHooks.FluentValidation
@@ -151,7 +156,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     .AllowCredentials()))
 
                 .AddControllersAsServices()
-                .AddAuthorization()
+                .AddAuthorization(options.MiddlewareHooks.Authorization)
 
                 .AddJsonFormatters()
                 .AddJsonOptions(cfg => cfg.SerializerSettings.ConfigureDefaultForApi())
@@ -225,6 +230,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     };
                 })
                 .Configure<GzipCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest);
+
+            ValidatorOptions.DisplayNameResolver =
+                (type, member, expression) =>
+                    member != null
+                        ? GlobalStringLocalizer.Instance.GetLocalizer<TSharedResources>().GetString(() => member.Name)
+                        : null;
 
             return services;
         }

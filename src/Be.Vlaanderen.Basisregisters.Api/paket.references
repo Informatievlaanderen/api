@@ -20,6 +20,9 @@ Microsoft.Extensions.Configuration.EnvironmentVariables
 Microsoft.Extensions.Options.ConfigurationExtensions
 Microsoft.Extensions.DependencyInjection
 
+Microsoft.AspNetCore.Localization
+Microsoft.Extensions.Localization
+
 Microsoft.VisualStudio.Web.BrowserLink
 
 Microsoft.SyndicationFeed.ReaderWriter

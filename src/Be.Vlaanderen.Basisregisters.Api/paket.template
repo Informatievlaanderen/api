@@ -23,7 +23,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse ~> 1.0
-    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders ~> 1.0
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders ~> 1.1
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality ~> 1.0
@@ -45,6 +45,8 @@ dependencies
     Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= LOCKEDVERSION
     Microsoft.AspNetCore.Server.Kestrel >= LOCKEDVERSION
     Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv >= LOCKEDVERSION
+    Microsoft.AspNetCore.Localization >= LOCKEDVERSION
+    Microsoft.Extensions.Localization >= LOCKEDVERSION
     Microsoft.EntityFrameworkCore >= LOCKEDVERSION
     Microsoft.Extensions.Configuration >= LOCKEDVERSION
     Microsoft.Extensions.Configuration.CommandLine >= LOCKEDVERSION

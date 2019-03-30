@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/informatievlaanderen/api/compare/v1.11.0...v2.0.0) (2019-03-30)
+
+
+### Features
+
+* add localization, redesign ConfigureDefaultForApi ([fc511b2](https://github.com/informatievlaanderen/api/commit/fc511b2))
+
+
+### BREAKING CHANGES
+
+* ConfigureDefaultOptions has a new signature, using an options object and having an
+extra generic parameter for localization.
+
 # [1.11.0](https://github.com/informatievlaanderen/api/compare/v1.10.1...v1.11.0) (2019-03-21)
 
 

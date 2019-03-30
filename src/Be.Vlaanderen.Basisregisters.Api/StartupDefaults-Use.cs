@@ -13,6 +13,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Autofac;
     using Localization;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.Extensions.Options;
 
     public class StartupUseOptions
     {
@@ -130,7 +131,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseResponseCompression();
             options.MiddlewareHooks.AfterResponseCompression?.Invoke(app);
 
-            app.UseRequestLocalization(options.Common.ServiceProvider.GetRequiredService<RequestLocalizationOptions>());
+            var requestLocalizationOptions = options
+                .Common
+                .ServiceProvider
+                .GetRequiredService<IOptions<RequestLocalizationOptions>>()
+                .Value;
+
+            app.UseRequestLocalization(requestLocalizationOptions);
             options.MiddlewareHooks.AfterRequestLocalization?.Invoke(app);
 
             app.UseSwaggerDocumentation(options.Api.VersionProvider, options.Api.Info);

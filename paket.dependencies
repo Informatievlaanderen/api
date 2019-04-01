@@ -23,13 +23,15 @@ nuget Microsoft.AspNetCore.Mvc.Formatters.Json 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Formatters.Xml 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer 3.2.0
 
-nuget Microsoft.AspNetCore.Diagnostics 2.2.0
-nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 2.2.0
-
 nuget Microsoft.AspNetCore.Server.Kestrel 2.2.0
 nuget Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv 2.2.0
 
 nuget Microsoft.AspNetCore.ResponseCompression 2.2.0
+
+nuget Microsoft.AspNetCore.Diagnostics 2.2.0
+nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 2.2.0
+nuget Microsoft.AspNetCore.Diagnostics.HealthChecks 2.2.0
+nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 2.2.0
 
 nuget Microsoft.AspNetCore.Localization 2.2.0
 nuget Microsoft.Extensions.Localization 2.2.0

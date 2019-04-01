@@ -1,12 +1,11 @@
 Microsoft.AspNetCore.Mvc.Abstractions
 Microsoft.AspNetCore.Mvc.Core
-Microsoft.AspNetCore.Diagnostics
 Microsoft.AspNetCore.Mvc.Cors
 Microsoft.AspNetCore.Mvc.Formatters.Json
 Microsoft.AspNetCore.Mvc.Formatters.Xml
 Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 Microsoft.AspNetCore.ResponseCompression
-Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+
 Microsoft.AspNetCore.Server.Kestrel
 Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv
 
@@ -19,6 +18,11 @@ Microsoft.Extensions.Configuration.Json
 Microsoft.Extensions.Configuration.EnvironmentVariables
 Microsoft.Extensions.Options.ConfigurationExtensions
 Microsoft.Extensions.DependencyInjection
+
+Microsoft.AspNetCore.Diagnostics
+Microsoft.AspNetCore.Diagnostics.HealthChecks
+Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 
 Microsoft.AspNetCore.Localization
 Microsoft.Extensions.Localization

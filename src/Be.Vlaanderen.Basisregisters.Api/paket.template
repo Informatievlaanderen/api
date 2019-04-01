@@ -36,18 +36,17 @@ dependencies
 
     Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Core >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Formatters.Json >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Formatters.Xml >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION
     Microsoft.AspNetCore.ResponseCompression >= LOCKEDVERSION
-    Microsoft.AspNetCore.Diagnostics >= LOCKEDVERSION
-    Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= LOCKEDVERSION
+
     Microsoft.AspNetCore.Server.Kestrel >= LOCKEDVERSION
     Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv >= LOCKEDVERSION
-    Microsoft.AspNetCore.Localization >= LOCKEDVERSION
-    Microsoft.Extensions.Localization >= LOCKEDVERSION
+
     Microsoft.EntityFrameworkCore >= LOCKEDVERSION
+
     Microsoft.Extensions.Configuration >= LOCKEDVERSION
     Microsoft.Extensions.Configuration.CommandLine >= LOCKEDVERSION
     Microsoft.Extensions.Configuration.FileExtensions >= LOCKEDVERSION
@@ -55,19 +54,37 @@ dependencies
     Microsoft.Extensions.Configuration.EnvironmentVariables >= LOCKEDVERSION
     Microsoft.Extensions.Options.ConfigurationExtensions >= LOCKEDVERSION
     Microsoft.Extensions.DependencyInjection >= LOCKEDVERSION
+
+    Microsoft.AspNetCore.Diagnostics >= LOCKEDVERSION
+    Microsoft.AspNetCore.Diagnostics.HealthChecks >= LOCKEDVERSION
+    Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= LOCKEDVERSION
+    Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore >= LOCKEDVERSION
+
+    Microsoft.AspNetCore.Localization >= LOCKEDVERSION
+    Microsoft.Extensions.Localization >= LOCKEDVERSION
+
     Microsoft.VisualStudio.Web.BrowserLink >= LOCKEDVERSION
+
     Microsoft.SyndicationFeed.ReaderWriter >= LOCKEDVERSION
-    Swashbuckle.AspNetCore >= LOCKEDVERSION
-    Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
-    System.Text.Encoding.CodePages >= LOCKEDVERSION
-    Polly >= LOCKEDVERSION
-    FluentValidation.AspNetCore >= LOCKEDVERSION
+
     SqlStreamStore >= LOCKEDVERSION
     SqlStreamStore.MsSql >= LOCKEDVERSION
+
     Autofac >= LOCKEDVERSION
     Autofac.Extensions.DependencyInjection >= LOCKEDVERSION
+
     Newtonsoft.Json >= LOCKEDVERSION
     Destructurama.JsonNet >= LOCKEDVERSION
+
+    System.Text.Encoding.CodePages >= LOCKEDVERSION
+
+    Polly >= LOCKEDVERSION
+
+    Swashbuckle.AspNetCore >= LOCKEDVERSION
+    Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
+
+    FluentValidation.AspNetCore >= LOCKEDVERSION
+
     Serilog >= LOCKEDVERSION
     Serilog.Settings.Configuration >= LOCKEDVERSION
     Serilog.Extensions.Logging >= LOCKEDVERSION

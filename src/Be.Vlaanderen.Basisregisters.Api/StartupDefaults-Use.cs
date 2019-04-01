@@ -2,6 +2,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AspNetCore.Mvc.Middleware;
     using AspNetCore.Swagger.ReDoc;
     using DataDog.Tracing;
@@ -12,8 +13,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.Extensions.Logging;
     using Autofac;
     using Localization;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Options;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     public class StartupUseOptions
     {
@@ -49,6 +55,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class MiddlewareHookOptions
         {
+            public HealthCheckOptions HealthChecks { get; set; }
+
             public Action<IApplicationBuilder> AfterCors { get; set; }
             public Action<IApplicationBuilder> AfterApiExceptionHandler { get; set; }
             public Action<IApplicationBuilder> AfterMiddleware { get; set; }
@@ -130,6 +138,38 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 })
                 .UseResponseCompression();
             options.MiddlewareHooks.AfterResponseCompression?.Invoke(app);
+
+
+            var healthCheckOptions = new HealthCheckOptions
+            {
+                AllowCachingResponses = false,
+
+                ResultStatusCodes =
+                {
+                    [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                    [HealthStatus.Degraded] = StatusCodes.Status200OK,
+                    [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+                },
+
+                ResponseWriter = (httpContext, result) =>
+                {
+                    httpContext.Response.ContentType = "application/json";
+
+                    var json = new JObject(
+                        new JProperty("status", result.Status.ToString()),
+                        new JProperty("results", new JObject(result.Entries.Select(pair =>
+                            new JProperty(pair.Key, new JObject(
+                                new JProperty("status", pair.Value.Status.ToString()),
+                                new JProperty("description", pair.Value.Description),
+                                new JProperty("data", new JObject(pair.Value.Data.Select(
+                                    p => new JProperty(p.Key, p.Value))))))))));
+
+                    return httpContext.Response.WriteAsync(
+                        json.ToString(Formatting.Indented));
+                }
+            };
+
+            app.UseHealthChecks("/health", options.MiddlewareHooks.HealthChecks ?? healthCheckOptions);
 
             var requestLocalizationOptions = options
                 .Common

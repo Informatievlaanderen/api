@@ -69,6 +69,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<AuthorizationOptions> Authorization { get; set; }
 
             public Action<IMvcCoreBuilder> AfterMvc { get; set; }
+            public Action<IHealthChecksBuilder> AfterHealthChecks { get; set; }
         }
     }
 
@@ -87,7 +88,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             if (options.Swagger.ApiInfo == null)
                 throw new ArgumentNullException(nameof(options.Swagger.ApiInfo));
-            
+
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 
             var configuredCorsMethods = new[]
@@ -166,6 +167,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddApiExplorer();
 
             options.MiddlewareHooks.AfterMvc?.Invoke(mvcBuilder);
+
+            var healthChecksBuilder = services.AddHealthChecks();
+            options.MiddlewareHooks.AfterHealthChecks?.Invoke(healthChecksBuilder);
 
             mvcBuilder
                 .Services

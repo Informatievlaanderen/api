@@ -3,10 +3,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System;
     using System.Data.SqlClient;
     using System.IO;
+    using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using Autofac;
     using DataDog.Tracing;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Polly;
@@ -44,7 +47,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
             };
         }
 
-        public static void EnsureSqlStreamStoreSchema<T>(MsSqlStreamStore streamStore, ILoggerFactory loggerFactory)
+        public static void EnsureSqlStreamStoreSchema<T>(
+            MsSqlStreamStore streamStore,
+            ILoggerFactory loggerFactory)
         {
             var logger = loggerFactory.CreateLogger<T>();
 
@@ -88,6 +93,26 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 Console.WriteLine(sb.ToString());
             });
+        }
+
+        public static async Task CheckDatabases(
+            HealthCheckService healthCheckService,
+            string databaseTag)
+        {
+            string FormatHealthReport(HealthReport healthReport)
+            {
+                var entries = healthReport
+                    .Entries
+                    .Where(x => x.Value.Status != HealthStatus.Healthy)
+                    .Select(x => $"{x.Key} - {x.Value.Exception?.Message}");
+
+                return $"\n\t* {string.Join("\n\t* ", entries)}";
+            }
+
+            var result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
+
+            if (result.Status != HealthStatus.Healthy)
+                throw new Exception($"Databases not ready:{FormatHealthReport(result)}");
         }
     }
 }

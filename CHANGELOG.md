@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/informatievlaanderen/api/compare/v2.2.1...v2.3.0) (2019-04-01)
+
+
+### Features
+
+* add a check for databases health ([c6b6b9d](https://github.com/informatievlaanderen/api/commit/c6b6b9d))
+
 ## [2.2.1](https://github.com/informatievlaanderen/api/compare/v2.2.0...v2.2.1) (2019-04-01)
 
 

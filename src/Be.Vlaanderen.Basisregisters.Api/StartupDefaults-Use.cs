@@ -151,21 +151,23 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
                 },
 
-                ResponseWriter = (httpContext, result) =>
+                ResponseWriter = (httpContext, healthReport) =>
                 {
                     httpContext.Response.ContentType = "application/json";
 
                     var json = new JObject(
-                        new JProperty("status", result.Status.ToString()),
-                        new JProperty("results", new JObject(result.Entries.Select(pair =>
+                        new JProperty("status", healthReport.Status.ToString()),
+                        new JProperty("totalDuration", healthReport.TotalDuration.ToString()),
+                        new JProperty("results", new JObject(healthReport.Entries.Select(pair =>
                             new JProperty(pair.Key, new JObject(
                                 new JProperty("status", pair.Value.Status.ToString()),
+                                new JProperty("duration", pair.Value.Duration),
                                 new JProperty("description", pair.Value.Description),
+                                new JProperty("exception", pair.Value.Exception?.Message),
                                 new JProperty("data", new JObject(pair.Value.Data.Select(
                                     p => new JProperty(p.Key, p.Value))))))))));
 
-                    return httpContext.Response.WriteAsync(
-                        json.ToString(Formatting.Indented));
+                    return httpContext.Response.WriteAsync(json.ToString(Formatting.Indented));
                 }
             };
 

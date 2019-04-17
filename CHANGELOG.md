@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/informatievlaanderen/api/compare/v3.0.0...v3.1.0) (2019-04-17)
+
+
+### Features
+
+* remove datadog profiler ([8b7955c](https://github.com/informatievlaanderen/api/commit/8b7955c))
+
 # [3.0.0](https://github.com/informatievlaanderen/api/compare/v2.3.0...v3.0.0) (2019-04-17)
 
 

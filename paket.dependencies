@@ -16,8 +16,6 @@ nuget Microsoft.NETCore.DotNetHostPolicy 2.2.0
 nuget NETStandard.Library 2.0.3
 
 // PRODUCTION STUFF
-nuget Datadog.Trace.ClrProfiler.Managed 1.0.0
-
 nuget Microsoft.AspNetCore.Mvc.Abstractions 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Core 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Cors 2.2.0

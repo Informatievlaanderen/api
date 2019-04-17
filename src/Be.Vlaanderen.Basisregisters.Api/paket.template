@@ -34,8 +34,6 @@ dependencies
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 1.0
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 
-    Datadog.Trace.ClrProfiler.Managed >= LOCKEDVERSION
-
     Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Core >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION

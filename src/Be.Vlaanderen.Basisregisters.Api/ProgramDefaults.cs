@@ -12,22 +12,71 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Serilog;
     using Serilog.Debugging;
+    using Serilog.Formatting.Compact;
+
+    public class DevelopmentCertificate
+    {
+        public string Name { get; }
+        public string Key { get; }
+
+        public DevelopmentCertificate(string name, string key)
+        {
+            Name = name;
+            Key = key;
+        }
+
+        public X509Certificate2 ToCertificate() => new X509Certificate2(Name, Key);
+    }
+
+    public class ProgramOptions
+    {
+        public HostingOptions Hosting { get; } = new HostingOptions();
+
+        public class HostingOptions
+        {
+            public int? HttpPort { get; set; } = null;
+            public int? HttpsPort { get; set; } = null;
+            public Func<X509Certificate2> HttpsCertificate { get; set; } = null;
+        }
+
+        public LoggingOptions Logging { get; } = new LoggingOptions();
+
+        public class LoggingOptions
+        {
+            public bool WriteTextToConsole { get; set; } = true;
+            public bool WriteJsonToConsole { get; set; } = false;
+        }
+
+        public RuntimeOptions Runtime { get; } = new RuntimeOptions();
+
+        public class RuntimeOptions
+        {
+            public string[] CommandLineArgs { get; set; } = null;
+        }
+
+        public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
+
+        public class MiddlewareHookOptions
+        {
+            public Action<WebHostBuilderContext, IConfigurationBuilder> ConfigureAppConfiguration { get; set; }
+            public Action<WebHostBuilderContext, LoggerConfiguration> ConfigureSerilog { get; set; }
+            public Action<WebHostBuilderContext, ILoggingBuilder> ConfigureLogging { get; set; }
+        }
+    }
 
     public static class ProgramDefaults
     {
         public static IWebHostBuilder UseDefaultForApi<T>(
             this IWebHostBuilder hostBuilder,
-            int httpPort = 5000,
-            int? httpsPort = null,
-            Func<X509Certificate2> httpsCertificate = null,
-            string[] commandLineArgs = null) where T : class
+            ProgramOptions options) where T : class
         {
             SelfLog.Enable(Console.WriteLine);
 
-            commandLineArgs = PatchRiderBug<T>(commandLineArgs);
+            options.Runtime.CommandLineArgs = PatchRiderBug<T>(options.Runtime.CommandLineArgs);
 
             ConfigureEncoding();
             ConfigureJsonSerializerSettings();
@@ -36,16 +85,20 @@ namespace Be.Vlaanderen.Basisregisters.Api
             var environment = hostBuilder.GetSetting("environment");
 
             return hostBuilder
-                .UseKestrel(options =>
+                .UseKestrel(x =>
                 {
-                    options.AddServerHeader = false;
+                    x.AddServerHeader = false;
 
                     // Needs to be bigger than traefik timeout, which is 90seconds
                     // https://github.com/containous/traefik/issues/3237
-                    options.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(120);
+                    x.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(120);
 
                     if (environment == "Development")
-                        AddDevelopmentPorts(options, httpPort, httpsPort, httpsCertificate?.Invoke());
+                        AddDevelopmentPorts(
+                            x,
+                            options.Hosting.HttpPort,
+                            options.Hosting.HttpsPort,
+                            options.Hosting.HttpsCertificate?.Invoke());
                 })
                 .UseLibuv()
                 .CaptureStartupErrors(true)
@@ -61,22 +114,35 @@ namespace Be.Vlaanderen.Basisregisters.Api
                         .AddJsonFile($"appsettings.{env.EnvironmentName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
                         .AddJsonFile($"appsettings.{Environment.MachineName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
                         .AddEnvironmentVariables()
-                        .AddCommandLine(commandLineArgs ?? new string[0]);
+                        .AddCommandLine(options.Runtime.CommandLineArgs ?? new string[0]);
+
+                    options.MiddlewareHooks.ConfigureAppConfiguration?.Invoke(hostingContext, config);
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     var loggerConfiguration = new LoggerConfiguration()
-                        .ReadFrom.Configuration(hostingContext.Configuration)
-                        .WriteTo.Console()
+                        .ReadFrom.Configuration(hostingContext.Configuration);
+
+                    if (options.Logging.WriteTextToConsole)
+                        loggerConfiguration = loggerConfiguration.WriteTo.Console();
+
+                    if (options.Logging.WriteJsonToConsole)
+                        loggerConfiguration = loggerConfiguration.WriteTo.Console(new RenderedCompactJsonFormatter());
+
+                    loggerConfiguration = loggerConfiguration
                         .Enrich.FromLogContext()
                         .Enrich.WithMachineName()
                         .Enrich.WithThreadId()
                         .Enrich.WithEnvironmentUserName()
                         .Destructure.JsonNetTypes();
 
+                    options.MiddlewareHooks.ConfigureSerilog?.Invoke(hostingContext, loggerConfiguration);
+
                     var logger = Log.Logger = loggerConfiguration.CreateLogger();
 
                     logging.AddSerilog(logger);
+
+                    options.MiddlewareHooks.ConfigureLogging?.Invoke(hostingContext, logging);
                 })
                 .UseStartup<T>();
         }
@@ -121,11 +187,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         private static void AddDevelopmentPorts(
             KestrelServerOptions options,
-            int httpPort,
+            int? httpPort,
             int? httpsPort,
             X509Certificate2 certificate)
         {
-            AddListener(options, httpPort, null);
+            if (httpPort.HasValue)
+                AddListener(options, httpPort.Value, null);
 
             if (httpsPort.HasValue && certificate != null)
                 AddListener(options, httpsPort.Value, certificate);

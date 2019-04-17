@@ -59,6 +59,7 @@ Serilog.Enrichers.Environment
 Serilog.Formatting.Compact
 
 Be.Vlaanderen.Basisregisters.AggregateSource
+
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json
@@ -70,10 +71,16 @@ Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind
+
 Be.Vlaanderen.Basisregisters.AspNetCore.Swagger
 Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc
+
 Be.Vlaanderen.Basisregisters.DataDog.Tracing
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore
+Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
+Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql
+Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore
+
 Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic
 
 SourceLink.Embed.AllSourceFiles

@@ -97,8 +97,11 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.0
 
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 1.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 2.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 2.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 2.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 2.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 2.0
 
 nuget Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 

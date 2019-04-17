@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/informatievlaanderen/api/compare/v2.3.0...v3.0.0) (2019-04-17)
+
+
+### Features
+
+* programdefaults uses an options object for configuration ([00bd633](https://github.com/informatievlaanderen/api/commit/00bd633)), closes [#5](https://github.com/informatievlaanderen/api/issues/5)
+
+
+### BREAKING CHANGES
+
+* Change ProgramDefault to use the new options object.
+
 # [2.3.0](https://github.com/informatievlaanderen/api/compare/v2.2.1...v2.3.0) (2019-04-01)
 
 

@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/informatievlaanderen/api/compare/v3.1.0...v4.0.0) (2019-04-17)
+
+
+### Features
+
+* provide your own trace id ([8b6ea1e](https://github.com/informatievlaanderen/api/commit/8b6ea1e))
+
+
+### BREAKING CHANGES
+
+* UseDataDogTracing now expects a function to return a TraceSource per request
+
 # [3.1.0](https://github.com/informatievlaanderen/api/compare/v3.0.0...v3.1.0) (2019-04-17)
 
 

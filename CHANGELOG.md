@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/informatievlaanderen/api/compare/v4.0.0...v4.0.1) (2019-04-18)
+
+
+### Bug Fixes
+
+* properly register datadog with autofac ([cdff518](https://github.com/informatievlaanderen/api/commit/cdff518))
+
 # [4.0.0](https://github.com/informatievlaanderen/api/compare/v3.1.0...v4.0.0) (2019-04-17)
 
 

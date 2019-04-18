@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/informatievlaanderen/api/compare/v4.0.1...v5.0.0) (2019-04-18)
+
+
+### Bug Fixes
+
+* trace id has to be a long ([2844da9](https://github.com/informatievlaanderen/api/commit/2844da9))
+
+
+### BREAKING CHANGES
+
+* Trace Id has to be a long instead of a string
+
 ## [4.0.1](https://github.com/informatievlaanderen/api/compare/v4.0.0...v4.0.1) (2019-04-18)
 
 

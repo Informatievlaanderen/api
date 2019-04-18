@@ -53,7 +53,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             var logger = loggerFactory.CreateLogger<T>();
 
-            // TODO: Need to revisit this with a Consul lock
             Policy
                 .Handle<SqlException>()
                 .WaitAndRetry(

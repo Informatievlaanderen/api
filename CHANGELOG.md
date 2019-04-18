@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/informatievlaanderen/api/compare/v5.1.0...v5.1.1) (2019-04-18)
+
+
+### Bug Fixes
+
+* properly register tracesource factory ([2e6eb04](https://github.com/informatievlaanderen/api/commit/2e6eb04))
+
 # [5.1.0](https://github.com/informatievlaanderen/api/compare/v5.0.0...v5.1.0) (2019-04-18)
 
 

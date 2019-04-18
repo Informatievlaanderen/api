@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/informatievlaanderen/api/compare/v5.1.1...v5.2.0) (2019-04-18)
+
+
+### Features
+
+* add traceid to logcontext ([026ce2e](https://github.com/informatievlaanderen/api/commit/026ce2e))
+
 ## [5.1.1](https://github.com/informatievlaanderen/api/compare/v5.1.0...v5.1.1) (2019-04-18)
 
 

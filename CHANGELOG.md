@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/informatievlaanderen/api/compare/v5.0.0...v5.1.0) (2019-04-18)
+
+
+### Features
+
+* add extra debug logging for traceagent ([27defb0](https://github.com/informatievlaanderen/api/commit/27defb0))
+
 # [5.0.0](https://github.com/informatievlaanderen/api/compare/v4.0.1...v5.0.0) (2019-04-18)
 
 

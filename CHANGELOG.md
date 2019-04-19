@@ -1,3 +1,16 @@
+# [6.0.0](https://github.com/informatievlaanderen/api/compare/v5.5.0...v6.0.0) (2019-04-19)
+
+
+### Features
+
+* switch to sockets as kestrel transport instead of libuv ([0e03a7a](https://github.com/informatievlaanderen/api/commit/0e03a7a))
+
+
+### BREAKING CHANGES
+
+* Kestrel is running on sockets instead of libuv, be aware of this in case you have a
+specific use case to need libuv
+
 # [5.5.0](https://github.com/informatievlaanderen/api/compare/v5.4.0...v5.5.0) (2019-04-19)
 
 

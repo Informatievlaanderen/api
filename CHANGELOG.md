@@ -1,3 +1,10 @@
+# [5.5.0](https://github.com/informatievlaanderen/api/compare/v5.4.0...v5.5.0) (2019-04-19)
+
+
+### Features
+
+* support http/2 ([b6133cc](https://github.com/informatievlaanderen/api/commit/b6133cc))
+
 # [5.4.0](https://github.com/informatievlaanderen/api/compare/v5.3.1...v5.4.0) (2019-04-19)
 
 

@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/informatievlaanderen/api/compare/v5.3.1...v5.4.0) (2019-04-19)
+
+
+### Features
+
+* add brotli compression ([051d686](https://github.com/informatievlaanderen/api/commit/051d686))
+
 ## [5.3.1](https://github.com/informatievlaanderen/api/compare/v5.3.0...v5.3.1) (2019-04-19)
 
 # [5.3.0](https://github.com/informatievlaanderen/api/compare/v5.2.0...v5.3.0) (2019-04-19)

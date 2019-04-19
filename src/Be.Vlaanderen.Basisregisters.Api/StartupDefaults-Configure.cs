@@ -206,6 +206,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 {
                     cfg.EnableForHttps = true;
 
+                    cfg.Providers.Add<BrotliCompressionProvider>();
                     cfg.Providers.Add<GzipCompressionProvider>();
 
                     cfg.MimeTypes = new[]
@@ -233,7 +234,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                         "application/vnd.ms-fontobject"
                     };
                 })
-                .Configure<GzipCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest);
+                .Configure<GzipCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
+                .Configure<BrotliCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest);
 
             ValidatorOptions.DisplayNameResolver =
                 (type, member, expression) =>

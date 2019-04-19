@@ -210,7 +210,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     listenOptions.UseConnectionLogging();
 
                     if (null != certificate)
+                    {
                         listenOptions.UseHttps(certificate);
+                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                    }
                 });
         }
     }

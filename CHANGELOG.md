@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/informatievlaanderen/api/compare/v5.2.0...v5.3.0) (2019-04-19)
+
+
+### Features
+
+* add default datadog setup ([e1e46d6](https://github.com/informatievlaanderen/api/commit/e1e46d6))
+
 # [5.2.0](https://github.com/informatievlaanderen/api/compare/v5.1.1...v5.2.0) (2019-04-18)
 
 

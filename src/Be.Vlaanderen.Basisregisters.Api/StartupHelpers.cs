@@ -7,10 +7,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Text;
     using System.Threading.Tasks;
     using Autofac;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using DataDog.Tracing;
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
     using Polly;
     using Serilog;
@@ -18,7 +23,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
     public static class StartupHelpers
     {
+        private readonly static Random TraceIdGenerator = new Random();
+
         public const string AllowSpecificOrigin = "AllowSpecificOrigin";
+        public const string DefaultTraceHeader = "X-Trace-Id";
 
         public static void RegisterApplicationLifetimeHandling(
             IContainer applicationContainer,
@@ -72,6 +80,60 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     if (!checkSchemaResult.IsMatch())
                         streamStore.CreateSchema().GetAwaiter().GetResult();
                 });
+        }
+
+        public static void UseDatadog<T>(
+            IServiceProvider serviceProvider,
+            IApplicationBuilder app,
+            ILoggerFactory loggerFactory,
+            ApiDataDogToggle datadogToggle,
+            ApiDebugDataDogToggle debugDataDogToggle,
+            string serviceName,
+            string traceHeaderName = DefaultTraceHeader,
+            Func<StringValues, long> traceIdGenerator = null,
+            Func<string, bool> shouldTracePath = null)
+        {
+            if (datadogToggle.FeatureEnabled)
+            {
+                if (debugDataDogToggle.FeatureEnabled)
+                    SetupSourceListener(serviceProvider.GetRequiredService<TraceSource>());
+
+                var traceSourceFactory = serviceProvider.GetRequiredService<Func<long, TraceSource>>();
+                var logger = loggerFactory.CreateLogger<T>();
+
+                app.UseDataDogTracing(
+                    request =>
+                    {
+                        long traceId = TraceIdGenerator.Next(1, int.MaxValue);
+                        try
+                        {
+                            logger.LogDebug("Trying to parse traceid from {Headers}", request.Headers);
+
+                            if (request.Headers.TryGetValue(traceHeaderName, out var traceHeader))
+                            {
+                                if (traceIdGenerator != null)
+                                {
+                                    traceId = traceIdGenerator(traceHeader);
+                                }
+                                else
+                                {
+                                    if (long.TryParse(traceHeader.ToString(), out var possibleTraceId))
+                                        traceId = possibleTraceId;
+                                }
+                            }
+
+                            logger.LogDebug("Parsed {ParsedTraceId}", traceId);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.LogError(e, "Failed to parse Trace Id from {Headers}.", request.Headers);
+                        }
+
+                        return traceSourceFactory(traceId);
+                    },
+                    serviceName,
+                    shouldTracePath ?? (pathToCheck => pathToCheck != "/"));
+            }
         }
 
         public static void SetupSourceListener(TraceSource source)

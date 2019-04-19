@@ -82,9 +82,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 });
         }
 
-        public static void UseDatadog<T>(
+        public static IApplicationBuilder UseDatadog<T>(
+            this IApplicationBuilder app,
             IServiceProvider serviceProvider,
-            IApplicationBuilder app,
             ILoggerFactory loggerFactory,
             ApiDataDogToggle datadogToggle,
             ApiDebugDataDogToggle debugDataDogToggle,
@@ -134,6 +134,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     serviceName,
                     shouldTracePath ?? (pathToCheck => pathToCheck != "/"));
             }
+
+            return app;
         }
 
         public static void SetupSourceListener(TraceSource source)

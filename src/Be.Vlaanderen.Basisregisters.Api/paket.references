@@ -1,13 +1,14 @@
 Microsoft.AspNetCore.Mvc.Abstractions
 Microsoft.AspNetCore.Mvc.Core
 Microsoft.AspNetCore.Mvc.Cors
+Microsoft.AspNetCore.Mvc.Api.Analyzers
 Microsoft.AspNetCore.Mvc.Formatters.Json
 Microsoft.AspNetCore.Mvc.Formatters.Xml
 Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 Microsoft.AspNetCore.ResponseCompression
 
 Microsoft.AspNetCore.Server.Kestrel
-Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv
+Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets
 
 Microsoft.EntityFrameworkCore
 

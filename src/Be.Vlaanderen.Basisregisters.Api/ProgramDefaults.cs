@@ -100,7 +100,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                             options.Hosting.HttpsPort,
                             options.Hosting.HttpsCertificate?.Invoke());
                 })
-                .UseLibuv()
+                .UseSockets()
                 .CaptureStartupErrors(true)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseWebRoot("wwwroot")

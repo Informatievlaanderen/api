@@ -40,13 +40,14 @@ dependencies
     Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Core >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION
+    Microsoft.AspNetCore.Mvc.Api.Analyzers >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Formatters.Json >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Formatters.Xml >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION
     Microsoft.AspNetCore.ResponseCompression >= LOCKEDVERSION
 
     Microsoft.AspNetCore.Server.Kestrel >= LOCKEDVERSION
-    Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv >= LOCKEDVERSION
+    Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets >= LOCKEDVERSION
 
     Microsoft.EntityFrameworkCore >= LOCKEDVERSION
 

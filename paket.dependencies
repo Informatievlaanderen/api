@@ -19,12 +19,13 @@ nuget NETStandard.Library 2.0.3
 nuget Microsoft.AspNetCore.Mvc.Abstractions 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Core 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Cors 2.2.0
+nuget Microsoft.AspNetCore.Mvc.Api.Analyzers 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Formatters.Json 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Formatters.Xml 2.2.0
 nuget Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer 3.2.0
 
 nuget Microsoft.AspNetCore.Server.Kestrel 2.2.0
-nuget Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv 2.2.0
+nuget Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets 2.2.0
 
 nuget Microsoft.AspNetCore.ResponseCompression 2.2.0
 

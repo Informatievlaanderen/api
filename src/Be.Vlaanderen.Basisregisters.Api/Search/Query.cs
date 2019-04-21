@@ -7,15 +7,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
     using Pagination;
     using Sorting;
 
-    public abstract class Query<T> : Query<T, T, T> where T : class
-    {
-    }
+    public abstract class Query<T> : Query<T, T, T>
+        where T : class
+    { }
 
     public abstract class Query<T, TFilter> : Query<T, TFilter, T>
         where T : class
         where TFilter : class
-    {
-    }
+    { }
 
     public abstract class Query<T, TFilter, TResult>
         where T : class

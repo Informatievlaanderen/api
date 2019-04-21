@@ -19,7 +19,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
         public PaginationRequest(int offset, int limit)
         {
             Offset = Math.Max(offset, 0);
-            Limit = limit;
+            Limit = Math.Max(limit, 0);
         }
 
         public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)

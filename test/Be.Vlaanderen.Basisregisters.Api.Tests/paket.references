@@ -8,3 +8,4 @@ Microsoft.NET.Test.Sdk
 Microsoft.AspNetCore.TestHost
 FluentAssertions
 Moq
+AutoFixture

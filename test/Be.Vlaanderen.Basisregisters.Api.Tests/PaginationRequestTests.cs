@@ -110,7 +110,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_pagination_info_has_limit_zero_is_true()
         {
-            Sut.HasLimitZero.Should().BeTrue();
+            Sut.HasZeroAsLimit.Should().BeTrue();
         }
     }
 
@@ -146,7 +146,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_pagination_info_has_limit_zero_is_true()
         {
-            Sut.HasLimitZero.Should().BeTrue();
+            Sut.HasZeroAsLimit.Should().BeTrue();
         }
     }
 
@@ -185,7 +185,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_pagination_info_has_limit_zero_is_false()
         {
-            Sut.HasLimitZero.Should().BeFalse();
+            Sut.HasZeroAsLimit.Should().BeFalse();
         }
     }
 

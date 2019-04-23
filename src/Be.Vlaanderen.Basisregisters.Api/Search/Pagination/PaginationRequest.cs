@@ -8,14 +8,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
     public interface IPaginationRequest
     {
         PagedQueryable<T> Paginate<T>(SortedQueryable<T> source);
-        bool HasLimitZero { get; }
+        bool HasZeroAsLimit { get; }
     }
 
     public class PaginationRequest : IPaginationRequest
     {
         public int Offset { get; }
         public int Limit { get; }
-        public bool HasLimitZero => Limit == 0;
+        public bool HasZeroAsLimit => Limit == 0;
 
         public PaginationRequest(int offset, int limit)
         {
@@ -46,7 +46,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
     public class NoPaginationRequest : IPaginationRequest
     {
         public int TotalPages(int totalItemSize) => 1;
-        public bool HasLimitZero => false;
+        public bool HasZeroAsLimit => false;
 
         public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
         {

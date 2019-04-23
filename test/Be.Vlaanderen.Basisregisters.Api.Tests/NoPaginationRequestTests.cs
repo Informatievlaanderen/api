@@ -52,5 +52,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .PaginationInfo.TotalItems
                 .Should().Be(_queryableItems.Items.Count());
         }
+
+        [Fact]
+        public void Then_the_pagination_info_has_limit_zero_is_false()
+        {
+            Sut.HasLimitZero.Should().BeFalse();
+        }
     }
 }

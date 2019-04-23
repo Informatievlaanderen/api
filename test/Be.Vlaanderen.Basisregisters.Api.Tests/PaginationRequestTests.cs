@@ -106,6 +106,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .PaginationInfo.TotalItems
                 .Should().Be(QueryableItems.Items.Count());
         }
+
+        [Fact]
+        public void Then_the_pagination_info_has_limit_zero_is_true()
+        {
+            Sut.HasLimitZero.Should().BeTrue();
+        }
     }
 
     public class When_a_pagination_request_has_an_initial_zero_limit : PaginationTestContext
@@ -135,6 +141,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             Sut.Paginate(QueryableItems)
                 .PaginationInfo.TotalItems
                 .Should().Be(QueryableItems.Items.Count());
+        }
+
+        [Fact]
+        public void Then_the_pagination_info_has_limit_zero_is_true()
+        {
+            Sut.HasLimitZero.Should().BeTrue();
         }
     }
 
@@ -168,6 +180,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             Sut.Paginate(QueryableItems)
                 .PaginationInfo.TotalItems
                 .Should().Be(QueryableItems.Items.Count());
+        }
+
+        [Fact]
+        public void Then_the_pagination_info_has_limit_zero_is_false()
+        {
+            Sut.HasLimitZero.Should().BeFalse();
         }
     }
 

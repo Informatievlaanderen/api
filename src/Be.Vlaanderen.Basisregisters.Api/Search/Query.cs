@@ -1,6 +1,7 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Search
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using Filtering;
@@ -37,7 +38,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
             if (paginationRequest == null)
                 throw new ArgumentNullException(nameof(paginationRequest));
 
-            var items = Filter(filtering);
+            var items = paginationRequest.HasLimitZero
+                ? new List<T>().AsQueryable()
+                : Filter(filtering);
 
             return items
                 .WithSorting(sorting, Sorting)

@@ -54,8 +54,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             FetchResult.Items.Should().ContainInOrder(expectedItems);
         }
     }
-
-
+    
     public class When_fetching_query_results_without_a_filter
     {
         [Fact]
@@ -98,6 +97,39 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                     null);
 
             fetch.Should().Throw<ArgumentNullException>();
+        }
+    }
+
+    public class When_fetching_query_results_with_limit_zero_pagination
+    {
+        protected internal PagedQueryable<string> FetchResult;
+
+        public When_fetching_query_results_with_limit_zero_pagination()
+        {
+            const int limitZero = 0;
+
+            var queryData = new Fixture()
+                .CreateMany<string>(15)
+                .Select((s, i) => new TestQuery.Item { Index = i, Value = s })
+                .ToImmutableList();
+
+            FetchResult = new TestQuery(queryData)
+                .Fetch(
+                    new FilteringHeader<TestQuery.FilterItem>(default),
+                    new SortingHeader("Value", SortOrder.Descending),
+                    new PaginationRequest(0, limitZero));
+        }
+
+        [Fact]
+        public void Then_the_items_is_empty()
+        {
+            FetchResult.Items.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Then_the_total_paginated_items_is_zero()
+        {
+            FetchResult.PaginationInfo.TotalItems.Should().Be(0);
         }
     }
 

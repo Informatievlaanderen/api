@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/informatievlaanderen/api/compare/v6.0.0...v6.0.1) (2019-04-23)
+
+
+### Bug Fixes
+
+* don't query items when page size is zero ([2e6cb1d](https://github.com/informatievlaanderen/api/commit/2e6cb1d))
+
 # [6.0.0](https://github.com/informatievlaanderen/api/compare/v5.5.0...v6.0.0) (2019-04-19)
 
 

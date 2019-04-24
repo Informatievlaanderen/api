@@ -11,13 +11,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 
     public static class AsAsyncQueryableExtension
     {
-        public static IAsyncQueryable<T> AsAsyncQueryable<T>(this IEnumerable<T> source)
+        public static IQueryable<T> AsAsyncQueryable<T>(this IEnumerable<T> source)
         {
             return new AsyncQueryable<T>(source);
         }
     }
 
-    internal class AsyncQueryable<T> : IAsyncQueryable<T>
+    internal class AsyncQueryable<T> : IQueryable<T>, IAsyncEnumerable<T>
     {
         private readonly IQueryable<T> _queryable;
 

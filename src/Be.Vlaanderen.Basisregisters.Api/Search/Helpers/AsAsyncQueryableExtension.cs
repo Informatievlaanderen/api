@@ -13,7 +13,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
     {
         public static IQueryable<T> AsAsyncQueryable<T>(this IEnumerable<T> source)
         {
-            return new AsyncQueryable<T>(source);
+            return source is IQueryable<T> queryable
+                ? queryable.AsAsyncQueryable()
+                : new AsyncQueryable<T>(source);
+        }
+
+        public static IQueryable<T> AsAsyncQueryable<T>(this IQueryable<T> source)
+        {
+            return source is IAsyncEnumerable<T>
+                ? source
+                : new AsyncQueryable<T>(source);
         }
     }
 

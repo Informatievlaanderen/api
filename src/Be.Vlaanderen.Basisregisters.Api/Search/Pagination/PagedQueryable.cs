@@ -6,7 +6,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
     public class PagedQueryable<T>
     {
-        public IAsyncQueryable<T> Items { get; }
+        public IQueryable<T> Items { get; }
         public PaginationInfo PaginationInfo { get; }
         public SortingHeader Sorting { get; }
 

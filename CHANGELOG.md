@@ -1,3 +1,13 @@
+## [6.0.2](https://github.com/informatievlaanderen/api/compare/v6.0.1...v6.0.2) (2019-04-24)
+
+
+### Bug Fixes
+
+* change the PagedQueryable.Items type ([4705acf](https://github.com/informatievlaanderen/api/commit/4705acf))
+* items of PagedQueryable alwas are AsyncEnumerable ([6e8c531](https://github.com/informatievlaanderen/api/commit/6e8c531))
+* revert using IAsynQueryable<T> ([beef789](https://github.com/informatievlaanderen/api/commit/beef789))
+* set number of pages to 1 for limit 0 ([7a2c1a2](https://github.com/informatievlaanderen/api/commit/7a2c1a2))
+
 ## [6.0.1](https://github.com/informatievlaanderen/api/compare/v6.0.0...v6.0.1) (2019-04-23)
 
 

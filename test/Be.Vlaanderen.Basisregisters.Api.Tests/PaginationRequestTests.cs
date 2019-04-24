@@ -108,6 +108,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         }
 
         [Fact]
+        public void Then_the_pagination_info_total_pages_should_be_one()
+        {
+            Sut.Paginate(QueryableItems)
+                .PaginationInfo.TotalPages
+                .Should().Be(1);
+        }
+
+        [Fact]
         public void Then_the_pagination_info_has_limit_zero_is_true()
         {
             Sut.HasZeroAsLimit.Should().BeTrue();
@@ -141,6 +149,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             Sut.Paginate(QueryableItems)
                 .PaginationInfo.TotalItems
                 .Should().Be(QueryableItems.Items.Count());
+        }
+
+        [Fact]
+        public void Then_the_pagination_info_total_pages_should_be_one()
+        {
+            Sut.Paginate(QueryableItems)
+                .PaginationInfo.TotalPages
+                .Should().Be(1);
         }
 
         [Fact]

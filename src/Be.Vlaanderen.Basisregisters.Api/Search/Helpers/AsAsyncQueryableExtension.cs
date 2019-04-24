@@ -1,5 +1,7 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 {
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
@@ -9,29 +11,52 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 
     public static class AsAsyncQueryableExtension
     {
-        public static IQueryable<T> AsAsyncQueryable<T>(this IEnumerable<T> source)
+        public static IAsyncQueryable<T> AsAsyncQueryable<T>(this IEnumerable<T> source)
         {
-            return new TestAsyncEnumerable<T>(source).AsQueryable();
+            return new AsyncQueryable<T>(source);
         }
     }
 
-    internal class TestAsyncQueryProvider<TEntity> : IAsyncQueryProvider
+    internal class AsyncQueryable<T> : IAsyncQueryable<T>
+    {
+        private readonly IQueryable<T> _queryable;
+
+        public AsyncQueryable(IEnumerable<T> enumerable)
+            => _queryable = new EnumerableQuery<T>(enumerable);
+
+        public AsyncQueryable(Expression expression)
+            => _queryable = new EnumerableQuery<T>(expression);
+
+        public Type ElementType => _queryable.ElementType;
+
+        public Expression Expression => _queryable.Expression;
+
+        IQueryProvider IQueryable.Provider => new AsyncQueryProvider<T>(_queryable.Provider);
+
+        IEnumerator IEnumerable.GetEnumerator() => _queryable.GetEnumerator();
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => _queryable.GetEnumerator();
+
+        public IAsyncEnumerator<T> GetEnumerator() => new AsyncEnumerator<T>(_queryable);
+    }
+
+    internal class AsyncQueryProvider<TEntity> : IAsyncQueryProvider
     {
         private readonly IQueryProvider _inner;
 
-        internal TestAsyncQueryProvider(IQueryProvider inner)
+        internal AsyncQueryProvider(IQueryProvider inner)
         {
             _inner = inner;
         }
 
         public IQueryable CreateQuery(Expression expression)
         {
-            return new TestAsyncEnumerable<TEntity>(expression);
+            return new AsyncQueryable<TEntity>(expression);
         }
 
         public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
         {
-            return new TestAsyncEnumerable<TElement>(expression);
+            return new AsyncQueryable<TElement>(expression);
         }
 
         public object Execute(Expression expression)
@@ -46,7 +71,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 
         public IAsyncEnumerable<TResult> ExecuteAsync<TResult>(Expression expression)
         {
-            return new TestAsyncEnumerable<TResult>(expression);
+            return new AsyncQueryable<TResult>(expression);
         }
 
         public Task<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
@@ -54,44 +79,22 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
             return Task.FromResult(Execute<TResult>(expression));
         }
     }
-
-    internal class TestAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
+    
+    internal class AsyncEnumerator<T> : IAsyncEnumerator<T>
     {
-        public TestAsyncEnumerable(IEnumerable<T> enumerable)
-            : base(enumerable)
+        private readonly IEnumerator<T> _enumerator;
+
+        public AsyncEnumerator(IEnumerable<T> enumerable)
+            : this(enumerable.GetEnumerator())
         { }
 
-        public TestAsyncEnumerable(Expression expression)
-            : base(expression)
-        { }
+        public AsyncEnumerator(IEnumerator<T> enumerator)
+            => _enumerator = enumerator;
 
-        public IAsyncEnumerator<T> GetEnumerator()
-        {
-            return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
-        }
+        public T Current => _enumerator.Current;
 
-        IQueryProvider IQueryable.Provider => new TestAsyncQueryProvider<T>(this);
-    }
+        public Task<bool> MoveNext(CancellationToken cancellationToken) => Task.FromResult(_enumerator.MoveNext());
 
-    internal class TestAsyncEnumerator<T> : IAsyncEnumerator<T>
-    {
-        private readonly IEnumerator<T> _inner;
-
-        public TestAsyncEnumerator(IEnumerator<T> inner)
-        {
-            _inner = inner;
-        }
-
-        public void Dispose()
-        {
-            _inner.Dispose();
-        }
-
-        public T Current => _inner.Current;
-
-        public Task<bool> MoveNext(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(_inner.MoveNext());
-        }
+        public void Dispose() => _enumerator.Dispose();
     }
 }

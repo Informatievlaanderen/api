@@ -25,13 +25,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
 
         private class QueryAbleWithoutAsync<T> : IQueryable<T>
         {
-            public IEnumerator<T> GetEnumerator() => throw new NotImplementedException();
-
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
             public Type ElementType { get; }
             public Expression Expression { get; }
             public IQueryProvider Provider { get; }
+
+            public IEnumerator<T> GetEnumerator() => throw new NotImplementedException();
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
 
         private class QueryItem { }

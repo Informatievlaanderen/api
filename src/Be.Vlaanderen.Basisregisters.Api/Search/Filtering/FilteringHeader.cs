@@ -6,7 +6,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
     public class FilteringHeader<T>
     {
         [JsonIgnore]
-        public bool ShouldFilter => !EqualityComparer<T>.Default.Equals(Filter, default(T));
+        public bool ShouldFilter => !EqualityComparer<T>.Default.Equals(Filter, default);
 
         public T Filter { get; }
 

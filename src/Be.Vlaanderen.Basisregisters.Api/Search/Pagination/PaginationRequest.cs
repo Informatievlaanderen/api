@@ -4,7 +4,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
 
     public interface IPaginationRequest
     {
@@ -38,6 +37,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
             var itemsInRequestedPage = items
                 .Skip(Offset)
                 .Take(Limit);
+
             var totalPages = (int)Math.Ceiling((double)totalItemSize / Limit);
 
             return new PagedQueryable<T>(
@@ -49,8 +49,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
     public class NoPaginationRequest : IPaginationRequest
     {
-        public int TotalPages(int totalItemSize) => 1;
         public bool HasZeroAsLimit => false;
+
+        public int TotalPages(int totalItemSize) => 1;
 
         public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
         {

@@ -23,11 +23,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
         where TResult : class
     {
         protected abstract IQueryable<T> Filter(FilteringHeader<TFilter> filtering);
+
         protected abstract ISorting Sorting { get; }
 
         protected virtual Expression<Func<T, TResult>> Transformation => null;
 
-        public PagedQueryable<TResult> Fetch(FilteringHeader<TFilter> filtering, SortingHeader sorting, IPaginationRequest paginationRequest)
+        public PagedQueryable<TResult> Fetch(
+            FilteringHeader<TFilter> filtering,
+            SortingHeader sorting,
+            IPaginationRequest paginationRequest)
         {
             if (filtering == null)
                 throw new ArgumentNullException(nameof(filtering));

@@ -117,10 +117,7 @@ nuget Moq 4.10.1
 nuget Shouldly 3.0.2
 nuget AutoFixture 4.8.0
 
-clitool dotnet-xunit 2.3.1
-
 // BUILD STUFF
 nuget FAKE 4.64.13 // Don't update to v5!
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
 nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true
-clitool dotnet-sourcelink 2.8.3

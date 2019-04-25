@@ -1,11 +1,11 @@
 Microsoft.NETCore.App
 
-xunit
-dotnet-xunit
-xunit.runner.visualstudio
-xunit.categories
 Microsoft.NET.Test.Sdk
 Microsoft.AspNetCore.TestHost
+
+xunit
+xunit.runner.visualstudio
+xunit.categories
 FluentAssertions
 Moq
 AutoFixture

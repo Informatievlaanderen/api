@@ -16,17 +16,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Sorting
             return new SortedQueryable<T>(orderedQueryable, validatedSortingHeader);
         }
 
-        private static SortingHeader DetermineSortingHeader<T>(SortingHeader sortingHeader, ISorting sorting)
-        {
-            return SortingFieldSpecified(sortingHeader, sorting)
+        private static SortingHeader DetermineSortingHeader<T>(SortingHeader sortingHeader, ISorting sorting) =>
+            SortingFieldSpecified(sortingHeader, sorting)
                 ? sortingHeader
                 : sorting.DefaultSortingHeader;
-        }
 
-        private static bool SortingFieldSpecified(SortingHeader sortingHeader, ISorting sorting)
-        {
-            return sortingHeader.ShouldSort &&
-                   sorting.SortableFields.Contains(sortingHeader.SortBy, StringComparer.OrdinalIgnoreCase);
-        }
+        private static bool SortingFieldSpecified(SortingHeader sortingHeader, ISorting sorting) =>
+            sortingHeader.ShouldSort &&
+            sorting.SortableFields.Contains(sortingHeader.SortBy, StringComparer.OrdinalIgnoreCase);
     }
 }

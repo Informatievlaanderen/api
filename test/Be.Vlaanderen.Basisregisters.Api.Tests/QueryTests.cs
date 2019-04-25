@@ -15,33 +15,32 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
 
     public class When_fetching_query_results
     {
-        protected internal PagedQueryable<string> FetchResult;
-        protected internal FilteringHeader<TestQuery.FilterItem> FilteringHeader;
-        protected internal SortingHeader SortingHeader;
-        protected internal PaginationRequest PaginationRequest;
+        private readonly PagedQueryable<string> _fetchResult;
+        private readonly SortingHeader _sortingHeader;
         private readonly IEnumerable<TestQuery.Item> _queryData;
 
         public When_fetching_query_results()
         {
             _queryData = new Fixture()
                 .CreateMany<string>(15)
-                .Select((s, i) => new TestQuery.Item {Index = i, Value = s})
+                .Select((s, i) => new TestQuery.Item { Index = i, Value = s })
                 .ToImmutableList();
 
-            FilteringHeader = new FilteringHeader<TestQuery.FilterItem>(default);
-            SortingHeader = new SortingHeader("Value", SortOrder.Descending);
-            PaginationRequest = new PaginationRequest(0, _queryData.Count());
-            FetchResult = new TestQuery(_queryData)
+            var filteringHeader = new FilteringHeader<TestQuery.FilterItem>(default);
+            var paginationRequest = new PaginationRequest(0, _queryData.Count());
+
+            _sortingHeader = new SortingHeader("Value", SortOrder.Descending);
+            _fetchResult = new TestQuery(_queryData)
                 .Fetch(
-                    FilteringHeader,
-                    SortingHeader,
-                    PaginationRequest);
+                    filteringHeader,
+                    _sortingHeader,
+                    paginationRequest);
         }
 
         [Fact]
         public void Then_the_given_sorting_should_be_set()
         {
-            FetchResult.Sorting.Should().Be(SortingHeader);
+            _fetchResult.Sorting.Should().Be(_sortingHeader);
         }
 
         [Fact]
@@ -51,10 +50,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .OrderByDescending(item => item.Value)
                 .Select(TestQuery.TransForm);
 
-            FetchResult.Items.Should().ContainInOrder(expectedItems);
+            _fetchResult.Items.Should().ContainInOrder(expectedItems);
         }
     }
-    
+
     public class When_fetching_query_results_without_a_filter
     {
         [Fact]
@@ -102,7 +101,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
 
     public class When_fetching_query_results_with_limit_zero_pagination
     {
-        protected internal PagedQueryable<string> FetchResult;
+        private readonly PagedQueryable<string> _fetchResult;
 
         public When_fetching_query_results_with_limit_zero_pagination()
         {
@@ -113,7 +112,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .Select((s, i) => new TestQuery.Item { Index = i, Value = s })
                 .ToImmutableList();
 
-            FetchResult = new TestQuery(queryData)
+            _fetchResult = new TestQuery(queryData)
                 .Fetch(
                     new FilteringHeader<TestQuery.FilterItem>(default),
                     new SortingHeader("Value", SortOrder.Descending),
@@ -123,13 +122,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_items_is_empty()
         {
-            FetchResult.Items.Should().BeEmpty();
+            _fetchResult.Items.Should().BeEmpty();
         }
 
         [Fact]
         public void Then_the_total_paginated_items_is_zero()
         {
-            FetchResult.PaginationInfo.TotalItems.Should().Be(0);
+            _fetchResult.PaginationInfo.TotalItems.Should().Be(0);
         }
     }
 
@@ -137,14 +136,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     {
         private readonly IEnumerable<Item> _queryData;
 
-        public TestQuery(IEnumerable<Item> queryData)
-        {
-            _queryData = queryData;
-        }
+        public TestQuery(IEnumerable<Item> queryData) => _queryData = queryData;
 
         protected override IQueryable<Item> Filter(FilteringHeader<FilterItem> filtering) => _queryData.AsQueryable();
 
-        protected override ISorting Sorting =>  new TestQuerySorting();
+        protected override ISorting Sorting => new TestQuerySorting();
 
         protected override Expression<Func<Item, string>> Transformation => item => TransForm(item);
 
@@ -162,9 +158,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             public string Value { get; set; }
         }
 
-        public class FilterItem
-        {}
+        public class FilterItem { }
     }
-
-
 }

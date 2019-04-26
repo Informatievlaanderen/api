@@ -4,6 +4,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Globalization;
     using System.IO.Compression;
     using System.Linq;
+    using System.Net;
     using System.Net.Http;
     using AspNetCore.Mvc.Formatters.Json;
     using AspNetCore.Mvc.Logging;
@@ -42,6 +43,23 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public string[] Methods { get; set; } = null;
             public string[] Headers { get; set; } = null;
             public string[] ExposedHeaders { get; set; } = null;
+        }
+
+        public ServerOptions Server { get; } = new ServerOptions();
+
+        public class ServerOptions
+        {
+            public string VersionHeaderName { get; set; } = AddVersionHeaderMiddleware.HeaderName;
+            public string[] MethodsToLog { get; set; } = new []
+            {
+                HttpMethod.Get,
+                HttpMethod.Head,
+                HttpMethod.Post,
+                HttpMethod.Put,
+                HttpMethod.Patch,
+                HttpMethod.Delete,
+                HttpMethod.Options
+            }.Select(x => x.Method).ToArray();
         }
 
         public SwaggerOptions Swagger { get; } = new SwaggerOptions();
@@ -98,7 +116,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 HttpMethod.Post.Method,
                 HttpMethod.Put.Method,
                 HttpMethod.Patch.Method,
-                HttpMethod.Delete.Method
+                HttpMethod.Delete.Method,
+                HttpMethod.Options.Method
             }.Union(options.Cors.Methods ?? new string[0]).Distinct().ToArray();
 
             var configuredCorsHeaders = new[]
@@ -119,7 +138,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 ExtractFilteringRequestExtension.HeaderName,
                 AddSortingExtension.HeaderName,
                 AddPaginationExtension.HeaderName,
-                AddVersionHeaderMiddleware.HeaderName,
+                options.Server.VersionHeaderName,
                 AddCorrelationIdToResponseMiddleware.HeaderName,
                 AddHttpSecurityHeadersMiddleware.PoweredByHeaderName,
                 AddHttpSecurityHeadersMiddleware.ContentTypeOptionsHeaderName,
@@ -133,7 +152,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.RespectBrowserAcceptHeader = false;
                     cfg.ReturnHttpNotAcceptable = true;
 
-                    cfg.Filters.Add(new LoggingFilterFactory());
+                    cfg.Filters.Add(new LoggingFilterFactory(options.Server.MethodsToLog));
                     cfg.Filters.Add(new CorsAuthorizationFilterFactory(StartupHelpers.AllowSpecificOrigin));
                     cfg.Filters.Add<OperationCancelledExceptionFilter>();
 

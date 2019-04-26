@@ -41,6 +41,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public IApiVersionDescriptionProvider VersionProvider { get; set; }
             public Func<string, string> Info { get; set; }
             public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
+            public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
         }
 
         public ServerOptions Server { get; } = new ServerOptions();
@@ -49,6 +50,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public string ServerName { get; set; }
             public string PoweredByName { get; set; }
+            public string VersionHeaderName { get; set; } = AddVersionHeaderMiddleware.HeaderName;
         }
 
         public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
@@ -125,9 +127,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .UseMiddleware<AddHttpSecurityHeadersMiddleware>(options.Server.ServerName, options.Server.PoweredByName)
 
-                .UseMiddleware<AddRemoteIpAddressMiddleware>()
+                .UseMiddleware<AddRemoteIpAddressMiddleware>(options.Api.RemoteIpAddressClaimName)
 
-                .UseMiddleware<AddVersionHeaderMiddleware>();
+                .UseMiddleware<AddVersionHeaderMiddleware>(options.Server.VersionHeaderName);
             options.MiddlewareHooks.AfterMiddleware?.Invoke(app);
 
             app

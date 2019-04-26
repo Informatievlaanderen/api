@@ -1,3 +1,10 @@
+## [6.0.5](https://github.com/informatievlaanderen/api/compare/v6.0.4...v6.0.5) (2019-04-26)
+
+
+### Bug Fixes
+
+* post changelog to confluence ([d7a38b6](https://github.com/informatievlaanderen/api/commit/d7a38b6))
+
 ## [6.0.4](https://github.com/informatievlaanderen/api/compare/v6.0.3...v6.0.4) (2019-04-26)
 
 ## [6.0.3](https://github.com/informatievlaanderen/api/compare/v6.0.2...v6.0.3) (2019-04-24)

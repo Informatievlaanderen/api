@@ -1,0 +1,11 @@
+2019-04-26 12:30:01.503 +02:00 [FTL] Application startup exception
+System.Exception: Could not resolve a service of type 'Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac.ApiDataDogToggle' for the parameter 'datadogToggle' of method 'Configure' on type 'Dummy.Api.Infrastructure.Startup'. ---> Autofac.Core.Registration.ComponentNotRegisteredException: The requested service 'Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac.ApiDataDogToggle' has not been registered. To avoid this exception, either register a component to provide the service, check for service registration using IsRegistered(), or use the ResolveOptional() method to resolve an optional dependency.
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters) in C:\projects\autofac\src\Autofac\ResolutionExtensions.cs:line 880
+   at Microsoft.AspNetCore.Hosting.Internal.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Hosting.Internal.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.Extensions.DependencyInjection.AutoRegisterMiddleware.<>c__DisplayClass4_0.<Configure>b__0(IApplicationBuilder app) in C:\BA\1479\s\src\Microsoft.AspNetCore.Mvc.Versioning\Microsoft.Extensions.DependencyInjection\AutoRegisterMiddleware.cs:line 46
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2019-04-26 12:30:01.624 +02:00 [WRN] Overriding address(es) 'https://localhost:5001, http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead.
+2019-04-26 12:30:20.817 +02:00 [WRN] Overriding address(es) 'https://localhost:5001, http://localhost:5000'. Binding to endpoints defined in UseKestrel() instead.

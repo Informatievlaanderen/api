@@ -1,3 +1,5 @@
+## [6.0.4](https://github.com/informatievlaanderen/api/compare/v6.0.3...v6.0.4) (2019-04-26)
+
 ## [6.0.3](https://github.com/informatievlaanderen/api/compare/v6.0.2...v6.0.3) (2019-04-24)
 
 ## [6.0.2](https://github.com/informatievlaanderen/api/compare/v6.0.1...v6.0.2) (2019-04-24)

@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/informatievlaanderen/api/compare/v6.0.5...v6.1.0) (2019-04-26)
+
+
+### Features
+
+* add middleware configuration options ([bdfcff0](https://github.com/informatievlaanderen/api/commit/bdfcff0))
+
 ## [6.0.5](https://github.com/informatievlaanderen/api/compare/v6.0.4...v6.0.5) (2019-04-26)
 
 

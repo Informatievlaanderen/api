@@ -55,7 +55,7 @@ NUGET
       Microsoft.Extensions.FileProviders.Embedded (>= 2.2)
       Newtonsoft.Json (>= 12.0.2)
       Swashbuckle.AspNetCore (>= 4.0.1)
-    Be.Vlaanderen.Basisregisters.Build.Pipeline (1.6)
+    Be.Vlaanderen.Basisregisters.Build.Pipeline (1.6.1)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (1.0.3)
       Newtonsoft.Json (>= 12.0.2)
     Be.Vlaanderen.Basisregisters.DataDog.Tracing (3.2.1)

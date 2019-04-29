@@ -3,7 +3,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System;
     using System.Threading.Tasks;
     using BasicApiProblem;
-    using Microsoft.AspNetCore.Http;
 
     public interface IExceptionHandler
     {
@@ -15,6 +14,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         /// <summary>Gets the ApiProblem that will be used as HttpResponse for the given exception</summary>
         /// <returns>BasicApiProblem or a derived type that will be serialized as HttpResponse</returns>
-        Task<ProblemDetails> GetApiProblemFor(Exception exception, HttpContext context);
+        Task<ProblemDetails> GetApiProblemFor(Exception exception);
     }
 }

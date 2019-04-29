@@ -28,9 +28,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             var exceptionHandler = _exceptionHandlers.FirstOrDefault(handler => handler.Handles(exception));
 
             if (exceptionHandler == null)
-                throw new ProblemDetailsException(HandleUnhandledException(exception, context));
+                throw new ProblemDetailsException(HandleUnhandledException(exception));
 
-            var problem = await exceptionHandler.GetApiProblemFor(exception, context);
+            var problem = await exceptionHandler.GetApiProblemFor(exception);
+            problem.ProblemInstanceUri = context.GetProblemInstanceUri();
+
             LogExceptionHandled(exception, problem, exceptionHandler.HandledExceptionType);
             throw new ProblemDetailsException(problem);
         }
@@ -48,14 +50,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 problemResponse.ProblemInstanceUri, exceptionTypeName, problemResponse.Detail);
         }
 
-        private ProblemDetails HandleUnhandledException(Exception exception, HttpContext context)
+        private ProblemDetails HandleUnhandledException(Exception exception)
         {
             var problemResponse = new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = string.Empty,
-                ProblemInstanceUri = context.GetProblemInstanceUri(),
                 ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception as UnhandledException)
             };
 

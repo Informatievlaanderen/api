@@ -152,7 +152,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .Returns(true);
 
             customDomainExceptionHandler
-                .Setup(handler => handler.GetApiProblemFor(It.IsAny<DomainException>(), It.IsAny<HttpContext>()))
+                .Setup(handler => handler.GetApiProblemFor(It.IsAny<DomainException>()))
                 .ReturnsAsync(() => _customApiProblem);
 
             customDomainExceptionHandler
@@ -165,7 +165,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .Returns(true);
 
             extraCustomDomainExceptionHandler
-                .Setup(handler => handler.GetApiProblemFor(myDomainException, _context))
+                .Setup(handler => handler.GetApiProblemFor(myDomainException))
                 .ReturnsAsync(() => _secondCustomApiProblem);
 
             var exceptionHandler = new ExceptionHandler(

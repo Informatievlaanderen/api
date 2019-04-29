@@ -7,16 +7,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using FluentValidation;
     using FluentValidation.Internal;
     using FluentValidation.Results;
-    using Microsoft.AspNetCore.Http;
 
     public class ValidationExceptionHandler : DefaultExceptionHandler<ValidationException>
     {
-        protected override ProblemDetails GetApiProblemFor(ValidationException exception, HttpContext context)
-        {
-            var problemDetails = new ValidationProblemDetails(exception);
-            problemDetails.ProblemInstanceUri = context.GetProblemInstanceUri();
-            return problemDetails;
-        }
+        protected override ProblemDetails GetApiProblemFor(ValidationException exception)
+            => new ValidationProblemDetails(exception);
     }
 
     public static class ValidationHelpers

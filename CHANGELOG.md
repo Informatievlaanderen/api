@@ -1,3 +1,16 @@
+# [7.0.0](https://github.com/informatievlaanderen/api/compare/v6.1.0...v7.0.0) (2019-04-29)
+
+
+### Features
+
+* all errors now return problemdetails ([f28c57c](https://github.com/informatievlaanderen/api/commit/f28c57c))
+
+
+### BREAKING CHANGES
+
+* BasicApiProblem moved to ProblemDetails. IExceptionHandler.GetApiProblemFor now
+takes in a HttpContext.
+
 # [6.1.0](https://github.com/informatievlaanderen/api/compare/v6.0.5...v6.1.0) (2019-04-26)
 
 

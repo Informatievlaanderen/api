@@ -2,6 +2,8 @@
 .fake/
 .idea/
 
+tracing*.log
+
 [Pp]ackages/
 [Pp]aket-files/
 [Dd]ebug/

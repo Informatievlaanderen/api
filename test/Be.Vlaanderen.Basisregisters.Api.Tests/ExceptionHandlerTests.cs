@@ -3,6 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     using System;
     using System.Threading.Tasks;
     using AggregateSource;
+    using BasicApiProblem;
     using Exceptions;
     using FluentAssertions;
     using Microsoft.AspNetCore.Http;
@@ -27,91 +28,105 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public async Task HandlesDomainException()
         {
             var exception = new MyDomainException();
-            await _exceptionHandler.HandleException(exception, _context);
 
-            var basicApiProblem = _context.ReadJsonResponseBody<BasicApiProblem>();
-            basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
-            basicApiProblem.Detail.Should().Be("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Tests.MyDomainException' was thrown.");
-            basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status400BadRequest);
-            basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
-            basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:domain");
-
-            _context.Response.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
+            TestProblemDetailsException(
+                async () => await _exceptionHandler.HandleException(exception, _context),
+                basicApiProblem =>
+                    {
+                        basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
+                        basicApiProblem.Detail.Should().Be("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Tests.MyDomainException' was thrown.");
+                        basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status400BadRequest);
+                        basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
+                        basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:domain");
+                    });
         }
 
         [Fact]
         public async Task HandlesApiException()
         {
-            await _exceptionHandler.HandleException(new ApiException(), _context);
-
-            var basicApiProblem = _context.ReadJsonResponseBody<BasicApiProblem>();
-            basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
-            basicApiProblem.Detail.Should().Be("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Exceptions.ApiException' was thrown.");
-            basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
-            basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
-            basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:api");
-
-            _context.Response.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
+            TestProblemDetailsException(
+                async () => await _exceptionHandler.HandleException(new ApiException(), _context),
+                basicApiProblem =>
+                    {
+                        basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
+                        basicApiProblem.Detail.Should().Be("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Exceptions.ApiException' was thrown.");
+                        basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
+                        basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
+                        basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:api");
+                    });
         }
 
         [Fact]
         public async Task HandlesApiExceptionWithText()
         {
-            await _exceptionHandler.HandleException(new ApiException("De operatie kon niet uitgevoerd worden."), _context);
-
-            var basicApiProblem = _context.ReadJsonResponseBody<BasicApiProblem>();
-            basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
-            basicApiProblem.Detail.Should().Be("De operatie kon niet uitgevoerd worden.");
-            basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
-            basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
-            basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:api");
-
-            _context.Response.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
+            TestProblemDetailsException(
+                async () => await _exceptionHandler.HandleException(new ApiException("De operatie kon niet uitgevoerd worden."), _context),
+                basicApiProblem =>
+                    {
+                        basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
+                        basicApiProblem.Detail.Should().Be("De operatie kon niet uitgevoerd worden.");
+                        basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
+                        basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
+                        basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:api");
+                    });
         }
 
         [Fact]
         public async Task HandleAggregateNotFoundException()
         {
-            await _exceptionHandler.HandleException(new AggregateNotFoundException("identifier", typeof(ExceptionHandler)), _context);
-
-            var basicApiProblem = _context.ReadJsonResponseBody<BasicApiProblem>();
-            basicApiProblem.Title.Should().Be("Deze actie is niet geldig!");
-            basicApiProblem.Detail.Should().Be("De resource met id 'identifier' werd niet gevonden.");
-            basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status400BadRequest);
-            basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
-            basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:aggregatenotfound");
-
-            _context.Response.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
+            TestProblemDetailsException(
+                async () => await _exceptionHandler.HandleException(new AggregateNotFoundException("identifier", typeof(ExceptionHandler)), _context),
+                basicApiProblem =>
+                {
+                    basicApiProblem.Title.Should().Be("Deze actie is niet geldig!");
+                    basicApiProblem.Detail.Should().Be("De resource met id 'identifier' werd niet gevonden.");
+                    basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status400BadRequest);
+                    basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
+                    basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:aggregatenotfound");
+                });
         }
 
         [Fact]
         public async Task HandleAnyOtherException()
         {
-            await _exceptionHandler.HandleException(new Exception("Exception.Message wordt niet doorgegeven."), _context);
+            TestProblemDetailsException(
+                async () => await _exceptionHandler.HandleException(new Exception("Exception.Message wordt niet doorgegeven."), _context),
+                basicApiProblem =>
+                {
+                    basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
+                    basicApiProblem.Detail.Should().BeEmpty();
+                    basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
+                    basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
+                    basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:unhandled");
+                });
+        }
 
-            var basicApiProblem = _context.ReadJsonResponseBody<BasicApiProblem>();
-            basicApiProblem.Title.Should().Be("Er heeft zich een fout voorgedaan!");
-            basicApiProblem.Detail.Should().BeEmpty();
-            basicApiProblem.HttpStatus.Should().Be(StatusCodes.Status500InternalServerError);
-            basicApiProblem.ProblemInstanceUri.Should().NotBeNullOrWhiteSpace();
-            basicApiProblem.ProblemTypeUri.Should().Be("urn:be.vlaanderen.basisregisters.api:unhandled");
-
-            _context.Response.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
+        private static void TestProblemDetailsException(Action sut, Action<ProblemDetails> assert)
+        {
+            try
+            {
+                sut();
+            }
+            catch (ProblemDetailsException ex)
+            {
+                assert(ex.Details);
+            }
         }
     }
 
     public class WhenHandlingDomainExceptionUsingCustomHandling
     {
         private readonly TestHttpContext _context;
-        private readonly ExtentedApiProblem _customApiProblem;
-        private readonly ExtentedApiProblem _secondCustomApiProblem;
+        private readonly ExtendedApiProblem _customApiProblem;
+        private readonly ExtendedApiProblem _secondCustomApiProblem;
+        private readonly ProblemDetails _sut;
 
         public WhenHandlingDomainExceptionUsingCustomHandling()
         {
             _context = new TestHttpContext();
             var myDomainException = new MyDomainException();
 
-            _customApiProblem = new ExtentedApiProblem
+            _customApiProblem = new ExtendedApiProblem
             {
                 ProblemInstanceUri = "123piano:id",
                 Title = "custom title",
@@ -121,7 +136,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 ExtraProperty = "Extra, extra, read al of it in this extra property."
             };
 
-            _secondCustomApiProblem = new ExtentedApiProblem
+            _secondCustomApiProblem = new ExtendedApiProblem
             {
                 ProblemInstanceUri = "nonono:001",
                 Title = "Empty",
@@ -137,7 +152,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .Returns(true);
 
             customDomainExceptionHandler
-                .Setup(handler => handler.GetApiProblemFor(It.IsAny<DomainException>()))
+                .Setup(handler => handler.GetApiProblemFor(It.IsAny<DomainException>(), It.IsAny<HttpContext>()))
                 .ReturnsAsync(() => _customApiProblem);
 
             customDomainExceptionHandler
@@ -150,7 +165,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                 .Returns(true);
 
             extraCustomDomainExceptionHandler
-                .Setup(handler => handler.GetApiProblemFor(myDomainException))
+                .Setup(handler => handler.GetApiProblemFor(myDomainException, _context))
                 .ReturnsAsync(() => _secondCustomApiProblem);
 
             var exceptionHandler = new ExceptionHandler(
@@ -161,7 +176,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
                     extraCustomDomainExceptionHandler.Object
                 });
 
-            exceptionHandler.HandleException(myDomainException, _context).GetAwaiter().GetResult();
+            try
+            {
+                exceptionHandler.HandleException(myDomainException, _context).GetAwaiter().GetResult();
+            }
+            catch (ProblemDetailsException ex)
+            {
+                _sut = ex.Details;
+            }
         }
 
         [Fact]
@@ -169,41 +191,35 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         {
             // It's a bit brittle as we don't have control over the default DomainException result in this test,
             // but for now the fastest way to verify the default DomainErrorHandling was not executed.
-            var basicApiProblem = _context.ReadJsonResponseBody<ExtentedApiProblem>();
-            basicApiProblem.Title.Should().NotBe("Er heeft zich een fout voorgedaan!");
-            basicApiProblem.Detail.Should().NotBe("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Tests.MyDomainException' was thrown.");
-            basicApiProblem.HttpStatus.Should().NotBe(StatusCodes.Status400BadRequest);
-
-            _context.Response.StatusCode.Should().NotBe(StatusCodes.Status400BadRequest);
+            var apiProblem = _sut;
+            apiProblem.Title.Should().NotBe("Er heeft zich een fout voorgedaan!");
+            apiProblem.Detail.Should().NotBe("Exception of type 'Be.Vlaanderen.Basisregisters.Api.Tests.MyDomainException' was thrown.");
+            apiProblem.HttpStatus.Should().NotBe(StatusCodes.Status400BadRequest);
         }
 
         [Fact]
         public void ThenTheFirstDefinedHandlingWasUsed()
         {
-            var customApiProblem = _context.ReadJsonResponseBody<ExtentedApiProblem>();
-            customApiProblem.Title.Should().Be(_customApiProblem.Title);
-            customApiProblem.Detail.Should().Be(_customApiProblem.Detail);
-            customApiProblem.HttpStatus.Should().Be(_customApiProblem.HttpStatus);
-            customApiProblem.ProblemInstanceUri.Should().Be(_customApiProblem.ProblemInstanceUri);
-            customApiProblem.ExtraProperty.Should().Be(_customApiProblem.ExtraProperty);
-
-            _context.Response.StatusCode.Should().Be(_customApiProblem.HttpStatus);
+            var apiProblem = (ExtendedApiProblem)_sut;
+            apiProblem.Title.Should().Be(_customApiProblem.Title);
+            apiProblem.Detail.Should().Be(_customApiProblem.Detail);
+            apiProblem.HttpStatus.Should().Be(_customApiProblem.HttpStatus);
+            apiProblem.ProblemInstanceUri.Should().Be(_customApiProblem.ProblemInstanceUri);
+            apiProblem.ExtraProperty.Should().Be(_customApiProblem.ExtraProperty);
         }
 
         [Fact]
         public void ThenTheSecondDefinedHandlingWasNotUsed()
         {
-            var customApiProblem = _context.ReadJsonResponseBody<ExtentedApiProblem>();
-            customApiProblem.Title.Should().NotBe(_secondCustomApiProblem.Title);
-            customApiProblem.Detail.Should().NotBe(_secondCustomApiProblem.Detail);
-            customApiProblem.HttpStatus.Should().NotBe(_secondCustomApiProblem.HttpStatus);
-            customApiProblem.ProblemInstanceUri.Should().NotBe(_secondCustomApiProblem.ProblemInstanceUri);
-            customApiProblem.ExtraProperty.Should().NotBe(_secondCustomApiProblem.ExtraProperty);
-
-            _context.Response.StatusCode.Should().NotBe(_secondCustomApiProblem.HttpStatus);
+            var apiProblem = (ExtendedApiProblem)_sut;
+            apiProblem.Title.Should().NotBe(_secondCustomApiProblem.Title);
+            apiProblem.Detail.Should().NotBe(_secondCustomApiProblem.Detail);
+            apiProblem.HttpStatus.Should().NotBe(_secondCustomApiProblem.HttpStatus);
+            apiProblem.ProblemInstanceUri.Should().NotBe(_secondCustomApiProblem.ProblemInstanceUri);
+            apiProblem.ExtraProperty.Should().NotBe(_secondCustomApiProblem.ExtraProperty);
         }
 
-        private class ExtentedApiProblem : BasicApiProblem
+        private class ExtendedApiProblem : ProblemDetails
         {
             public string ExtraProperty { get; set; }
         }

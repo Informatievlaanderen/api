@@ -1,10 +1,12 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using System.Collections.Generic;
-    using System.Net;
+    using System.Net.Mime;
     using System.Reflection;
+    using BasicApiProblem;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
 
     public class ApiExceptionHandler { }
@@ -38,21 +40,25 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
             app.UseExceptionHandler(builder =>
             {
-                builder.UseCors(corsPolicyName);
-                builder.Run(async context =>
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    context.Response.ContentType = "application/json";
+                builder
+                    .UseCors(corsPolicyName)
 
-                    var error = context.Features.Get<IExceptionHandlerFeature>();
-                    var exception = error?.Error;
+                    .UseProblemDetails()
 
-                    // Errors happening in the Apply() stuff result in an InvocationException due to the dynamic stuff.
-                    if (exception is TargetInvocationException && exception.InnerException != null)
-                        exception = exception.InnerException;
+                    .Run(async context =>
+                    {
+                        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                        context.Response.ContentType = MediaTypeNames.Application.Json;
 
-                    await exceptionHandler.HandleException(exception, context);
-                });
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
+                        var exception = error?.Error;
+
+                        // Errors happening in the Apply() stuff result in an InvocationException due to the dynamic stuff.
+                        if (exception is TargetInvocationException && exception.InnerException != null)
+                            exception = exception.InnerException;
+
+                        await exceptionHandler.HandleException(exception, context);
+                    });
             });
 
             return app;

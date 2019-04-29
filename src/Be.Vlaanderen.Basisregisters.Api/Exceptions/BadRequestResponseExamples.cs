@@ -1,17 +1,18 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
+    using BasicApiProblem;
     using Microsoft.AspNetCore.Http;
     using Swashbuckle.AspNetCore.Filters;
 
     public class BadRequestResponseExamples : IExamplesProvider
     {
         public object GetExamples() =>
-            new BasicApiProblem
+            new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status400BadRequest,
-                Title = BasicApiProblem.DefaultTitle,
+                Title = ProblemDetails.DefaultTitle,
                 Detail = string.Empty,
-                ProblemInstanceUri = BasicApiProblem.GetProblemNumber()
+                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
     }
 }

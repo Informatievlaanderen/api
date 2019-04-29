@@ -106,6 +106,8 @@ nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.2
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac ~> 1.0
 
+nuget Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.1
+
 nuget Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 
 // TEST STUFF

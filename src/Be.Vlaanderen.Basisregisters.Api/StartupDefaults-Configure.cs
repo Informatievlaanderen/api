@@ -4,12 +4,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Globalization;
     using System.IO.Compression;
     using System.Linq;
-    using System.Net;
     using System.Net.Http;
     using AspNetCore.Mvc.Formatters.Json;
     using AspNetCore.Mvc.Logging;
     using AspNetCore.Mvc.Middleware;
     using AspNetCore.Swagger;
+    using BasicApiProblem;
     using DataDog.Tracing.AspNetCore;
     using Exceptions;
     using FluentValidation;
@@ -106,9 +106,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             if (options.Swagger.ApiInfo == null)
                 throw new ArgumentNullException(nameof(options.Swagger.ApiInfo));
-
-            services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
-
             var configuredCorsMethods = new[]
             {
                 HttpMethod.Get.Method,
@@ -145,6 +142,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
                 AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName
             }.Union(options.Cors.ExposedHeaders ?? new string[0]).Distinct().ToArray();
+
+            services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
+
+            services
+                .AddHttpContextAccessor()
+                .ConfigureOptions<ProblemDetailsSetup>()
+                .AddProblemDetails();
 
             var mvcBuilder = services
                 .AddMvcCore(cfg =>
@@ -190,9 +194,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             var healthChecksBuilder = services.AddHealthChecks();
             options.MiddlewareHooks.AfterHealthChecks?.Invoke(healthChecksBuilder);
 
-            mvcBuilder
-                .Services
-
+            services
                 .AddLocalization(cfg => cfg.ResourcesPath = "Resources")
                 .AddSingleton<IStringLocalizerFactory, SharedStringLocalizerFactory<TSharedResources>>()
                 .AddSingleton<ResourceManagerStringLocalizerFactory, ResourceManagerStringLocalizerFactory>()
@@ -217,7 +219,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.SubstituteApiVersionInUrl = true;
                 })
 
-                .AddApiVersioning(cfg => cfg.ReportApiVersions = true)
+                .AddApiVersioning(cfg =>
+                {
+                    cfg.ReportApiVersions = true;
+                    cfg.ErrorResponses = new ProblemDetailsResponseProvider();
+                })
 
                 .AddSwagger<T>(options.Swagger.ApiInfo, options.Swagger.XmlCommentPaths ?? new string[0])
 

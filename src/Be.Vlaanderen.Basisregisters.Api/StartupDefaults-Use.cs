@@ -12,6 +12,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Autofac;
+    using BasicApiProblem;
     using Localization;
     using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Http;
@@ -59,6 +60,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public HealthCheckOptions HealthChecks { get; set; }
 
+            public Action<IApplicationBuilder> AfterProblemDetails { get; set; }
             public Action<IApplicationBuilder> AfterCors { get; set; }
             public Action<IApplicationBuilder> AfterApiExceptionHandler { get; set; }
             public Action<IApplicationBuilder> AfterMiddleware { get; set; }
@@ -101,6 +103,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             if (options.Api.Info == null)
                 throw new ArgumentNullException(nameof(options.Api.Info));
+
+            app.UseProblemDetails();
+            options.MiddlewareHooks.AfterProblemDetails?.Invoke(app);
 
             if (options.Common.HostingEnvironment.IsDevelopment())
                 app

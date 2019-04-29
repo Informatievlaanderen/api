@@ -3,14 +3,20 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using BasicApiProblem;
     using FluentValidation;
     using FluentValidation.Internal;
     using FluentValidation.Results;
+    using Microsoft.AspNetCore.Http;
 
-    public class ValidationExceptionHandling : DefaultExceptionHandler<ValidationException>
+    public class ValidationExceptionHandler : DefaultExceptionHandler<ValidationException>
     {
-        protected override BasicApiProblem GetApiProblemFor(ValidationException exception)
-            => new BasicApiValidationProblem(exception);
+        protected override ProblemDetails GetApiProblemFor(ValidationException exception, HttpContext context)
+        {
+            var problemDetails = new ValidationProblemDetails(exception);
+            problemDetails.ProblemInstanceUri = context.GetProblemInstanceUri();
+            return problemDetails;
+        }
     }
 
     public static class ValidationHelpers
@@ -27,13 +33,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     new ValidationFailure("request", "Request cannot be empty.")
                 });
 
-            ValidationResult validationResult = await validator.ValidateAsync(
+            var validationResult = await validator.ValidateAsync(
                 instance,
                 cancellationToken,
                 (IValidatorSelector)null, ruleSet);
 
             if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors as IEnumerable<ValidationFailure>);
+                throw new ValidationException(validationResult.Errors);
         }
     }
 }

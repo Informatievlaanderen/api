@@ -7,18 +7,14 @@ namespace Dummy.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
-    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Configuration;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Logging;
     using Modules;
-    using SqlStreamStore;
     using Swashbuckle.AspNetCore.Swagger;
 
     /// <summary>Represents the startup process for the application.</summary>
@@ -107,10 +103,6 @@ namespace Dummy.Api.Infrastructure
                 {
                     VersionProvider = apiVersionProvider,
                     Info = groupName => $"Dummy API {groupName}",
-                    CustomExceptionHandlers = new IExceptionHandler[]
-                    {
-                        new ValidationExceptionHandling(),
-                    }
                 },
                 Server =
                 {

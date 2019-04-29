@@ -1,17 +1,18 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
+    using BasicApiProblem;
     using Microsoft.AspNetCore.Http;
     using Swashbuckle.AspNetCore.Filters;
 
     public class InternalServerErrorResponseExamples : IExamplesProvider
     {
         public object GetExamples() =>
-            new BasicApiProblem
+            new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status500InternalServerError,
-                Title = BasicApiProblem.DefaultTitle,
+                Title = ProblemDetails.DefaultTitle,
                 Detail = "<meer informatie over de interne fout>",
-                ProblemInstanceUri = BasicApiProblem.GetProblemNumber()
+                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
     }
 }

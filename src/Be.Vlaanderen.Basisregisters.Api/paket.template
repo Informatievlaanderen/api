@@ -35,7 +35,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.2
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.2
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.2
-    Be.Vlaanderen.Basisregisters.ProblemDetails ~> 1.0
+    Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.1
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 
     Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION

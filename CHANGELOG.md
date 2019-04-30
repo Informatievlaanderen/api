@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/informatievlaanderen/api/compare/v7.0.0...v7.0.1) (2019-04-30)
+
+
+### Bug Fixes
+
+* correct nuget dependencies ([b05cab3](https://github.com/informatievlaanderen/api/commit/b05cab3))
+
 # [7.0.0](https://github.com/informatievlaanderen/api/compare/v6.1.0...v7.0.0) (2019-04-29)
 
 

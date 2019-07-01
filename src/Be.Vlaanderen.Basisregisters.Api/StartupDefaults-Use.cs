@@ -146,7 +146,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseResponseCompression();
             options.MiddlewareHooks.AfterResponseCompression?.Invoke(app);
 
-
             var healthCheckOptions = new HealthCheckOptions
             {
                 AllowCachingResponses = false,

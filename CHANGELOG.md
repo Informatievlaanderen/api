@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/informatievlaanderen/api/compare/v7.0.1...v7.0.2) (2019-07-05)
+
+
+### Bug Fixes
+
+* correct total item count with limit = 0 ([a79a71f](https://github.com/informatievlaanderen/api/commit/a79a71f))
+
 ## [7.0.1](https://github.com/informatievlaanderen/api/compare/v7.0.0...v7.0.1) (2019-04-30)
 
 

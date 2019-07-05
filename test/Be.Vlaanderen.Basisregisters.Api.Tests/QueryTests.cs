@@ -102,13 +102,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     public class When_fetching_query_results_with_limit_zero_pagination
     {
         private readonly PagedQueryable<string> _fetchResult;
+        private readonly int _numberOfItems;
 
         public When_fetching_query_results_with_limit_zero_pagination()
         {
             const int limitZero = 0;
 
+            _numberOfItems = 15;
             var queryData = new Fixture()
-                .CreateMany<string>(15)
+                .CreateMany<string>(_numberOfItems)
                 .Select((s, i) => new TestQuery.Item { Index = i, Value = s })
                 .ToImmutableList();
 
@@ -128,7 +130,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_total_paginated_items_is_zero()
         {
-            _fetchResult.PaginationInfo.TotalItems.Should().Be(0);
+            _fetchResult.PaginationInfo.TotalItems.Should().Be(_numberOfItems);
         }
     }
 

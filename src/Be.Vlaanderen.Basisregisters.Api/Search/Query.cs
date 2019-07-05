@@ -42,9 +42,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
             if (paginationRequest == null)
                 throw new ArgumentNullException(nameof(paginationRequest));
 
-            var items = paginationRequest.HasZeroAsLimit
-                ? new List<T>().AsQueryable()
-                : Filter(filtering);
+            var items = Filter(filtering);
 
             return items
                 .WithSorting(sorting, Sorting)

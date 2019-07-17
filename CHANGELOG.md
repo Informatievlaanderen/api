@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/informatievlaanderen/api/compare/v7.0.2...v7.0.3) (2019-07-17)
+
+
+### Bug Fixes
+
+* do not hardcode logging to console ([cfb280a](https://github.com/informatievlaanderen/api/commit/cfb280a))
+
 ## [7.0.2](https://github.com/informatievlaanderen/api/compare/v7.0.1...v7.0.2) (2019-07-05)
 
 

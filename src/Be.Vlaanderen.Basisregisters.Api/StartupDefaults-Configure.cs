@@ -106,6 +106,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             if (options.Swagger.ApiInfo == null)
                 throw new ArgumentNullException(nameof(options.Swagger.ApiInfo));
+            
             var configuredCorsMethods = new[]
             {
                 HttpMethod.Get.Method,

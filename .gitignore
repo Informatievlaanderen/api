@@ -1,6 +1,7 @@
 .vs/
 .fake/
 .idea/
+.ionide/
 
 tracing*.log
 

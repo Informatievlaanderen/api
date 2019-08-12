@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/informatievlaanderen/api/compare/v7.0.3...v7.1.0) (2019-08-12)
+
+
+### Features
+
+* span exposes traceid ([5472ced](https://github.com/informatievlaanderen/api/commit/5472ced))
+
 ## [7.0.3](https://github.com/informatievlaanderen/api/compare/v7.0.2...v7.0.3) (2019-07-17)
 
 

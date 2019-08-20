@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/informatievlaanderen/api/compare/v7.1.0...v7.2.0) (2019-08-20)
+
+
+### Features
+
+* add support for parent span id ([4ee1d91](https://github.com/informatievlaanderen/api/commit/4ee1d91))
+
 # [7.1.0](https://github.com/informatievlaanderen/api/compare/v7.0.3...v7.1.0) (2019-08-12)
 
 

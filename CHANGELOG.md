@@ -1,3 +1,10 @@
+## [7.2.2](https://github.com/informatievlaanderen/api/compare/v7.2.1...v7.2.2) (2019-08-20)
+
+
+### Bug Fixes
+
+* add spanid ([da97801](https://github.com/informatievlaanderen/api/commit/da97801))
+
 ## [7.2.1](https://github.com/informatievlaanderen/api/compare/v7.2.0...v7.2.1) (2019-08-20)
 
 

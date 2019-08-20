@@ -1,3 +1,10 @@
+## [7.2.1](https://github.com/informatievlaanderen/api/compare/v7.2.0...v7.2.1) (2019-08-20)
+
+
+### Bug Fixes
+
+* add parentspanid ([f7e1170](https://github.com/informatievlaanderen/api/commit/f7e1170))
+
 # [7.2.0](https://github.com/informatievlaanderen/api/compare/v7.1.0...v7.2.0) (2019-08-20)
 
 

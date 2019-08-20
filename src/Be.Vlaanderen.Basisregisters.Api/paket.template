@@ -30,11 +30,11 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.0
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.0
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 3.4
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 3.4
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.4
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.4
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.4
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 3.5
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 3.5
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.5
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.5
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.5
     Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.1
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.0
 

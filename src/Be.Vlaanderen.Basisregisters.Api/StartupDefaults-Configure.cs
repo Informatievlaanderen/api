@@ -32,6 +32,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Search.Pagination;
     using Search.Sorting;
     using Swashbuckle.AspNetCore.Swagger;
+    using SwaggerOptions = AspNetCore.Swagger.SwaggerOptions;
 
     public class StartupConfigureOptions
     {
@@ -226,7 +227,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.ErrorResponses = new ProblemDetailsResponseProvider();
                 })
 
-                .AddSwagger<T>(options.Swagger.ApiInfo, options.Swagger.XmlCommentPaths ?? new string[0])
+                .AddSwagger<T>(new SwaggerOptions
+                {
+                    ApiInfoFunc = options.Swagger.ApiInfo,
+                    XmlCommentPaths = options.Swagger.XmlCommentPaths ?? new string[0]
+                })
 
                 .AddResponseCompression(cfg =>
                 {

@@ -188,7 +188,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
             app.UseRequestLocalization(requestLocalizationOptions);
             options.MiddlewareHooks.AfterRequestLocalization?.Invoke(app);
 
-            app.UseSwaggerDocumentation(options.Api.VersionProvider, options.Api.Info);
+            app.UseSwaggerDocumentation(new SwaggerDocumentationOptions
+            {
+                ApiVersionDescriptionProvider = options.Api.VersionProvider,
+                DocumentTitleFunc = options.Api.Info
+            });
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
             app.UseMvc();

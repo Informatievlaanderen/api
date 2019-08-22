@@ -1,3 +1,11 @@
+# [7.3.0](https://github.com/informatievlaanderen/api/compare/v7.2.2...v7.3.0) (2019-08-22)
+
+
+### Features
+
+* bump to .net 2.2.6 ([1e0a760](https://github.com/informatievlaanderen/api/commit/1e0a760))
+* bump to .net 2.2.6 ([3e84778](https://github.com/informatievlaanderen/api/commit/3e84778))
+
 ## [7.2.2](https://github.com/informatievlaanderen/api/compare/v7.2.1...v7.2.2) (2019-08-20)
 
 

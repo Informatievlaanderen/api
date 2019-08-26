@@ -1,3 +1,10 @@
+## [7.3.2](https://github.com/informatievlaanderen/api/compare/v7.3.1...v7.3.2) (2019-08-26)
+
+
+### Bug Fixes
+
+* make localization available earlier ([82dc05a](https://github.com/informatievlaanderen/api/commit/82dc05a))
+
 ## [7.3.1](https://github.com/informatievlaanderen/api/compare/v7.3.0...v7.3.1) (2019-08-26)
 
 

@@ -106,6 +106,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             if (options.Api.Info == null)
                 throw new ArgumentNullException(nameof(options.Api.Info));
 
+            GlobalStringLocalizer.Instance = new GlobalStringLocalizer(app.ApplicationServices.GetRequiredService<IServiceProvider>());
+
             app.UseProblemDetails();
             options.MiddlewareHooks.AfterProblemDetails?.Invoke(app);
 
@@ -208,8 +210,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             app.UseMvc();
             options.MiddlewareHooks.AfterMvc?.Invoke(app);
-
-            GlobalStringLocalizer.Instance = new GlobalStringLocalizer(app.ApplicationServices.GetRequiredService<IServiceProvider>());
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
                 options.Common.ApplicationContainer,

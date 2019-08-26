@@ -1,3 +1,10 @@
+## [7.3.3](https://github.com/informatievlaanderen/api/compare/v7.3.2...v7.3.3) (2019-08-26)
+
+
+### Bug Fixes
+
+* use fixed datadog tracing ([02e31ac](https://github.com/informatievlaanderen/api/commit/02e31ac))
+
 ## [7.3.2](https://github.com/informatievlaanderen/api/compare/v7.3.1...v7.3.2) (2019-08-26)
 
 

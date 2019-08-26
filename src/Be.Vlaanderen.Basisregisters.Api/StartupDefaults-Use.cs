@@ -43,6 +43,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Func<string, string> Info { get; set; }
             public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
             public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
+            public SwaggerDocumentationOptions.CSharpClientOptions CSharpClientOptions { get; } = new SwaggerDocumentationOptions.CSharpClientOptions();
+            public SwaggerDocumentationOptions.TypeScriptClientOptions TypeScriptClientOptions { get; } = new SwaggerDocumentationOptions.TypeScriptClientOptions();
         }
 
         public ServerOptions Server { get; } = new ServerOptions();
@@ -191,7 +193,16 @@ namespace Be.Vlaanderen.Basisregisters.Api
             app.UseSwaggerDocumentation(new SwaggerDocumentationOptions
             {
                 ApiVersionDescriptionProvider = options.Api.VersionProvider,
-                DocumentTitleFunc = options.Api.Info
+                DocumentTitleFunc = options.Api.Info,
+                CSharpClient =
+                {
+                    ClassName = options.Api.CSharpClientOptions.ClassName,
+                    Namespace =  options.Api.CSharpClientOptions.Namespace
+                },
+                TypeScriptClient =
+                {
+                    ClassName = options.Api.TypeScriptClientOptions.ClassName
+                }
             });
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 

@@ -1,3 +1,10 @@
+## [7.3.4](https://github.com/informatievlaanderen/api/compare/v7.3.3...v7.3.4) (2019-08-27)
+
+
+### Bug Fixes
+
+* make datadog tracing check more for nulls ([b109592](https://github.com/informatievlaanderen/api/commit/b109592))
+
 ## [7.3.3](https://github.com/informatievlaanderen/api/compare/v7.3.2...v7.3.3) (2019-08-26)
 
 

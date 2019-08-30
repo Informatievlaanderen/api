@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/informatievlaanderen/api/compare/v7.3.4...v7.4.0) (2019-08-30)
+
+
+### Features
+
+* add assembly getversiontext helper ([9d707c4](https://github.com/informatievlaanderen/api/commit/9d707c4))
+
 ## [7.3.4](https://github.com/informatievlaanderen/api/compare/v7.3.3...v7.3.4) (2019-08-27)
 
 

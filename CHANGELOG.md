@@ -1,3 +1,10 @@
+## [7.4.1](https://github.com/informatievlaanderen/api/compare/v7.4.0...v7.4.1) (2019-09-03)
+
+
+### Bug Fixes
+
+* update problemdetails for xml response GR-829 ([36eaafb](https://github.com/informatievlaanderen/api/commit/36eaafb))
+
 # [7.4.0](https://github.com/informatievlaanderen/api/compare/v7.3.4...v7.4.0) (2019-08-30)
 
 

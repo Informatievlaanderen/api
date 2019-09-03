@@ -35,6 +35,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.7
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.7
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.7
+    Be.Vlaanderen.Basisregisters.EventHandling.Autofac ~> 1.1
     Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.2
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.1
 

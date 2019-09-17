@@ -142,15 +142,24 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 AddHttpSecurityHeadersMiddleware.PoweredByHeaderName,
                 AddHttpSecurityHeadersMiddleware.ContentTypeOptionsHeaderName,
                 AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
-                AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName
+                AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName,
+                AddVersionHeaderMiddleware.HeaderName
             }.Union(options.Cors.ExposedHeaders ?? new string[0]).Distinct().ToArray();
 
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 
             services
                 .AddHttpContextAccessor()
+
                 .ConfigureOptions<ProblemDetailsSetup>()
-                .AddProblemDetails();
+                .AddProblemDetails(x =>
+                {
+                    foreach (var header in configuredCorsExposedHeaders)
+                    {
+                        if (!x.AllowedHeaderNames.Contains(header))
+                            x.AllowedHeaderNames.Add(header);
+                    }
+                });
 
             var mvcBuilder = services
                 .AddMvcCore(cfg =>

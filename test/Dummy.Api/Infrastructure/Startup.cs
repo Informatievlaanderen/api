@@ -103,6 +103,15 @@ namespace Dummy.Api.Infrastructure
                 {
                     VersionProvider = apiVersionProvider,
                     Info = groupName => $"Dummy API {groupName}",
+                    CSharpClientOptions =
+                    {
+                        ClassName = "DummyRegistry",
+                        Namespace = "Be.Vlaanderen.Basisregisters"
+                    },
+                    TypeScriptClientOptions =
+                    {
+                        ClassName = "DummyRegistry"
+                    }
                 },
                 Server =
                 {

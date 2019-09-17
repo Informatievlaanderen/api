@@ -1,3 +1,10 @@
+## [7.4.2](https://github.com/informatievlaanderen/api/compare/v7.4.1...v7.4.2) (2019-09-17)
+
+
+### Bug Fixes
+
+* include pipeline in error responses too ([a4bfb69](https://github.com/informatievlaanderen/api/commit/a4bfb69))
+
 ## [7.4.1](https://github.com/informatievlaanderen/api/compare/v7.4.0...v7.4.1) (2019-09-03)
 
 

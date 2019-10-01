@@ -1,6 +1,7 @@
 namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO.Compression;
     using System.Linq;
@@ -69,6 +70,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> ApiInfo { get; set; }
             public string[] XmlCommentPaths { get; set; } = null;
+            public IEnumerable<Server> Servers { get; set; } = new List<Server>();
+            public IEnumerable<HeaderOperationFilter> AdditionalHeaderOperationFilters { get; set; } = new List<HeaderOperationFilter>();
         }
 
         public LocalizationOptions Localization { get; } = new LocalizationOptions();
@@ -239,6 +242,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddSwagger<T>(new SwaggerOptions
                 {
                     ApiInfoFunc = options.Swagger.ApiInfo,
+                    Servers = options.Swagger.Servers,
+                    AdditionalHeaderOperationFilters = options.Swagger.AdditionalHeaderOperationFilters,
                     XmlCommentPaths = options.Swagger.XmlCommentPaths ?? new string[0]
                 })
 

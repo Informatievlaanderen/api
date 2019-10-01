@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/informatievlaanderen/api/compare/v7.4.2...v7.5.0) (2019-10-01)
+
+
+### Features
+
+* update swagger dependency ([26a23fc](https://github.com/informatievlaanderen/api/commit/26a23fc))
+
 ## [7.4.2](https://github.com/informatievlaanderen/api/compare/v7.4.1...v7.4.2) (2019-09-17)
 
 

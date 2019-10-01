@@ -95,8 +95,8 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader ~>
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality ~> 1.1
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind ~> 1.1
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.3
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.3
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.4
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.4
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 3.9
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 3.9
@@ -104,7 +104,7 @@ nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.9
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.9
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.9
 
-nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac ~> 1.1
+nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac ~> 1.3
 
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.2
 

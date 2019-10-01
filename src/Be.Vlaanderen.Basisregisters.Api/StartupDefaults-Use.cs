@@ -41,6 +41,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public IApiVersionDescriptionProvider VersionProvider { get; set; }
             public Func<string, string> Info { get; set; }
+            public Func<string, string> HeaderTitle { get; set; }
+            public Func<string, string> HeaderLink { get; set; }
+            public string FooterVersion { get; set; }
             public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
             public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
             public SwaggerDocumentationOptions.CSharpClientOptions CSharpClientOptions { get; } = new SwaggerDocumentationOptions.CSharpClientOptions();
@@ -70,6 +73,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<IApplicationBuilder> AfterMvc { get; set; }
             public Action<IApplicationBuilder> AfterSwagger { get; set; }
             public Action<IApplicationBuilder> AfterRequestLocalization { get; set; }
+            public Action<IApplicationBuilder> AfterHealthChecks { get; set; }
         }
     }
 
@@ -179,6 +183,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             };
 
             app.UseHealthChecks("/health", options.MiddlewareHooks.HealthChecks ?? healthCheckOptions);
+            options.MiddlewareHooks.AfterHealthChecks?.Invoke(app);
 
             var requestLocalizationOptions = options
                 .Common
@@ -192,6 +197,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
             app.UseSwaggerDocumentation(new SwaggerDocumentationOptions
             {
                 ApiVersionDescriptionProvider = options.Api.VersionProvider,
+                HeaderTitleFunc = options.Api.HeaderTitle,
+                HeaderLinkFunc = options.Api.HeaderLink,
+                FooterVersion = options.Api.FooterVersion,
                 DocumentTitleFunc = options.Api.Info,
                 CSharpClient =
                 {

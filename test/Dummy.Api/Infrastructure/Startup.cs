@@ -56,6 +56,11 @@ namespace Dummy.Api.Infrastructure
                                 Name = "agentschap Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
                                 Url = "https://vlaanderen.be/informatie-vlaanderen"
+                            },
+                            License = new License
+                            {
+                                Name = "European Union Public Licence (EUPL)",
+                                Url = "https://joinup.ec.europa.eu/news/understanding-eupl-v12"
                             }
                         },
                         XmlCommentPaths = new [] { typeof(Startup).GetTypeInfo().Assembly.GetName().Name }
@@ -89,6 +94,8 @@ namespace Dummy.Api.Infrastructure
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider)
         {
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+
             app.UseDefaultForApi(new StartupUseOptions
             {
                 Common =
@@ -103,6 +110,9 @@ namespace Dummy.Api.Infrastructure
                 {
                     VersionProvider = apiVersionProvider,
                     Info = groupName => $"Dummy API {groupName}",
+                    HeaderTitle = groupName => "Dummy API",
+                    HeaderLink = groupName => "http://example.com",
+                    FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
                     CSharpClientOptions =
                     {
                         ClassName = "DummyRegistry",

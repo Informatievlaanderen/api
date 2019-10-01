@@ -1,3 +1,10 @@
+## [7.6.1](https://github.com/informatievlaanderen/api/compare/v7.6.0...v7.6.1) (2019-10-01)
+
+
+### Bug Fixes
+
+* update swagger ([24812cc](https://github.com/informatievlaanderen/api/commit/24812cc))
+
 # [7.6.0](https://github.com/informatievlaanderen/api/compare/v7.5.0...v7.6.0) (2019-10-01)
 
 

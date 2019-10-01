@@ -1,3 +1,10 @@
+# [7.6.0](https://github.com/informatievlaanderen/api/compare/v7.5.0...v7.6.0) (2019-10-01)
+
+
+### Features
+
+* add servers option for swagger ([0182d10](https://github.com/informatievlaanderen/api/commit/0182d10))
+
 # [7.5.0](https://github.com/informatievlaanderen/api/compare/v7.4.2...v7.5.0) (2019-10-01)
 
 

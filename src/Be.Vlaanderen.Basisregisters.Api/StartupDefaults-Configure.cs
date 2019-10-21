@@ -72,6 +72,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public string[] XmlCommentPaths { get; set; } = null;
             public IEnumerable<Server> Servers { get; set; } = new List<Server>();
             public IEnumerable<HeaderOperationFilter> AdditionalHeaderOperationFilters { get; set; } = new List<HeaderOperationFilter>();
+
+            public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
+
+            public class MiddlewareHookOptions
+            {
+                public Action<Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions> AfterSwaggerGen { get; set; }
+            }
         }
 
         public LocalizationOptions Localization { get; } = new LocalizationOptions();
@@ -110,7 +117,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             if (options.Swagger.ApiInfo == null)
                 throw new ArgumentNullException(nameof(options.Swagger.ApiInfo));
-            
+
             var configuredCorsMethods = new[]
             {
                 HttpMethod.Get.Method,
@@ -244,7 +251,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     ApiInfoFunc = options.Swagger.ApiInfo,
                     Servers = options.Swagger.Servers,
                     AdditionalHeaderOperationFilters = options.Swagger.AdditionalHeaderOperationFilters,
-                    XmlCommentPaths = options.Swagger.XmlCommentPaths ?? new string[0]
+                    XmlCommentPaths = options.Swagger.XmlCommentPaths ?? new string[0],
+                    MiddlewareHooks =
+                    {
+                        AfterSwaggerGen = options.Swagger.MiddlewareHooks.AfterSwaggerGen
+                    }
                 })
 
                 .AddResponseCompression(cfg =>

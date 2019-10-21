@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/informatievlaanderen/api/compare/v7.6.2...v7.7.0) (2019-10-21)
+
+
+### Features
+
+* provide swagger middleware hooks ([3277aba](https://github.com/informatievlaanderen/api/commit/3277aba))
+
 ## [7.6.2](https://github.com/informatievlaanderen/api/compare/v7.6.1...v7.6.2) (2019-10-21)
 
 

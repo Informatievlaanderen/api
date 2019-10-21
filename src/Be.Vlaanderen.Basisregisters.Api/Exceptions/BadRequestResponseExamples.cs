@@ -11,7 +11,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             {
                 HttpStatus = StatusCodes.Status400BadRequest,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = string.Empty,
+                Detail = "<meer informatie over de foutieve data>",
                 ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
     }

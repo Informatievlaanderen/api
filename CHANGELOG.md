@@ -1,3 +1,10 @@
+## [7.6.2](https://github.com/informatievlaanderen/api/compare/v7.6.1...v7.6.2) (2019-10-21)
+
+
+### Bug Fixes
+
+* add details for problemdetails ([d4a4bda](https://github.com/informatievlaanderen/api/commit/d4a4bda))
+
 ## [7.6.1](https://github.com/informatievlaanderen/api/compare/v7.6.0...v7.6.1) (2019-10-01)
 
 

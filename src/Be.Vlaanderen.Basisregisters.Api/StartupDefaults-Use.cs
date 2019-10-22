@@ -39,15 +39,60 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class ApiOptions
         {
+            /// <summary>
+            /// Defines the behavior of a provider that discovers and describes API version information within an application.
+            /// </summary>
             public IApiVersionDescriptionProvider VersionProvider { get; set; }
+
+            /// <summary>
+            /// Sets a title for the ReDoc page.
+            /// This is used in the &lt;title&gt; tag.
+            /// </summary>
             public Func<string, string> Info { get; set; }
+
+            /// <summary>
+            /// Sets a description for the ReDoc page.
+            /// This is used in the &lt;meta name="description"&gt; tag.
+            /// </summary>
+            public Func<string, string> Description { get; set; }
+
+            /// <summary>
+            /// Sets an application name for the ReDoc page.
+            /// This is used in the &lt;apple-mobile-web-app-title&gt; and &lt;application-name&gt; tag.
+            /// </summary>
+            public Func<string, string> ApplicationName { get; set; }
+
+            /// <summary>
+            /// Sets a header title for the ReDoc page.
+            /// This is visible on the page.
+            /// </summary>
             public Func<string, string> HeaderTitle { get; set; }
+
+            /// <summary>
+            /// Sets a header link for the ReDoc page.
+            /// This is visible on the page in conjunction with HeaderTitle.
+            /// </summary>
             public Func<string, string> HeaderLink { get; set; }
+
+            /// <summary>
+            /// Sets additional content to place in the head of the ReDoc page.
+            /// This is used in the &lt;head&gt; tag.
+            /// </summary>
+            public Func<string, string> HeadContent { get; set; }
+
+            /// <summary>
+            /// Sets the version to display in the footer.
+            /// This is visible on the page.
+            /// </summary>
             public string FooterVersion { get; set; }
-            public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
-            public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
+
             public SwaggerDocumentationOptions.CSharpClientOptions CSharpClientOptions { get; } = new SwaggerDocumentationOptions.CSharpClientOptions();
+
             public SwaggerDocumentationOptions.TypeScriptClientOptions TypeScriptClientOptions { get; } = new SwaggerDocumentationOptions.TypeScriptClientOptions();
+
+            public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
+
+            public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
         }
 
         public ServerOptions Server { get; } = new ServerOptions();
@@ -106,9 +151,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             if (options.Api.VersionProvider == null)
                 throw new ArgumentNullException(nameof(options.Api.VersionProvider));
-
-            if (options.Api.Info == null)
-                throw new ArgumentNullException(nameof(options.Api.Info));
 
             GlobalStringLocalizer.Instance = new GlobalStringLocalizer(app.ApplicationServices.GetRequiredService<IServiceProvider>());
 
@@ -197,10 +239,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
             app.UseSwaggerDocumentation(new SwaggerDocumentationOptions
             {
                 ApiVersionDescriptionProvider = options.Api.VersionProvider,
+                DocumentTitleFunc = options.Api.Info,
+                DocumentDescriptionFunc = options.Api.Description,
+                ApplicationNameFunc = options.Api.ApplicationName,
                 HeaderTitleFunc = options.Api.HeaderTitle,
                 HeaderLinkFunc = options.Api.HeaderLink,
+                HeadContentFunc = options.Api.HeadContent,
                 FooterVersion = options.Api.FooterVersion,
-                DocumentTitleFunc = options.Api.Info,
                 CSharpClient =
                 {
                     ClassName = options.Api.CSharpClientOptions.ClassName,

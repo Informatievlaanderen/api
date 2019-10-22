@@ -68,10 +68,28 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class SwaggerOptions
         {
+            /// <summary>
+            /// Function which returns global metadata to be included in the Swagger output.
+            /// </summary>
             public Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> ApiInfo { get; set; }
+
+            /// <summary>
+            /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files.
+            /// A list of absolute paths to the files that contains XML Comments.
+            /// </summary>
             public string[] XmlCommentPaths { get; set; } = null;
-            public IEnumerable<Server> Servers { get; set; } = new List<Server>();
+
+            /// <summary>
+            /// Easily add additional header parameters to each request.
+            /// </summary>
             public IEnumerable<HeaderOperationFilter> AdditionalHeaderOperationFilters { get; set; } = new List<HeaderOperationFilter>();
+
+            /// <summary>
+            /// Available servers.
+            /// </summary>
+            public IEnumerable<Server> Servers { get; set; } = new List<Server>();
+
+            public Func<ApiDescription, string> CustomSortFunc { get; set; } = SortByTag.Sort;
 
             public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
 
@@ -249,9 +267,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddSwagger<T>(new SwaggerOptions
                 {
                     ApiInfoFunc = options.Swagger.ApiInfo,
-                    Servers = options.Swagger.Servers,
-                    AdditionalHeaderOperationFilters = options.Swagger.AdditionalHeaderOperationFilters,
                     XmlCommentPaths = options.Swagger.XmlCommentPaths ?? new string[0],
+                    AdditionalHeaderOperationFilters = options.Swagger.AdditionalHeaderOperationFilters,
+                    Servers = options.Swagger.Servers,
+                    CustomSortFunc = options.Swagger.CustomSortFunc,
                     MiddlewareHooks =
                     {
                         AfterSwaggerGen = options.Swagger.MiddlewareHooks.AfterSwaggerGen

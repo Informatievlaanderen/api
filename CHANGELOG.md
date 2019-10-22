@@ -1,3 +1,10 @@
+# [7.8.0](https://github.com/informatievlaanderen/api/compare/v7.7.0...v7.8.0) (2019-10-22)
+
+
+### Features
+
+* allow custom sorting to be specified in swagger ([512df90](https://github.com/informatievlaanderen/api/commit/512df90))
+
 # [7.7.0](https://github.com/informatievlaanderen/api/compare/v7.6.2...v7.7.0) (2019-10-21)
 
 

@@ -1,3 +1,10 @@
+## [7.8.1](https://github.com/informatievlaanderen/api/compare/v7.8.0...v7.8.1) (2019-10-24)
+
+
+### Bug Fixes
+
+* integrate swagger fix to work in edge and ie ([5cdbce9](https://github.com/informatievlaanderen/api/commit/5cdbce9))
+
 # [7.8.0](https://github.com/informatievlaanderen/api/compare/v7.7.0...v7.8.0) (2019-10-22)
 
 

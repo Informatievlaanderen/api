@@ -117,6 +117,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             public Action<IMvcCoreBuilder> AfterMvc { get; set; }
             public Action<IHealthChecksBuilder> AfterHealthChecks { get; set; }
+
+            public Action<MvcOptions> ConfigureMvcCore { get; set; }
+            public Action<MvcJsonOptions> ConfigureJsonOptions { get; set; }
         }
     }
 
@@ -200,6 +203,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.Filters.Add<OperationCancelledExceptionFilter>();
 
                     cfg.Filters.Add(new DataDogTracingFilter());
+
+                    options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 })
 
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -222,7 +227,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddAuthorization(options.MiddlewareHooks.Authorization)
 
                 .AddJsonFormatters()
-                .AddJsonOptions(cfg => cfg.SerializerSettings.ConfigureDefaultForApi())
+                .AddJsonOptions(
+                    options.MiddlewareHooks.ConfigureJsonOptions
+                    ?? (cfg => cfg.SerializerSettings.ConfigureDefaultForApi()))
 
                 .AddXmlDataContractSerializerFormatters()
 

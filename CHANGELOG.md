@@ -1,3 +1,10 @@
+# [7.9.0](https://github.com/informatievlaanderen/api/compare/v7.8.1...v7.9.0) (2019-11-08)
+
+
+### Features
+
+* add additional hooks ([03556fd](https://github.com/informatievlaanderen/api/commit/03556fd))
+
 ## [7.8.1](https://github.com/informatievlaanderen/api/compare/v7.8.0...v7.8.1) (2019-10-24)
 
 

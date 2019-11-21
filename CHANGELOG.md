@@ -1,3 +1,10 @@
+# [7.10.0](https://github.com/informatievlaanderen/api/compare/v7.9.0...v7.10.0) (2019-11-21)
+
+
+### Features
+
+* add count func parameter to pagination ([b6b69f8](https://github.com/informatievlaanderen/api/commit/b6b69f8))
+
 # [7.9.0](https://github.com/informatievlaanderen/api/compare/v7.8.1...v7.9.0) (2019-11-08)
 
 

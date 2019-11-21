@@ -1,7 +1,6 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Search
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using Filtering;
@@ -31,7 +30,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
         public PagedQueryable<TResult> Fetch(
             FilteringHeader<TFilter> filtering,
             SortingHeader sorting,
-            IPaginationRequest paginationRequest)
+            IPaginationRequest paginationRequest,
+            Func<IQueryable<T>, int> countFunc = null)
         {
             if (filtering == null)
                 throw new ArgumentNullException(nameof(filtering));
@@ -46,7 +46,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
 
             return items
                 .WithSorting(sorting, Sorting)
-                .WithPagination(paginationRequest)
+                .WithPagination(paginationRequest, countFunc)
                 .WithTransformation(Transformation);
         }
     }

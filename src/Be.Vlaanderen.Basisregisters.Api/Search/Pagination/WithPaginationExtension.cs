@@ -9,7 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
         public static PagedQueryable<T> WithPagination<T>(
             this SortedQueryable<T> source,
             IPaginationRequest paginationRequest,
-            Func<IQueryable<T>, int> countFunc = null)
+            Func<IQueryable<T>, long> countFunc = null)
             => paginationRequest.Paginate(source, countFunc);
     }
 }

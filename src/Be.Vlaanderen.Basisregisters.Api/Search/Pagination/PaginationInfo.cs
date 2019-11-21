@@ -6,11 +6,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
         public int Limit { get; }
 
-        public int TotalItems { get; }
+        public long TotalItems { get; }
 
         public int TotalPages { get; }
 
-        public PaginationInfo(int offset, int limit, int totalItems, int totalPages)
+        public PaginationInfo(int offset, int limit, long totalItems, int totalPages)
         {
             Offset = offset;
             Limit = limit;

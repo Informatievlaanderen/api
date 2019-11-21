@@ -7,7 +7,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
     public interface IPaginationRequest
     {
-        PagedQueryable<T> Paginate<T>(SortedQueryable<T> source);
+        PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, int> countFunc);
+
         bool HasZeroAsLimit { get; }
     }
 
@@ -23,10 +24,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
             Limit = Math.Max(limit, 0);
         }
 
-        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
+        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, int> countFunc = null)
         {
             var items = source.Items;
-            var totalItemSize = items.Count();
+            var totalItemSize = countFunc?.Invoke(items) ?? items.Count();
 
             if (Limit == 0)
                 return new PagedQueryable<T>(
@@ -53,9 +54,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
         public int TotalPages(int totalItemSize) => 1;
 
-        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
+        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, int> countFunc = null)
         {
-            var limit = source.Items.Count();
+            var items = source.Items;
+            var limit = countFunc?.Invoke(items) ?? items.Count();
+
             var paginationInfo = new PaginationInfo(0, limit, limit, 1);
             return new PagedQueryable<T>(source.Items, paginationInfo, source.Sorting);
         }

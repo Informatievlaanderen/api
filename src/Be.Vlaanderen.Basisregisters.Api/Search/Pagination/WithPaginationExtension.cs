@@ -1,10 +1,15 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 {
+    using System;
+    using System.Linq;
     using Sorting;
 
     public static class WithPaginationExtension
     {
-        public static PagedQueryable<T> WithPagination<T>(this SortedQueryable<T> source, IPaginationRequest paginationRequest)
-            => paginationRequest.Paginate(source);
+        public static PagedQueryable<T> WithPagination<T>(
+            this SortedQueryable<T> source,
+            IPaginationRequest paginationRequest,
+            Func<IQueryable<T>, int> countFunc = null)
+            => paginationRequest.Paginate(source, countFunc);
     }
 }

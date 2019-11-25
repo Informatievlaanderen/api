@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/informatievlaanderen/api/compare/v7.10.0...v8.0.0) (2019-11-25)
+
+
+### Code Refactoring
+
+* change totalitems from int to long ([#11](https://github.com/informatievlaanderen/api/issues/11)) ([ebb2fbb](https://github.com/informatievlaanderen/api/commit/ebb2fbb))
+
+
+### BREAKING CHANGES
+
+* Totalitems is a long instead of an int.
+
 # [7.10.0](https://github.com/informatievlaanderen/api/compare/v7.9.0...v7.10.0) (2019-11-21)
 
 

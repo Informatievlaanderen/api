@@ -31,7 +31,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
             FilteringHeader<TFilter> filtering,
             SortingHeader sorting,
             IPaginationRequest paginationRequest,
-            Func<IQueryable<T>, int> countFunc = null)
+            Func<IQueryable<T>, long> countFunc = null)
         {
             if (filtering == null)
                 throw new ArgumentNullException(nameof(filtering));

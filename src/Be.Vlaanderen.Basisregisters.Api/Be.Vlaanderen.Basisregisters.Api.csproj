@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.App.props" />
+  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\..\.paket\Paket.Restore.targets" />

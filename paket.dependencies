@@ -1,6 +1,6 @@
 // Only the target frameworks that are used in projects.
 // If you change the target framework of the projects then you need to run paket install again.
-framework: netstandard20, netcoreapp22, net472
+framework: netcoreapp31
 
 // When doing development as a non-employee, uncomment this to use the public NuGet feed
 source https://api.nuget.org/v3/index.json
@@ -8,52 +8,31 @@ source https://api.nuget.org/v3/index.json
 // When doing development as an employee, uncomment this to use the private NuGet proxy
 // source https://informatievlaanderen.myget.org/F/nuget-mirror/api/v3/index.json username: "%MYGET_FEED_USER%" password: "%MYGET_FEED_PASS%" authtype: "basic"
 
-// DOTNETCORE ISSUES
-nuget Microsoft.NETCore.App 2.2.6
-nuget Microsoft.NETCore.DotNetAppHost 2.2.6
-nuget Microsoft.NETCore.DotNetHostResolver 2.2.6
-nuget Microsoft.NETCore.DotNetHostPolicy 2.2.6
-nuget NETStandard.Library 2.0.3
-
 // PRODUCTION STUFF
-nuget Microsoft.AspNetCore.Mvc.Abstractions 2.2.0
-nuget Microsoft.AspNetCore.Mvc.Core 2.2.5
-nuget Microsoft.AspNetCore.Mvc.Cors 2.2.0
-nuget Microsoft.AspNetCore.Mvc.Api.Analyzers 2.2.6
-nuget Microsoft.AspNetCore.Mvc.Formatters.Json 2.2.0
-nuget Microsoft.AspNetCore.Mvc.Formatters.Xml 2.2.0
-nuget Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer 3.2.1
+nuget Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer 4.1.0
 
-nuget Microsoft.AspNetCore.Server.Kestrel 2.2.0
-nuget Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets 2.2.1
+nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 3.1.0
+nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 3.1.0
 
-nuget Microsoft.AspNetCore.ResponseCompression 2.2.0
+nuget Microsoft.Extensions.Localization 3.1.0
 
-nuget Microsoft.AspNetCore.Diagnostics 2.2.0
-nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 2.2.1
-nuget Microsoft.AspNetCore.Diagnostics.HealthChecks 2.2.0
-nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 2.2.0
+nuget Microsoft.EntityFrameworkCore 3.1.0
 
-nuget Microsoft.AspNetCore.Localization 2.2.0
-nuget Microsoft.Extensions.Localization 2.2.0
-
-nuget Microsoft.EntityFrameworkCore 2.2.6
-
-nuget Microsoft.Extensions.Configuration 2.2.0
-nuget Microsoft.Extensions.Configuration.CommandLine 2.2.0
-nuget Microsoft.Extensions.Configuration.FileExtensions 2.2.0
-nuget Microsoft.Extensions.Configuration.Json 2.2.0
-nuget Microsoft.Extensions.Configuration.EnvironmentVariables 2.2.4
-nuget Microsoft.Extensions.Options.ConfigurationExtensions 2.2.0
-nuget Microsoft.Extensions.DependencyInjection 2.2.0
+nuget Microsoft.Extensions.Configuration 3.1.0
+nuget Microsoft.Extensions.Configuration.CommandLine 3.1.0
+nuget Microsoft.Extensions.Configuration.FileExtensions 3.1.0
+nuget Microsoft.Extensions.Configuration.Json 3.1.0
+nuget Microsoft.Extensions.Configuration.EnvironmentVariables 3.1.0
+nuget Microsoft.Extensions.Options.ConfigurationExtensions 3.1.0
+nuget Microsoft.Extensions.DependencyInjection 3.1.0
 
 nuget Microsoft.VisualStudio.Web.BrowserLink 2.2.0
 
 nuget Microsoft.SyndicationFeed.ReaderWriter 1.0.2
 
-nuget System.Text.Encoding.CodePages 4.5.1
+nuget System.Text.Encoding.CodePages 4.7.0
 
-nuget Polly 7.1.1
+nuget Polly 7.2.0
 
 nuget Swashbuckle.AspNetCore 4.0.1
 nuget Swashbuckle.AspNetCore.Filters 4.5.5
@@ -62,66 +41,65 @@ nuget SqlStreamStore 1.1.3
 nuget SqlStreamStore.MsSql 1.1.3
 
 nuget Autofac 4.9.4
-nuget Autofac.Extensions.DependencyInjection 4.4.0
+nuget Autofac.Extensions.DependencyInjection 5.0.1
 
-nuget FluentValidation.AspNetCore 8.4.0
+nuget FluentValidation.AspNetCore 8.6.0
 
-nuget Newtonsoft.Json 12.0.2
+nuget Newtonsoft.Json 12.0.3
 nuget Destructurama.JsonNet 1.2.1
 
-nuget Serilog 2.8.0
+nuget Serilog 2.9.0
 nuget Serilog.Settings.Configuration 3.1.0
 nuget Serilog.Extensions.Logging 3.0.1
 nuget Serilog.Sinks.Console 3.1.1
-nuget Serilog.Sinks.File 4.0.0
+nuget Serilog.Sinks.File 4.1.0
 nuget Serilog.Enrichers.Thread 3.1.0
 nuget Serilog.Enrichers.Environment 2.1.3
-nuget Serilog.Formatting.Compact 1.0.0
+nuget Serilog.Formatting.Compact 1.1.0
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.7
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.2.0
 
-nuget Be.Vlaanderen.Basisregisters.AggregateSource ~> 3.2
+nuget Be.Vlaanderen.Basisregisters.AggregateSource 4.1.0
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json ~> 1.3
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders ~> 1.2
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality ~> 1.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind ~> 1.1
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 2.1.0
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger ~> 1.5
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc ~> 1.5
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 2.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 2.1.0
 
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing ~> 3.9
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore ~> 3.9
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 3.9
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 3.9
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 3.9
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 4.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 4.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac 4.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 4.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 4.1.0
 
-nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac ~> 1.3
+nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac 2.1.0
 
-nuget Be.Vlaanderen.Basisregisters.ProblemDetails ~> 3.2
+nuget Be.Vlaanderen.Basisregisters.ProblemDetails 4.1.1
 
-nuget Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic ~> 1.1
+nuget Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic 2.1.0
 
 // TEST STUFF
-nuget Microsoft.NET.Test.Sdk 16.2.0
-nuget Microsoft.AspNetCore.TestHost 2.2.0
+nuget Microsoft.NET.Test.Sdk 16.4.0
+nuget Microsoft.AspNetCore.TestHost 3.1.0
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
 nuget FluentAssertions 5.9.0
-nuget Moq 4.13.0
+nuget Moq 4.13.1
 nuget Shouldly 3.0.2
 nuget AutoFixture 4.11.0
 
 // BUILD STUFF
-nuget FAKE 4.64.13 // Don't update to v5!
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
 nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true

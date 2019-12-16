@@ -1,14 +1,8 @@
-Microsoft.AspNetCore.Mvc.Abstractions
-Microsoft.AspNetCore.Mvc.Core
-Microsoft.AspNetCore.Mvc.Cors
-Microsoft.AspNetCore.Mvc.Api.Analyzers
-Microsoft.AspNetCore.Mvc.Formatters.Json
-Microsoft.AspNetCore.Mvc.Formatters.Xml
 Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
-Microsoft.AspNetCore.ResponseCompression
 
-Microsoft.AspNetCore.Server.Kestrel
-Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets
+Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
+
+Microsoft.Extensions.Localization
 
 Microsoft.EntityFrameworkCore
 
@@ -20,26 +14,9 @@ Microsoft.Extensions.Configuration.EnvironmentVariables
 Microsoft.Extensions.Options.ConfigurationExtensions
 Microsoft.Extensions.DependencyInjection
 
-Microsoft.AspNetCore.Diagnostics
-Microsoft.AspNetCore.Diagnostics.HealthChecks
-Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
-
-Microsoft.AspNetCore.Localization
-Microsoft.Extensions.Localization
-
 Microsoft.VisualStudio.Web.BrowserLink
 
 Microsoft.SyndicationFeed.ReaderWriter
-
-SqlStreamStore
-SqlStreamStore.MsSql
-
-Autofac
-Autofac.Extensions.DependencyInjection
-
-Newtonsoft.Json
-Destructurama.JsonNet
 
 System.Text.Encoding.CodePages
 
@@ -48,7 +25,16 @@ Polly
 Swashbuckle.AspNetCore
 Swashbuckle.AspNetCore.Filters
 
+SqlStreamStore
+SqlStreamStore.MsSql
+
+Autofac
+Autofac.Extensions.DependencyInjection
+
 FluentValidation.AspNetCore
+
+Newtonsoft.Json
+Destructurama.JsonNet
 
 Serilog
 Serilog.Settings.Configuration

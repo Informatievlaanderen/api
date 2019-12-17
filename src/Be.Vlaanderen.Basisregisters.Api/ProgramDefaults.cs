@@ -9,7 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using AspNetCore.Mvc.Formatters.Json;
     using Destructurama;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc.Formatters;
+    using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
@@ -40,7 +40,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public int? HttpPort { get; set; } = null;
             public int? HttpsPort { get; set; } = null;
-            public Func<X509Certificate2> HttpsCertificate { get; set; } = null;
+            public Func<X509Certificate2>? HttpsCertificate { get; set; }
         }
 
         public LoggingOptions Logging { get; } = new LoggingOptions();
@@ -55,16 +55,16 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class RuntimeOptions
         {
-            public string[] CommandLineArgs { get; set; } = null;
+            public string[]? CommandLineArgs { get; set; }
         }
 
         public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
 
         public class MiddlewareHookOptions
         {
-            public Action<WebHostBuilderContext, IConfigurationBuilder> ConfigureAppConfiguration { get; set; }
-            public Action<WebHostBuilderContext, LoggerConfiguration> ConfigureSerilog { get; set; }
-            public Action<WebHostBuilderContext, ILoggingBuilder> ConfigureLogging { get; set; }
+            public Action<WebHostBuilderContext, IConfigurationBuilder>? ConfigureAppConfiguration { get; set; }
+            public Action<WebHostBuilderContext, LoggerConfiguration>? ConfigureSerilog { get; set; }
+            public Action<WebHostBuilderContext, ILoggingBuilder>? ConfigureLogging { get; set; }
         }
     }
 
@@ -147,7 +147,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseStartup<T>();
         }
 
-        private static string[] PatchRiderBug<T>(string[] commandLineArgs) where T : class
+        private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class
         {
             // Note: Rider starts debugging with
             // <source location>/src/.../bin/Debug/netcoreapp2.1/win10-x64/....exe
@@ -189,7 +189,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             KestrelServerOptions options,
             int? httpPort,
             int? httpsPort,
-            X509Certificate2 certificate)
+            X509Certificate2? certificate)
         {
             if (httpPort.HasValue)
                 AddListener(options, httpPort.Value, null);
@@ -201,7 +201,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         private static void AddListener(
             KestrelServerOptions options,
             int port,
-            X509Certificate2 certificate)
+            X509Certificate2? certificate)
         {
             options.Listen(
                 new IPEndPoint(IPAddress.Loopback, port),
@@ -209,11 +209,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 {
                     listenOptions.UseConnectionLogging();
 
-                    if (null != certificate)
-                    {
-                        listenOptions.UseHttps(certificate);
-                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                    }
+                    if (certificate == null)
+                        return;
+
+                    listenOptions.UseHttps(certificate);
+                    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
                 });
         }
     }

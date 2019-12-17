@@ -9,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Exceptions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Autofac;
@@ -30,8 +31,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             public IContainer ApplicationContainer { get; set; }
             public IServiceProvider ServiceProvider { get; set; }
-            public IHostingEnvironment HostingEnvironment { get; set; }
-            public IApplicationLifetime ApplicationLifetime { get; set; }
+            public IWebHostEnvironment HostingEnvironment { get; set; }
+            public IHostApplicationLifetime ApplicationLifetime { get; set; }
             public ILoggerFactory LoggerFactory { get; set; }
         }
 

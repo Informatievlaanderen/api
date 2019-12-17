@@ -15,7 +15,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Exceptions;
     using FluentValidation;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Mvc.Cors.Internal;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.DependencyInjection;
     using FluentValidation.AspNetCore;
@@ -95,7 +94,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             public class MiddlewareHookOptions
             {
-                public Action<Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions> AfterSwaggerGen { get; set; }
+                public Action<Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions>? AfterSwaggerGen { get; set; }
             }
         }
 
@@ -111,15 +110,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class MiddlewareHookOptions
         {
-            public Action<FluentValidationMvcConfiguration> FluentValidation { get; set; }
+            public Action<FluentValidationMvcConfiguration>? FluentValidation { get; set; }
             public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
             public Action<AuthorizationOptions> Authorization { get; set; }
 
-            public Action<IMvcCoreBuilder> AfterMvc { get; set; }
-            public Action<IHealthChecksBuilder> AfterHealthChecks { get; set; }
+            public Action<IMvcCoreBuilder>? AfterMvc { get; set; }
+            public Action<IHealthChecksBuilder>? AfterHealthChecks { get; set; }
 
-            public Action<MvcOptions> ConfigureMvcCore { get; set; }
-            public Action<MvcJsonOptions> ConfigureJsonOptions { get; set; }
+            public Action<MvcOptions>? ConfigureMvcCore { get; set; }
+            public Action<MvcNewtonsoftJsonOptions>? ConfigureJsonOptions { get; set; }
         }
     }
 
@@ -148,7 +147,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 HttpMethod.Patch.Method,
                 HttpMethod.Delete.Method,
                 HttpMethod.Options.Method
-            }.Union(options.Cors.Methods ?? new string[0]).Distinct().ToArray();
+            }.Union(options.Cors.Methods ?? Array.Empty<string>()).Distinct().ToArray();
 
             var configuredCorsHeaders = new[]
             {
@@ -160,7 +159,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 ExtractFilteringRequestExtension.HeaderName,
                 AddSortingExtension.HeaderName,
                 AddPaginationExtension.HeaderName
-            }.Union(options.Cors.Headers ?? new string[0]).Distinct().ToArray();
+            }.Union(options.Cors.Headers ?? Array.Empty<string>()).Distinct().ToArray();
 
             var configuredCorsExposedHeaders = new[]
             {
@@ -175,7 +174,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 AddHttpSecurityHeadersMiddleware.FrameOptionsHeaderName,
                 AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName,
                 AddVersionHeaderMiddleware.HeaderName
-            }.Union(options.Cors.ExposedHeaders ?? new string[0]).Distinct().ToArray();
+            }.Union(options.Cors.ExposedHeaders ?? Array.Empty<string>()).Distinct().ToArray();
 
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 
@@ -199,7 +198,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.ReturnHttpNotAcceptable = true;
 
                     cfg.Filters.Add(new LoggingFilterFactory(options.Server.MethodsToLog));
-                    cfg.Filters.Add(new CorsAuthorizationFilterFactory(StartupHelpers.AllowSpecificOrigin));
+
+                    // This got removed in .NET Core 3.0, we need to determine the impact
+                    //cfg.Filters.Add(new CorsAuthorizationFilterFactory(StartupHelpers.AllowSpecificOrigin));
+
                     cfg.Filters.Add<OperationCancelledExceptionFilter>();
 
                     cfg.Filters.Add(new DataDogTracingFilter());
@@ -207,7 +209,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 })
 
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
 
                 .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization)
 
@@ -226,8 +228,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddControllersAsServices()
                 .AddAuthorization(options.MiddlewareHooks.Authorization)
 
-                .AddJsonFormatters()
-                .AddJsonOptions(
+                .AddNewtonsoftJson(
                     options.MiddlewareHooks.ConfigureJsonOptions
                     ?? (cfg => cfg.SerializerSettings.ConfigureDefaultForApi()))
 

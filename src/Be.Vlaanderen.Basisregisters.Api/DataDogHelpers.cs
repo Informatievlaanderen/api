@@ -38,6 +38,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public string ServiceName { get; set; }
             public string TraceIdHeaderName { get; set; } = DefaultTraceIdHeaderName;
             public string ParentSpanIdHeaderName { get; set; } = DefaultParentSpanIdHeaderName;
+            public bool AnalyticsEnabled { get; set; }
 
             public Func<StringValues, long> TraceIdGenerator { get; set; }
             public Func<string, bool> ShouldTracePath { get; set; }
@@ -81,8 +82,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 var traceSourceFactory = options.Common.ServiceProvider.GetRequiredService<Func<TraceSourceArguments, TraceSource>>();
                 var logger = options.Common.LoggerFactory.CreateLogger<T>();
 
-                app.UseDataDogTracing(
-                    request =>
+                app.UseDataDogTracing(new TraceOptions
+                {
+                    TraceSource = request =>
                     {
                         var traceId = request.ExtractTraceIdFromHeader(
                             options.Tracing.TraceIdHeaderName,
@@ -97,8 +99,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                             ? traceSourceFactory(new TraceSourceArguments(traceId, traceParentSpanId.Value))
                             : traceSourceFactory(new TraceSourceArguments(traceId));
                     },
-                    options.Tracing.ServiceName,
-                    options.Tracing.ShouldTracePath ?? (pathToCheck => pathToCheck != "/"));
+                    ServiceName = options.Tracing.ServiceName,
+                    ShouldTracePath = options.Tracing.ShouldTracePath ?? (pathToCheck => pathToCheck != "/"),
+                    AnalyticsEnabled = options.Tracing.AnalyticsEnabled
+                });
             }
 
             return app;

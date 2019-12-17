@@ -39,17 +39,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.ProblemDetails >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic >= LOCKEDVERSION
 
-    Microsoft.AspNetCore.Mvc.Abstractions >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Core >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Cors >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Api.Analyzers >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Formatters.Json >= LOCKEDVERSION
-    Microsoft.AspNetCore.Mvc.Formatters.Xml >= LOCKEDVERSION
     Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION
-    Microsoft.AspNetCore.ResponseCompression >= LOCKEDVERSION
-
-    Microsoft.AspNetCore.Server.Kestrel >= LOCKEDVERSION
-    Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets >= LOCKEDVERSION
 
     Microsoft.EntityFrameworkCore >= LOCKEDVERSION
 
@@ -61,12 +51,9 @@ dependencies
     Microsoft.Extensions.Options.ConfigurationExtensions >= LOCKEDVERSION
     Microsoft.Extensions.DependencyInjection >= LOCKEDVERSION
 
-    Microsoft.AspNetCore.Diagnostics >= LOCKEDVERSION
-    Microsoft.AspNetCore.Diagnostics.HealthChecks >= LOCKEDVERSION
     Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= LOCKEDVERSION
     Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore >= LOCKEDVERSION
 
-    Microsoft.AspNetCore.Localization >= LOCKEDVERSION
     Microsoft.Extensions.Localization >= LOCKEDVERSION
 
     Microsoft.VisualStudio.Web.BrowserLink >= LOCKEDVERSION

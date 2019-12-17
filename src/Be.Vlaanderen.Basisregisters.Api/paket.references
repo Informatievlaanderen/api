@@ -1,5 +1,6 @@
 Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
 
+Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 
 Microsoft.Extensions.Localization
@@ -35,6 +36,7 @@ FluentValidation.AspNetCore
 
 Newtonsoft.Json
 Destructurama.JsonNet
+Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
 Serilog
 Serilog.Settings.Configuration

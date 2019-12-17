@@ -49,6 +49,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 
         public IAsyncEnumerator<T> GetEnumerator()
             => new AsyncEnumerator<T>(_queryable);
+
+        public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken)
+            => new AsyncEnumerator<T>(_queryable, cancellationToken);
     }
 
     internal class AsyncQueryProvider<TEntity> : IAsyncQueryProvider
@@ -75,25 +78,55 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
 
         public Task<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
             => Task.FromResult(Execute<TResult>(expression));
+
+        TResult IAsyncQueryProvider.ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
+            => Execute<TResult>(expression);
     }
 
     internal class AsyncEnumerator<T> : IAsyncEnumerator<T>
     {
         private readonly IEnumerator<T> _enumerator;
+        private readonly CancellationToken _cancellationToken;
 
-        public AsyncEnumerator(IEnumerable<T> enumerable)
-            : this(enumerable.GetEnumerator()) { }
+        public AsyncEnumerator(
+            IEnumerable<T> enumerable,
+            CancellationToken cancellationToken = new CancellationToken())
+            : this(enumerable.GetEnumerator(), cancellationToken) { }
 
-        public AsyncEnumerator(IEnumerator<T> enumerator)
-            => _enumerator = enumerator;
+        public AsyncEnumerator(
+            IEnumerator<T> enumerator,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+            _enumerator = enumerator;
+            _cancellationToken = cancellationToken;
+        }
+
+        public ValueTask<bool> MoveNextAsync()
+        {
+            if (_cancellationToken.IsCancellationRequested)
+                 _cancellationToken.ThrowIfCancellationRequested();
+
+            return new ValueTask<bool>(Task.FromResult(_enumerator.MoveNext()));
+        }
 
         public T Current
             => _enumerator.Current;
 
         public Task<bool> MoveNext(CancellationToken cancellationToken)
-            => Task.FromResult(_enumerator.MoveNext());
+        {
+            if (_cancellationToken.IsCancellationRequested)
+                _cancellationToken.ThrowIfCancellationRequested();
+
+            return Task.FromResult(_enumerator.MoveNext());
+        }
 
         public void Dispose()
             => _enumerator.Dispose();
+
+        public ValueTask DisposeAsync()
+        {
+            Dispose();
+            return new ValueTask();
+        }
     }
 }

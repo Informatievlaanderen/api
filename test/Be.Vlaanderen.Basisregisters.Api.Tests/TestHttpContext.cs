@@ -7,7 +7,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     using System.Text;
     using System.Threading;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Authentication;
     using Microsoft.AspNetCore.Http.Features;
     using Microsoft.AspNetCore.Http.Internal;
     using Newtonsoft.Json;
@@ -21,7 +20,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public override HttpResponse Response { get; }
         public override ConnectionInfo Connection { get; }
         public override WebSocketManager WebSockets { get; }
-        public override AuthenticationManager Authentication { get; }
         public override ClaimsPrincipal User { get; set; }
         public override IDictionary<object, object> Items { get; set; }
         public override IServiceProvider RequestServices { get; set; }

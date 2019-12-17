@@ -10,8 +10,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using DataDog.Tracing;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
@@ -25,7 +25,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public static void RegisterApplicationLifetimeHandling(
             IContainer applicationContainer,
-            IApplicationLifetime appLifetime,
+            IHostApplicationLifetime appLifetime,
             TraceAgent traceAgent)
         {
             appLifetime.ApplicationStarted.Register(() => Log.Information("Application started."));

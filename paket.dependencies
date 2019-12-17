@@ -47,6 +47,7 @@ nuget FluentValidation.AspNetCore 8.6.0
 
 nuget Newtonsoft.Json 12.0.3
 nuget Destructurama.JsonNet 1.2.1
+nuget Microsoft.AspNetCore.Mvc.NewtonsoftJson 3.1.0
 
 nuget Serilog 2.9.0
 nuget Serilog.Settings.Configuration 3.1.0

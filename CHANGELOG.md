@@ -1,3 +1,21 @@
+# [9.0.0](https://github.com/informatievlaanderen/api/compare/v8.0.0...v9.0.0) (2019-12-17)
+
+
+### Build System
+
+* move to FAKE 5 ([0317515](https://github.com/informatievlaanderen/api/commit/0317515))
+
+
+### Features
+
+* upgrade to netcoreapp31 ([42eef11](https://github.com/informatievlaanderen/api/commit/42eef11))
+
+
+### BREAKING CHANGES
+
+* Upgrade to .NET Core 3.1
+* Upgrade to .NET Core 3.1
+
 # [8.0.0](https://github.com/informatievlaanderen/api/compare/v7.10.0...v8.0.0) (2019-11-25)
 
 

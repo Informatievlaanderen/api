@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/informatievlaanderen/api/compare/v9.0.0...v9.0.1) (2019-12-20)
+
+
+### Bug Fixes
+
+* add Microsoft.AspNetCore.Mvc.NewtonsoftJson to template ([687bd2f](https://github.com/informatievlaanderen/api/commit/687bd2f))
+
 # [9.0.0](https://github.com/informatievlaanderen/api/compare/v8.0.0...v9.0.0) (2019-12-17)
 
 

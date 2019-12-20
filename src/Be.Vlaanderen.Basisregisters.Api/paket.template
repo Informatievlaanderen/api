@@ -66,6 +66,7 @@ dependencies
     Autofac >= LOCKEDVERSION
     Autofac.Extensions.DependencyInjection >= LOCKEDVERSION
 
+    Microsoft.AspNetCore.Mvc.NewtonsoftJson >= LOCKEDVERSION
     Newtonsoft.Json >= LOCKEDVERSION
     Destructurama.JsonNet >= LOCKEDVERSION
 

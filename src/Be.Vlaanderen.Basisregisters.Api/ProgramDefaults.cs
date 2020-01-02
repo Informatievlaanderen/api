@@ -165,32 +165,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
         {
             var webHost = webHostBuilder.Build();
             var logger = webHost.Services.GetService<ILogger<T>>();
-            var distributedLock = new DistributedLock<T>(options.DistributedLock);
 
-            var acquiredLock = false;
-            try
-            {
-                logger.LogInformation("Trying to acquire lock.");
-                acquiredLock = distributedLock.AcquireLock();
-
-                if (!acquiredLock)
-                {
-                    logger.LogInformation("Could not get lock, another instance is busy.");
-                    return;
-                }
-
-                webHost.Run();
-            }
-            catch (Exception e)
-            {
-                logger.LogCritical(0, e, "Encountered a fatal exception, exiting program.");
-                throw;
-            }
-            finally
-            {
-                if (acquiredLock)
-                    distributedLock.ReleaseLock();
-            }
+            DistributedLock<T>.Run(
+                () => webHost.Run(),
+                options.DistributedLock,
+                logger);
         }
 
         private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class

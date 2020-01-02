@@ -1,3 +1,10 @@
+## [10.0.1](https://github.com/informatievlaanderen/api/compare/v10.0.0...v10.0.1) (2020-01-02)
+
+
+### Bug Fixes
+
+* turn distributedlock configuration into a func ([7dc7380](https://github.com/informatievlaanderen/api/commit/7dc7380))
+
 # [10.0.0](https://github.com/informatievlaanderen/api/compare/v9.1.1...v10.0.0) (2020-01-02)
 
 

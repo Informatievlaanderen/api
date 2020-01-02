@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/informatievlaanderen/api/compare/v9.0.1...v9.1.0) (2020-01-02)
+
+
+### Features
+
+* add RunWithLock to support single instance apis ([4431a34](https://github.com/informatievlaanderen/api/commit/4431a34))
+
 ## [9.0.1](https://github.com/informatievlaanderen/api/compare/v9.0.0...v9.0.1) (2019-12-20)
 
 

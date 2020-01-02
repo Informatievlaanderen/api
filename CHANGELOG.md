@@ -1,3 +1,10 @@
+## [9.1.1](https://github.com/informatievlaanderen/api/compare/v9.1.0...v9.1.1) (2020-01-02)
+
+
+### Bug Fixes
+
+* use updated distributed lock ([b111bb0](https://github.com/informatievlaanderen/api/commit/b111bb0))
+
 # [9.1.0](https://github.com/informatievlaanderen/api/compare/v9.0.1...v9.1.0) (2020-01-02)
 
 

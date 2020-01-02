@@ -68,16 +68,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<WebHostBuilderContext, IConfigurationBuilder>? ConfigureAppConfiguration { get; set; }
             public Action<WebHostBuilderContext, LoggerConfiguration>? ConfigureSerilog { get; set; }
             public Action<WebHostBuilderContext, ILoggingBuilder>? ConfigureLogging { get; set; }
+            public Action<IConfiguration, DistributedLockOptions>? ConfigureDistributedLock { get; set; }
         }
-
-        public DistributedLockOptions DistributedLock { get; } = new DistributedLockOptions
-        {
-            Region = RegionEndpoint.EUWest1,
-            LeasePeriod = TimeSpan.FromMinutes(5),
-            ThrowOnFailedRenew = true,
-            TerminateApplicationOnFailedRenew = true,
-            TableName = "__DistributedLocks__"
-        };
     }
 
     public static class ProgramDefaults
@@ -156,19 +148,36 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     options.MiddlewareHooks.ConfigureLogging?.Invoke(hostingContext, logging);
                 })
+                .ConfigureServices((hostingContext, services) =>
+                {
+                    services.AddSingleton(options);
+                })
                 .UseStartup<T>();
         }
 
-        public static void RunWithLock<T>(
-            this IWebHostBuilder webHostBuilder,
-            ProgramOptions options) where T : class
+        public static void RunWithLock<T>(this IWebHostBuilder webHostBuilder) where T : class
         {
             var webHost = webHostBuilder.Build();
-            var logger = webHost.Services.GetService<ILogger<T>>();
+            var services = webHost.Services;
+            var logger = services.GetService<ILogger<T>>();
+            var options = services.GetService<ProgramOptions>();
+
+            var distributedLockOptions = new DistributedLockOptions
+            {
+                Region = RegionEndpoint.EUWest1,
+                LeasePeriod = TimeSpan.FromMinutes(5),
+                ThrowOnFailedRenew = true,
+                TerminateApplicationOnFailedRenew = true,
+                TableName = "__DistributedLocks__"
+            };
+
+            options.MiddlewareHooks.ConfigureDistributedLock?.Invoke(
+                webHost.Services.GetService<IConfiguration>(),
+                distributedLockOptions);
 
             DistributedLock<T>.Run(
                 () => webHost.Run(),
-                options.DistributedLock,
+                distributedLockOptions,
                 logger);
         }
 

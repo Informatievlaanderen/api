@@ -1,3 +1,15 @@
+# [10.0.0](https://github.com/informatievlaanderen/api/compare/v9.1.1...v10.0.0) (2020-01-02)
+
+
+### Code Refactoring
+
+* change runwithlock chaining ([082a0c4](https://github.com/informatievlaanderen/api/commit/082a0c4))
+
+
+### BREAKING CHANGES
+
+* RunWithLock now chains and expects UseDefaultForApi before
+
 ## [9.1.1](https://github.com/informatievlaanderen/api/compare/v9.1.0...v9.1.1) (2020-01-02)
 
 

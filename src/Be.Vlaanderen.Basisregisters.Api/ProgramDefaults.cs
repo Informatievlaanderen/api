@@ -6,12 +6,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
+    using Amazon;
     using AspNetCore.Mvc.Formatters.Json;
+    using Aws.DistributedMutex;
     using Destructurama;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Serilog;
@@ -66,6 +69,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<WebHostBuilderContext, LoggerConfiguration>? ConfigureSerilog { get; set; }
             public Action<WebHostBuilderContext, ILoggingBuilder>? ConfigureLogging { get; set; }
         }
+
+        public DistributedLockOptions DistributedLock { get; } = new DistributedLockOptions
+        {
+            Region = RegionEndpoint.EUWest1,
+            LeasePeriod = TimeSpan.FromMinutes(5),
+            ThrowOnFailedRenew = true,
+            TerminateApplicationOnFailedRenew = true,
+            TableName = "__DistributedLocks__"
+        };
     }
 
     public static class ProgramDefaults
@@ -145,6 +157,40 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     options.MiddlewareHooks.ConfigureLogging?.Invoke(hostingContext, logging);
                 })
                 .UseStartup<T>();
+        }
+
+        public static void RunWithLock<T>(
+            this IWebHostBuilder webHostBuilder,
+            ProgramOptions options) where T : class
+        {
+            var webHost = webHostBuilder.Build();
+            var logger = webHost.Services.GetService<ILogger<T>>();
+            var distributedLock = new DistributedLock<T>(options.DistributedLock);
+
+            var acquiredLock = false;
+            try
+            {
+                logger.LogInformation("Trying to acquire lock.");
+                acquiredLock = distributedLock.AcquireLock();
+
+                if (!acquiredLock)
+                {
+                    logger.LogInformation("Could not get lock, another instance is busy.");
+                    return;
+                }
+
+                webHost.Run();
+            }
+            catch (Exception e)
+            {
+                logger.LogCritical(0, e, "Encountered a fatal exception, exiting program.");
+                throw;
+            }
+            finally
+            {
+                if (acquiredLock)
+                    distributedLock.ReleaseLock();
+            }
         }
 
         private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class

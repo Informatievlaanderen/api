@@ -72,6 +72,8 @@ Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore
 
 Be.Vlaanderen.Basisregisters.ProblemDetails
 
+Be.Vlaanderen.Basisregisters.Aws.DistributedMutex
+
 Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic
 
 SourceLink.Embed.AllSourceFiles

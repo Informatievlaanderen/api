@@ -37,6 +37,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.EventHandling.Autofac >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.ProblemDetails >= LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.Aws.DistributedMutex >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic >= LOCKEDVERSION
 
     Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION

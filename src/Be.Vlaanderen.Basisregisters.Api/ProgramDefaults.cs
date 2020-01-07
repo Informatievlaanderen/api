@@ -162,22 +162,32 @@ namespace Be.Vlaanderen.Basisregisters.Api
             var services = webHost.Services;
             var logger = services.GetService<ILogger<T>>();
             var options = services.GetService<ProgramOptions>();
+            var configuration = services.GetService<IConfiguration>();
 
-            var distributedLockOptions =
-                options.MiddlewareHooks.ConfigureDistributedLock?.Invoke(webHost.Services.GetService<IConfiguration>())
-                ?? new DistributedLockOptions
-                {
-                    Region = RegionEndpoint.GetBySystemName(DistributedLockOptions.DefaultRegion),
-                    TableName = DistributedLockOptions.DefaultTableName,
-                    LeasePeriod = TimeSpan.FromMinutes(DistributedLockOptions.DefaultLeasePeriodInMinutes),
-                    ThrowOnFailedRenew = DistributedLockOptions.DefaultThrowOnFailedRenew,
-                    TerminateApplicationOnFailedRenew = DistributedLockOptions.DefaultTerminateApplicationOnFailedRenew,
-                };
+            void RunHost() => webHost.Run();
 
-            DistributedLock<T>.Run(
-                () => webHost.Run(),
-                distributedLockOptions,
-                logger);
+            const string enabledPropertyName = "Enabled";
+            var lockEnabled = configuration
+                .GetSection(DistributedLockConfiguration.SectionName)
+                .GetValue(enabledPropertyName, true);
+
+            if (lockEnabled)
+            {
+                var distributedLockOptions = options
+                    .MiddlewareHooks
+                    .ConfigureDistributedLock
+                    ?.Invoke(configuration);
+
+                DistributedLock<T>.Run(
+                    RunHost,
+                    distributedLockOptions ?? new DistributedLockOptions(),
+                    logger);
+            }
+            else
+            {
+                logger.LogWarning($"Bypassing the expected lock, disabled by {DistributedLockConfiguration.SectionName}:{enabledPropertyName}");
+                RunHost();
+            }
         }
 
         private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class

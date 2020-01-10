@@ -164,30 +164,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
             var options = services.GetService<ProgramOptions>();
             var configuration = services.GetService<IConfiguration>();
 
-            void RunHost() => webHost.Run();
+            var distributedLockOptions = options
+                .MiddlewareHooks
+                .ConfigureDistributedLock
+                ?.Invoke(configuration);
 
-            const string enabledPropertyName = "Enabled";
-            var lockEnabled = configuration
-                .GetSection(DistributedLockConfiguration.SectionName)
-                .GetValue(enabledPropertyName, true);
-
-            if (lockEnabled)
-            {
-                var distributedLockOptions = options
-                    .MiddlewareHooks
-                    .ConfigureDistributedLock
-                    ?.Invoke(configuration);
-
-                DistributedLock<T>.Run(
-                    RunHost,
-                    distributedLockOptions ?? new DistributedLockOptions(),
-                    logger);
-            }
-            else
-            {
-                logger.LogWarning($"Bypassing the expected lock, disabled by {DistributedLockConfiguration.SectionName}:{enabledPropertyName}");
-                RunHost();
-            }
+            DistributedLock<T>.Run(
+                () => webHost.Run(),
+                distributedLockOptions ?? DistributedLockOptions.Defaults,
+                logger);
         }
 
         private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class

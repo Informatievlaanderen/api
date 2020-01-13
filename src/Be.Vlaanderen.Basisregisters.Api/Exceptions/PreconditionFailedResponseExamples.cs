@@ -4,9 +4,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using Microsoft.AspNetCore.Http;
     using Swashbuckle.AspNetCore.Filters;
 
-    public class PreconditionFailedResponseExamples : IExamplesProvider
+    public class PreconditionFailedResponseExamples : IExamplesProvider<ProblemDetails>
     {
-        public object GetExamples() =>
+        public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status412PreconditionFailed,

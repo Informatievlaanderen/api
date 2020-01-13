@@ -4,9 +4,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using Microsoft.AspNetCore.Http;
     using Swashbuckle.AspNetCore.Filters;
 
-    public class InternalServerErrorResponseExamples : IExamplesProvider
+    public class InternalServerErrorResponseExamples : IExamplesProvider<ProblemDetails>
     {
-        public object GetExamples() =>
+        public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status500InternalServerError,

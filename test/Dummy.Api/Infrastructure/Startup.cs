@@ -17,6 +17,7 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Logging;
     using Modules;
     using Swashbuckle.AspNetCore.Swagger;
+    using Microsoft.OpenApi.Models;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -47,21 +48,21 @@ namespace Dummy.Api.Infrastructure
                     },
                     Swagger =
                     {
-                        ApiInfo = (provider, description) => new Info
+                        ApiInfo = (provider, description) => new OpenApiInfo
                         {
                             Version = description.ApiVersion.ToString(),
                             Title = "Dummy API",
                             Description = description.GroupName,
-                            Contact = new Contact
+                            Contact = new OpenApiContact
                             {
                                 Name = "agentschap Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = "https://vlaanderen.be/informatie-vlaanderen"
+                                Url = new Uri("https://vlaanderen.be/informatie-vlaanderen")
                             },
-                            License = new License
+                            License = new OpenApiLicense
                             {
                                 Name = "European Union Public Licence (EUPL)",
-                                Url = "https://joinup.ec.europa.eu/news/understanding-eupl-v12"
+                                Url = new Uri("https://joinup.ec.europa.eu/news/understanding-eupl-v12")
                             }
                         },
                         XmlCommentPaths = new [] { typeof(Startup).GetTypeInfo().Assembly.GetName().Name }

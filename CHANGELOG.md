@@ -1,3 +1,16 @@
+# [10.1.0](https://github.com/informatievlaanderen/api/compare/v10.0.1...v10.1.0) (2020-01-13)
+
+
+### Bug Fixes
+
+* prefer 3 digits for nuget dependencies ([fe6aef9](https://github.com/informatievlaanderen/api/commit/fe6aef9))
+* pushed logic to aws-distributed-mutex ([9170b4b](https://github.com/informatievlaanderen/api/commit/9170b4b))
+
+
+### Features
+
+* allow lock to be disabled with configuration ([9d8b893](https://github.com/informatievlaanderen/api/commit/9d8b893))
+
 ## [10.0.1](https://github.com/informatievlaanderen/api/compare/v10.0.0...v10.0.1) (2020-01-02)
 
 

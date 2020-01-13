@@ -162,21 +162,16 @@ namespace Be.Vlaanderen.Basisregisters.Api
             var services = webHost.Services;
             var logger = services.GetService<ILogger<T>>();
             var options = services.GetService<ProgramOptions>();
+            var configuration = services.GetService<IConfiguration>();
 
-            var distributedLockOptions =
-                options.MiddlewareHooks.ConfigureDistributedLock?.Invoke(webHost.Services.GetService<IConfiguration>())
-                ?? new DistributedLockOptions
-                {
-                    Region = RegionEndpoint.GetBySystemName(DistributedLockOptions.DefaultRegion),
-                    TableName = DistributedLockOptions.DefaultTableName,
-                    LeasePeriod = TimeSpan.FromMinutes(DistributedLockOptions.DefaultLeasePeriodInMinutes),
-                    ThrowOnFailedRenew = DistributedLockOptions.DefaultThrowOnFailedRenew,
-                    TerminateApplicationOnFailedRenew = DistributedLockOptions.DefaultTerminateApplicationOnFailedRenew,
-                };
+            var distributedLockOptions = options
+                .MiddlewareHooks
+                .ConfigureDistributedLock
+                ?.Invoke(configuration);
 
             DistributedLock<T>.Run(
                 () => webHost.Run(),
-                distributedLockOptions,
+                distributedLockOptions ?? DistributedLockOptions.Defaults,
                 logger);
         }
 

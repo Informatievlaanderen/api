@@ -1,3 +1,16 @@
+# [10.2.0](https://github.com/informatievlaanderen/api/compare/v10.1.0...v10.2.0) (2020-01-15)
+
+
+### Bug Fixes
+
+* dont use endpoint routing yet, break in a next release ([00061b1](https://github.com/informatievlaanderen/api/commit/00061b1))
+* swagger wants a parameterless ctor ([1c61c47](https://github.com/informatievlaanderen/api/commit/1c61c47))
+
+
+### Features
+
+* upgrade swagger and also fix api to get registries working ([f6499ca](https://github.com/informatievlaanderen/api/commit/f6499ca))
+
 # [10.1.0](https://github.com/informatievlaanderen/api/compare/v10.0.1...v10.1.0) (2020-01-13)
 
 

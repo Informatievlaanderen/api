@@ -6,9 +6,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using FluentValidation.Results;
     using Swashbuckle.AspNetCore.Filters;
 
-    public class ValidationErrorResponseExamples : IExamplesProvider
+    public class ValidationErrorResponseExamples : IExamplesProvider<ValidationProblemDetails>
     {
-        public object GetExamples() =>
+        public ValidationProblemDetails GetExamples() =>
             new ValidationProblemDetails(new ValidationException(string.Empty, new List<ValidationFailure>
             {
                 new ValidationFailure(string.Empty, "Voornaam is verplicht."),

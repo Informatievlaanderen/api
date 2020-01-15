@@ -24,8 +24,8 @@ namespace Dummy.Api.Infrastructure.Responses
         }
     }
 
-    public class HomeResponseExamples : IExamplesProvider
+    public class HomeResponseExamples : IExamplesProvider<HomeResponse>
     {
-        public object GetExamples() => new HomeResponse();
+        public HomeResponse GetExamples() => new HomeResponse();
     }
 }

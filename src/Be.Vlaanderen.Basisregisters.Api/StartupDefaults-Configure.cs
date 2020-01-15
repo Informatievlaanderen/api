@@ -20,18 +20,20 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using FluentValidation.AspNetCore;
     using Localization;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
     using Microsoft.AspNetCore.Mvc.DataAnnotations;
+    using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Localization;
     using Microsoft.Net.Http.Headers;
+    using Microsoft.OpenApi.Models;
     using Search.Filtering;
     using Search.Pagination;
     using Search.Sorting;
-    using Swashbuckle.AspNetCore.Swagger;
     using SwaggerOptions = AspNetCore.Swagger.SwaggerOptions;
 
     public class StartupConfigureOptions
@@ -70,7 +72,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             /// <summary>
             /// Function which returns global metadata to be included in the Swagger output.
             /// </summary>
-            public Func<IApiVersionDescriptionProvider, ApiVersionDescription, Info> ApiInfo { get; set; }
+            public Func<IApiVersionDescriptionProvider, ApiVersionDescription, OpenApiInfo> ApiInfo { get; set; }
 
             /// <summary>
             /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files.
@@ -206,6 +208,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     cfg.Filters.Add(new DataDogTracingFilter());
 
+                    cfg.EnableEndpointRouting = false;
+
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 })
 
@@ -318,7 +322,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     };
                 })
                 .Configure<GzipCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
-                .Configure<BrotliCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest);
+                .Configure<BrotliCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
+                .Configure<KestrelServerOptions>(serverOptions => serverOptions.AllowSynchronousIO = true);
 
             ValidatorOptions.DisplayNameResolver =
                 (type, member, expression) =>

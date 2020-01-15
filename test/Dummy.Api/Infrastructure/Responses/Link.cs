@@ -20,6 +20,9 @@ namespace Dummy.Api.Infrastructure.Responses
         [DataMember(Name = "Type", Order = 3)]
         public string Type { get; set; }
 
+        // Make Swagger happy
+        private Link() {}
+
         public Link(string href, string rel, string type)
         {
             Href = href;

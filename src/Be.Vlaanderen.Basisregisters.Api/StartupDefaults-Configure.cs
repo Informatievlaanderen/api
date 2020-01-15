@@ -208,6 +208,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     cfg.Filters.Add(new DataDogTracingFilter());
 
+                    cfg.EnableEndpointRouting = false;
+
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 })
 
@@ -321,7 +323,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 })
                 .Configure<GzipCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
                 .Configure<BrotliCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
-                .Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
+                .Configure<KestrelServerOptions>(serverOptions => serverOptions.AllowSynchronousIO = true);
 
             ValidatorOptions.DisplayNameResolver =
                 (type, member, expression) =>

@@ -259,11 +259,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
             });
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMvc();
+            // app.UseRouting();
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllers();
+            // });
             options.MiddlewareHooks.AfterMvc?.Invoke(app);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(

@@ -11,20 +11,20 @@ source https://api.nuget.org/v3/index.json
 // PRODUCTION STUFF
 nuget Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer 4.1.1
 
-nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 3.1.0
-nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 3.1.0
+nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 3.1.1
+nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 3.1.1
 
-nuget Microsoft.Extensions.Localization 3.1.0
+nuget Microsoft.Extensions.Localization 3.1.1
 
-nuget Microsoft.EntityFrameworkCore 3.1.0
+nuget Microsoft.EntityFrameworkCore 3.1.1
 
-nuget Microsoft.Extensions.Configuration 3.1.0
-nuget Microsoft.Extensions.Configuration.CommandLine 3.1.0
-nuget Microsoft.Extensions.Configuration.FileExtensions 3.1.0
-nuget Microsoft.Extensions.Configuration.Json 3.1.0
-nuget Microsoft.Extensions.Configuration.EnvironmentVariables 3.1.0
-nuget Microsoft.Extensions.Options.ConfigurationExtensions 3.1.0
-nuget Microsoft.Extensions.DependencyInjection 3.1.0
+nuget Microsoft.Extensions.Configuration 3.1.1
+nuget Microsoft.Extensions.Configuration.CommandLine 3.1.1
+nuget Microsoft.Extensions.Configuration.FileExtensions 3.1.1
+nuget Microsoft.Extensions.Configuration.Json 3.1.1
+nuget Microsoft.Extensions.Configuration.EnvironmentVariables 3.1.1
+nuget Microsoft.Extensions.Options.ConfigurationExtensions 3.1.1
+nuget Microsoft.Extensions.DependencyInjection 3.1.1
 
 nuget Microsoft.VisualStudio.Web.BrowserLink 2.2.0
 
@@ -34,8 +34,8 @@ nuget System.Text.Encoding.CodePages 4.7.0
 
 nuget Polly 7.2.0
 
-nuget Swashbuckle.AspNetCore 5.0.0-rc5
-nuget Swashbuckle.AspNetCore.Filters 5.0.0-rc9
+nuget Swashbuckle.AspNetCore 5.0.0
+nuget Swashbuckle.AspNetCore.Filters 5.0.0
 
 nuget SqlStreamStore 1.1.3
 nuget SqlStreamStore.MsSql 1.1.3
@@ -75,8 +75,8 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader 2.
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 2.1.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 2.1.0
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.0.0
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.0.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.1.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.1.0
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 4.1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 4.1.0

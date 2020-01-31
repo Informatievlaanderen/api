@@ -1,3 +1,10 @@
+# [10.4.0](https://github.com/informatievlaanderen/api/compare/v10.3.0...v10.4.0) (2020-01-31)
+
+
+### Features
+
+* prevent depending on netcoreapp22 8 ([54bc476](https://github.com/informatievlaanderen/api/commit/54bc476))
+
 # [10.3.0](https://github.com/informatievlaanderen/api/compare/v10.2.0...v10.3.0) (2020-01-28)
 
 

@@ -1,3 +1,10 @@
+# [10.5.0](https://github.com/informatievlaanderen/api/compare/v10.4.0...v10.5.0) (2020-01-31)
+
+
+### Features
+
+* dont depend on netcoreapp22 8 via destructurama ([4d8665b](https://github.com/informatievlaanderen/api/commit/4d8665b))
+
 # [10.4.0](https://github.com/informatievlaanderen/api/compare/v10.3.0...v10.4.0) (2020-01-31)
 
 

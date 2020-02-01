@@ -1,3 +1,10 @@
+# [10.6.0](https://github.com/informatievlaanderen/api/compare/v10.5.0...v10.6.0) (2020-02-01)
+
+
+### Features
+
+* upgrade netcoreapp31 and dependencies ([909a123](https://github.com/informatievlaanderen/api/commit/909a123))
+
 # [10.5.0](https://github.com/informatievlaanderen/api/compare/v10.4.0...v10.5.0) (2020-01-31)
 
 

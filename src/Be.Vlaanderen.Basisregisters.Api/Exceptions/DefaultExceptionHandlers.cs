@@ -6,8 +6,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Net.Http;
     using System.Threading.Tasks;
     using AggregateSource;
-    using BasicApiProblem;
     using Microsoft.AspNetCore.Http;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public abstract class DefaultExceptionHandler<T> : IExceptionHandler
         where T : Exception

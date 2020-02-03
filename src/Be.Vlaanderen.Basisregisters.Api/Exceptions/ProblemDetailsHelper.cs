@@ -2,9 +2,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using System;
     using System.Diagnostics;
-    using BasicApiProblem;
     using Generators.Guid;
     using Microsoft.AspNetCore.Http;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public static class ProblemDetailsHelper
     {

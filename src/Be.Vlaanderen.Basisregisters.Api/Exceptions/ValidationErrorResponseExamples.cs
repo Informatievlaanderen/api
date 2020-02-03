@@ -1,10 +1,10 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using System.Collections.Generic;
-    using BasicApiProblem;
     using FluentValidation;
     using FluentValidation.Results;
     using Swashbuckle.AspNetCore.Filters;
+    using ValidationProblemDetails = BasicApiProblem.ValidationProblemDetails;
 
     public class ValidationErrorResponseExamples : IExamplesProvider<ValidationProblemDetails>
     {

@@ -4,11 +4,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.Serialization;
-    using BasicApiProblem;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Versioning;
     using Newtonsoft.Json;
+    using StatusCodeProblemDetails = BasicApiProblem.StatusCodeProblemDetails;
 
     // https://github.com/Microsoft/aspnet-api-versioning/wiki/Error-Responses
 

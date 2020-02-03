@@ -2,7 +2,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using System;
     using System.Threading.Tasks;
-    using BasicApiProblem;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public interface IExceptionHandler
     {

@@ -1,8 +1,8 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
-    using BasicApiProblem;
     using Microsoft.AspNetCore.Http;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public class InternalServerErrorResponseExamples : IExamplesProvider<ProblemDetails>
     {

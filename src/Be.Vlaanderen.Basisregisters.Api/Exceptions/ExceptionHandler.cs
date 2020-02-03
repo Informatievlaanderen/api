@@ -8,6 +8,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using BasicApiProblem;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public class ExceptionHandler
     {
@@ -56,7 +57,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             {
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = string.Empty,
+                Detail = "",
                 ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception as UnhandledException),
                 ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };

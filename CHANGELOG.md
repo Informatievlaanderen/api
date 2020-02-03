@@ -1,3 +1,10 @@
+## [10.7.3](https://github.com/informatievlaanderen/api/compare/v10.7.2...v10.7.3) (2020-02-03)
+
+
+### Bug Fixes
+
+* add problemdetail instance to statuscode ([251345a](https://github.com/informatievlaanderen/api/commit/251345a))
+
 ## [10.7.2](https://github.com/informatievlaanderen/api/compare/v10.7.1...v10.7.2) (2020-02-03)
 
 

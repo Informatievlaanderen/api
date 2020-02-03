@@ -1,3 +1,10 @@
+## [10.6.1](https://github.com/informatievlaanderen/api/compare/v10.6.0...v10.6.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* update dependencies ([d16a998](https://github.com/informatievlaanderen/api/commit/d16a998))
+
 # [10.6.0](https://github.com/informatievlaanderen/api/compare/v10.5.0...v10.6.0) (2020-02-01)
 
 

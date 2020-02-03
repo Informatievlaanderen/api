@@ -38,9 +38,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 ? new ProblemDetails
                 {
                     HttpStatus = statusCode,
+                    ProblemTypeUri = errorData.Link,
                     Title = errorData.Title,
-                    ProblemTypeUri = errorData.Link
+                    Detail = string.Empty,
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 }
-                : new StatusCodeProblemDetails(statusCode);
+                : new StatusCodeProblemDetails(statusCode)
+                {
+                    Detail = string.Empty,
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                };
     }
 }

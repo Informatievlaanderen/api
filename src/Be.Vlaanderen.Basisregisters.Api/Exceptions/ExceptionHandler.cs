@@ -57,7 +57,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = string.Empty,
-                ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception as UnhandledException)
+                ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception as UnhandledException),
+                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
 
             if (exception != null)

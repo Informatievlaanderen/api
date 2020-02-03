@@ -41,7 +41,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             new ValidationExceptionHandler(),
             new HttpRequestExceptionHandler(),
             new DBConcurrencyExceptionHandler(),
-            new NotImplementedExceptionHandler(), 
+            new NotImplementedExceptionHandler(),
         };
 
         private class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
@@ -52,7 +52,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = StatusCodes.Status400BadRequest,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
 
@@ -64,7 +65,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = exception.StatusCode,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
 
@@ -76,7 +78,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = StatusCodes.Status400BadRequest,
                     Title = "Deze actie is niet geldig!",
                     Detail = $"De resource met id '{exception.Identifier}' werd niet gevonden.",
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
 
@@ -89,7 +92,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = StatusCodes.Status503ServiceUnavailable,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
 
@@ -102,7 +106,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = StatusCodes.Status409Conflict,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
 
@@ -115,7 +120,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     HttpStatus = StatusCodes.Status501NotImplemented,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
-                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception)
+                    ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
+                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
                 };
         }
     }

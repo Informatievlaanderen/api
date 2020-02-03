@@ -9,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:not-acceptable",
                 HttpStatus = StatusCodes.Status406NotAcceptable,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Het gevraagde formaat is niet beschikbaar.",

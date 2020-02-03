@@ -9,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:internal-server-error",
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "<meer informatie over de interne fout>",

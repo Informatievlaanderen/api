@@ -1,4 +1,3 @@
-
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using BasicApiProblem;

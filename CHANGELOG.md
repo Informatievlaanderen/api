@@ -1,3 +1,10 @@
+## [10.7.1](https://github.com/informatievlaanderen/api/compare/v10.7.0...v10.7.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* update swagger ([592400c](https://github.com/informatievlaanderen/api/commit/592400c))
+
 # [10.7.0](https://github.com/informatievlaanderen/api/compare/v10.6.1...v10.7.0) (2020-02-03)
 
 

@@ -116,6 +116,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
             public Action<AuthorizationOptions> Authorization { get; set; }
 
+            public Action<IMvcCoreBuilder>? AfterMvcCore { get; set; }
             public Action<IMvcCoreBuilder>? AfterMvc { get; set; }
             public Action<IHealthChecksBuilder>? AfterHealthChecks { get; set; }
 
@@ -211,8 +212,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     cfg.EnableEndpointRouting = false;
 
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
-                })
+                });
 
+            options.MiddlewareHooks.AfterMvcCore?.Invoke(mvcBuilder);
+
+            mvcBuilder
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
 
                 .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization)

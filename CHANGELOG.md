@@ -1,3 +1,10 @@
+# [10.7.0](https://github.com/informatievlaanderen/api/compare/v10.6.1...v10.7.0) (2020-02-03)
+
+
+### Features
+
+* add AfterMvcCore hook ([5d01b56](https://github.com/informatievlaanderen/api/commit/5d01b56))
+
 ## [10.6.1](https://github.com/informatievlaanderen/api/compare/v10.6.0...v10.6.1) (2020-02-03)
 
 

@@ -74,9 +74,6 @@ dependencies
 
     Polly >= LOCKEDVERSION
 
-    Swashbuckle.AspNetCore >= LOCKEDVERSION
-    Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
-
     FluentValidation.AspNetCore >= LOCKEDVERSION
 
     Serilog >= LOCKEDVERSION

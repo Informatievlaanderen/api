@@ -23,9 +23,6 @@ System.Text.Encoding.CodePages
 
 Polly
 
-Swashbuckle.AspNetCore
-Swashbuckle.AspNetCore.Filters
-
 SqlStreamStore
 SqlStreamStore.MsSql
 

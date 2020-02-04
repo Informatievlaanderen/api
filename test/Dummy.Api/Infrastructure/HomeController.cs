@@ -6,6 +6,7 @@ namespace Dummy.Api.Infrastructure
     using Newtonsoft.Json.Converters;
     using Responses;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
@@ -18,6 +19,7 @@ namespace Dummy.Api.Infrastructure
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(HomeResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(HomeResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public IActionResult Get() => Ok(new HomeResponse());
     }

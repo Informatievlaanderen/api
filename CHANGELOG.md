@@ -1,3 +1,10 @@
+## [10.7.7](https://github.com/informatievlaanderen/api/compare/v10.7.6...v10.7.7) (2020-02-04)
+
+
+### Bug Fixes
+
+* correct instance uri for examples ([9a9b77c](https://github.com/informatievlaanderen/api/commit/9a9b77c))
+
 ## [10.7.6](https://github.com/informatievlaanderen/api/compare/v10.7.5...v10.7.6) (2020-02-04)
 
 

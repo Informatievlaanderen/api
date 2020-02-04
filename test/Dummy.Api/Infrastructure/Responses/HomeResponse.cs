@@ -1,6 +1,8 @@
 namespace Dummy.Api.Infrastructure.Responses
 {
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Net;
     using System.Runtime.Serialization;
     using Swashbuckle.AspNetCore.Filters;
@@ -13,6 +15,10 @@ namespace Dummy.Api.Infrastructure.Responses
         /// </summary>
         [DataMember(Name = "Links", Order = 1)]
         public List<Link> Links { get; set; } = new List<Link>();
+
+        [DataMember(Name = "Pi")]
+        [Description("Commas")]
+        public double[] Pies { get; set; } = { Math.PI, Math.PI };
 
         public HomeResponse()
         {

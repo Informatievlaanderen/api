@@ -1,3 +1,11 @@
+## [10.7.4](https://github.com/informatievlaanderen/api/compare/v10.7.3...v10.7.4) (2020-02-04)
+
+
+### Bug Fixes
+
+* change prefix for problem details instance GR-940 ([bd58e46](https://github.com/informatievlaanderen/api/commit/bd58e46))
+* change prefix for problem details instance GR-940 ([dca63ab](https://github.com/informatievlaanderen/api/commit/dca63ab))
+
 ## [10.7.3](https://github.com/informatievlaanderen/api/compare/v10.7.2...v10.7.3) (2020-02-03)
 
 

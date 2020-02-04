@@ -19,8 +19,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"urn:trace:{Deterministic.Create(ProblemDetails, traceId):N}"
-                : $"urn:problem:{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
+                ? $"https://basisregisters.vlaanderen.be/api/v1/foutmelding/{Deterministic.Create(ProblemDetails, traceId):N}"
+                : $"https://basisregisters.vlaanderen.be/api/v1/foutmelding/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
         }
     }
 }

@@ -69,14 +69,10 @@ dependencies
 
     Microsoft.AspNetCore.Mvc.NewtonsoftJson >= LOCKEDVERSION
     Newtonsoft.Json >= LOCKEDVERSION
-    Destructurama.JsonNet >= LOCKEDVERSION
 
     System.Text.Encoding.CodePages >= LOCKEDVERSION
 
     Polly >= LOCKEDVERSION
-
-    Swashbuckle.AspNetCore >= LOCKEDVERSION
-    Swashbuckle.AspNetCore.Filters >= LOCKEDVERSION
 
     FluentValidation.AspNetCore >= LOCKEDVERSION
 
@@ -94,3 +90,4 @@ files
   bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.pdb => lib\netcoreapp3.1
   bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml => lib\netcoreapp3.1
   bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml => content
+  bin\Release\netcoreapp3.1\Destructurama.JsonNet.dll => lib\netcoreapp3.1

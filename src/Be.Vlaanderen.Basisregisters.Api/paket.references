@@ -23,9 +23,6 @@ System.Text.Encoding.CodePages
 
 Polly
 
-Swashbuckle.AspNetCore
-Swashbuckle.AspNetCore.Filters
-
 SqlStreamStore
 SqlStreamStore.MsSql
 
@@ -35,7 +32,6 @@ Autofac.Extensions.DependencyInjection
 FluentValidation.AspNetCore
 
 Newtonsoft.Json
-Destructurama.JsonNet
 Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
 Serilog

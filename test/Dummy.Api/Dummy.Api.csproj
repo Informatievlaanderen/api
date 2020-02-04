@@ -25,5 +25,11 @@
     <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.Api\Be.Vlaanderen.Basisregisters.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Destructurama.JsonNet">
+      <HintPath>..\..\packages\Destructurama.JsonNet\lib\netstandard2.0\Destructurama.JsonNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

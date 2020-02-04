@@ -1,3 +1,67 @@
+## [10.7.4](https://github.com/informatievlaanderen/api/compare/v10.7.3...v10.7.4) (2020-02-04)
+
+
+### Bug Fixes
+
+* change prefix for problem details instance GR-940 ([bd58e46](https://github.com/informatievlaanderen/api/commit/bd58e46))
+* change prefix for problem details instance GR-940 ([dca63ab](https://github.com/informatievlaanderen/api/commit/dca63ab))
+
+## [10.7.3](https://github.com/informatievlaanderen/api/compare/v10.7.2...v10.7.3) (2020-02-03)
+
+
+### Bug Fixes
+
+* add problemdetail instance to statuscode ([251345a](https://github.com/informatievlaanderen/api/commit/251345a))
+
+## [10.7.2](https://github.com/informatievlaanderen/api/compare/v10.7.1...v10.7.2) (2020-02-03)
+
+
+### Bug Fixes
+
+* add type to problemdetails ([6e6ad92](https://github.com/informatievlaanderen/api/commit/6e6ad92))
+
+## [10.7.1](https://github.com/informatievlaanderen/api/compare/v10.7.0...v10.7.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* update swagger ([592400c](https://github.com/informatievlaanderen/api/commit/592400c))
+
+# [10.7.0](https://github.com/informatievlaanderen/api/compare/v10.6.1...v10.7.0) (2020-02-03)
+
+
+### Features
+
+* add AfterMvcCore hook ([5d01b56](https://github.com/informatievlaanderen/api/commit/5d01b56))
+
+## [10.6.1](https://github.com/informatievlaanderen/api/compare/v10.6.0...v10.6.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* update dependencies ([d16a998](https://github.com/informatievlaanderen/api/commit/d16a998))
+
+# [10.6.0](https://github.com/informatievlaanderen/api/compare/v10.5.0...v10.6.0) (2020-02-01)
+
+
+### Features
+
+* upgrade netcoreapp31 and dependencies ([909a123](https://github.com/informatievlaanderen/api/commit/909a123))
+
+# [10.5.0](https://github.com/informatievlaanderen/api/compare/v10.4.0...v10.5.0) (2020-01-31)
+
+
+### Features
+
+* dont depend on netcoreapp22 8 via destructurama ([4d8665b](https://github.com/informatievlaanderen/api/commit/4d8665b))
+
+# [10.4.0](https://github.com/informatievlaanderen/api/compare/v10.3.0...v10.4.0) (2020-01-31)
+
+
+### Features
+
+* prevent depending on netcoreapp22 8 ([54bc476](https://github.com/informatievlaanderen/api/commit/54bc476))
+
 # [10.3.0](https://github.com/informatievlaanderen/api/compare/v10.2.0...v10.3.0) (2020-01-28)
 
 

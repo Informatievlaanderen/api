@@ -2,9 +2,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
     using System;
     using System.Diagnostics;
-    using BasicApiProblem;
     using Generators.Guid;
     using Microsoft.AspNetCore.Http;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public static class ProblemDetailsHelper
     {
@@ -19,8 +19,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"urn:trace:{Deterministic.Create(ProblemDetails, traceId):N}"
-                : $"urn:problem:{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
+                ? $"https://api.basisregisters.vlaanderen.be/v1/foutmelding/{Deterministic.Create(ProblemDetails, traceId):N}"
+                : $"https://api.basisregisters.vlaanderen.be/v1/foutmelding/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
         }
     }
 }

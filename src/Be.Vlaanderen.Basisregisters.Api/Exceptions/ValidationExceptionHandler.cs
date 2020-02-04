@@ -3,10 +3,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using BasicApiProblem;
     using FluentValidation;
     using FluentValidation.Internal;
     using FluentValidation.Results;
+    using ProblemDetails = BasicApiProblem.ProblemDetails;
+    using ValidationProblemDetails = BasicApiProblem.ValidationProblemDetails;
 
     public class ValidationExceptionHandler : DefaultExceptionHandler<ValidationException>
     {

@@ -12,5 +12,11 @@
     <DocumentationFile>bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Destructurama.JsonNet">
+      <HintPath>..\..\packages\Destructurama.JsonNet\lib\netstandard2.0\Destructurama.JsonNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

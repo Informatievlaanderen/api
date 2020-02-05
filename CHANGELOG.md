@@ -1,3 +1,11 @@
+## [10.7.8](https://github.com/informatievlaanderen/api/compare/v10.7.7...v10.7.8) (2020-02-05)
+
+
+### Bug Fixes
+
+* update badrequest example with validation errors ([ee099f7](https://github.com/informatievlaanderen/api/commit/ee099f7))
+* update problem details ([63ed119](https://github.com/informatievlaanderen/api/commit/63ed119))
+
 ## [10.7.7](https://github.com/informatievlaanderen/api/compare/v10.7.6...v10.7.7) (2020-02-04)
 
 

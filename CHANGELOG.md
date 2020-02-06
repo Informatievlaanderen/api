@@ -1,3 +1,10 @@
+## [10.7.9](https://github.com/informatievlaanderen/api/compare/v10.7.8...v10.7.9) (2020-02-06)
+
+
+### Bug Fixes
+
+* update problemdetails to fix error examples ([8a11877](https://github.com/informatievlaanderen/api/commit/8a11877))
+
 ## [10.7.8](https://github.com/informatievlaanderen/api/compare/v10.7.7...v10.7.8) (2020-02-05)
 
 

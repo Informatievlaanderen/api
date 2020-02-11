@@ -83,7 +83,7 @@ nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 4.4.0
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac 2.2.0
 
-nuget Be.Vlaanderen.Basisregisters.ProblemDetails 5.0.1
+nuget Be.Vlaanderen.Basisregisters.ProblemDetails 5.0.2
 
 nuget Be.Vlaanderen.Basisregisters.Aws.DistributedMutex 2.2.0
 

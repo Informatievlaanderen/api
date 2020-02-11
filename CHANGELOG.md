@@ -1,3 +1,11 @@
+## [10.7.10](https://github.com/informatievlaanderen/api/compare/v10.7.9...v10.7.10) (2020-02-11)
+
+
+### Bug Fixes
+
+* only support EN culture for now ([55c6226](https://github.com/informatievlaanderen/api/commit/55c6226))
+* update problemdetails ([3d1161e](https://github.com/informatievlaanderen/api/commit/3d1161e))
+
 ## [10.7.9](https://github.com/informatievlaanderen/api/compare/v10.7.8...v10.7.9) (2020-02-06)
 
 

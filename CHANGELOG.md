@@ -1,3 +1,10 @@
+## [10.7.11](https://github.com/informatievlaanderen/api/compare/v10.7.10...v10.7.11) (2020-02-11)
+
+
+### Bug Fixes
+
+* make sure to ignore the xml proxy for json ([bfaf635](https://github.com/informatievlaanderen/api/commit/bfaf635))
+
 ## [10.7.10](https://github.com/informatievlaanderen/api/compare/v10.7.9...v10.7.10) (2020-02-11)
 
 

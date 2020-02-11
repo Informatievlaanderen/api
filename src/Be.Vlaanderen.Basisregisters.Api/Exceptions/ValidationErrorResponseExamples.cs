@@ -11,8 +11,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ValidationProblemDetails GetExamples() =>
             new ValidationProblemDetails(new ValidationException(string.Empty, new List<ValidationFailure>
             {
-                new ValidationFailure(string.Empty, "Voornaam is verplicht."),
-                new ValidationFailure(string.Empty, "Naam is verplicht.")
+                new ValidationFailure("Voornaam", "Veld is verplicht."),
+                new ValidationFailure("Naam", "Veld mag niet kleiner zijn dan 4 karakters."),
+                new ValidationFailure("Naam", "Veld mag niet groter zijn dan 100 karakters.")
             }));
     }
 }

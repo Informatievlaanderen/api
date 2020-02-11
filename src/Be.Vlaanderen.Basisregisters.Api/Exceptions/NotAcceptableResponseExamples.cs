@@ -13,7 +13,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status406NotAcceptable,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Het gevraagde formaat is niet beschikbaar.",
-                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                ProblemInstanceUri = new DefaultHttpContext().GetProblemInstanceUri()
             };
     }
 }

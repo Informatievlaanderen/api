@@ -1,3 +1,25 @@
+## [10.7.9](https://github.com/informatievlaanderen/api/compare/v10.7.8...v10.7.9) (2020-02-06)
+
+
+### Bug Fixes
+
+* update problemdetails to fix error examples ([8a11877](https://github.com/informatievlaanderen/api/commit/8a11877))
+
+## [10.7.8](https://github.com/informatievlaanderen/api/compare/v10.7.7...v10.7.8) (2020-02-05)
+
+
+### Bug Fixes
+
+* update badrequest example with validation errors ([ee099f7](https://github.com/informatievlaanderen/api/commit/ee099f7))
+* update problem details ([63ed119](https://github.com/informatievlaanderen/api/commit/63ed119))
+
+## [10.7.7](https://github.com/informatievlaanderen/api/compare/v10.7.6...v10.7.7) (2020-02-04)
+
+
+### Bug Fixes
+
+* correct instance uri for examples ([9a9b77c](https://github.com/informatievlaanderen/api/commit/9a9b77c))
+
 ## [10.7.6](https://github.com/informatievlaanderen/api/compare/v10.7.5...v10.7.6) (2020-02-04)
 
 

@@ -16,7 +16,6 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Modules;
-    using Swashbuckle.AspNetCore.Swagger;
     using Microsoft.OpenApi.Models;
 
     /// <summary>Represents the startup process for the application.</summary>
@@ -77,7 +76,7 @@ namespace Dummy.Api.Infrastructure
                     },
                     MiddlewareHooks =
                     {
-                        FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+                        FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>()
                     }
                 });
 

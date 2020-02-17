@@ -23,7 +23,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders ~> 1.2
+    Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality >= LOCKEDVERSION

@@ -1,3 +1,10 @@
+# [10.8.0](https://github.com/informatievlaanderen/api/compare/v10.7.11...v10.8.0) (2020-02-17)
+
+
+### Features
+
+* determine json property order based on datamember ([9aef1ab](https://github.com/informatievlaanderen/api/commit/9aef1ab))
+
 ## [10.7.11](https://github.com/informatievlaanderen/api/compare/v10.7.10...v10.7.11) (2020-02-11)
 
 

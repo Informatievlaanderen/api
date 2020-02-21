@@ -8,7 +8,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     using System.Linq;
     using AutoFixture;
     using Xunit;
-    
+
     public class When_a_pagination_request_has_an_initial_negative_offset : PaginationTestContext
     {
         protected override PaginationRequest SetUp()
@@ -43,7 +43,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         {
             Sut.Offset.Should().Be(0);
         }
-        
+
         [Fact]
         public void Then_the_page_starts_at_the_first_item()
         {
@@ -90,7 +90,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         {
             Sut.Limit.Should().Be(0);
         }
-        
+
         [Fact]
         public void Then_the_item_page_size_should_be_equal_to_the_limit()
         {
@@ -103,16 +103,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.TotalItems
-                .Should().Be(QueryableItems.Items.Count());
-        }
-
-        [Fact]
-        public void Then_the_pagination_info_total_pages_should_be_one()
-        {
-            Sut.Paginate(QueryableItems)
-                .PaginationInfo.TotalPages
-                .Should().Be(1);
+                .PaginationInfo.HasNextPage
+                .Should().BeFalse();
         }
 
         [Fact]
@@ -134,7 +126,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         {
             Sut.Limit.Should().Be(0);
         }
-        
+
         [Fact]
         public void Then_the_item_page_size_should_be_equal_to_the_limit()
         {
@@ -147,16 +139,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.TotalItems
-                .Should().Be(QueryableItems.Items.Count());
-        }
-
-        [Fact]
-        public void Then_the_pagination_info_total_pages_should_be_one()
-        {
-            Sut.Paginate(QueryableItems)
-                .PaginationInfo.TotalPages
-                .Should().Be(1);
+                .PaginationInfo.HasNextPage
+                .Should().BeFalse();
         }
 
         [Fact]
@@ -181,7 +165,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         {
             Sut.Limit.Should().Be(_limit);
         }
-        
+
         [Fact]
         public void Then_the_item_page_size_should_be_equal_to_the_limit()
         {
@@ -194,8 +178,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.TotalItems
-                .Should().Be(QueryableItems.Items.Count());
+                .PaginationInfo.HasNextPage
+                .Should().BeTrue();
         }
 
         [Fact]
@@ -260,8 +244,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(_queryableItems)
-                .PaginationInfo.TotalItems
-                .Should().Be(_queryableItems.Items.Count());
+                .PaginationInfo.HasNextPage
+                .Should().BeFalse();
         }
     }
 

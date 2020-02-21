@@ -130,7 +130,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [Fact]
         public void Then_the_total_paginated_items_is_zero()
         {
-            _fetchResult.PaginationInfo.TotalItems.Should().Be(_numberOfItems);
+            _fetchResult.PaginationInfo.HasNextPage.Should().BeFalse();
         }
     }
 

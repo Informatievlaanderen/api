@@ -8,7 +8,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
     using System.Linq;
     using AutoFixture;
     using Xunit;
-    
+
     public class When_creating_a_no_pagination_request
     {
         private NoPaginationRequest Sut { get; }
@@ -49,8 +49,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(_queryableItems)
-                .PaginationInfo.TotalItems
-                .Should().Be(_queryableItems.Items.Count());
+                .PaginationInfo.HasNextPage
+                .Should().BeFalse();
         }
 
         [Fact]

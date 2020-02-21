@@ -1,3 +1,15 @@
+# [11.0.0](https://github.com/informatievlaanderen/api/compare/v10.8.0...v11.0.0) (2020-02-21)
+
+
+### Features
+
+* add HasNextPage instead of TotalItems for paging ([e70e171](https://github.com/informatievlaanderen/api/commit/e70e171))
+
+
+### BREAKING CHANGES
+
+* add HasNextPage instead of TotalItems, TotalPages
+
 # [10.8.0](https://github.com/informatievlaanderen/api/compare/v10.7.11...v10.8.0) (2020-02-17)
 
 

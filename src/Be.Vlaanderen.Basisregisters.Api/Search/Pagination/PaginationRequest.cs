@@ -7,7 +7,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
     public interface IPaginationRequest
     {
-        PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, long> countFunc);
+        PagedQueryable<T> Paginate<T>(SortedQueryable<T> source);
 
         bool HasZeroAsLimit { get; }
     }
@@ -24,26 +24,23 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
             Limit = Math.Max(limit, 0);
         }
 
-        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, long> countFunc = null)
+        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
         {
             var items = source.Items;
-            var totalItemSize = countFunc?.Invoke(items) ?? items.LongCount();
 
             if (Limit == 0)
                 return new PagedQueryable<T>(
                     new List<T>().AsQueryable(),
-                    new PaginationInfo(Offset, Limit, totalItemSize, 1),
+                    new PaginationInfo(Offset, Limit, false),
                     source.Sorting);
 
             var itemsInRequestedPage = items
                 .Skip(Offset)
-                .Take(Limit);
-
-            var totalPages = (int)Math.Ceiling((double)totalItemSize / Limit);
+                .Take(Limit + 1);
 
             return new PagedQueryable<T>(
-                itemsInRequestedPage,
-                new PaginationInfo(Offset, Limit, totalItemSize, totalPages),
+                itemsInRequestedPage.Take(Limit),
+                new PaginationInfo(Offset, Limit, itemsInRequestedPage.Count() > Limit),
                 source.Sorting);
         }
     }
@@ -52,14 +49,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
     {
         public bool HasZeroAsLimit => false;
 
-        public int TotalPages(int totalItemSize) => 1;
-
-        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source, Func<IQueryable<T>, long> countFunc = null)
+        public PagedQueryable<T> Paginate<T>(SortedQueryable<T> source)
         {
             var items = source.Items;
-            var limit = countFunc?.Invoke(items) ?? items.LongCount();
+            var limit = items.LongCount();
 
-            var paginationInfo = new PaginationInfo(0, (int) limit, limit, 1);
+            var paginationInfo = new PaginationInfo(0, (int) limit, false);
             return new PagedQueryable<T>(source.Items, paginationInfo, source.Sorting);
         }
     }

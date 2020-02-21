@@ -30,8 +30,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
         public PagedQueryable<TResult> Fetch(
             FilteringHeader<TFilter> filtering,
             SortingHeader sorting,
-            IPaginationRequest paginationRequest,
-            Func<IQueryable<T>, long> countFunc = null)
+            IPaginationRequest paginationRequest)
         {
             if (filtering == null)
                 throw new ArgumentNullException(nameof(filtering));
@@ -46,7 +45,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
 
             return items
                 .WithSorting(sorting, Sorting)
-                .WithPagination(paginationRequest, countFunc)
+                .WithPagination(paginationRequest)
                 .WithTransformation(Transformation);
         }
     }

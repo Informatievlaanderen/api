@@ -16,7 +16,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_items_queryable_implements_async_enumerable()
         {
             var sorting = new SortingHeader("Value", SortOrder.Ascending);
-            var paginationInfo = new PaginationInfo(0, 0, 0, 1);
+            var paginationInfo = new PaginationInfo(0, 0, false);
 
             var pagedQueryable = new PagedQueryable<QueryItem>(new QueryAbleWithoutAsync<QueryItem>(), paginationInfo,sorting);
 

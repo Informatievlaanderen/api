@@ -122,7 +122,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             public Action<MvcOptions>? ConfigureMvcCore { get; set; }
             public Action<MvcNewtonsoftJsonOptions>? ConfigureJsonOptions { get; set; }
-            public Action<FormatterMappings> ConfigureFormatterMappings { get; set; }
+            public Action<FormatterMappings>? ConfigureFormatterMappings { get; set; }
         }
     }
 

@@ -25,6 +25,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
     using Microsoft.AspNetCore.Mvc.DataAnnotations;
+    using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Localization;
@@ -121,6 +122,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             public Action<MvcOptions>? ConfigureMvcCore { get; set; }
             public Action<MvcNewtonsoftJsonOptions>? ConfigureJsonOptions { get; set; }
+            public Action<FormatterMappings> ConfigureFormatterMappings { get; set; }
         }
     }
 
@@ -241,7 +243,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .AddXmlDataContractSerializerFormatters()
 
-                .AddFormatterMappings()
+                .AddFormatterMappings(options.MiddlewareHooks.ConfigureFormatterMappings)
 
                 .AddApiExplorer();
 

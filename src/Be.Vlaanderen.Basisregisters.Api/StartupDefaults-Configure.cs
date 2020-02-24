@@ -241,6 +241,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .AddXmlDataContractSerializerFormatters()
 
+                .AddFormatterMappings()
+
                 .AddApiExplorer();
 
             options.MiddlewareHooks.AfterMvc?.Invoke(mvcBuilder);

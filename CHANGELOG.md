@@ -1,3 +1,12 @@
+# [11.1.0](https://github.com/informatievlaanderen/api/compare/v11.0.0...v11.1.0) (2020-02-24)
+
+
+### Features
+
+* add support for format filters ([7409def](https://github.com/informatievlaanderen/api/commit/7409def))
+* make action nullable ([27be08a](https://github.com/informatievlaanderen/api/commit/27be08a))
+* make formatter mappings configurable ([31228a7](https://github.com/informatievlaanderen/api/commit/31228a7))
+
 # [11.0.0](https://github.com/informatievlaanderen/api/compare/v10.8.0...v11.0.0) (2020-02-21)
 
 

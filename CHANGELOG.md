@@ -1,3 +1,10 @@
+## [11.1.2](https://github.com/informatievlaanderen/api/compare/v11.1.1...v11.1.2) (2020-02-26)
+
+
+### Bug Fixes
+
+* update swagger to version with updated json formatter ([b5841b2](https://github.com/informatievlaanderen/api/commit/b5841b2))
+
 ## [11.1.1](https://github.com/informatievlaanderen/api/compare/v11.1.0...v11.1.1) (2020-02-26)
 
 

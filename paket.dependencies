@@ -62,7 +62,7 @@ nuget Be.Vlaanderen.Basisregisters.AggregateSource 4.2.0
 
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader 2.2.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging 2.2.0
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json 2.3.0
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json 3.0.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId 2.2.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext 2.2.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse 2.2.0

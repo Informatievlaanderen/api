@@ -1,3 +1,10 @@
+## [11.1.3](https://github.com/informatievlaanderen/api/compare/v11.1.2...v11.1.3) (2020-03-03)
+
+
+### Bug Fixes
+
+* bump netcore to 3.1.2 ([0945b6d](https://github.com/informatievlaanderen/api/commit/0945b6d))
+
 ## [11.1.2](https://github.com/informatievlaanderen/api/compare/v11.1.1...v11.1.2) (2020-02-26)
 
 

@@ -1,3 +1,10 @@
+## [11.1.4](https://github.com/informatievlaanderen/api/compare/v11.1.3...v11.1.4) (2020-03-12)
+
+
+### Bug Fixes
+
+* bump problem details contract name fix ([02d4982](https://github.com/informatievlaanderen/api/commit/02d4982))
+
 ## [11.1.3](https://github.com/informatievlaanderen/api/compare/v11.1.2...v11.1.3) (2020-03-03)
 
 

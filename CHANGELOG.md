@@ -1,3 +1,10 @@
+## [11.1.5](https://github.com/informatievlaanderen/api/compare/v11.1.4...v11.1.5) (2020-04-03)
+
+
+### Bug Fixes
+
+* update swagger version GR-1214 ([ca93cb4](https://github.com/informatievlaanderen/api/commit/ca93cb4))
+
 ## [11.1.4](https://github.com/informatievlaanderen/api/compare/v11.1.3...v11.1.4) (2020-03-12)
 
 

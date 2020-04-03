@@ -1,3 +1,10 @@
+## [11.1.6](https://github.com/informatievlaanderen/api/compare/v11.1.5...v11.1.6) (2020-04-03)
+
+
+### Bug Fixes
+
+* use correct build user GR-1214 ([7e9cc25](https://github.com/informatievlaanderen/api/commit/7e9cc25))
+
 ## [11.1.5](https://github.com/informatievlaanderen/api/compare/v11.1.4...v11.1.5) (2020-04-03)
 
 

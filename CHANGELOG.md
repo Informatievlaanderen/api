@@ -1,3 +1,10 @@
+## [11.1.7](https://github.com/informatievlaanderen/api/compare/v11.1.6...v11.1.7) (2020-04-15)
+
+
+### Bug Fixes
+
+* update swashbuckle ([c2ea728](https://github.com/informatievlaanderen/api/commit/c2ea728))
+
 ## [11.1.6](https://github.com/informatievlaanderen/api/compare/v11.1.5...v11.1.6) (2020-04-03)
 
 

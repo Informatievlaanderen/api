@@ -232,7 +232,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             X509Certificate2? certificate)
         {
             options.Listen(
-                new IPEndPoint(IPAddress.Loopback, port),
+                new IPEndPoint(IPAddress.Any, port),
                 listenOptions =>
                 {
                     listenOptions.UseConnectionLogging();

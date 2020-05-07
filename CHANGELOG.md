@@ -1,3 +1,10 @@
+## [11.1.8](https://github.com/informatievlaanderen/api/compare/v11.1.7...v11.1.8) (2020-05-07)
+
+
+### Bug Fixes
+
+* ignore health from tracing ([e4dc3b0](https://github.com/informatievlaanderen/api/commit/e4dc3b0))
+
 ## [11.1.7](https://github.com/informatievlaanderen/api/compare/v11.1.6...v11.1.7) (2020-04-15)
 
 

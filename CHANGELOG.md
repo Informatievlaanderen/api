@@ -1,3 +1,10 @@
+## [11.1.9](https://github.com/informatievlaanderen/api/compare/v11.1.8...v11.1.9) (2020-05-07)
+
+
+### Bug Fixes
+
+* exclude docs from traces ([3bacc9c](https://github.com/informatievlaanderen/api/commit/3bacc9c))
+
 ## [11.1.8](https://github.com/informatievlaanderen/api/compare/v11.1.7...v11.1.8) (2020-05-07)
 
 

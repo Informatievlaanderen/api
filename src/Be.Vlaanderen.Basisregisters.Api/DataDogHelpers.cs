@@ -100,7 +100,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                             : traceSourceFactory(new TraceSourceArguments(traceId));
                     },
                     ServiceName = options.Tracing.ServiceName,
-                    ShouldTracePath = options.Tracing.ShouldTracePath ?? (pathToCheck => pathToCheck != "/"),
+                    ShouldTracePath = options.Tracing.ShouldTracePath ?? (pathToCheck => pathToCheck != "/" && pathToCheck != "/health"),
                     AnalyticsEnabled = options.Tracing.AnalyticsEnabled
                 });
             }

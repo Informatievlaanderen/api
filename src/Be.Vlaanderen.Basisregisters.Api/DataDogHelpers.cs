@@ -103,6 +103,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     ShouldTracePath = options.Tracing.ShouldTracePath ?? (
                         pathToCheck =>
                         {
+                            if (string.IsNullOrWhiteSpace(pathToCheck))
+                                pathToCheck = string.Empty;
+
                             pathToCheck = pathToCheck.ToLowerInvariant();
 
                             if (pathToCheck == "/")

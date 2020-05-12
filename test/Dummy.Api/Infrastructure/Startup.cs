@@ -109,6 +109,7 @@ namespace Dummy.Api.Infrastructure
                 },
                 Api =
                 {
+                    DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
                     VersionProvider = apiVersionProvider,
                     Info = groupName => $"Dummy API {groupName}",
                     HeaderTitle = groupName => "Dummy API",

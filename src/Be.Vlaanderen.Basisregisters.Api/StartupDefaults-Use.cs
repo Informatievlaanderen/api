@@ -94,6 +94,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
 
             public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;
+
+            public string DefaultCorsPolicy { get; set; } = StartupHelpers.AllowSpecificOrigin;
         }
 
         public ServerOptions Server { get; } = new ServerOptions();
@@ -161,13 +163,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     .UseDatabaseErrorPage()
                     .UseBrowserLink();
 
-            app.UseCors(policyName: StartupHelpers.AllowSpecificOrigin);
+            app.UseCors(policyName: options.Api.DefaultCorsPolicy);
             options.MiddlewareHooks.AfterCors?.Invoke(app);
 
             app.UseProblemDetails();
             options.MiddlewareHooks.AfterProblemDetails?.Invoke(app);
 
-            app.UseApiExceptionHandler(StartupHelpers.AllowSpecificOrigin, options);
+            app.UseApiExceptionHandler(options.Api.DefaultCorsPolicy, options);
             options.MiddlewareHooks.AfterApiExceptionHandler?.Invoke(app);
 
             app

@@ -123,6 +123,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<MvcOptions>? ConfigureMvcCore { get; set; }
             public Action<MvcNewtonsoftJsonOptions>? ConfigureJsonOptions { get; set; }
             public Action<FormatterMappings>? ConfigureFormatterMappings { get; set; }
+            public Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>? ConfigureCors { get; set; }
         }
     }
 
@@ -226,13 +227,25 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     options.MiddlewareHooks.FluentValidation
                     ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()))
 
-                .AddCors(cfg => cfg.AddPolicy(StartupHelpers.AllowSpecificOrigin, corsPolicy => corsPolicy
-                    .WithOrigins(options.Cors.Origins ?? new string[0])
-                    .WithMethods(configuredCorsMethods)
-                    .WithHeaders(configuredCorsHeaders)
-                    .WithExposedHeaders(configuredCorsExposedHeaders)
-                    .SetPreflightMaxAge(TimeSpan.FromSeconds(60 * 15))
-                    .AllowCredentials()))
+                .AddCors(cfg =>
+                {
+                    cfg.AddPolicy(StartupHelpers.AllowAnyOrigin, corsPolicy => corsPolicy
+                        .AllowAnyOrigin()
+                        .WithMethods(configuredCorsMethods)
+                        .WithHeaders(configuredCorsHeaders)
+                        .WithExposedHeaders(configuredCorsExposedHeaders)
+                        .SetPreflightMaxAge(TimeSpan.FromSeconds(60 * 15)));
+
+                    cfg.AddPolicy(StartupHelpers.AllowSpecificOrigin, corsPolicy => corsPolicy
+                        .WithOrigins(options.Cors.Origins ?? new string[0])
+                        .WithMethods(configuredCorsMethods)
+                        .WithHeaders(configuredCorsHeaders)
+                        .WithExposedHeaders(configuredCorsExposedHeaders)
+                        .SetPreflightMaxAge(TimeSpan.FromSeconds(60 * 15))
+                        .AllowCredentials());
+
+                    options.MiddlewareHooks.ConfigureCors?.Invoke(cfg);
+                })
 
                 .AddControllersAsServices()
                 .AddAuthorization(options.MiddlewareHooks.Authorization)

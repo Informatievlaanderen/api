@@ -21,6 +21,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
     public static class StartupHelpers
     {
+        public const string AllowAnyOrigin = "AllowAnyOrigin";
         public const string AllowSpecificOrigin = "AllowSpecificOrigin";
 
         public static void RegisterApplicationLifetimeHandling(

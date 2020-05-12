@@ -1,3 +1,10 @@
+# [11.2.0](https://github.com/informatievlaanderen/api/compare/v11.1.9...v11.2.0) (2020-05-12)
+
+
+### Features
+
+* add configuration of cors ([0d75b1f](https://github.com/informatievlaanderen/api/commit/0d75b1f))
+
 ## [11.1.9](https://github.com/informatievlaanderen/api/compare/v11.1.8...v11.1.9) (2020-05-07)
 
 

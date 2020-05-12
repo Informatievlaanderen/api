@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "11.1.9",
+  "version": "11.2.0",
   "description": "Common API infrastructure and helpers.",
   "author": "Basisregisters Vlaanderen",
   "license": "MIT",

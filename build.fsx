@@ -24,7 +24,7 @@ supportedRuntimeIdentifiers <- [ "linux-x64" ]
 Target.create "Lib_Build" (fun _ -> build "Be.Vlaanderen.Basisregisters.Api")
 Target.create "Lib_Test" (fun _ ->
   [
-    "test" @@  "Be.Vlaanderen.Basisregisters.Api.Tests"
+    "test" @@ "Be.Vlaanderen.Basisregisters.Api.Tests"
   ] |> List.iter testWithDotNet)
 
 Target.create "Lib_Publish" (fun _ -> publish "Be.Vlaanderen.Basisregisters.Api")

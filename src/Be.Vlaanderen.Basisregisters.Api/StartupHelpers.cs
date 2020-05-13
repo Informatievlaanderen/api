@@ -1,7 +1,6 @@
 namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
-    using System.Data.SqlClient;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -10,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using DataDog.Tracing;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.Data.SqlClient;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;

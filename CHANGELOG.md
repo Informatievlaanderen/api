@@ -1,3 +1,10 @@
+## [11.2.2](https://github.com/informatievlaanderen/api/compare/v11.2.1...v11.2.2) (2020-05-14)
+
+
+### Bug Fixes
+
+* remove dotnet 3.1.4 references ([e513827](https://github.com/informatievlaanderen/api/commit/e513827))
+
 ## [11.2.1](https://github.com/informatievlaanderen/api/compare/v11.2.0...v11.2.1) (2020-05-13)
 
 

@@ -17,6 +17,7 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Logging;
     using Modules;
     using Microsoft.OpenApi.Models;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -93,48 +94,69 @@ namespace Dummy.Api.Infrastructure
             IWebHostEnvironment env,
             IHostApplicationLifetime appLifetime,
             ILoggerFactory loggerFactory,
-            IApiVersionDescriptionProvider apiVersionProvider)
+            IApiVersionDescriptionProvider apiVersionProvider,
+            ApiDataDogToggle datadogToggle,
+            ApiDebugDataDogToggle debugDataDogToggle)
         {
             var version = Assembly.GetEntryAssembly().GetName().Version;
 
-            app.UseDefaultForApi(new StartupUseOptions
-            {
-                Common =
+            app
+                .UseDataDog<Startup>(new DataDogOptions
                 {
-                    ApplicationContainer = _applicationContainer,
-                    ServiceProvider = serviceProvider,
-                    HostingEnvironment = env,
-                    ApplicationLifetime = appLifetime,
-                    LoggerFactory = loggerFactory,
-                },
-                Api =
-                {
-                    DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
-                    VersionProvider = apiVersionProvider,
-                    Info = groupName => $"Dummy API {groupName}",
-                    HeaderTitle = groupName => "Dummy API",
-                    HeaderLink = groupName => "http://example.com",
-                    FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
-                    CSharpClientOptions =
+                    Common =
                     {
-                        ClassName = "DummyRegistry",
-                        Namespace = "Be.Vlaanderen.Basisregisters"
+                        ServiceProvider = serviceProvider,
+                        LoggerFactory = loggerFactory
                     },
-                    TypeScriptClientOptions =
+                    Toggles =
                     {
-                        ClassName = "DummyRegistry"
+                        Enable = datadogToggle,
+                        Debug = debugDataDogToggle
+                    },
+                    Tracing =
+                    {
+                        ServiceName = _configuration["DataDog:ServiceName"],
                     }
-                },
-                Server =
+                })
+
+                .UseDefaultForApi(new StartupUseOptions
                 {
-                    PoweredByName = "Vlaamse overheid - Basisregisters Vlaanderen",
-                    ServerName = "agentschap Informatie Vlaanderen"
-                },
-                MiddlewareHooks =
-                {
-                    AfterMiddleware = x => x.UseMiddleware<AddNoCacheHeadersMiddleware>()
-                }
-            });
+                    Common =
+                    {
+                        ApplicationContainer = _applicationContainer,
+                        ServiceProvider = serviceProvider,
+                        HostingEnvironment = env,
+                        ApplicationLifetime = appLifetime,
+                        LoggerFactory = loggerFactory,
+                    },
+                    Api =
+                    {
+                        DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
+                        VersionProvider = apiVersionProvider,
+                        Info = groupName => $"Dummy API {groupName}",
+                        HeaderTitle = groupName => "Dummy API",
+                        HeaderLink = groupName => "http://example.com",
+                        FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
+                        CSharpClientOptions =
+                        {
+                            ClassName = "DummyRegistry",
+                            Namespace = "Be.Vlaanderen.Basisregisters"
+                        },
+                        TypeScriptClientOptions =
+                        {
+                            ClassName = "DummyRegistry"
+                        }
+                    },
+                    Server =
+                    {
+                        PoweredByName = "Vlaamse overheid - Basisregisters Vlaanderen",
+                        ServerName = "agentschap Informatie Vlaanderen"
+                    },
+                    MiddlewareHooks =
+                    {
+                        AfterMiddleware = x => x.UseMiddleware<AddNoCacheHeadersMiddleware>()
+                    }
+                });
         }
     }
 }

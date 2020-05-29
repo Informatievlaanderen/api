@@ -18,8 +18,8 @@ namespace Dummy.Api.Infrastructure
                         },
                         Logging =
                         {
-                            WriteTextToConsole = true,
-                            WriteJsonToConsole = false
+                            WriteTextToConsole = false,
+                            WriteJsonToConsole = true
                         },
                         Runtime =
                         {

@@ -1,3 +1,10 @@
+## [11.2.4](https://github.com/informatievlaanderen/api/compare/v11.2.3...v11.2.4) (2020-05-29)
+
+
+### Bug Fixes
+
+* update dependencies GRAR-752 ([0f0d701](https://github.com/informatievlaanderen/api/commit/0f0d7012013a45cf96f64d634369653d63cb3446))
+
 ## [11.2.3](https://github.com/informatievlaanderen/api/compare/v11.2.2...v11.2.3) (2020-05-18)
 
 

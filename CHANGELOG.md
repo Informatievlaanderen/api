@@ -1,3 +1,10 @@
+## [11.2.5](https://github.com/informatievlaanderen/api/compare/v11.2.4...v11.2.5) (2020-06-19)
+
+
+### Bug Fixes
+
+* move to 3.1.5 ([d246377](https://github.com/informatievlaanderen/api/commit/d246377c9e2c758d52bb7d9175d1a87164856f5f))
+
 ## [11.2.4](https://github.com/informatievlaanderen/api/compare/v11.2.3...v11.2.4) (2020-05-29)
 
 

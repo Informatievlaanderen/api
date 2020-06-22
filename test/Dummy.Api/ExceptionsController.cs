@@ -6,6 +6,7 @@ namespace Dummy.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.AggregateSource;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using FluentValidation;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiVersion("1.0")]
@@ -20,5 +21,6 @@ namespace Dummy.Api.Infrastructure
         [HttpGet("4")] public IActionResult Get4() => throw new AggregateNotFoundException("bla", typeof(int));
         [HttpGet("5")] public IActionResult Get5() => throw new ApiException();
         [HttpGet("6")] public IActionResult Get6() => throw new DivideByZeroException();
+        [HttpGet("7")] public IActionResult Get7() => throw new ValidationException("boom");
     }
 }

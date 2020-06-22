@@ -18,9 +18,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ExceptionHandler(
             ILogger<ApiExceptionHandler> logger,
             IEnumerable<IExceptionHandler> customExceptionHandlers)
+            : this(logger, customExceptionHandlers, null) { }
+
+        public ExceptionHandler(
+            ILogger<ApiExceptionHandler> logger,
+            IEnumerable<IExceptionHandler> customExceptionHandlers,
+            StartupConfigureOptions? options)
         {
             _logger = logger;
-            _exceptionHandlers = customExceptionHandlers.Concat(DefaultExceptionHandlers.Handlers);
+            _exceptionHandlers = customExceptionHandlers
+                .Concat(DefaultExceptionHandlers.GetHandlers(options));
         }
 
         /// <summary>Sets the exception result as HttpResponse</summary>

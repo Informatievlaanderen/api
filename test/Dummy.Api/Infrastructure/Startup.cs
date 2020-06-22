@@ -46,6 +46,10 @@ namespace Dummy.Api.Infrastructure
                             .Select(c => c.Value)
                             .ToArray()
                     },
+                    Server =
+                    {
+                        BaseUrl = "https://vlaanderen.be"
+                    },
                     Swagger =
                     {
                         ApiInfo = (provider, description) => new OpenApiInfo

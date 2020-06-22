@@ -33,12 +33,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     internal class DefaultExceptionHandlers
     {
-        public static IEnumerable<IExceptionHandler> Handlers => new IExceptionHandler[]
+        public static IEnumerable<IExceptionHandler> GetHandlers(StartupConfigureOptions? options) => new IExceptionHandler[]
         {
             new DomainExceptionHandler(),
             new ApiExceptionHandler(),
             new AggregateNotFoundExceptionHandler(),
-            new ValidationExceptionHandler(),
+            new ValidationExceptionHandler(options),
             new HttpRequestExceptionHandler(),
             new DBConcurrencyExceptionHandler(),
             new NotImplementedExceptionHandler(),

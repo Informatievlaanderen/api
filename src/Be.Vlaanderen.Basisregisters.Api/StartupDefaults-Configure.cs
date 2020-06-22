@@ -52,7 +52,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class ServerOptions
         {
+            public string BaseUrl { get; set; } = string.Empty;
+
             public string VersionHeaderName { get; set; } = AddVersionHeaderMiddleware.HeaderName;
+
             public string[] MethodsToLog { get; set; } = new []
             {
                 HttpMethod.Get,
@@ -180,6 +183,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 AddHttpSecurityHeadersMiddleware.XssProtectionHeaderName,
                 AddVersionHeaderMiddleware.HeaderName
             }.Union(options.Cors.ExposedHeaders ?? Array.Empty<string>()).Distinct().ToArray();
+
+            services.AddSingleton(options);
 
             services.TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ApiControllerSpec>());
 

@@ -29,7 +29,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 {
                     Common = { LoggerFactory = loggerFactory },
                     Api = { CustomExceptionHandlers = new IExceptionHandler[] { } }
-                });
+                },
+                null);
 
         public static IApplicationBuilder UseApiExceptionHandler(
             this IApplicationBuilder app,
@@ -43,33 +44,37 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 {
                     Common = { LoggerFactory = loggerFactory },
                     Api = { CustomExceptionHandlers = customExceptionHandlers }
-                });
+                },
+                null);
 
         internal static IApplicationBuilder UseApiExceptionHandler(
             this IApplicationBuilder app,
             string corsPolicyName,
-            StartupUseOptions startupOptions)
+            StartupUseOptions startupUseOptions,
+            StartupConfigureOptions? startupConfigureOptions)
             => UseApiExceptionHandling(
                 app,
                 corsPolicyName,
-                startupOptions);
+                startupUseOptions,
+                startupConfigureOptions);
 
         private static IApplicationBuilder UseApiExceptionHandling(
             IApplicationBuilder app,
             string corsPolicyName,
-            StartupUseOptions startupOptions)
+            StartupUseOptions startupUseOptions,
+            StartupConfigureOptions? startupConfigureOptions)
         {
-            _logger = startupOptions.Common.LoggerFactory.CreateLogger<ApiExceptionHandler>();
-            var customHandlers = startupOptions.Api.CustomExceptionHandlers ?? new IExceptionHandler[]{ };
-            var exceptionHandler = new ExceptionHandler(_logger, customHandlers);
+            _logger = startupUseOptions.Common.LoggerFactory.CreateLogger<ApiExceptionHandler>();
+            var customHandlers = startupUseOptions.Api.CustomExceptionHandlers ?? new IExceptionHandler[]{ };
+            var exceptionHandler = new ExceptionHandler(_logger, customHandlers, startupConfigureOptions);
 
             app.UseExceptionHandler(builder =>
             {
                 builder.UseCors(policyName: corsPolicyName);
-                startupOptions.MiddlewareHooks.AfterCors?.Invoke(builder);
+                startupUseOptions.MiddlewareHooks.AfterCors?.Invoke(builder);
 
                 builder.UseProblemDetails();
-                startupOptions.MiddlewareHooks.AfterProblemDetails?.Invoke(builder);
+                startupUseOptions.MiddlewareHooks.AfterProblemDetails?.Invoke(builder);
 
                 builder
                     .UseMiddleware<EnableRequestRewindMiddleware>()
@@ -80,14 +85,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     .UseMiddleware<AddCorrelationIdToLogContextMiddleware>()
 
                     .UseMiddleware<AddHttpSecurityHeadersMiddleware>(
-                        startupOptions.Server.ServerName,
-                        startupOptions.Server.PoweredByName,
-                        startupOptions.Server.FrameOptionsDirective)
+                        startupUseOptions.Server.ServerName,
+                        startupUseOptions.Server.PoweredByName,
+                        startupUseOptions.Server.FrameOptionsDirective)
 
-                    .UseMiddleware<AddRemoteIpAddressMiddleware>(startupOptions.Api.RemoteIpAddressClaimName)
+                    .UseMiddleware<AddRemoteIpAddressMiddleware>(startupUseOptions.Api.RemoteIpAddressClaimName)
 
-                    .UseMiddleware<AddVersionHeaderMiddleware>(startupOptions.Server.VersionHeaderName);
-                startupOptions.MiddlewareHooks.AfterMiddleware?.Invoke(builder);
+                    .UseMiddleware<AddVersionHeaderMiddleware>(startupUseOptions.Server.VersionHeaderName);
+                startupUseOptions.MiddlewareHooks.AfterMiddleware?.Invoke(builder);
 
                 builder
                     .UseMiddleware<DefaultResponseCompressionQualityMiddleware>(new Dictionary<string, double>
@@ -96,16 +101,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                         { "gzip", 0.9 }
                     })
                     .UseResponseCompression();
-                startupOptions.MiddlewareHooks.AfterResponseCompression?.Invoke(builder);
+                startupUseOptions.MiddlewareHooks.AfterResponseCompression?.Invoke(builder);
 
-                var requestLocalizationOptions = startupOptions
+                var requestLocalizationOptions = startupUseOptions
                     .Common
                     .ServiceProvider
                     .GetRequiredService<IOptions<RequestLocalizationOptions>>()
                     .Value;
 
                 builder.UseRequestLocalization(requestLocalizationOptions);
-                startupOptions.MiddlewareHooks.AfterRequestLocalization?.Invoke(builder);
+                startupUseOptions.MiddlewareHooks.AfterRequestLocalization?.Invoke(builder);
 
                 builder
                     .Run(async context =>

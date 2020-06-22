@@ -11,8 +11,17 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class ValidationExceptionHandler : DefaultExceptionHandler<ValidationException>
     {
+        private readonly string _baseHost;
+
+        public ValidationExceptionHandler(StartupConfigureOptions? options)
+            => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
         protected override ProblemDetails GetApiProblemFor(ValidationException exception)
-            => new ValidationProblemDetails(exception);
+            => new ValidationProblemDetails(exception)
+            {
+                ProblemInstanceUri =
+                    $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+            };
     }
 
     public static class ValidationHelpers

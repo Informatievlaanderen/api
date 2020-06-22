@@ -4,6 +4,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Diagnostics;
     using Generators.Guid;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.DependencyInjection;
     using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public static class ProblemDetailsHelper
@@ -18,9 +19,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             // this is the same behaviour that Asp.Net core uses
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
+            var configuration = httpContext?.RequestServices?.GetService<StartupConfigureOptions>();
+            var baseHost = configuration?.Server.BaseUrl ?? string.Empty;
+
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"https://api.basisregisters.vlaanderen.be/v1/foutmelding/{Deterministic.Create(ProblemDetails, traceId):N}"
-                : $"https://api.basisregisters.vlaanderen.be/v1/foutmelding/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
+                ? $"{baseHost}/v1/foutmelding/{Deterministic.Create(ProblemDetails, traceId):N}"
+                : $"{baseHost}/v1/foutmelding/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
         }
     }
 }

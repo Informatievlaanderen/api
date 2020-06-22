@@ -1,3 +1,10 @@
+# [11.3.0](https://github.com/informatievlaanderen/api/compare/v11.2.6...v11.3.0) (2020-06-22)
+
+
+### Features
+
+* add support for more frame options directives ([6d01b3f](https://github.com/informatievlaanderen/api/commit/6d01b3f742356e9a421a9c5aab0b44c670f19adf))
+
 ## [11.2.6](https://github.com/informatievlaanderen/api/compare/v11.2.5...v11.2.6) (2020-06-22)
 
 

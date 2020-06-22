@@ -79,7 +79,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     .UseMiddleware<AddCorrelationIdMiddleware>()
                     .UseMiddleware<AddCorrelationIdToLogContextMiddleware>()
 
-                    .UseMiddleware<AddHttpSecurityHeadersMiddleware>(startupOptions.Server.ServerName, startupOptions.Server.PoweredByName)
+                    .UseMiddleware<AddHttpSecurityHeadersMiddleware>(
+                        startupOptions.Server.ServerName,
+                        startupOptions.Server.PoweredByName,
+                        startupOptions.Server.FrameOptionsDirective)
 
                     .UseMiddleware<AddRemoteIpAddressMiddleware>(startupOptions.Api.RemoteIpAddressClaimName)
 

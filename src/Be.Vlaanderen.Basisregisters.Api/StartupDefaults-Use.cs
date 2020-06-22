@@ -105,6 +105,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public string ServerName { get; set; }
             public string PoweredByName { get; set; }
             public string VersionHeaderName { get; set; } = AddVersionHeaderMiddleware.HeaderName;
+            public FrameOptionsDirectives FrameOptionsDirective { get; set; } = FrameOptionsDirectives.Deny;
         }
 
         public MiddlewareHookOptions MiddlewareHooks { get; } = new MiddlewareHookOptions();
@@ -180,7 +181,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .UseMiddleware<AddCorrelationIdMiddleware>()
                 .UseMiddleware<AddCorrelationIdToLogContextMiddleware>()
 
-                .UseMiddleware<AddHttpSecurityHeadersMiddleware>(options.Server.ServerName, options.Server.PoweredByName)
+                .UseMiddleware<AddHttpSecurityHeadersMiddleware>(
+                    options.Server.ServerName,
+                    options.Server.PoweredByName,
+                    options.Server.FrameOptionsDirective)
 
                 .UseMiddleware<AddRemoteIpAddressMiddleware>(options.Api.RemoteIpAddressClaimName)
 

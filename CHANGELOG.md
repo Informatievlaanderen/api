@@ -1,3 +1,10 @@
+## [11.2.6](https://github.com/informatievlaanderen/api/compare/v11.2.5...v11.2.6) (2020-06-22)
+
+
+### Bug Fixes
+
+* make sure docs work again GRAR-1375 ([f25bfed](https://github.com/informatievlaanderen/api/commit/f25bfed26de528c1edbf0f276954f64985b3a3e9))
+
 ## [11.2.5](https://github.com/informatievlaanderen/api/compare/v11.2.4...v11.2.5) (2020-06-19)
 
 

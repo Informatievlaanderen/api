@@ -35,17 +35,22 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     {
         public static IEnumerable<IExceptionHandler> GetHandlers(StartupConfigureOptions? options) => new IExceptionHandler[]
         {
-            new DomainExceptionHandler(),
-            new ApiExceptionHandler(),
-            new AggregateNotFoundExceptionHandler(),
+            new DomainExceptionHandler(options),
+            new ApiExceptionHandler(options),
+            new AggregateNotFoundExceptionHandler(options),
             new ValidationExceptionHandler(options),
-            new HttpRequestExceptionHandler(),
-            new DBConcurrencyExceptionHandler(),
-            new NotImplementedExceptionHandler(),
+            new HttpRequestExceptionHandler(options),
+            new DBConcurrencyExceptionHandler(options),
+            new NotImplementedExceptionHandler(options),
         };
 
         private class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
         {
+            private readonly string _baseHost;
+
+            public DomainExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(DomainException exception) =>
                 new ProblemDetails
                 {
@@ -53,12 +58,17 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
         private class ApiExceptionHandler : DefaultExceptionHandler<ApiException>
         {
+            private readonly string _baseHost;
+
+            public ApiExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(ApiException exception) =>
                 new ProblemDetails
                 {
@@ -66,12 +76,17 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
         private class AggregateNotFoundExceptionHandler : DefaultExceptionHandler<AggregateNotFoundException>
         {
+            private readonly string _baseHost;
+
+            public AggregateNotFoundExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(AggregateNotFoundException exception) =>
                 new ProblemDetails
                 {
@@ -79,13 +94,18 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = "Deze actie is niet geldig!",
                     Detail = $"De resource met id '{exception.Identifier}' werd niet gevonden.",
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
         // This will map HttpRequestException to the 503 Service Unavailable status code.
         private class HttpRequestExceptionHandler : DefaultExceptionHandler<HttpRequestException>
         {
+            private readonly string _baseHost;
+
+            public HttpRequestExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(HttpRequestException exception) =>
                 new ProblemDetails
                 {
@@ -93,13 +113,18 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
         // This will map DBConcurrencyException to the 409 Conflict status code.
         private class DBConcurrencyExceptionHandler : DefaultExceptionHandler<DBConcurrencyException>
         {
+            private readonly string _baseHost;
+
+            public DBConcurrencyExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(DBConcurrencyException exception) =>
                 new ProblemDetails
                 {
@@ -107,13 +132,18 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
         // This will map NotImplementedException to the 501 Not Implemented status code.
         private class NotImplementedExceptionHandler : DefaultExceptionHandler<NotImplementedException>
         {
+            private readonly string _baseHost;
+
+            public NotImplementedExceptionHandler(StartupConfigureOptions? options)
+                => _baseHost = options?.Server.BaseUrl ?? string.Empty;
+
             protected override ProblemDetails GetApiProblemFor(NotImplementedException exception) =>
                 new ProblemDetails
                 {
@@ -121,7 +151,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
                 };
         }
     }

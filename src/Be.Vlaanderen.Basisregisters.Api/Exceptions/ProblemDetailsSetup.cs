@@ -41,12 +41,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemTypeUri = errorData.Link,
                     Title = errorData.Title,
                     Detail = string.Empty,
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = context.GetProblemInstanceUri()
                 }
                 : new StatusCodeProblemDetails(statusCode)
                 {
                     Detail = string.Empty,
-                    ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                    ProblemInstanceUri = context.GetProblemInstanceUri()
                 };
     }
 }

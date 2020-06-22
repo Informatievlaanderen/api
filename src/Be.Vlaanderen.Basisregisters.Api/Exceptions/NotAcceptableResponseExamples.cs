@@ -6,6 +6,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class NotAcceptableResponseExamples : IExamplesProvider<ProblemDetails>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public NotAcceptableResponseExamples(IHttpContextAccessor httpContextAccessor)
+            => _httpContextAccessor = httpContextAccessor;
+
         public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
@@ -13,7 +18,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status406NotAcceptable,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Het gevraagde formaat is niet beschikbaar.",
-                ProblemInstanceUri = new DefaultHttpContext().GetProblemInstanceUri()
+                ProblemInstanceUri = _httpContextAccessor.HttpContext.GetProblemInstanceUri()
             };
     }
 }

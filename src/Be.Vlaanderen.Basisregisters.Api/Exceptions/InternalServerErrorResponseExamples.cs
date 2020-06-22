@@ -6,6 +6,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class InternalServerErrorResponseExamples : IExamplesProvider<ProblemDetails>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public InternalServerErrorResponseExamples(IHttpContextAccessor httpContextAccessor)
+            => _httpContextAccessor = httpContextAccessor;
+
         public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
@@ -13,7 +18,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "<meer informatie over de interne fout>",
-                ProblemInstanceUri = new DefaultHttpContext().GetProblemInstanceUri()
+                ProblemInstanceUri = _httpContextAccessor.HttpContext.GetProblemInstanceUri()
             };
     }
 }

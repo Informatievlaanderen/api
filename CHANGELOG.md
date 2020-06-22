@@ -1,3 +1,10 @@
+# [11.4.0](https://github.com/informatievlaanderen/api/compare/v11.3.0...v11.4.0) (2020-06-22)
+
+
+### Features
+
+* allow baseurl configuration in problemdetails GRAR-1358 GRAR-1357 ([f52e517](https://github.com/informatievlaanderen/api/commit/f52e5176beef6ea4d9f8c9a41debaa6e183976d1))
+
 # [11.3.0](https://github.com/informatievlaanderen/api/compare/v11.2.6...v11.3.0) (2020-06-22)
 
 

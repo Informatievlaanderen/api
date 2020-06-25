@@ -1,3 +1,10 @@
+## [11.4.2](https://github.com/informatievlaanderen/api/compare/v11.4.1...v11.4.2) (2020-06-25)
+
+
+### Bug Fixes
+
+* update to openapi 1.2.2 ([7b22d5c](https://github.com/informatievlaanderen/api/commit/7b22d5c4fdcfb7bb4dde2f8268dbdaeff1f70b6c))
+
 ## [11.4.1](https://github.com/informatievlaanderen/api/compare/v11.4.0...v11.4.1) (2020-06-22)
 
 

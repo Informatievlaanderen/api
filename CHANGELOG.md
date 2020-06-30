@@ -1,3 +1,10 @@
+# [11.5.0](https://github.com/informatievlaanderen/api/compare/v11.4.2...v11.5.0) (2020-06-30)
+
+
+### Features
+
+* add atomfeedwriter write metadata with alternate uris ([4081dfd](https://github.com/informatievlaanderen/api/commit/4081dfd7fd25cd1fbdd20258df85d5b24a2e8be1))
+
 ## [11.4.2](https://github.com/informatievlaanderen/api/compare/v11.4.1...v11.4.2) (2020-06-25)
 
 

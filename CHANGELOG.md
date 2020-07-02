@@ -1,3 +1,10 @@
+## [11.5.1](https://github.com/informatievlaanderen/api/compare/v11.5.0...v11.5.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* update streamstore ([7470403](https://github.com/informatievlaanderen/api/commit/747040332d12ffda6288c91a968fe3a2cb1ed111))
+
 # [11.5.0](https://github.com/informatievlaanderen/api/compare/v11.4.2...v11.5.0) (2020-06-30)
 
 

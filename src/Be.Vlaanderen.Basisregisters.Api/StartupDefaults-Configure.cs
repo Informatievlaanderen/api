@@ -127,6 +127,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<MvcNewtonsoftJsonOptions>? ConfigureJsonOptions { get; set; }
             public Action<FormatterMappings>? ConfigureFormatterMappings { get; set; }
             public Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>? ConfigureCors { get; set; }
+            public Action<ProblemDetailsOptions>? ConfigureProblemDetails { get; set; }
         }
     }
 
@@ -192,13 +193,15 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddHttpContextAccessor()
 
                 .ConfigureOptions<ProblemDetailsSetup>()
-                .AddProblemDetails(x =>
+                .AddProblemDetails(cfg =>
                 {
                     foreach (var header in configuredCorsExposedHeaders)
                     {
-                        if (!x.AllowedHeaderNames.Contains(header))
-                            x.AllowedHeaderNames.Add(header);
+                        if (!cfg.AllowedHeaderNames.Contains(header))
+                            cfg.AllowedHeaderNames.Add(header);
                     }
+
+                    options.MiddlewareHooks.ConfigureProblemDetails?.Invoke(cfg);
                 });
 
             var mvcBuilder = services

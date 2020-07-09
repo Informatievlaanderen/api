@@ -1,3 +1,10 @@
+# [11.6.0](https://github.com/informatievlaanderen/api/compare/v11.5.1...v11.6.0) (2020-07-09)
+
+
+### Features
+
+* allow configuration of problemdetails ([329ec63](https://github.com/informatievlaanderen/api/commit/329ec63a1edfa9f2102b2d6788cb764998227fc3))
+
 ## [11.5.1](https://github.com/informatievlaanderen/api/compare/v11.5.0...v11.5.1) (2020-07-02)
 
 

@@ -1,7 +1,10 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using FluentValidation;
+    using FluentValidation.Results;
     using Helpers;
 
     public class EmbedValue
@@ -62,31 +65,27 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 .ToLowerInvariant();
         }
 
-        public static bool TryParse(string value, out EmbedValue embedValue)
-        {
-            try
-            {
-                embedValue = Parse(value);
-                return true;
-            }
-            catch
-            {
-                embedValue = new EmbedValue(EmbedOption.None);
-                return false;
-            }
-        }
-
         public static EmbedValue Parse(string value)
             => new EmbedValue(ParseOption(value));
 
         // Support deconstructing from string-value
         public static implicit operator EmbedValue(string value)
-            => TryParse(value, out var parameter) ? parameter : new EmbedValue(EmbedOption.None);
+            => Parse(value);
 
-        public class InvalidOptionException : Exception
+        public class InvalidOptionException : ValidationException
         {
             public InvalidOptionException(string argumentValue)
-                : base($"{argumentValue} is not a valid {nameof(EmbedOption)} option.") { }
+                : base("Invalid embed option", GetFailures(argumentValue))
+            { }
+
+            private static IEnumerable<ValidationFailure> GetFailures(string argumentValue)
+                => new[]
+                {
+                    new ValidationFailure(
+                        "embed",
+                        $"The value '{argumentValue}' is not a valid embed option.",
+                        argumentValue)
+                };
         }
 
         [Flags]

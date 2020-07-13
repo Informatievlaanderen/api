@@ -75,8 +75,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         public class InvalidOptionException : ValidationException
         {
             public InvalidOptionException(string argumentValue)
-                : base("Invalid embed option", GetFailures(argumentValue))
-            { }
+                : base("Invalid embed option", GetFailures(argumentValue)) { }
 
             private static IEnumerable<ValidationFailure> GetFailures(string argumentValue)
                 => new[]

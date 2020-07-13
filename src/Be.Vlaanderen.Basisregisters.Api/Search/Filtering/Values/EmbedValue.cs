@@ -29,8 +29,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         }
 
         public EmbedValue()
-            :this(EmbedOption.None)
-        { }
+            : this(EmbedOption.None) { }
 
         private EmbedValue(EmbedOption value)
             => _value = value;

@@ -65,8 +65,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         private class EmbedOptionArgumentException : Exception
         {
             public EmbedOptionArgumentException(string argumentValue)
-            : base($"{argumentValue} is not a valid {nameof(EmbedOption)} option.")
-            { }
+                : base($"{argumentValue} is not a valid {nameof(EmbedOption)} option.") { }
         }
 
         [Flags]

@@ -1,3 +1,10 @@
+# [11.7.0](https://github.com/informatievlaanderen/api/compare/v11.6.0...v11.7.0) (2020-07-13)
+
+
+### Features
+
+* add embed value object GRAR-1465 ([5994885](https://github.com/informatievlaanderen/api/commit/59948850b8a4631bdb049ba1bf27080434e2e3b2))
+
 # [11.6.0](https://github.com/informatievlaanderen/api/compare/v11.5.1...v11.6.0) (2020-07-09)
 
 

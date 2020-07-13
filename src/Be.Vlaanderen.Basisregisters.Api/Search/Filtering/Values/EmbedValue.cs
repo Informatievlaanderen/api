@@ -47,7 +47,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
             if (Enum.TryParse(typeof(EmbedOption), value, true, out var result))
                 return (EmbedOption)result;
 
-            throw new EmbedOptionArgumentException(value);
+            throw new InvalidOptionException(value);
         }
 
         public override string ToString()
@@ -83,9 +83,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         public static implicit operator EmbedValue(string value)
             => TryParse(value, out var parameter) ? parameter : new EmbedValue(EmbedOption.None);
 
-        private class EmbedOptionArgumentException : Exception
+        public class InvalidOptionException : Exception
         {
-            public EmbedOptionArgumentException(string argumentValue)
+            public InvalidOptionException(string argumentValue)
                 : base($"{argumentValue} is not a valid {nameof(EmbedOption)} option.") { }
         }
 

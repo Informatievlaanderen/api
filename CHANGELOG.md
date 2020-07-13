@@ -1,3 +1,10 @@
+## [11.7.3](https://github.com/informatievlaanderen/api/compare/v11.7.2...v11.7.3) (2020-07-13)
+
+
+### Bug Fixes
+
+* throw validation exception on invalid parse GRAR-1465 ([010a78d](https://github.com/informatievlaanderen/api/commit/010a78d755618577c448c9e8626ddc722949f0f1))
+
 ## [11.7.2](https://github.com/informatievlaanderen/api/compare/v11.7.1...v11.7.2) (2020-07-13)
 
 

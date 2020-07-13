@@ -6,10 +6,30 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
 
     public class EmbedValue
     {
-        private readonly EmbedOption _value;
+        private EmbedOption _value;
 
-        public bool Event => _value.HasFlag(EmbedOption.Event);
-        public bool Object => _value.HasFlag(EmbedOption.Object);
+        public bool Event
+        {
+            get => _value.HasFlag(EmbedOption.Event);
+            set => Set(EmbedOption.Event, value);
+        }
+
+        public bool Object
+        {
+            get => _value.HasFlag(EmbedOption.Object);
+            set => Set(EmbedOption.Object, value);
+        }
+
+        private void Set(EmbedOption option, bool value)
+        {
+            if (value)
+                _value |= option;
+            else
+                _value &= ~option;
+        }
+
+        public EmbedValue()
+            : this(EmbedOption.None) { }
 
         private EmbedValue(EmbedOption value)
             => _value = value;
@@ -59,6 +79,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         public static EmbedValue Parse(string value)
             => new EmbedValue(ParseOption(value));
 
+        // Support deconstructing from string-value
         public static implicit operator EmbedValue(string value)
             => TryParse(value, out var parameter) ? parameter : new EmbedValue(EmbedOption.None);
 

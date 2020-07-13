@@ -1,3 +1,10 @@
+## [11.7.2](https://github.com/informatievlaanderen/api/compare/v11.7.1...v11.7.2) (2020-07-13)
+
+
+### Bug Fixes
+
+* expose exception so it can be caught GRAR-1465 ([fad8bfd](https://github.com/informatievlaanderen/api/commit/fad8bfd68d048cd0b14d759771ae9726dd881f35))
+
 ## [11.7.1](https://github.com/informatievlaanderen/api/compare/v11.7.0...v11.7.1) (2020-07-13)
 
 

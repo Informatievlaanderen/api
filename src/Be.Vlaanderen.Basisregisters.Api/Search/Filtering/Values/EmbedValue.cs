@@ -3,12 +3,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using FluentValidation;
     using FluentValidation.Results;
     using Helpers;
 
     public class EmbedValue
     {
+        private static readonly Regex AllowParseRegex = new Regex("[,a-z]+", RegexOptions.IgnoreCase);
+
         private EmbedOption _value;
 
         public bool Event
@@ -37,22 +40,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         private EmbedValue(EmbedOption value)
             => _value = value;
 
-        private static EmbedOption ParseOption(string value)
-        {
-            if (value.IsNullOrWhiteSpace())
-                return EmbedOption.None;
-
-            if (value.Contains(','))
-                return value
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .Aggregate(EmbedOption.None, (embed, option) => embed | ParseOption(option));
-
-            if (Enum.TryParse(typeof(EmbedOption), value, true, out var result))
-                return (EmbedOption)result;
-
-            throw new InvalidOptionException(value);
-        }
-
         public override string ToString()
         {
             var options = Enum
@@ -66,7 +53,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         }
 
         public static EmbedValue Parse(string value)
-            => new EmbedValue(ParseOption(value));
+        {
+            if (value.IsNullOrWhiteSpace())
+                return new EmbedValue(EmbedOption.None);
+
+            if (AllowParseRegex.IsMatch(value)
+                && Enum.TryParse(typeof(EmbedOption), value, true, out var result))
+                return new EmbedValue((EmbedOption)result);
+
+            throw new InvalidOptionException(value);
+        }
 
         // Support deconstructing from string-value
         public static implicit operator EmbedValue(string value)

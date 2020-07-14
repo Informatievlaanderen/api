@@ -1,3 +1,10 @@
+## [11.7.4](https://github.com/informatievlaanderen/api/compare/v11.7.3...v11.7.4) (2020-07-14)
+
+
+### Bug Fixes
+
+* make embed value parse stricter GRAR-1465 ([7e18a97](https://github.com/informatievlaanderen/api/commit/7e18a97b609e410e98b01b420667e409bcedf474))
+
 ## [11.7.3](https://github.com/informatievlaanderen/api/compare/v11.7.2...v11.7.3) (2020-07-13)
 
 

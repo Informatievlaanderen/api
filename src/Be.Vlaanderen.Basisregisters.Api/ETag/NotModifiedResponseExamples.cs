@@ -1,7 +1,9 @@
 namespace Be.Vlaanderen.Basisregisters.Api.ETag
 {
+    using System;
     using Swashbuckle.AspNetCore.Filters;
 
+    [Obsolete("Phase out: switch to using LastObservedPosition", false)]
     public class NotModifiedResponseExamples : IExamplesProvider<object>
     {
         // https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5

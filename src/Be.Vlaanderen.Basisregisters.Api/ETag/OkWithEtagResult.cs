@@ -4,6 +4,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.ETag
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Net.Http.Headers;
 
+    [Obsolete("Phase out: switch to using LastObservedPosition", false)]
     public class OkWithETagResult : OkObjectResult
     {
         private readonly string _etag;

@@ -3,9 +3,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.LastObservedPosition.ActionResults
     using Api.LastObservedPosition;
     using Microsoft.AspNetCore.Http;
 
-    public class CreatedResult : LastObservedPositionResult
+    public class Created : LastObservedPositionResult
     {
-        public CreatedResult(string location, LastObservedPosition lastObservedPosition)
+        public Created(string location, LastObservedPosition lastObservedPosition)
             : base(StatusCodes.Status201Created, location, lastObservedPosition) { }
     }
 }

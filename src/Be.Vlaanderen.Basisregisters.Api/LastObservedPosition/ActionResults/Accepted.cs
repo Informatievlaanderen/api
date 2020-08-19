@@ -3,9 +3,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.LastObservedPosition.ActionResults
     using Api.LastObservedPosition;
     using Microsoft.AspNetCore.Http;
 
-    public class AcceptedResult : LastObservedPositionResult
+    public class Accepted : LastObservedPositionResult
     {
-        public AcceptedResult(LastObservedPosition lastObservedPosition)
+        public Accepted(LastObservedPosition lastObservedPosition)
             : base(StatusCodes.Status202Accepted, lastObservedPosition) { }
     }
 }

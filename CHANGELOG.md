@@ -1,3 +1,15 @@
+# [11.8.0](https://github.com/informatievlaanderen/api/compare/v11.7.5...v11.8.0) (2020-08-20)
+
+
+### Bug Fixes
+
+* phase out e-tag usuage ([198ffea](https://github.com/informatievlaanderen/api/commit/198ffea3243fe96d120485f77a5c70e9e924a4e2))
+
+
+### Features
+
+* add lastObservedPosition headers ([cd23e9d](https://github.com/informatievlaanderen/api/commit/cd23e9d948a962840a81656b460c1e472a3aa598))
+
 ## [11.7.5](https://github.com/informatievlaanderen/api/compare/v11.7.4...v11.7.5) (2020-07-18)
 
 

@@ -1,3 +1,17 @@
+# [12.0.0](https://github.com/informatievlaanderen/api/compare/v11.8.2...v12.0.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* removed deprecated function ([26ab7ba](https://github.com/informatievlaanderen/api/commit/26ab7bafe0748f08ff47872ed65ae1077b8a581c))
+* update swashbuckle dependcy ([58603b4](https://github.com/informatievlaanderen/api/commit/58603b48fc0cee57f02715dfbe9ce0488efbb380))
+
+
+### BREAKING CHANGES
+
+* CHANGES
+* JsonConverter property is removed from the attribute
+
 ## [11.8.2](https://github.com/informatievlaanderen/api/compare/v11.8.1...v11.8.2) (2020-09-21)
 
 

@@ -20,13 +20,13 @@ namespace Dummy.Api.Infrastructure
         [HttpGet]
         [ProducesResponseType(typeof(HomeResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(HomeResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(HomeResponseExamples))]
         public IActionResult GetHome() => Ok(new HomeResponse());
 
         [HttpGet("jsonorder")]
         [ProducesResponseType(typeof(JsonOrderResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(HomeResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(HomeResponseExamples))]
         public IActionResult GetJsonOrder() => Ok(new JsonOrderResponse());
     }
 }

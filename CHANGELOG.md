@@ -1,3 +1,10 @@
+## [12.0.1](https://github.com/informatievlaanderen/api/compare/v12.0.0...v12.0.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* add NotModified response to LastObeservedPosition ([c78e5b1](https://github.com/informatievlaanderen/api/commit/c78e5b1159a25761d43f252b321d70e2c5cc1e59))
+
 # [12.0.0](https://github.com/informatievlaanderen/api/compare/v11.8.2...v12.0.0) (2020-11-12)
 
 

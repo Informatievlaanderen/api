@@ -1,3 +1,10 @@
+## [12.0.2](https://github.com/informatievlaanderen/api/compare/v12.0.1...v12.0.2) (2020-11-18)
+
+
+### Bug Fixes
+
+* remove set-env usage in gh-actions ([4954260](https://github.com/informatievlaanderen/api/commit/4954260b7907bd67950b0518196d12558c054473))
+
 ## [12.0.1](https://github.com/informatievlaanderen/api/compare/v12.0.0...v12.0.1) (2020-11-16)
 
 

@@ -1,3 +1,10 @@
+## [12.0.3](https://github.com/informatievlaanderen/api/compare/v12.0.2...v12.0.3) (2020-11-19)
+
+
+### Bug Fixes
+
+* update eventhandling ([9773632](https://github.com/informatievlaanderen/api/commit/97736329835bf42dc619b627693e75ebde5179ad))
+
 ## [12.0.2](https://github.com/informatievlaanderen/api/compare/v12.0.1...v12.0.2) (2020-11-18)
 
 

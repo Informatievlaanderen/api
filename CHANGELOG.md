@@ -1,3 +1,15 @@
+# [12.1.0](https://github.com/informatievlaanderen/api/compare/v12.0.3...v12.1.0) (2020-12-15)
+
+
+### Bug Fixes
+
+* remove double closing brace ([90e485b](https://github.com/informatievlaanderen/api/commit/90e485b569e3346caf283d2639dc30488d3dec3d))
+
+
+### Features
+
+* extend httprequest with check for html accept header ([ba8247b](https://github.com/informatievlaanderen/api/commit/ba8247bc80a556704f0e0964b01189a4b7803eab))
+
 ## [12.0.3](https://github.com/informatievlaanderen/api/compare/v12.0.2...v12.0.3) (2020-11-19)
 
 

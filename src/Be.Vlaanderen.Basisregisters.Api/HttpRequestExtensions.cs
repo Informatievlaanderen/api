@@ -1,6 +1,7 @@
 namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
+    using System.Net.Mime;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Net.Http.Headers;
 
@@ -13,6 +14,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
             => request
                 .Headers[HeaderNames.Accept]
                 .ToString()
-                .Contains("text/html", StringComparison.InvariantCultureIgnoreCase);
+                .Contains(MediaTypeNames.Text.Html, StringComparison.InvariantCultureIgnoreCase);
     }
 }

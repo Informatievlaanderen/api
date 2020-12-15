@@ -16,4 +16,3 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .Contains("text/html", StringComparison.InvariantCultureIgnoreCase);
     }
 }
-}

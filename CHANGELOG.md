@@ -1,3 +1,10 @@
+## [12.1.1](https://github.com/informatievlaanderen/api/compare/v12.1.0...v12.1.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* move to 5.0.1 ([ad28fa8](https://github.com/informatievlaanderen/api/commit/ad28fa821078bac18d7ff5c2558d7cf2b1dc61ae))
+
 # [12.1.0](https://github.com/informatievlaanderen/api/compare/v12.0.3...v12.1.0) (2020-12-15)
 
 

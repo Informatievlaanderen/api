@@ -6,10 +6,10 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net5.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp3.1\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

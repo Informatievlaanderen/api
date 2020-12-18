@@ -7,7 +7,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore.Query.Internal;
+    using Microsoft.EntityFrameworkCore.Query;
 
     public static class AsAsyncQueryableExtension
     {

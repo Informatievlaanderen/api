@@ -178,7 +178,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         private static string[]? PatchRiderBug<T>(string[]? commandLineArgs) where T : class
         {
             // Note: Rider starts debugging with
-            // <source location>/src/.../bin/Debug/netcoreapp2.1/win10-x64/....exe
+            // <source location>/src/.../bin/Debug/net5.0/win10-x64/....exe
             // No idea why, but if we pass this below to .AddCommandLine(args)
             // the ConfigBuilder crashes because it does not recognize
             // that as a valid config argument. The 2 lines below prevent that.

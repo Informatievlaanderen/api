@@ -20,7 +20,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             => new ValidationProblemDetails(exception)
             {
                 ProblemInstanceUri =
-                    $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
             };
     }
 

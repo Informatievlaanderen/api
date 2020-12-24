@@ -1,3 +1,10 @@
+## [12.1.3](https://github.com/informatievlaanderen/api/compare/v12.1.2...v12.1.3) (2020-12-24)
+
+
+### Bug Fixes
+
+* get versioned problemdetail base uri GRAR-400 ([9cd4f31](https://github.com/informatievlaanderen/api/commit/9cd4f316955c4d9dc481f0f0b13e5f92fb000396))
+
 ## [12.1.2](https://github.com/informatievlaanderen/api/compare/v12.1.1...v12.1.2) (2020-12-24)
 
 

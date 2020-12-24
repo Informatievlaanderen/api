@@ -23,8 +23,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             var baseHost = configuration?.Server.BaseUrl ?? string.Empty;
 
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"{baseHost}/v1/foutmelding/{Deterministic.Create(ProblemDetails, traceId):N}"
-                : $"{baseHost}/v1/foutmelding/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
+                ? $"{baseHost}/v1/foutmeldingen/{Deterministic.Create(ProblemDetails, traceId):N}"
+                : $"{baseHost}/v1/foutmeldingen/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
         }
     }
 }

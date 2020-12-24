@@ -58,7 +58,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -76,7 +76,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -94,7 +94,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = "Deze actie is niet geldig!",
                     Detail = $"De resource met id '{exception.Identifier}' werd niet gevonden.",
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -113,7 +113,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -132,7 +132,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -151,7 +151,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_baseHost}/foutmelding/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_baseHost}/foutmeldingen/{ProblemDetails.GetProblemNumber()}"
                 };
         }
     }

@@ -14,17 +14,23 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public static void SetTraceId(ProblemDetails details, HttpContext httpContext)
             => details.ProblemInstanceUri = httpContext.GetProblemInstanceUri();
 
+        public static string GetProblemBaseInstanceUri(this StartupConfigureOptions? configuration)
+        {
+            var baseHost = configuration?.Server.BaseUrl ?? string.Empty;
+            return $"{baseHost}/v1/foutmeldingen";
+        }
+
         public static string GetProblemInstanceUri(this HttpContext httpContext)
         {
             // this is the same behaviour that Asp.Net core uses
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
             var configuration = httpContext?.RequestServices?.GetService<StartupConfigureOptions>();
-            var baseHost = configuration?.Server.BaseUrl ?? string.Empty;
+            var problemBaseInstanceUri = configuration.GetProblemBaseInstanceUri();
 
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"{baseHost}/v1/foutmeldingen/{Deterministic.Create(ProblemDetails, traceId):N}"
-                : $"{baseHost}/v1/foutmeldingen/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
+                ? $"{problemBaseInstanceUri}/{Deterministic.Create(ProblemDetails, traceId):N}"
+                : $"{problemBaseInstanceUri}/{BasicApiProblem.ProblemDetails.GetProblemNumber()}";
         }
     }
 }

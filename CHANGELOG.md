@@ -1,3 +1,10 @@
+## [12.1.4](https://github.com/informatievlaanderen/api/compare/v12.1.3...v12.1.4) (2021-01-13)
+
+
+### Bug Fixes
+
+* include all actions in swagger doc ([523263c](https://github.com/informatievlaanderen/api/commit/523263cbd2f8d57cc6001ba86f7a95fb93d0db65))
+
 ## [12.1.3](https://github.com/informatievlaanderen/api/compare/v12.1.2...v12.1.3) (2020-12-24)
 
 

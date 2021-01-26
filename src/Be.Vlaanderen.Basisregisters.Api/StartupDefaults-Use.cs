@@ -91,6 +91,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             public SwaggerDocumentationOptions.TypeScriptClientOptions TypeScriptClientOptions { get; } = new SwaggerDocumentationOptions.TypeScriptClientOptions();
 
+            public IEnumerable<ApiProblemDetailsExceptionMapping> ProblemDetailsExceptionMappers { get; set; } = new ApiProblemDetailsExceptionMapping[] { };
+
             public IEnumerable<IExceptionHandler> CustomExceptionHandlers { get; set; } = new IExceptionHandler[] { };
 
             public string RemoteIpAddressClaimName { get; set; } = AddRemoteIpAddressMiddleware.UrnBasisregistersVlaanderenIp;

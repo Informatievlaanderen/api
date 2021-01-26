@@ -66,7 +66,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             _logger = startupUseOptions.Common.LoggerFactory.CreateLogger<ApiExceptionHandler>();
             var customHandlers = startupUseOptions.Api.CustomExceptionHandlers ?? new IExceptionHandler[]{ };
-            var exceptionHandler = new ExceptionHandler(_logger, customHandlers, startupConfigureOptions);
+            var problemDetailMappers = startupUseOptions.Api.ProblemDetailsExceptionMappers ?? new ApiProblemDetailsExceptionMapping[] {};
+            var exceptionHandler = new ExceptionHandler(_logger, problemDetailMappers, customHandlers, startupConfigureOptions);
 
             app.UseExceptionHandler(builder =>
             {

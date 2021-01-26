@@ -13,6 +13,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     public class ExceptionHandler
     {
         private readonly ILogger<ApiExceptionHandler> _logger;
+        private readonly IEnumerable<ApiProblemDetailsExceptionMapping> _apiProblemDetailsExceptionMappings;
         private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
 
         public ExceptionHandler(
@@ -24,8 +25,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             ILogger<ApiExceptionHandler> logger,
             IEnumerable<IExceptionHandler> customExceptionHandlers,
             StartupConfigureOptions? options)
+            : this(logger, new List<ApiProblemDetailsExceptionMapping>(), customExceptionHandlers, options) { }
+
+        public ExceptionHandler(
+            ILogger<ApiExceptionHandler> logger,
+            IEnumerable<ApiProblemDetailsExceptionMapping> apiProblemDetailsExceptionMappings,
+            IEnumerable<IExceptionHandler> customExceptionHandlers,
+            StartupConfigureOptions? options)
         {
             _logger = logger;
+            _apiProblemDetailsExceptionMappings = apiProblemDetailsExceptionMappings;
             _exceptionHandlers = customExceptionHandlers
                 .Concat(DefaultExceptionHandlers.GetHandlers(options));
         }
@@ -33,6 +42,19 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         /// <summary>Sets the exception result as HttpResponse</summary>
         public async Task HandleException(Exception exception, HttpContext context)
         {
+            if (exception is ApiProblemDetailsException problemDetailsException)
+            {
+                var problemDetailMappings = _apiProblemDetailsExceptionMappings
+                    .Where(mapping => mapping.Handles(problemDetailsException))
+                    .ToList();
+
+                if (problemDetailMappings.Count == 1)
+                    throw new ProblemDetailsException(problemDetailMappings.First().Map(problemDetailsException));
+
+                if (problemDetailMappings.Count > 1)
+                    _logger.LogWarning($"Multiple mappings for {nameof(ApiProblemDetailsException)} found. Skipping specific mapping.");
+            }
+
             var exceptionHandler = _exceptionHandlers.FirstOrDefault(handler => handler.Handles(exception));
 
             if (exceptionHandler == null)

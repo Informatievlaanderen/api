@@ -25,8 +25,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         public void Configure(ProblemDetailsOptions options)
         {
-            options.IncludeExceptionDetails = ctx => Environment.IsDevelopment();
-
             options.MapStatusCode = MapStatusCode;
 
             // keep consistent with asp.net core 2.2 conventions that adds a tracing value

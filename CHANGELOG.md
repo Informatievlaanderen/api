@@ -1,3 +1,10 @@
+## [12.2.2](https://github.com/informatievlaanderen/api/compare/v12.2.1...v12.2.2) (2021-01-27)
+
+
+### Bug Fixes
+
+* change wrong argument type GRAR-170 ([c35091c](https://github.com/informatievlaanderen/api/commit/c35091c7537ac6585d33e0a611182b7d1ae084e3))
+
 ## [12.2.1](https://github.com/informatievlaanderen/api/compare/v12.2.0...v12.2.1) (2021-01-27)
 
 

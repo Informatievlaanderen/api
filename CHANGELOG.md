@@ -1,3 +1,15 @@
+# [12.2.0](https://github.com/informatievlaanderen/api/compare/v12.1.4...v12.2.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* always assign status code 500 as a default for ApiExceptions ([a405392](https://github.com/informatievlaanderen/api/commit/a4053928e10e1e6bf0e185b7e4561f0bf44a9f1e))
+
+
+### Features
+
+* add mapping mapping of ProblemDetailsException GRAR-170 ([57e22f3](https://github.com/informatievlaanderen/api/commit/57e22f3a405719102e58081048141e404b417646))
+
 ## [12.1.4](https://github.com/informatievlaanderen/api/compare/v12.1.3...v12.1.4) (2021-01-13)
 
 

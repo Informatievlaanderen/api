@@ -13,7 +13,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     public class ExceptionHandler
     {
         private readonly ILogger<ApiExceptionHandler> _logger;
-        private readonly IEnumerable<ApiProblemDetailsExceptionMapping> _apiProblemDetailsExceptionMappings;
+        private readonly IEnumerable<ApiProblemDetailsExceptionMapper> _apiProblemDetailsExceptionMappers;
         private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
 
         public ExceptionHandler(
@@ -34,7 +34,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             StartupConfigureOptions? options)
         {
             _logger = logger;
-            _apiProblemDetailsExceptionMappings = apiProblemDetailsExceptionMappings;
+            _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings
+                .Select(configuration => new ApiProblemDetailsExceptionMapper(options, configuration));
             _exceptionHandlers = customExceptionHandlers
                 .Concat(DefaultExceptionHandlers.GetHandlers(options));
         }
@@ -44,7 +45,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             if (exception is ApiProblemDetailsException problemDetailsException)
             {
-                var problemDetailMappings = _apiProblemDetailsExceptionMappings
+                var problemDetailMappings = _apiProblemDetailsExceptionMappers
                     .Where(mapping => mapping.Handles(problemDetailsException))
                     .ToList();
 

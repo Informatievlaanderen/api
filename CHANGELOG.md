@@ -1,3 +1,10 @@
+## [12.2.1](https://github.com/informatievlaanderen/api/compare/v12.2.0...v12.2.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* inject startup options in ProblemDetailException mapping GRAR-170 ([70dd1e4](https://github.com/informatievlaanderen/api/commit/70dd1e4a78e84149bbe1bf783f1699def31fe9c1))
+
 # [12.2.0](https://github.com/informatievlaanderen/api/compare/v12.1.4...v12.2.0) (2021-01-27)
 
 

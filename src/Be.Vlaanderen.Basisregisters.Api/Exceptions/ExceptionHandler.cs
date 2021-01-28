@@ -39,8 +39,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
             _logger = logger;
             _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings;
-            _exceptionHandlers = customExceptionHandlers
-                .Concat(DefaultExceptionHandlers.GetHandlers(options));
+            _exceptionHandlers = customExceptionHandlers.Concat(DefaultExceptionHandlers.GetHandlers(options));
             _problemDetailsHelper = new ProblemDetailsHelper(options);
         }
 

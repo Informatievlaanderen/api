@@ -66,6 +66,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 HttpMethod.Delete,
                 HttpMethod.Options
             }.Select(x => x.Method).ToArray();
+
+            public string ProblemDetailsTypeNamespaceOverride { get; set; } = string.Empty;
         }
 
         public SwaggerOptions Swagger { get; } = new SwaggerOptions();

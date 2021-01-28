@@ -1,3 +1,17 @@
+# [13.0.0](https://github.com/informatievlaanderen/api/compare/v12.2.3...v13.0.0) (2021-01-28)
+
+
+### Features
+
+* add namespace override for problem details GRAR-170 ([d0e567b](https://github.com/informatievlaanderen/api/commit/d0e567b4904ea2444818d8116841303dfd7f0e50))
+
+
+### BREAKING CHANGES
+
+* CHANGES
+- ProblemDetailHelper is turned into an instance class
+- ApiProblemDetailsExceptionMapping.Map signature is extended with ProblemDetailsHelper
+
 ## [12.2.3](https://github.com/informatievlaanderen/api/compare/v12.2.2...v12.2.3) (2021-01-28)
 
 

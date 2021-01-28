@@ -11,16 +11,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class ValidationExceptionHandler : DefaultExceptionHandler<ValidationException>
     {
-        private readonly string _problemDetailsBaseInstanceUri;
+        private readonly ProblemDetailsHelper _problemDetailsHelper;
 
         public ValidationExceptionHandler(StartupConfigureOptions? options)
-            => _problemDetailsBaseInstanceUri = options.GetProblemBaseInstanceUri();
+            => _problemDetailsHelper = new ProblemDetailsHelper(options);
 
         protected override ProblemDetails GetApiProblemFor(ValidationException exception)
             => new ValidationProblemDetails(exception)
             {
                 ProblemInstanceUri =
-                    $"{_problemDetailsBaseInstanceUri}/{ProblemDetails.GetProblemNumber()}"
+                    $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
             };
     }
 

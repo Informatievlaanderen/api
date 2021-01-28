@@ -5,7 +5,18 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public abstract class ApiProblemDetailsExceptionMapping
     {
-        public abstract bool Handles(ApiProblemDetailsException exception);
-        public abstract ProblemDetails Map(StartupConfigureOptions options, ApiProblemDetailsException exception);
+        public bool Handles(ApiProblemDetailsException? exception)
+            => exception?.Details != null && HandlesException(exception);
+
+        public ProblemDetails Map(ApiProblemDetailsException exception, ProblemDetailsHelper problemDetailsHelper)
+        {
+            if (!Handles(exception))
+                throw new InvalidCastException("Could not map problem details!");
+
+            return MapException(exception, problemDetailsHelper);
+        }
+
+        public abstract bool HandlesException(ApiProblemDetailsException exception);
+        public abstract ProblemDetails MapException(ApiProblemDetailsException exception, ProblemDetailsHelper problemDetailsHelper);
     }
 }

@@ -28,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             options.MapStatusCode = MapStatusCode;
 
             // keep consistent with asp.net core 2.2 conventions that adds a tracing value
-            options.OnBeforeWriteDetails = (ctx, details) => ProblemDetailsHelper.SetTraceId(details, HttpContextAccessor.HttpContext);
+            options.OnBeforeWriteDetails = (ctx, details) => details.SetTraceId(HttpContextAccessor.HttpContext);
         }
 
         private ProblemDetails MapStatusCode(HttpContext context, int statusCode)

@@ -13,13 +13,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     public class ExceptionHandler
     {
         private readonly ILogger<ApiExceptionHandler> _logger;
-        private readonly IEnumerable<ApiProblemDetailsExceptionMapper> _apiProblemDetailsExceptionMappers;
+        private readonly IEnumerable<ApiProblemDetailsExceptionMapping> _apiProblemDetailsExceptionMappers;
         private readonly IEnumerable<IExceptionHandler> _exceptionHandlers;
+        private readonly ProblemDetailsHelper _problemDetailsHelper;
 
         public ExceptionHandler(
             ILogger<ApiExceptionHandler> logger,
             IEnumerable<IExceptionHandler> customExceptionHandlers)
-            : this(logger, customExceptionHandlers, null) { }
+            : this(logger, customExceptionHandlers, new StartupConfigureOptions()) { }
 
         public ExceptionHandler(
             ILogger<ApiExceptionHandler> logger,
@@ -33,11 +34,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             IEnumerable<IExceptionHandler> customExceptionHandlers,
             StartupConfigureOptions? options)
         {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+
             _logger = logger;
-            _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings
-                .Select(configuration => new ApiProblemDetailsExceptionMapper(options, configuration));
+            _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings;
             _exceptionHandlers = customExceptionHandlers
                 .Concat(DefaultExceptionHandlers.GetHandlers(options));
+            _problemDetailsHelper = new ProblemDetailsHelper(options);
         }
 
         /// <summary>Sets the exception result as HttpResponse</summary>
@@ -50,7 +54,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     .ToList();
 
                 if (problemDetailMappings.Count == 1)
-                    throw new ProblemDetailsException(problemDetailMappings.First().Map(problemDetailsException));
+                    throw new ProblemDetailsException(problemDetailMappings.First().Map(problemDetailsException, _problemDetailsHelper));
 
                 if (problemDetailMappings.Count > 1)
                     _logger.LogWarning($"Multiple mappings for {nameof(ApiProblemDetailsException)} found. Skipping specific mapping.");
@@ -62,7 +66,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 throw new ProblemDetailsException(HandleUnhandledException(exception));
 
             var problem = await exceptionHandler.GetApiProblemFor(exception);
-            problem.ProblemInstanceUri = context.GetProblemInstanceUri();
+            problem.ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(context);
 
             LogExceptionHandled(exception, problem, exceptionHandler.HandledExceptionType);
             throw new ProblemDetailsException(problem);
@@ -88,7 +92,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status500InternalServerError,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "",
-                ProblemTypeUri = ProblemDetails.GetTypeUriFor(exception as UnhandledException),
+                ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception as UnhandledException),
                 ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
 

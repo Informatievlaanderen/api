@@ -33,22 +33,20 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 : $"{problemBaseInstanceUri}/{ProblemDetails.GetProblemNumber()}";
         }
 
-        public string GetExceptionTypeUriFor<T>(T exception)
-            where T : Exception
+        public string GetExceptionTypeUriFor<T>(T exception) where T : Exception
             => GetExceptionTypeUriFor<T>();
 
-        public string GetExceptionTypeUriFor<T>()
-            where T : Exception
+        public string GetExceptionTypeUriFor<T>() where T : Exception
         {
             var namespaceOverride = _configuration?.Server?.ProblemDetailsTypeNamespaceOverride;
             return string.IsNullOrWhiteSpace(namespaceOverride)
                 ? ProblemDetails.GetTypeUriFor<T>()
                 : ProblemDetails.GetTypeUriFor<T>(namespaceOverride);
         }
-
     }
 
-    public static class ProblemDetailsContentHelperExtensions {
+    public static class ProblemDetailsContentHelperExtensions 
+    {
         public static string GetProblemInstanceUri(this HttpContext httpContext)
         {
             var configurationOptions = httpContext?.RequestServices?.GetService<StartupConfigureOptions>();

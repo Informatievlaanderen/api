@@ -1,3 +1,10 @@
+## [12.2.3](https://github.com/informatievlaanderen/api/compare/v12.2.2...v12.2.3) (2021-01-28)
+
+
+### Bug Fixes
+
+* update problem details middleware GRAR-170 ([7c60d72](https://github.com/informatievlaanderen/api/commit/7c60d7272d66cfa8b378ca7c98d488172a68f606))
+
 ## [12.2.2](https://github.com/informatievlaanderen/api/compare/v12.2.1...v12.2.2) (2021-01-27)
 
 

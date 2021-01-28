@@ -104,3 +104,4 @@ nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true
 //  source https://api.nuget.org/v3/index.json
 //  nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.1
 //  nuget Nuget.Packaging < 5.7
+

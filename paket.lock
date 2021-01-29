@@ -103,7 +103,7 @@ NUGET
       Autofac.Extensions.DependencyInjection (>= 7.1)
       Be.Vlaanderen.Basisregisters.EventHandling (3.0.3)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (2.2.9)
-    Be.Vlaanderen.Basisregisters.ProblemDetails (6.0.2)
+    Be.Vlaanderen.Basisregisters.ProblemDetails (6.0.3)
       System.Reflection.Metadata (>= 5.0)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.10)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.9)

@@ -1,3 +1,10 @@
+## [13.0.1](https://github.com/informatievlaanderen/api/compare/v13.0.0...v13.0.1) (2021-01-29)
+
+
+### Bug Fixes
+
+* update problem details dependencies GRAR-170 ([c2cf6f8](https://github.com/informatievlaanderen/api/commit/c2cf6f8d2a95f042365f5d86756a685ad672e15d))
+
 # [13.0.0](https://github.com/informatievlaanderen/api/compare/v12.2.3...v13.0.0) (2021-01-28)
 
 

@@ -1,3 +1,10 @@
+# [13.1.0](https://github.com/informatievlaanderen/api/compare/v13.0.2...v13.1.0) (2021-02-05)
+
+
+### Features
+
+* add rewriting a exception from problemdetails GRAR-1814 ([40af6c3](https://github.com/informatievlaanderen/api/commit/40af6c3495d357596263d89f72ab9f9b68da6dcc))
+
 ## [13.0.2](https://github.com/informatievlaanderen/api/compare/v13.0.1...v13.0.2) (2021-02-02)
 
 

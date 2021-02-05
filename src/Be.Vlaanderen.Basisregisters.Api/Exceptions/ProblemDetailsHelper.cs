@@ -16,7 +16,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         private string BaseUrl => _configuration?.BaseUrl ?? string.Empty;
         private string NamespaceOverride => _configuration?.ProblemDetailsTypeNamespaceOverride ?? string.Empty;
 
-
         public ProblemDetailsHelper(StartupConfigureOptions? configurationOptions)
             => _configuration = configurationOptions?.Server;
 

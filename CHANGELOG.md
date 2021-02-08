@@ -1,3 +1,10 @@
+## [13.1.1](https://github.com/informatievlaanderen/api/compare/v13.1.0...v13.1.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* fix trailing character GRAR-1814 ([4fb8c21](https://github.com/informatievlaanderen/api/commit/4fb8c215bd533f1a6c2a7cc0181cbcecb3f59ebf))
+
 # [13.1.0](https://github.com/informatievlaanderen/api/compare/v13.0.2...v13.1.0) (2021-02-05)
 
 

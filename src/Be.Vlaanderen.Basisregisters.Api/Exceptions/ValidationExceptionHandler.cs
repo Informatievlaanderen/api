@@ -13,8 +13,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     {
         private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-        public ValidationExceptionHandler(StartupConfigureOptions? options)
-            => _problemDetailsHelper = new ProblemDetailsHelper(options);
+        public ValidationExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+            => _problemDetailsHelper = problemDetailsHelper;
 
         protected override ProblemDetails GetApiProblemFor(ValidationException exception)
             => new ValidationProblemDetails(exception)

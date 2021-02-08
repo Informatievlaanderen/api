@@ -33,23 +33,23 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     internal class DefaultExceptionHandlers
     {
-        public static IEnumerable<IExceptionHandler> GetHandlers(StartupConfigureOptions? options) => new IExceptionHandler[]
+        public static IEnumerable<IExceptionHandler> GetHandlers(ProblemDetailsHelper problemDetailsHelper) => new IExceptionHandler[]
         {
-            new DomainExceptionHandler(options),
-            new ApiExceptionHandler(options),
-            new AggregateNotFoundExceptionHandler(options),
-            new ValidationExceptionHandler(options),
-            new HttpRequestExceptionHandler(options),
-            new DBConcurrencyExceptionHandler(options),
-            new NotImplementedExceptionHandler(options),
+            new DomainExceptionHandler(problemDetailsHelper),
+            new ApiExceptionHandler(problemDetailsHelper),
+            new AggregateNotFoundExceptionHandler(problemDetailsHelper),
+            new ValidationExceptionHandler(problemDetailsHelper),
+            new HttpRequestExceptionHandler(problemDetailsHelper),
+            new DBConcurrencyExceptionHandler(problemDetailsHelper),
+            new NotImplementedExceptionHandler(problemDetailsHelper),
         };
 
         private class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public DomainExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public DomainExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(DomainException exception) =>
                 new ProblemDetails
@@ -66,8 +66,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public ApiExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public ApiExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(ApiException exception) =>
                 new ProblemDetails
@@ -84,8 +84,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public AggregateNotFoundExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public AggregateNotFoundExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(AggregateNotFoundException exception) =>
                 new ProblemDetails
@@ -103,8 +103,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public HttpRequestExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public HttpRequestExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(HttpRequestException exception) =>
                 new ProblemDetails
@@ -122,8 +122,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public DBConcurrencyExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public DBConcurrencyExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(DBConcurrencyException exception) =>
                 new ProblemDetails
@@ -141,8 +141,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-            public NotImplementedExceptionHandler(StartupConfigureOptions? options)
-                => _problemDetailsHelper = new ProblemDetailsHelper(options);
+            public NotImplementedExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
+                => _problemDetailsHelper = problemDetailsHelper);
 
             protected override ProblemDetails GetApiProblemFor(NotImplementedException exception) =>
                 new ProblemDetails

@@ -39,8 +39,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
             _logger = logger;
             _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings;
-            _exceptionHandlers = customExceptionHandlers.Concat(DefaultExceptionHandlers.GetHandlers(options));
             _problemDetailsHelper = new ProblemDetailsHelper(options);
+            _exceptionHandlers = customExceptionHandlers.Concat(DefaultExceptionHandlers.GetHandlers(_problemDetailsHelper));
         }
 
         /// <summary>Sets the exception result as HttpResponse</summary>

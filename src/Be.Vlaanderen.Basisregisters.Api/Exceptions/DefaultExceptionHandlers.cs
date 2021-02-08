@@ -142,7 +142,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
             public NotImplementedExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
-                => _problemDetailsHelper = problemDetailsHelper);
+                => _problemDetailsHelper = problemDetailsHelper;
 
             protected override ProblemDetails GetApiProblemFor(NotImplementedException exception) =>
                 new ProblemDetails

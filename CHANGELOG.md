@@ -1,3 +1,20 @@
+# [14.0.0](https://github.com/informatievlaanderen/api/compare/v13.1.1...v14.0.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* remove extension method GRAR-1814 ([0a1fcc2](https://github.com/informatievlaanderen/api/commit/0a1fcc2561af19d56da13f61015e90c90738f500))
+* remove hardcoded ProblemDetailsHelper instances GRAR-1814 ([c33a653](https://github.com/informatievlaanderen/api/commit/c33a6538a130cdd54db355e2c33078710a6528c6))
+
+
+### BREAKING CHANGES
+
+* CHANGE
+modified the public constructor to use a ProblemDetailsHelper
+* CHANGE
+remove extension method that hides the use of ProblemDetailsHelper in
+favor of explicitly getting a helper and using it
+
 ## [13.1.1](https://github.com/informatievlaanderen/api/compare/v13.1.0...v13.1.1) (2021-02-08)
 
 

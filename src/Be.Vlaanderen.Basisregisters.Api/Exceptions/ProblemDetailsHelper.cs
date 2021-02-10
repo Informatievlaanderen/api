@@ -69,13 +69,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public static class ProblemDetailsContentHelperExtensions 
     {
-        public static string GetProblemInstanceUri(this HttpContext httpContext)
-        {
-            var configurationOptions = httpContext?.RequestServices?.GetService<StartupConfigureOptions>();
-            return new ProblemDetailsHelper(configurationOptions).GetInstanceUri(httpContext);
-        }
-
-        public static void SetTraceId(this ProblemDetails details, HttpContext httpContext)
-            => details.ProblemInstanceUri = httpContext.GetProblemInstanceUri();
+        public static void SetTraceId(this ProblemDetails details, ProblemDetailsHelper problemDetailsHelper, HttpContext httpContext)
+            => details.ProblemInstanceUri = problemDetailsHelper.GetInstanceUri(httpContext);
     }
 }

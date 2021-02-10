@@ -21,7 +21,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             _context = new TestHttpContext();
             _exceptionHandler = new ExceptionHandler(
                 Mock.Of<ILogger<ApiExceptionHandler>>(),
-                new IExceptionHandler[0]);
+                new ApiProblemDetailsExceptionMapping[0],
+                new IExceptionHandler[0],
+                new ProblemDetailsHelper(new StartupConfigureOptions()));
         }
 
         [Fact]
@@ -170,11 +172,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
 
             var exceptionHandler = new ExceptionHandler(
                 Mock.Of<ILogger<ApiExceptionHandler>>(),
+                new ApiProblemDetailsExceptionMapping[0],
                 new[]
                 {
                     customDomainExceptionHandler.Object,
                     extraCustomDomainExceptionHandler.Object
-                });
+                },
+                new ProblemDetailsHelper(new StartupConfigureOptions()));
 
             try
             {

@@ -160,8 +160,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             GlobalStringLocalizer.Instance = new GlobalStringLocalizer(app.ApplicationServices.GetRequiredService<IServiceProvider>());
 
-            var configureOptions = app.ApplicationServices.GetRequiredService<StartupConfigureOptions>();
-
             if (options.Common.HostingEnvironment.IsDevelopment())
                 app
                     .UseDeveloperExceptionPage()
@@ -176,8 +174,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             app.UseApiExceptionHandler(
                 options.Api.DefaultCorsPolicy,
-                options,
-                configureOptions);
+                options);
             options.MiddlewareHooks.AfterApiExceptionHandler?.Invoke(app);
 
             app

@@ -19,27 +19,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         public ExceptionHandler(
             ILogger<ApiExceptionHandler> logger,
-            IEnumerable<IExceptionHandler> customExceptionHandlers)
-            : this(logger, customExceptionHandlers, new StartupConfigureOptions()) { }
-
-        public ExceptionHandler(
-            ILogger<ApiExceptionHandler> logger,
-            IEnumerable<IExceptionHandler> customExceptionHandlers,
-            StartupConfigureOptions? options)
-            : this(logger, new List<ApiProblemDetailsExceptionMapping>(), customExceptionHandlers, options) { }
-
-        public ExceptionHandler(
-            ILogger<ApiExceptionHandler> logger,
             IEnumerable<ApiProblemDetailsExceptionMapping> apiProblemDetailsExceptionMappings,
             IEnumerable<IExceptionHandler> customExceptionHandlers,
-            StartupConfigureOptions? options)
+            ProblemDetailsHelper problemDetailsHelper)
         {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
-
             _logger = logger;
             _apiProblemDetailsExceptionMappers = apiProblemDetailsExceptionMappings;
-            _problemDetailsHelper = new ProblemDetailsHelper(options);
+            _problemDetailsHelper = problemDetailsHelper ?? throw new ArgumentNullException(nameof(problemDetailsHelper));
             _exceptionHandlers = customExceptionHandlers.Concat(DefaultExceptionHandlers.GetHandlers(_problemDetailsHelper));
         }
 

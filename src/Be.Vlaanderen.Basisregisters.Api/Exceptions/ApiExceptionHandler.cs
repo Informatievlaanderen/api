@@ -16,8 +16,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public static class ApiExceptionHandlerExtension
     {
-        private static ILogger<ApiExceptionHandler> _logger;
-
         public static IApplicationBuilder UseApiExceptionHandler(
             this IApplicationBuilder app,
             ILoggerFactory loggerFactory,
@@ -30,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Common = { LoggerFactory = loggerFactory },
                     Api = { CustomExceptionHandlers = new IExceptionHandler[] { } }
                 },
-                null);
+                app.ApplicationServices.GetRequiredService<ProblemDetailsHelper>());
 
         public static IApplicationBuilder UseApiExceptionHandler(
             this IApplicationBuilder app,
@@ -45,29 +43,28 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     Common = { LoggerFactory = loggerFactory },
                     Api = { CustomExceptionHandlers = customExceptionHandlers }
                 },
-                null);
+                app.ApplicationServices.GetRequiredService<ProblemDetailsHelper>());
 
         internal static IApplicationBuilder UseApiExceptionHandler(
             this IApplicationBuilder app,
             string corsPolicyName,
-            StartupUseOptions startupUseOptions,
-            StartupConfigureOptions? startupConfigureOptions)
+            StartupUseOptions startupUseOptions)
             => UseApiExceptionHandling(
                 app,
                 corsPolicyName,
                 startupUseOptions,
-                startupConfigureOptions);
+                app.ApplicationServices.GetRequiredService<ProblemDetailsHelper>());
 
         private static IApplicationBuilder UseApiExceptionHandling(
             IApplicationBuilder app,
             string corsPolicyName,
             StartupUseOptions startupUseOptions,
-            StartupConfigureOptions? startupConfigureOptions)
+            ProblemDetailsHelper problemDetailsHelper)
         {
-            _logger = startupUseOptions.Common.LoggerFactory.CreateLogger<ApiExceptionHandler>();
+            var logger = startupUseOptions.Common.LoggerFactory.CreateLogger<ApiExceptionHandler>();
             var customHandlers = startupUseOptions.Api.CustomExceptionHandlers ?? new IExceptionHandler[]{ };
             var problemDetailMappers = startupUseOptions.Api.ProblemDetailsExceptionMappers ?? new ApiProblemDetailsExceptionMapping[] {};
-            var exceptionHandler = new ExceptionHandler(_logger, problemDetailMappers, customHandlers, startupConfigureOptions);
+            var exceptionHandler = new ExceptionHandler(logger, problemDetailMappers, customHandlers, problemDetailsHelper);
 
             app.UseExceptionHandler(builder =>
             {

@@ -10,9 +10,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     public class ValidationErrorResponseExamples : IExamplesProvider<ValidationProblemDetails>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ProblemDetailsHelper _problemDetailsHelper;
 
-        public ValidationErrorResponseExamples(IHttpContextAccessor httpContextAccessor)
-            => _httpContextAccessor = httpContextAccessor;
+        public ValidationErrorResponseExamples(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper)
+        {
+            _httpContextAccessor = httpContextAccessor;
+            _problemDetailsHelper = problemDetailsHelper;
+        }
 
         public ValidationProblemDetails GetExamples() =>
             new ValidationProblemDetails(new ValidationException(string.Empty, new List<ValidationFailure>
@@ -22,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 new ValidationFailure("Naam", "Veld mag niet groter zijn dan 100 karakters.")
             }))
             {
-                ProblemInstanceUri = _httpContextAccessor.HttpContext.GetProblemInstanceUri()
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
             };
     }
 }

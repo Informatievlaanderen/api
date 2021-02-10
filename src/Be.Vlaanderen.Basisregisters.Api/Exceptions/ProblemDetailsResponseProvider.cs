@@ -7,6 +7,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Versioning;
+    using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json;
     using StatusCodeProblemDetails = BasicApiProblem.StatusCodeProblemDetails;
 
@@ -63,7 +64,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 ? _errorCodeTitles[errorCode]
                 : DefaultErrorCodeTitle;
 
-            ProblemInstanceUri = context.Request.HttpContext.GetProblemInstanceUri();
+            var httpContext = context.Request.HttpContext;
+            ProblemInstanceUri = httpContext
+                .RequestServices
+                .GetRequiredService<ProblemDetailsHelper>()
+                .GetInstanceUri(httpContext);
         }
 
         private static string NullIfEmpty(string value) => string.IsNullOrEmpty(value) ? null : value;

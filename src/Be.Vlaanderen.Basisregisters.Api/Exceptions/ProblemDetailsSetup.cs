@@ -9,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class ProblemDetailsSetup : IConfigureOptions<ProblemDetailsOptions>
     {
+        private ProblemDetailsHelper ProblemDetailsHelper { get; }
         private IHostingEnvironment Environment { get; }
         private IHttpContextAccessor HttpContextAccessor { get; }
         private ApiBehaviorOptions ApiOptions { get; }
@@ -16,8 +17,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ProblemDetailsSetup(
             IHostingEnvironment environment,
             IHttpContextAccessor httpContextAccessor,
-            IOptions<ApiBehaviorOptions> apiOptions)
+            IOptions<ApiBehaviorOptions> apiOptions,
+            ProblemDetailsHelper problemDetailsHelper)
         {
+            ProblemDetailsHelper = problemDetailsHelper;
             Environment = environment;
             HttpContextAccessor = httpContextAccessor;
             ApiOptions = apiOptions.Value;
@@ -28,7 +31,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             options.MapStatusCode = MapStatusCode;
 
             // keep consistent with asp.net core 2.2 conventions that adds a tracing value
-            options.OnBeforeWriteDetails = (ctx, details) => details.SetTraceId(HttpContextAccessor.HttpContext);
+            options.OnBeforeWriteDetails = (ctx, details) => details.SetTraceId(ProblemDetailsHelper, HttpContextAccessor.HttpContext);
         }
 
         private ProblemDetails MapStatusCode(HttpContext context, int statusCode)
@@ -39,12 +42,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     ProblemTypeUri = errorData.Link,
                     Title = errorData.Title,
                     Detail = string.Empty,
-                    ProblemInstanceUri = context.GetProblemInstanceUri()
+                    ProblemInstanceUri = ProblemDetailsHelper.GetInstanceUri(context)
                 }
                 : new StatusCodeProblemDetails(statusCode)
                 {
                     Detail = string.Empty,
-                    ProblemInstanceUri = context.GetProblemInstanceUri()
+                    ProblemInstanceUri = ProblemDetailsHelper.GetInstanceUri(context)
                 };
     }
 }

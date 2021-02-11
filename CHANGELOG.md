@@ -1,3 +1,10 @@
+# [14.1.0](https://github.com/informatievlaanderen/api/compare/v14.0.0...v14.1.0) (2021-02-11)
+
+
+### Features
+
+* add unauthorized example ([bfb74ed](https://github.com/informatievlaanderen/api/commit/bfb74ed4f23b1d425d51d805f24576d45d4038e3))
+
 # [14.0.0](https://github.com/informatievlaanderen/api/compare/v13.1.1...v14.0.0) (2021-02-10)
 
 

@@ -1,3 +1,10 @@
+## [14.1.1](https://github.com/informatievlaanderen/api/compare/v14.1.0...v14.1.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* add forbidden example ([12a7386](https://github.com/informatievlaanderen/api/commit/12a7386a4e4836cde895f55018472aec52380837))
+
 # [14.1.0](https://github.com/informatievlaanderen/api/compare/v14.0.0...v14.1.0) (2021-02-11)
 
 

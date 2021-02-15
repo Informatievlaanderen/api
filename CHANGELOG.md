@@ -1,3 +1,10 @@
+## [14.1.2](https://github.com/informatievlaanderen/api/compare/v14.1.1...v14.1.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* use problem details helper for validation details GRAR-1814 ([bbc4219](https://github.com/informatievlaanderen/api/commit/bbc421978c3124e1d38659ee3f6ef5b5133f11e7))
+
 ## [14.1.1](https://github.com/informatievlaanderen/api/compare/v14.1.0...v14.1.1) (2021-02-11)
 
 

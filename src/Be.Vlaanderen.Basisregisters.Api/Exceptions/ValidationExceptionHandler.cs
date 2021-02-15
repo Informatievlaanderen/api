@@ -19,8 +19,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         protected override ProblemDetails GetApiProblemFor(ValidationException exception)
             => new ValidationProblemDetails(exception)
             {
-                ProblemInstanceUri =
-                    $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor<ValidationException>(),
+                ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
             };
     }
 

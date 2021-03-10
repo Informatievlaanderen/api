@@ -1,3 +1,10 @@
+# [14.2.0](https://github.com/informatievlaanderen/api/compare/v14.1.2...v14.2.0) (2021-03-10)
+
+
+### Features
+
+* add extract archive in an transaction in isolation ([e70c565](https://github.com/informatievlaanderen/api/commit/e70c5655663679dc141326f5d03e0e5488b5f14e))
+
 ## [14.1.2](https://github.com/informatievlaanderen/api/compare/v14.1.1...v14.1.2) (2021-02-15)
 
 

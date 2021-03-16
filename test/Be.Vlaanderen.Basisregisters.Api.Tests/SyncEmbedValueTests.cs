@@ -8,11 +8,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
 
     public class When_parsing_an_empty_embed_string
     {
-        private EmbedValue _sut;
+        private SyncEmbedValue _sut;
 
         public When_parsing_an_empty_embed_string()
         {
-            _sut = EmbedValue.Parse("");
+            _sut = SyncEmbedValue.Parse("");
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [InlineData("event,event,event,event,event")]
         public void Then_event_is_set(string value)
         {
-            EmbedValue.Parse(value)
+            SyncEmbedValue.Parse(value)
                 .Event
                 .Should().BeTrue();
         }
@@ -58,7 +58,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [InlineData("object,object,object,object,object,object")]
         public void Then_object_is_set(string value)
         {
-            EmbedValue.Parse(value)
+            SyncEmbedValue.Parse(value)
                 .Object
                 .Should().BeTrue();
         }
@@ -75,11 +75,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         [InlineData("123,event")]
         public void Then_a_validation_exception_is_thrown(string value)
         {
-            Action parse = () => EmbedValue.Parse(value);
+            Action parse = () => SyncEmbedValue.Parse(value);
 
             parse
                 .Should()
-                .Throw<EmbedValue.InvalidOptionException>();
+                .Throw<SyncEmbedValue.InvalidOptionException>();
         }
     }
 }

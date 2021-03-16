@@ -8,7 +8,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
     using FluentValidation.Results;
     using Helpers;
 
-    public class EmbedValue
+    public class SyncEmbedValue
     {
         private static readonly Regex AllowParseRegex = new Regex("[,a-z]+", RegexOptions.IgnoreCase);
 
@@ -34,10 +34,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 _value &= ~option;
         }
 
-        public EmbedValue()
+        public SyncEmbedValue()
             : this(EmbedOption.None) { }
 
-        private EmbedValue(EmbedOption value)
+        private SyncEmbedValue(EmbedOption value)
             => _value = value;
 
         public override string ToString()
@@ -52,20 +52,20 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 .ToLowerInvariant();
         }
 
-        public static EmbedValue Parse(string value)
+        public static SyncEmbedValue Parse(string value)
         {
             if (value.IsNullOrWhiteSpace())
-                return new EmbedValue(EmbedOption.None);
+                return new SyncEmbedValue(EmbedOption.None);
 
             if (AllowParseRegex.IsMatch(value)
                 && Enum.TryParse(typeof(EmbedOption), value, true, out var result))
-                return new EmbedValue((EmbedOption)result);
+                return new SyncEmbedValue((EmbedOption)result);
 
             throw new InvalidOptionException(value);
         }
 
         // Support deconstructing from string-value
-        public static implicit operator EmbedValue(string value)
+        public static implicit operator SyncEmbedValue(string value)
             => Parse(value);
 
         public class InvalidOptionException : ValidationException
@@ -78,7 +78,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 {
                     new ValidationFailure(
                         "embed",
-                        $"The value '{argumentValue}' is not a valid embed option.",
+                        $"De waarde {argumentValue} is ongeldig. Enkel 'event', 'object' of 'event,object' kan u meegeven.",
                         argumentValue)
                 };
         }

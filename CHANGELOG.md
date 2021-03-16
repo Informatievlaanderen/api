@@ -1,3 +1,15 @@
+# [15.0.0](https://github.com/informatievlaanderen/api/compare/v14.2.0...v15.0.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* change embed value to sync embed value and used dutch error message GRAR-1891 ([ffc0da1](https://github.com/informatievlaanderen/api/commit/ffc0da1281e14fe05eed7c3fb9b236402fbb6542))
+
+
+### BREAKING CHANGES
+
+* renamed EmbedValue to SyncEmbedValue
+
 # [14.2.0](https://github.com/informatievlaanderen/api/compare/v14.1.2...v14.2.0) (2021-03-10)
 
 

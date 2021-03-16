@@ -78,7 +78,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 {
                     new ValidationFailure(
                         "embed",
-                        $"De waarde {argumentValue} is ongeldig. Enkel 'event', 'object' of 'event,object' kan u meegeven.",
+                        $"De waarde {argumentValue} is ongeldig. U kan enkel 'event', 'object' of 'event,object' meegeven.",
                         argumentValue)
                 };
         }

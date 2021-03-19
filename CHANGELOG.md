@@ -1,3 +1,10 @@
+## [15.0.1](https://github.com/informatievlaanderen/api/compare/v15.0.0...v15.0.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* error message quotes around parameter value ([cc563a5](https://github.com/informatievlaanderen/api/commit/cc563a5afafabaaaa813131d86db67ff247891fe))
+
 # [15.0.0](https://github.com/informatievlaanderen/api/compare/v14.2.0...v15.0.0) (2021-03-16)
 
 

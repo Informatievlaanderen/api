@@ -1,3 +1,10 @@
+## [15.0.2](https://github.com/informatievlaanderen/api/compare/v15.0.1...v15.0.2) (2021-05-26)
+
+
+### Bug Fixes
+
+*  version bump Be.Vlaanderen.Basisregisters.AspNetCore.Swagger to 3.7.24 ([7a357d7](https://github.com/informatievlaanderen/api/commit/7a357d7480893a154d9fe323cb9b9e3d7c85fc28))
+
 ## [15.0.1](https://github.com/informatievlaanderen/api/compare/v15.0.0...v15.0.1) (2021-03-19)
 
 

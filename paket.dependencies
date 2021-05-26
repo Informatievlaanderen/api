@@ -65,8 +65,8 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader 2.
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 2.2.10
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 2.2.10
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.7.23
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.7.23
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.7.24
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.7.24
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 4.5.6
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 4.5.6

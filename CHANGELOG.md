@@ -1,3 +1,10 @@
+## [15.0.3](https://github.com/informatievlaanderen/api/compare/v15.0.2...v15.0.3) (2021-05-28)
+
+
+### Bug Fixes
+
+* move to 5.0.6 ([ca5d6ce](https://github.com/informatievlaanderen/api/commit/ca5d6ce96fab47ac7540bac05d52d157cacd0583))
+
 ## [15.0.2](https://github.com/informatievlaanderen/api/compare/v15.0.1...v15.0.2) (2021-05-26)
 
 

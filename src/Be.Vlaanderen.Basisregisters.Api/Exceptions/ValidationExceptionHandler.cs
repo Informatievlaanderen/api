@@ -40,8 +40,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
             var validationResult = await validator.ValidateAsync(
                 instance,
-                cancellationToken,
-                (IValidatorSelector)null, ruleSet);
+                v => { v.IncludeRuleSets(ruleSet); },
+                cancellationToken);
 
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);

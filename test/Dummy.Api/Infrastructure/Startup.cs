@@ -59,9 +59,9 @@ namespace Dummy.Api.Infrastructure
                             Description = description.GroupName,
                             Contact = new OpenApiContact
                             {
-                                Name = "agentschap Informatie Vlaanderen",
-                                Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = new Uri("https://vlaanderen.be/informatie-vlaanderen")
+                                Name = "Digitaal Vlaanderen",
+                                Email = "digitaal.vlaanderen@vlaanderen.be",
+                                Url = new Uri("https://vlaanderen.be/digitaal-vlaanderen")
                             },
                             License = new OpenApiLicense
                             {
@@ -154,7 +154,7 @@ namespace Dummy.Api.Infrastructure
                     Server =
                     {
                         PoweredByName = "Vlaamse overheid - Basisregisters Vlaanderen",
-                        ServerName = "agentschap Informatie Vlaanderen"
+                        ServerName = "Digitaal Vlaanderen"
                     },
                     MiddlewareHooks =
                     {

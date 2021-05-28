@@ -355,7 +355,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .Configure<BrotliCompressionProviderOptions>(cfg => cfg.Level = CompressionLevel.Fastest)
                 .Configure<KestrelServerOptions>(serverOptions => serverOptions.AllowSynchronousIO = true);
 
-            ValidatorOptions.DisplayNameResolver =
+            ValidatorOptions.Global.DisplayNameResolver =
                 (type, member, expression) =>
                     member != null
                         ? GlobalStringLocalizer.Instance.GetLocalizer<TSharedResources>().GetString(() => member.Name)

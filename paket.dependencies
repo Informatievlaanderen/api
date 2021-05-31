@@ -48,14 +48,6 @@ nuget Serilog.Enrichers.Thread 3.1.0
 nuget Serilog.Enrichers.Environment 2.1.3
 nuget Serilog.Formatting.Compact 1.1.0
 
-// SWAGGER
-nuget Swashbuckle.AspNetCore 5.6.3
-nuget Swashbuckle.AspNetCore.Filters 6.0.1
-nuget Swashbuckle.AspNetCore.Newtonsoft 5.6.3
-nuget Swashbuckle.AspNetCore.Annotations 5.6.3
-nuget Swashbuckle.AspNetCore.Swagger 5.6.3
-nuget Swashbuckle.AspNetCore.SwaggerUI 5.6.3
-
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.4
 
@@ -73,8 +65,8 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader 2.
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 2.2.11
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 2.2.11
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.7.25
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.7.25
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 3.7.26
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 3.7.26
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 4.5.7
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 4.5.7

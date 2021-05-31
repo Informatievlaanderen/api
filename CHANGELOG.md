@@ -1,3 +1,10 @@
+## [15.0.7](https://github.com/informatievlaanderen/api/compare/v15.0.6...v15.0.7) (2021-05-31)
+
+
+### Bug Fixes
+
+* update fluent validation ([4952008](https://github.com/informatievlaanderen/api/commit/49520080324b4d19b3f9dfef77a9bc08216d13a0))
+
 ## [15.0.6](https://github.com/informatievlaanderen/api/compare/v15.0.5...v15.0.6) (2021-05-31)
 
 

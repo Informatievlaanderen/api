@@ -1,3 +1,10 @@
+## [15.0.6](https://github.com/informatievlaanderen/api/compare/v15.0.5...v15.0.6) (2021-05-31)
+
+
+### Bug Fixes
+
+* update swagger ([ba3510a](https://github.com/informatievlaanderen/api/commit/ba3510aaf61a481851c357b6ba276b0bd6ffef81))
+
 ## [15.0.5](https://github.com/informatievlaanderen/api/compare/v15.0.4...v15.0.5) (2021-05-31)
 
 

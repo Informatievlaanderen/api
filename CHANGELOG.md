@@ -1,3 +1,10 @@
+## [15.0.5](https://github.com/informatievlaanderen/api/compare/v15.0.4...v15.0.5) (2021-05-31)
+
+
+### Bug Fixes
+
+* update build-pipeline ([cf9f13a](https://github.com/informatievlaanderen/api/commit/cf9f13af9ab38ad5f277e0c7e68e0c056e755b97))
+
 ## [15.0.4](https://github.com/informatievlaanderen/api/compare/v15.0.3...v15.0.4) (2021-05-31)
 
 

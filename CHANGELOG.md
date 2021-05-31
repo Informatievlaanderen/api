@@ -1,3 +1,10 @@
+## [15.0.9](https://github.com/informatievlaanderen/api/compare/v15.0.8...v15.0.9) (2021-05-31)
+
+
+### Bug Fixes
+
+* bump swagger packages ([88e25f4](https://github.com/informatievlaanderen/api/commit/88e25f4202094b33991a9c560caa3d0873481e18))
+
 ## [15.0.8](https://github.com/informatievlaanderen/api/compare/v15.0.7...v15.0.8) (2021-05-31)
 
 

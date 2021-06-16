@@ -1,3 +1,10 @@
+## [15.0.10](https://github.com/informatievlaanderen/api/compare/v15.0.9...v15.0.10) (2021-06-16)
+
+
+### Bug Fixes
+
+* added string null check for ruleset ([9a1a5a5](https://github.com/informatievlaanderen/api/commit/9a1a5a5f3d10be4c5c44e1e9e6f59a6a2329f935))
+
 ## [15.0.9](https://github.com/informatievlaanderen/api/compare/v15.0.8...v15.0.9) (2021-05-31)
 
 

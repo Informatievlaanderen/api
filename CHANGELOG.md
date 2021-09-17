@@ -1,3 +1,10 @@
+## [15.0.11](https://github.com/informatievlaanderen/api/compare/v15.0.10...v15.0.11) (2021-09-17)
+
+
+### Bug Fixes
+
+* gawr-721 update ProblemDetail version ([9f34e71](https://github.com/informatievlaanderen/api/commit/9f34e713a99144e5ff3a3f56739523665d569311))
+
 ## [15.0.10](https://github.com/informatievlaanderen/api/compare/v15.0.9...v15.0.10) (2021-06-16)
 
 

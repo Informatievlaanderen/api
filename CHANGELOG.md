@@ -1,3 +1,10 @@
+## [15.0.12](https://github.com/informatievlaanderen/api/compare/v15.0.11...v15.0.12) (2021-10-01)
+
+
+### Bug Fixes
+
+* gawr-622 api documentation ([fa9c7dd](https://github.com/informatievlaanderen/api/commit/fa9c7dddd844a86c8be508cd0f82bd50894994c0))
+
 ## [15.0.11](https://github.com/informatievlaanderen/api/compare/v15.0.10...v15.0.11) (2021-09-17)
 
 

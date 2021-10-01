@@ -26,7 +26,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     { "Voornaam", new[] {"Veld is verplicht." }},
                     { "Naam", new[] {"Veld mag niet kleiner zijn dan 4 karakters.", "Veld mag niet groter zijn dan 100 karakters." }}
                 },
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext),
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:validation"
             };
     }
 }

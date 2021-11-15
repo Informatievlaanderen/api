@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-
 namespace Be.Vlaanderen.Basisregisters.Api.Search
 {
     using System;

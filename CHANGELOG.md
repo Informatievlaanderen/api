@@ -1,3 +1,10 @@
+# [15.1.0](https://github.com/informatievlaanderen/api/compare/v15.0.12...v15.1.0) (2021-11-15)
+
+
+### Features
+
+* extend search query ([45c3acc](https://github.com/informatievlaanderen/api/commit/45c3accb56498640a0856a1c7aad1869955dd95f))
+
 ## [15.0.12](https://github.com/informatievlaanderen/api/compare/v15.0.11...v15.0.12) (2021-10-01)
 
 

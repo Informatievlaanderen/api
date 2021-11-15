@@ -1,3 +1,10 @@
+## [15.1.1](https://github.com/informatievlaanderen/api/compare/v15.1.0...v15.1.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* delete unnecessary using ([d70e348](https://github.com/informatievlaanderen/api/commit/d70e3482f92ac85109aea759655b023307149abb))
+
 # [15.1.0](https://github.com/informatievlaanderen/api/compare/v15.0.12...v15.1.0) (2021-11-15)
 
 

@@ -1,3 +1,10 @@
+## [15.2.1](https://github.com/informatievlaanderen/api/compare/v15.2.0...v15.2.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* removed obsolete tag from ContentWithETagResult ([ae5b206](https://github.com/informatievlaanderen/api/commit/ae5b20628dbdad38eac9d9891838e1124a237bfc))
+
 # [15.2.0](https://github.com/informatievlaanderen/api/compare/v15.1.1...v15.2.0) (2021-11-22)
 
 

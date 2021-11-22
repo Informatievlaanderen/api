@@ -1,3 +1,10 @@
+# [15.2.0](https://github.com/informatievlaanderen/api/compare/v15.1.1...v15.2.0) (2021-11-22)
+
+
+### Features
+
+* add CreatedWithLastObservedPositionAsETagResult ([15af7b7](https://github.com/informatievlaanderen/api/commit/15af7b7648073b81f121a5986080941b13a5ce04))
+
 ## [15.1.1](https://github.com/informatievlaanderen/api/compare/v15.1.0...v15.1.1) (2021-11-15)
 
 

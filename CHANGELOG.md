@@ -1,3 +1,11 @@
+# [15.3.0](https://github.com/informatievlaanderen/api/compare/v15.2.1...v15.3.0) (2021-11-23)
+
+
+### Features
+
+* add AcceptType ([ce65534](https://github.com/informatievlaanderen/api/commit/ce65534e7944cd4212334866b1788a852a64f91b))
+* add PlainStringJsonConverter ([796691c](https://github.com/informatievlaanderen/api/commit/796691cb432bc0652b6a1eb0670b188c8b36856a))
+
 ## [15.2.1](https://github.com/informatievlaanderen/api/compare/v15.2.0...v15.2.1) (2021-11-22)
 
 

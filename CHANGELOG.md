@@ -1,3 +1,10 @@
+# [15.4.0](https://github.com/informatievlaanderen/api/compare/v15.3.1...v15.4.0) (2021-11-26)
+
+
+### Features
+
+* use problemjson middleware ([37a1a44](https://github.com/informatievlaanderen/api/commit/37a1a44ccb69681bff426e0311e6116ee5081eb4))
+
 ## [15.3.1](https://github.com/informatievlaanderen/api/compare/v15.3.0...v15.3.1) (2021-11-24)
 
 

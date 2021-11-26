@@ -9,6 +9,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     {
         Json,
         JsonLd,
+        JsonProblem,
         Xml,
         Atom
     }

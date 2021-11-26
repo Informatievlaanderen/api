@@ -1,3 +1,46 @@
+## [15.3.1](https://github.com/informatievlaanderen/api/compare/v15.3.0...v15.3.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* bump swagger ([e1697e7](https://github.com/informatievlaanderen/api/commit/e1697e7809dda74c5041da80b1155f89816ac77e))
+
+# [15.3.0](https://github.com/informatievlaanderen/api/compare/v15.2.1...v15.3.0) (2021-11-23)
+
+
+### Features
+
+* add AcceptType ([ce65534](https://github.com/informatievlaanderen/api/commit/ce65534e7944cd4212334866b1788a852a64f91b))
+* add PlainStringJsonConverter ([796691c](https://github.com/informatievlaanderen/api/commit/796691cb432bc0652b6a1eb0670b188c8b36856a))
+
+## [15.2.1](https://github.com/informatievlaanderen/api/compare/v15.2.0...v15.2.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* removed obsolete tag from ContentWithETagResult ([ae5b206](https://github.com/informatievlaanderen/api/commit/ae5b20628dbdad38eac9d9891838e1124a237bfc))
+
+# [15.2.0](https://github.com/informatievlaanderen/api/compare/v15.1.1...v15.2.0) (2021-11-22)
+
+
+### Features
+
+* add CreatedWithLastObservedPositionAsETagResult ([15af7b7](https://github.com/informatievlaanderen/api/commit/15af7b7648073b81f121a5986080941b13a5ce04))
+
+## [15.1.1](https://github.com/informatievlaanderen/api/compare/v15.1.0...v15.1.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* delete unnecessary using ([d70e348](https://github.com/informatievlaanderen/api/commit/d70e3482f92ac85109aea759655b023307149abb))
+
+# [15.1.0](https://github.com/informatievlaanderen/api/compare/v15.0.12...v15.1.0) (2021-11-15)
+
+
+### Features
+
+* extend search query ([45c3acc](https://github.com/informatievlaanderen/api/commit/45c3accb56498640a0856a1c7aad1869955dd95f))
+
 ## [15.0.12](https://github.com/informatievlaanderen/api/compare/v15.0.11...v15.0.12) (2021-10-01)
 
 

@@ -23,6 +23,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
     {
         protected abstract IQueryable<T> Filter(FilteringHeader<TFilter> filtering);
 
+        protected IQueryable<T> Filter<TInput>(FilteringHeader<TFilter> filtering)
+        where TInput: T
+        {
+            return Filter(filtering);
+        }
+
         protected abstract ISorting Sorting { get; }
 
         protected virtual Expression<Func<T, TResult>> Transformation => null;
@@ -47,6 +53,30 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
                 .WithSorting(sorting, Sorting)
                 .WithPagination(paginationRequest)
                 .WithTransformation(Transformation);
+        }
+
+        public PagedQueryable<TOutput> Fetch<TInput, TOutput>(
+            FilteringHeader<TFilter> filtering,
+            SortingHeader sorting,
+            IPaginationRequest paginationRequest,
+            Expression<Func<TInput, TOutput>> transformation = null)
+            where TInput: T
+        {
+            if (filtering == null)
+                throw new ArgumentNullException(nameof(filtering));
+
+            if (sorting == null)
+                throw new ArgumentNullException(nameof(sorting));
+
+            if (paginationRequest == null)
+                throw new ArgumentNullException(nameof(paginationRequest));
+
+            var items = Filter<TInput>(filtering) as IQueryable<TInput>;
+
+            return items
+                .WithSorting(sorting, Sorting)
+                .WithPagination(paginationRequest)
+                .WithTransformation(transformation);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Options;
+    using Middleware.AddProblemJsonHeader;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -192,7 +193,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .UseMiddleware<AddRemoteIpAddressMiddleware>(options.Api.RemoteIpAddressClaimName)
 
-                .UseMiddleware<AddVersionHeaderMiddleware>(options.Server.VersionHeaderName);
+                .UseMiddleware<AddVersionHeaderMiddleware>(options.Server.VersionHeaderName)
+                .UseMiddleware<AddProblemJsonHeaderMiddleware>();
+
             options.MiddlewareHooks.AfterMiddleware?.Invoke(app);
 
             app

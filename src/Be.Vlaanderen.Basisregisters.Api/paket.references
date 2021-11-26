@@ -54,6 +54,7 @@ Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToRespons
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader
+Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind
 

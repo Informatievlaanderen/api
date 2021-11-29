@@ -26,6 +26,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader >= LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger >= LOCKEDVERSION

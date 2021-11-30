@@ -62,7 +62,7 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToR
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders 2.3.7
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress 2.2.11
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader 2.2.11
-nuget Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader 1.0.1
+nuget Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader 1.0.2
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 2.2.11
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 2.2.11
 

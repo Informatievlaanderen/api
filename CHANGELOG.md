@@ -1,3 +1,10 @@
+## [15.5.3](https://github.com/informatievlaanderen/api/compare/v15.5.2...v15.5.3) (2021-12-01)
+
+
+### Bug Fixes
+
+* bump problemjson (await next) ([2bd84e0](https://github.com/informatievlaanderen/api/commit/2bd84e086e4cccf3b8dfeab9cfb912cd204c06ee))
+
 ## [15.5.2](https://github.com/informatievlaanderen/api/compare/v15.5.1...v15.5.2) (2021-11-30)
 
 

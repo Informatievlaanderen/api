@@ -6,25 +6,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class NotAcceptableResponseExamples : IExamplesProvider<ProblemDetails>
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ProblemDetailsHelper _problemDetailsHelper;
-
-        public NotAcceptableResponseExamples(
-            IHttpContextAccessor httpContextAccessor,
-            ProblemDetailsHelper problemDetailsHelper)
-        {
-            _httpContextAccessor = httpContextAccessor;
-            _problemDetailsHelper = problemDetailsHelper;
-        }
-
-        public ProblemDetails GetExamples() =>
-            new ProblemDetails
-            {
-                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:not-acceptable",
-                HttpStatus = StatusCodes.Status406NotAcceptable,
-                Title = ProblemDetails.DefaultTitle,
-                Detail = "Het gevraagde formaat is niet beschikbaar.",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
-            };
+        // https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5
+        // The 406 response MUST NOT contain a message-body
+        public ProblemDetails GetExamples() => null;
     }
 }

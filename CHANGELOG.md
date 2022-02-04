@@ -1,3 +1,11 @@
+## [15.5.5](https://github.com/informatievlaanderen/api/compare/v15.5.4...v15.5.5) (2022-02-04)
+
+
+### Bug Fixes
+
+* `NotAcceptableResponseExamples` uses correct provider ([322ad02](https://github.com/informatievlaanderen/api/commit/322ad02406568537969a9d5632f9a84659afcb44))
+* commit 322ad ([9d373fd](https://github.com/informatievlaanderen/api/commit/9d373fd47f7614ebe894ce23f77f558f35c8e4df))
+
 ## [15.5.4](https://github.com/informatievlaanderen/api/compare/v15.5.3...v15.5.4) (2022-02-04)
 
 

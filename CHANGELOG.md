@@ -1,3 +1,10 @@
+## [15.5.4](https://github.com/informatievlaanderen/api/compare/v15.5.3...v15.5.4) (2022-02-04)
+
+
+### Bug Fixes
+
+* gawr-614 remove body from 406 exception ([91af944](https://github.com/informatievlaanderen/api/commit/91af944d936555ebca04143fd7f50c5aed903936))
+
 ## [15.5.3](https://github.com/informatievlaanderen/api/compare/v15.5.2...v15.5.3) (2021-12-01)
 
 

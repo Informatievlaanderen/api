@@ -66,7 +66,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             var problemDetailMappers = startupUseOptions.Api.ProblemDetailsExceptionMappers ?? new ApiProblemDetailsExceptionMapping[] {};
             var exceptionHandler = new ExceptionHandler(logger, problemDetailMappers, customHandlers, problemDetailsHelper);
 
-            app.UseExceptionHandler(builder =>
+            app.UseExceptionHandler404Allowed(builder =>
             {
                 builder.UseCors(policyName: corsPolicyName);
                 startupUseOptions.MiddlewareHooks.AfterCors?.Invoke(builder);

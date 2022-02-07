@@ -1,3 +1,10 @@
+## [15.5.6](https://github.com/informatievlaanderen/api/compare/v15.5.5...v15.5.6) (2022-02-07)
+
+
+### Bug Fixes
+
+* too much logging ([7333606](https://github.com/informatievlaanderen/api/commit/7333606d41edfc7ba17bdc1e478a3c656f6d6f32))
+
 ## [15.5.5](https://github.com/informatievlaanderen/api/compare/v15.5.4...v15.5.5) (2022-02-04)
 
 

@@ -1,3 +1,20 @@
+# [16.0.0](https://github.com/informatievlaanderen/api/compare/v15.5.6...v16.0.0) (2022-02-11)
+
+
+### Bug Fixes
+
+* bump problem details dependency ([151a9fe](https://github.com/informatievlaanderen/api/commit/151a9fea51f336f15009f346a02731e27fab8308))
+
+
+### Features
+
+* add json error action filter ([aaa07f5](https://github.com/informatievlaanderen/api/commit/aaa07f58cf6fe7283bb497c0c96a3ff494a7f236))
+
+
+### BREAKING CHANGES
+
+* bump
+
 ## [15.5.6](https://github.com/informatievlaanderen/api/compare/v15.5.5...v15.5.6) (2022-02-07)
 
 

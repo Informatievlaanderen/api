@@ -269,11 +269,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .AddControllersAsServices()
                 .AddAuthorization(options.MiddlewareHooks.Authorization)
 
-                // TODO: NewtonsoftJson here
-
                 .AddNewtonsoftJson(
                     options.MiddlewareHooks.ConfigureJsonOptions
-                    ?? (cfg => cfg.SerializerSettings.ConfigureDefaultForApi()))
+                    ?? (cfg =>
+                    {
+                        cfg.SerializerSettings.ConfigureDefaultForApi();
+                        cfg.AllowInputFormatterExceptionMessages = !options.EnableJsonErrorActionFilter;
+                    }))
 
                 .AddXmlDataContractSerializerFormatters()
 

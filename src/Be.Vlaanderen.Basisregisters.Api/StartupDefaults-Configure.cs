@@ -38,6 +38,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
     public class StartupConfigureOptions
     {
+        public bool EnableJsonErrorActionFilter { get; set; } = false;
+
         public CorsOptions Cors { get; } = new CorsOptions();
 
         public class CorsOptions
@@ -221,12 +223,19 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     cfg.Filters.Add(new DataDogTracingFilter());
 
+                    if (options.EnableJsonErrorActionFilter)
+                    {
+                        cfg.Filters.Add(new JsonErrorActionFilter());
+                    }
+
                     cfg.EnableEndpointRouting = false;
 
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 });
 
             options.MiddlewareHooks.AfterMvcCore?.Invoke(mvcBuilder);
+
+
 
             mvcBuilder
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
@@ -259,6 +268,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                 .AddControllersAsServices()
                 .AddAuthorization(options.MiddlewareHooks.Authorization)
+
+                // TODO: NewtonsoftJson here
 
                 .AddNewtonsoftJson(
                     options.MiddlewareHooks.ConfigureJsonOptions

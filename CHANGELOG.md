@@ -1,3 +1,10 @@
+## [16.0.1](https://github.com/informatievlaanderen/api/compare/v16.0.0...v16.0.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* bump problemdetails ([563fcd0](https://github.com/informatievlaanderen/api/commit/563fcd0c680b0a8a9ba91b2ee08a6e1ab3eafdb4))
+
 # [16.0.0](https://github.com/informatievlaanderen/api/compare/v15.5.6...v16.0.0) (2022-02-11)
 
 

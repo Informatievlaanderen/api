@@ -39,6 +39,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
     public class StartupConfigureOptions
     {
         public bool EnableJsonErrorActionFilter { get; set; } = false;
+        public StartupConfigureOptions EnableJsonErrorActionFilterOption()
+        {
+            EnableJsonErrorActionFilter = true;
+            return this;
+        }
 
         public CorsOptions Cors { get; } = new CorsOptions();
 

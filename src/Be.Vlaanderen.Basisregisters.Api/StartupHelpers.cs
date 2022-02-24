@@ -136,8 +136,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public static async Task CheckDatabases(
             HealthCheckService healthCheckService,
-            string databaseTag)
+            string databaseTag,
+            ILoggerFactory loggerFactory,
+            int retryCount = 5,
+            int delaySeconds = 2)
         {
+            var logger = loggerFactory.CreateLogger("CheckDatabasesLogger");
+
             string FormatHealthReport(HealthReport healthReport)
             {
                 var entries = healthReport
@@ -148,10 +153,21 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 return $"\n\t* {string.Join("\n\t* ", entries)}";
             }
 
-            var result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
+            HealthReport? result = null;
 
-            if (result.Status != HealthStatus.Healthy)
-                throw new Exception($"Databases not ready:{FormatHealthReport(result)}");
+            await Policy.Handle<Exception>()
+                .WaitAndRetryAsync(retryCount, _ => TimeSpan.FromSeconds(delaySeconds),
+                (_, timespan) =>
+                {
+                    logger.LogInformation($"Retrying database healthcheck after {timespan.Seconds} seconds.");
+                })
+                .ExecuteAsync(async () =>
+                {
+                    result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
+                });
+
+            if (result!.Status != HealthStatus.Healthy)
+                throw new Exception($"Databases not ready after {retryCount} retries, healthreport: {FormatHealthReport(result)}");
         }
     }
 }

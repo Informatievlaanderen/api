@@ -5,7 +5,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.ETag
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Net.Http.Headers;
 
-    [Obsolete("Phase out: switch to using LastObservedPosition", false)]
     public class PreconditionFailedResult : ActionResult
     {
         private readonly int _retryAfterSeconds;

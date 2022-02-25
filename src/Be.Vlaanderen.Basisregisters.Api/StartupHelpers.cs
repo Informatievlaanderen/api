@@ -164,6 +164,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 .ExecuteAsync(async () =>
                 {
                     result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
+
+                    if (result.Status != HealthStatus.Healthy)
+                        throw new Exception($"Databases healthcheck failed.");  
                 });
 
             if (result!.Status != HealthStatus.Healthy)

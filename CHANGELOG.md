@@ -1,3 +1,20 @@
+# [17.0.0](https://github.com/informatievlaanderen/api/compare/v16.1.1...v17.0.0) (2022-02-25)
+
+
+### Bug Fixes
+
+* remove unneeded header name ([3b8a943](https://github.com/informatievlaanderen/api/commit/3b8a94340b31cfa03d0119434a3f3c3083b6e307))
+
+
+### Features
+
+* add OkWithLastObservedPositionAsETagResult ([56dea3c](https://github.com/informatievlaanderen/api/commit/56dea3ca96005265ed1a417b210565deba3ef2ce))
+
+
+### BREAKING CHANGES
+
+* removed ApiResults related to CRAB
+
 ## [16.1.1](https://github.com/informatievlaanderen/api/compare/v16.1.0...v16.1.1) (2022-02-25)
 
 

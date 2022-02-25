@@ -1,3 +1,10 @@
+## [16.1.1](https://github.com/informatievlaanderen/api/compare/v16.1.0...v16.1.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* throw when healthcheck result not healthy ([c906a1a](https://github.com/informatievlaanderen/api/commit/c906a1a4fbd50666a790c2aa1faaf54d013ac8cc))
+
 # [16.1.0](https://github.com/informatievlaanderen/api/compare/v16.0.2...v16.1.0) (2022-02-24)
 
 

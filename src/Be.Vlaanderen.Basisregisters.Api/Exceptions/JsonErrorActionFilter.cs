@@ -14,7 +14,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.Result == null && !context.ModelState.IsValid
+            if (context.Result == null
+                && !context.ModelState.IsValid
                 && HasJsonErrors(context.ModelState))
             {
                 throw new ValidationException(new List<ValidationFailure>(new []

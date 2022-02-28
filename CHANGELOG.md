@@ -1,3 +1,10 @@
+## [17.0.1](https://github.com/informatievlaanderen/api/compare/v17.0.0...v17.0.1) (2022-02-28)
+
+
+### Bug Fixes
+
+* style to trigger build ([59a2f90](https://github.com/informatievlaanderen/api/commit/59a2f900f632861c055babb65cf9b0a41b7ebbdd))
+
 # [17.0.0](https://github.com/informatievlaanderen/api/compare/v16.1.1...v17.0.0) (2022-02-25)
 
 

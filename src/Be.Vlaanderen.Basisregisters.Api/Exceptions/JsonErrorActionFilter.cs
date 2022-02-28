@@ -1,13 +1,12 @@
 namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using FluentValidation;
     using FluentValidation.Results;
-    using Newtonsoft.Json;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.AspNetCore.Mvc.ModelBinding;
+    using Newtonsoft.Json;
 
     public class JsonErrorActionFilter : IActionFilter, IOrderedFilter
     {
@@ -18,7 +17,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             if (context.Result == null && !context.ModelState.IsValid
                 && HasJsonErrors(context.ModelState))
             {
-                throw new ValidationException(new List<ValidationFailure>(new [] { new ValidationFailure("", "Json is not valid.") }));
+                throw new ValidationException(new List<ValidationFailure>(new []
+                {
+                    new ValidationFailure("", "Json is not valid.") { ErrorCode = "JsonInvalid" }
+                }));
             }
         }
 

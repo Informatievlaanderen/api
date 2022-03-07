@@ -1,3 +1,10 @@
+## [17.0.2](https://github.com/informatievlaanderen/api/compare/v17.0.1...v17.0.2) (2022-03-07)
+
+
+### Bug Fixes
+
+* etag should have double quotes ([e642c64](https://github.com/informatievlaanderen/api/commit/e642c64916fe13ac17f720363b17b861cb32b484))
+
 ## [17.0.1](https://github.com/informatievlaanderen/api/compare/v17.0.0...v17.0.1) (2022-02-28)
 
 

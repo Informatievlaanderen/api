@@ -37,15 +37,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.ETag
             }
 
             _tags.Add(LastObservedPositionAsETag);
-            var etag = string.Join("-", _tags);
+            var etag = new ETag(ETagType.Strong, string.Join("-", _tags));
 
             if (context.HttpContext.Response.Headers.Keys.Contains(HeaderNames.ETag))
             {
-                context.HttpContext.Response.Headers[HeaderNames.ETag] = etag;
+                context.HttpContext.Response.Headers[HeaderNames.ETag] = etag.ToString();
             }
             else
             {
-                context.HttpContext.Response.Headers.Add(HeaderNames.ETag, etag);
+                context.HttpContext.Response.Headers.Add(HeaderNames.ETag, etag.ToString());
             }
         }
     }

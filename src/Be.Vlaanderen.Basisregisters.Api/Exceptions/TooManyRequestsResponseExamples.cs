@@ -19,11 +19,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         public ProblemDetails GetExamples() =>
             new ProblemDetails
-            {
-                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:throttled",
+            {                
                 HttpStatus = StatusCodes.Status429TooManyRequests,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "U voert teveel requests uit in een korte tijdspanne. Probeer later opnieuw.",
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:throttled",
                 ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
             };
     }

@@ -1,3 +1,10 @@
+## [17.1.2](https://github.com/informatievlaanderen/api/compare/v17.1.1...v17.1.2) (2022-03-08)
+
+
+### Bug Fixes
+
+* build for toomanyrequests ([458a2c1](https://github.com/informatievlaanderen/api/commit/458a2c15c8e7125f65c032d2fbdd82fae328af4b))
+
 ## [17.1.1](https://github.com/informatievlaanderen/api/compare/v17.1.0...v17.1.1) (2022-03-08)
 
 

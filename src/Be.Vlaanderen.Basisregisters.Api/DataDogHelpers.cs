@@ -39,6 +39,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public string TraceIdHeaderName { get; set; } = DefaultTraceIdHeaderName;
             public string ParentSpanIdHeaderName { get; set; } = DefaultParentSpanIdHeaderName;
             public bool AnalyticsEnabled { get; set; }
+            public bool LogForwardedForEnabled { get; set; }
 
             public Func<StringValues, long> TraceIdGenerator { get; set; }
             public Func<string, bool> ShouldTracePath { get; set; }
@@ -119,7 +120,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                             return true;
                         }),
-                    AnalyticsEnabled = options.Tracing.AnalyticsEnabled
+                    AnalyticsEnabled = options.Tracing.AnalyticsEnabled,
+                    LogForwardedForEnabled = options.Tracing.LogForwardedForEnabled
                 });
             }
 

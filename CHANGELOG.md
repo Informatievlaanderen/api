@@ -1,3 +1,10 @@
+# [17.1.0](https://github.com/informatievlaanderen/api/compare/v17.0.2...v17.1.0) (2022-03-08)
+
+
+### Features
+
+* upgrade datadog tracing ([1029a45](https://github.com/informatievlaanderen/api/commit/1029a45d974be9c6065661117c991cd15e46f978))
+
 ## [17.0.2](https://github.com/informatievlaanderen/api/compare/v17.0.1...v17.0.2) (2022-03-07)
 
 

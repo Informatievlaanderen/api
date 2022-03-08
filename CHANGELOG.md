@@ -1,3 +1,10 @@
+## [17.1.1](https://github.com/informatievlaanderen/api/compare/v17.1.0...v17.1.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* add option and pass it to datadog ([422e0e3](https://github.com/informatievlaanderen/api/commit/422e0e3c5c5d7b1f63fcb282d30a609618642cde))
+
 # [17.1.0](https://github.com/informatievlaanderen/api/compare/v17.0.2...v17.1.0) (2022-03-08)
 
 

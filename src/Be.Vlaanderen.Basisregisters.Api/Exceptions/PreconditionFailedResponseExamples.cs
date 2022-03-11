@@ -20,10 +20,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ProblemDetails GetExamples() =>
             new ProblemDetails
             {
-                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:precondition-failed",
                 HttpStatus = StatusCodes.Status412PreconditionFailed,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = "De gevraagde minimum positie van de event store is nog niet bereikt.",
+                Detail = "Als de If-Match header niet overeenkomt met de laatste ETag.",
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:precondition-failed",
                 ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
             };
     }

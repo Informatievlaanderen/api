@@ -1,3 +1,10 @@
+## [17.2.1](https://github.com/informatievlaanderen/api/compare/v17.2.0...v17.2.1) (2022-03-11)
+
+
+### Bug Fixes
+
+* change PreconditionFailedResponseExamples ([42bc855](https://github.com/informatievlaanderen/api/commit/42bc855404816e694e1e41569d7ddd80f033a7cc))
+
 # [17.2.0](https://github.com/informatievlaanderen/api/compare/v17.1.2...v17.2.0) (2022-03-11)
 
 

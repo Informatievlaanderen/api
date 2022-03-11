@@ -1,3 +1,10 @@
+# [17.2.0](https://github.com/informatievlaanderen/api/compare/v17.1.2...v17.2.0) (2022-03-11)
+
+
+### Features
+
+* add NoContentWithETagResult ([1ccbe9a](https://github.com/informatievlaanderen/api/commit/1ccbe9a04b2e32f4932d10a9fa32842ade60fdf3))
+
 ## [17.1.2](https://github.com/informatievlaanderen/api/compare/v17.1.1...v17.1.2) (2022-03-08)
 
 

@@ -1,3 +1,10 @@
+# [17.3.0](https://github.com/informatievlaanderen/api/compare/v17.2.1...v17.3.0) (2022-03-16)
+
+
+### Features
+
+* add ConflictResponseExamples ([d514c94](https://github.com/informatievlaanderen/api/commit/d514c944648f036bde30c15a0d5ee4fdc77e37ef))
+
 ## [17.2.1](https://github.com/informatievlaanderen/api/compare/v17.2.0...v17.2.1) (2022-03-11)
 
 

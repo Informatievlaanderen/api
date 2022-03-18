@@ -1,3 +1,10 @@
+## [17.3.1](https://github.com/informatievlaanderen/api/compare/v17.3.0...v17.3.1) (2022-03-18)
+
+
+### Bug Fixes
+
+* rename conflictResponseExample file ([39af16b](https://github.com/informatievlaanderen/api/commit/39af16b9db67e25b9928aa661eaf7152fe1d8815))
+
 # [17.3.0](https://github.com/informatievlaanderen/api/compare/v17.2.1...v17.3.0) (2022-03-16)
 
 

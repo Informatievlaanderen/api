@@ -15,7 +15,7 @@ licenseUrl https://opensource.org/licenses/MIT
 description Common API infrastructure and helpers.
 
 dependencies
-  framework: net5.0
+  framework: net6.0
     Be.Vlaanderen.Basisregisters.AggregateSource >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging >= LOCKEDVERSION
@@ -87,8 +87,8 @@ dependencies
     Serilog.Formatting.Compact >= LOCKEDVERSION
 
 files
-  bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.dll => lib\net5.0
-  bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.pdb => lib\net5.0
-  bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.xml => lib\net5.0
-  bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.xml => content
-  bin\Release\net5.0\Destructurama.JsonNet.dll => lib\net5.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.dll => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.pdb => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.xml => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.xml => content
+  bin\Release\net6.0\Destructurama.JsonNet.dll => lib\net6.0

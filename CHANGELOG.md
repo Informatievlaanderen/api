@@ -1,3 +1,15 @@
+# [18.0.0](https://github.com/informatievlaanderen/api/compare/v17.3.1...v18.0.0) (2022-03-25)
+
+
+### Features
+
+* move to dotnet 6.0.3 ([ab1570e](https://github.com/informatievlaanderen/api/commit/ab1570ef4e3d426020a1d7943a20e0c163ed9849))
+
+
+### BREAKING CHANGES
+
+* move to dotnet 6.0.3
+
 ## [17.3.1](https://github.com/informatievlaanderen/api/compare/v17.3.0...v17.3.1) (2022-03-18)
 
 

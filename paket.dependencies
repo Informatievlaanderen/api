@@ -66,8 +66,8 @@ nuget Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader 2.0.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality 3.0.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind 3.0.0
 
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 4.0.1
-nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 4.0.1
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 4.0.2
+nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 4.0.2
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 5.0.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 5.0.0

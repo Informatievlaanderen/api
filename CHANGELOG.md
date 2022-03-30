@@ -1,3 +1,10 @@
+## [18.0.1](https://github.com/informatievlaanderen/api/compare/v18.0.0...v18.0.1) (2022-03-30)
+
+
+### Bug Fixes
+
+* bump swagger ([7ffd9f9](https://github.com/informatievlaanderen/api/commit/7ffd9f9dce55cb3e3b6431211a976a63422237ef))
+
 # [18.0.0](https://github.com/informatievlaanderen/api/compare/v17.3.1...v18.0.0) (2022-03-25)
 
 

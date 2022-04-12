@@ -123,7 +123,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (4.0)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (3.0.1)
     Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader (2.0)
-    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0)
+    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.1)
       System.Reflection.Metadata (>= 6.0.1)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (3.0)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (3.0)

@@ -1,3 +1,10 @@
+## [18.0.3](https://github.com/informatievlaanderen/api/compare/v18.0.2...v18.0.3) (2022-04-12)
+
+
+### Bug Fixes
+
+* bump problemdetails middleware ([3017431](https://github.com/informatievlaanderen/api/commit/301743171ce5fa1dfa54766f5429f093d71e9691))
+
 ## [18.0.2](https://github.com/informatievlaanderen/api/compare/v18.0.1...v18.0.2) (2022-03-30)
 
 

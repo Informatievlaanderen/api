@@ -1,4 +1,4 @@
-name: CI
+name: CI-sonar
 
 on:
   push:
@@ -76,7 +76,7 @@ jobs:
       id: cache-sonar-scanner
       uses: actions/cache@v1
       with:
-        path: .\.sonar\scanner
+        path: ./.sonar/scanner
         key: ${{ runner.os }}-sonar-scanner
         restore-keys: ${{ runner.os }}-sonar-scanner
     - name: Install SonarCloud scanner
@@ -106,7 +106,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: bash
       run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"Informatievlaanderen_api" /o:"informatievlaanderen" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        ./.sonar/scanner/dotnet-sonarscanner begin /k:"Informatievlaanderen_api" /o:"informatievlaanderen" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
 
     - name: Run Semantic Release
       shell: bash
@@ -127,7 +127,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: bash
       run: |
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
     - name: Set Release Version
       run: |

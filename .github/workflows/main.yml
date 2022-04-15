@@ -125,7 +125,7 @@ jobs:
         GIT_AUTHOR_EMAIL: ${{ secrets.VBR_GIT_EMAIL }}
         GIT_COMMITTER_EMAIL: ${{ secrets.VBR_GIT_EMAIL }}
 
-    - name: Sonar begin build & analyze
+    - name: Sonar end build & analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

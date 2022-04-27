@@ -1,3 +1,10 @@
+## [18.0.4](https://github.com/informatievlaanderen/api/compare/v18.0.3...v18.0.4) (2022-04-27)
+
+
+### Bug Fixes
+
+* redirect sonar to /dev/null ([90f37ad](https://github.com/informatievlaanderen/api/commit/90f37ad3b01da6eac79a7add339c5fd5d096a3da))
+
 ## [18.0.3](https://github.com/informatievlaanderen/api/compare/v18.0.2...v18.0.3) (2022-04-12)
 
 

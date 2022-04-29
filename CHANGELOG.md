@@ -1,3 +1,10 @@
+## [18.0.5](https://github.com/informatievlaanderen/api/compare/v18.0.4...v18.0.5) (2022-04-29)
+
+
+### Bug Fixes
+
+* run sonar end when release version != none ([0f50c5c](https://github.com/informatievlaanderen/api/commit/0f50c5c118d707b803290300e38ef14b9cdb9aeb))
+
 ## [18.0.4](https://github.com/informatievlaanderen/api/compare/v18.0.3...v18.0.4) (2022-04-27)
 
 

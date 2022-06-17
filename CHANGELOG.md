@@ -1,3 +1,10 @@
+# [18.1.0](https://github.com/informatievlaanderen/api/compare/v18.0.5...v18.1.0) (2022-06-17)
+
+
+### Features
+
+* add startup helper snapshot store ([06f252b](https://github.com/informatievlaanderen/api/commit/06f252b83d0f200cd4669f54b56f6f58b0ede4b8))
+
 ## [18.0.5](https://github.com/informatievlaanderen/api/compare/v18.0.4...v18.0.5) (2022-04-29)
 
 

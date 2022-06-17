@@ -44,6 +44,7 @@ Serilog.Enrichers.Environment
 Serilog.Formatting.Compact
 
 Be.Vlaanderen.Basisregisters.AggregateSource
+Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore
 
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader
 Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging

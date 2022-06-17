@@ -17,6 +17,7 @@ description Common API infrastructure and helpers.
 dependencies
   framework: net6.0
     Be.Vlaanderen.Basisregisters.AggregateSource >= LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json >= LOCKEDVERSION

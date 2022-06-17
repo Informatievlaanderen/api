@@ -5,6 +5,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using AggregateSource.SqlStreamStore;
     using Autofac;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using DataDog.Tracing;
@@ -75,6 +76,31 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     var checkSchemaResult = streamStore.CheckSchema().GetAwaiter().GetResult();
                     if (!checkSchemaResult.IsMatch())
                         streamStore.CreateSchema().GetAwaiter().GetResult();
+                });
+        }
+
+        public static void EnsureSqlSnapshotStoreSchema<T>(
+            MsSqlSnapshotStore streamStore,
+            ILoggerFactory loggerFactory)
+        {
+            var logger = loggerFactory.CreateLogger<T>();
+
+            Policy
+                .Handle<SqlException>()
+                .WaitAndRetry(
+                    5,
+                    retryAttempt =>
+                    {
+                        var value = Math.Pow(2, retryAttempt) / 4;
+                        var randomValue = new Random().Next((int)value * 3, (int)value * 5);
+                        logger.LogInformation("Retrying after {Seconds} seconds...", randomValue);
+                        return TimeSpan.FromSeconds(randomValue);
+                    })
+                .Execute(() =>
+                {
+                    logger.LogInformation("Ensuring the sql snapshot store schema.");
+
+                    streamStore.CreateTable().GetAwaiter().GetResult();
                 });
         }
 

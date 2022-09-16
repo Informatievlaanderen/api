@@ -2,6 +2,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Globalization;
     using System.IO.Compression;
     using System.Linq;
@@ -138,6 +139,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>? ConfigureCors { get; set; }
             public Action<ProblemDetailsOptions>? ConfigureProblemDetails { get; set; }
         }
+
+        public ICollection<IActionModelConvention> ActionModelConventions { get; } = new Collection<IActionModelConvention>();
     }
 
     public static partial class StartupDefaults
@@ -154,7 +157,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
             StartupConfigureOptions options)
         {
             if (options.Swagger.ApiInfo == null)
+            {
                 throw new ArgumentNullException(nameof(options.Swagger.ApiInfo));
+            }
 
             var configuredCorsMethods = new[]
             {
@@ -207,7 +212,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     foreach (var header in configuredCorsExposedHeaders)
                     {
                         if (!cfg.AllowedHeaderNames.Contains(header))
+                        {
                             cfg.AllowedHeaderNames.Add(header);
+                        }
                     }
 
                     options.MiddlewareHooks.ConfigureProblemDetails?.Invoke(cfg);
@@ -234,6 +241,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     }
 
                     cfg.EnableEndpointRouting = false;
+
+                    foreach (var actionModelConvention in options.ActionModelConventions)
+                    {
+                        cfg.Conventions.Add(actionModelConvention);
+                    }
 
                     options.MiddlewareHooks.ConfigureMvcCore?.Invoke(cfg);
                 });

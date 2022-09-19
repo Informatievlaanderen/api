@@ -1,3 +1,10 @@
+## [18.2.1](https://github.com/informatievlaanderen/api/compare/v18.2.0...v18.2.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* make exceptions serializable ([e37060b](https://github.com/informatievlaanderen/api/commit/e37060b9d21eee1a9b85abfd421e3c7991f1f8c9))
+
 # [18.2.0](https://github.com/informatievlaanderen/api/compare/v18.1.1...v18.2.0) (2022-09-16)
 
 

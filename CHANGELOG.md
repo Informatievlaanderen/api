@@ -1,3 +1,10 @@
+# [18.3.0](https://github.com/informatievlaanderen/api/compare/v18.2.1...v18.3.0) (2022-11-02)
+
+
+### Features
+
+* add actionmodelconventions ([36bbdfb](https://github.com/informatievlaanderen/api/commit/36bbdfbe258628a6a5a7a45bdf258b2d2274d1bb))
+
 ## [18.2.1](https://github.com/informatievlaanderen/api/compare/v18.2.0...v18.2.1) (2022-09-19)
 
 

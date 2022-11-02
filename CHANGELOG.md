@@ -1,3 +1,31 @@
+## [18.2.1](https://github.com/informatievlaanderen/api/compare/v18.2.0...v18.2.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* make exceptions serializable ([e37060b](https://github.com/informatievlaanderen/api/commit/e37060b9d21eee1a9b85abfd421e3c7991f1f8c9))
+
+# [18.2.0](https://github.com/informatievlaanderen/api/compare/v18.1.1...v18.2.0) (2022-09-16)
+
+
+### Features
+
+* add actionmodelconventions ([3a29a1a](https://github.com/informatievlaanderen/api/commit/3a29a1acda8cea5610479f89aa1e0c7888163f4b))
+
+## [18.1.1](https://github.com/informatievlaanderen/api/compare/v18.1.0...v18.1.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* bump dependencies ([087c362](https://github.com/informatievlaanderen/api/commit/087c362b2d0cb9ca243c68c5d48bd20b5b34ecac))
+
+# [18.1.0](https://github.com/informatievlaanderen/api/compare/v18.0.5...v18.1.0) (2022-06-17)
+
+
+### Features
+
+* add startup helper snapshot store ([06f252b](https://github.com/informatievlaanderen/api/commit/06f252b83d0f200cd4669f54b56f6f58b0ede4b8))
+
 ## [18.0.5](https://github.com/informatievlaanderen/api/compare/v18.0.4...v18.0.5) (2022-04-29)
 
 

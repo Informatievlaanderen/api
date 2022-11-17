@@ -3,7 +3,7 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.AspNetCore.Hosting;
     using Be.Vlaanderen.Basisregisters.Api;
 
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args) => CreateWebHostBuilder(args).Build().Run();
 
@@ -14,7 +14,7 @@ namespace Dummy.Api.Infrastructure
                     {
                         Hosting =
                         {
-                            HttpPort = 8000,
+                            HttpPort = 8000
                         },
                         Logging =
                         {

@@ -3,6 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Serialization;
     using System.Threading.Tasks;
     using AggregateSource;
     using BasicApiProblem;
@@ -95,6 +96,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             return problemResponse;
         }
 
-        private sealed class UnhandledException : Exception { }
+        [Serializable]
+        public sealed class UnhandledException : Exception
+        {
+            public UnhandledException()
+            { }
+
+            private UnhandledException(SerializationInfo info, StreamingContext context)
+                : base(info, context)
+            { }
+        }
     }
 }

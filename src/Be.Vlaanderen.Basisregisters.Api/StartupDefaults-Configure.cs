@@ -231,7 +231,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     // This got removed in .NET Core 3.0, we need to determine the impact
                     //cfg.Filters.Add(new CorsAuthorizationFilterFactory(StartupHelpers.AllowSpecificOrigin));
 
-                    cfg.Filters.Add<OperationCancelledExceptionFilter>();
+                    cfg.Filters.Add<OperationCancelledExceptionFilterAttribute>();
 
                     cfg.Filters.Add(new DataDogTracingFilter());
 

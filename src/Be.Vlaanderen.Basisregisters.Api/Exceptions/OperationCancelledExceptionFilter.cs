@@ -9,18 +9,20 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     /// <summary>
     /// Exception filter to deal with cancellationToken exceptions.
     /// </summary>
-    public class OperationCancelledExceptionFilter : ExceptionFilterAttribute
+    public class OperationCancelledExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private readonly ILogger _logger;
         private const int Status499ClientClosedRequest = 499;
 
-        public OperationCancelledExceptionFilter(ILoggerFactory loggerFactory)
-            => _logger = loggerFactory.CreateLogger<OperationCancelledExceptionFilter>();
+        public OperationCancelledExceptionFilterAttribute(ILoggerFactory loggerFactory)
+            => _logger = loggerFactory.CreateLogger<OperationCancelledExceptionFilterAttribute>();
 
         public override void OnException(ExceptionContext context)
         {
             if (!(context.Exception is OperationCanceledException))
+            {
                 return;
+            }
 
             _logger.LogInformation("Request was cancelled");
             context.ExceptionHandled = true;

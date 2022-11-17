@@ -19,15 +19,15 @@ namespace Dummy.Api.Infrastructure.Modules
             _services = services;
         }
 
-        protected override void Load(ContainerBuilder containerBuilder)
+        protected override void Load(ContainerBuilder builder)
         {
             // containerBuilder
             //     .RegisterModule(new LoggingModule(_configuration, _services));
 
-            containerBuilder
+            builder
                 .RegisterModule(new DataDogModule(_configuration));
 
-            containerBuilder
+            builder
                 .Populate(_services);
         }
     }

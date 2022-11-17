@@ -13,21 +13,21 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
     {
         private static readonly Regex AllowParseRegex = new Regex("[,a-z]+", RegexOptions.IgnoreCase);
 
-        private EmbedOption _value;
+        private EmbedOptions _value;
 
         public bool Event
         {
-            get => _value.HasFlag(EmbedOption.Event);
-            set => Set(EmbedOption.Event, value);
+            get => _value.HasFlag(EmbedOptions.Event);
+            set => Set(EmbedOptions.Event, value);
         }
 
         public bool Object
         {
-            get => _value.HasFlag(EmbedOption.Object);
-            set => Set(EmbedOption.Object, value);
+            get => _value.HasFlag(EmbedOptions.Object);
+            set => Set(EmbedOptions.Object, value);
         }
 
-        private void Set(EmbedOption option, bool value)
+        private void Set(EmbedOptions option, bool value)
         {
             if (value)
             {
@@ -40,17 +40,17 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         }
 
         public SyncEmbedValue()
-            : this(EmbedOption.None) { }
+            : this(EmbedOptions.None) { }
 
-        private SyncEmbedValue(EmbedOption value)
+        private SyncEmbedValue(EmbedOptions value)
             => _value = value;
 
         public override string ToString()
         {
             var options = Enum
-                .GetValues(typeof(EmbedOption))
-                .Cast<EmbedOption>()
-                .Where(option => option != EmbedOption.None && option != EmbedOption.All);
+                .GetValues(typeof(EmbedOptions))
+                .Cast<EmbedOptions>()
+                .Where(option => option != EmbedOptions.None && option != EmbedOptions.All);
 
             return string
                 .Join(',', options.Where(option => _value.HasFlag(option)))
@@ -61,13 +61,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         {
             if (value.IsNullOrWhiteSpace())
             {
-                return new SyncEmbedValue(EmbedOption.None);
+                return new SyncEmbedValue(EmbedOptions.None);
             }
 
             if (AllowParseRegex.IsMatch(value)
-                && Enum.TryParse(typeof(EmbedOption), value, true, out var result))
+                && Enum.TryParse(typeof(EmbedOptions), value, true, out var result))
             {
-                return new SyncEmbedValue((EmbedOption)result);
+                return new SyncEmbedValue((EmbedOptions)result);
             }
 
             throw new InvalidOptionException(value);
@@ -99,7 +99,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         }
 
         [Flags]
-        private enum EmbedOption
+        private enum EmbedOptions
         {
             None = 0,
             Event = 1,

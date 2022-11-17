@@ -55,30 +55,46 @@ namespace Be.Vlaanderen.Basisregisters.Api
             DataDogOptions options)
         {
             if (options.Common.ServiceProvider == null)
+            {
                 throw new ArgumentNullException(nameof(options.Common.ServiceProvider));
+            }
 
             if (options.Common.LoggerFactory == null)
+            {
                 throw new ArgumentNullException(nameof(options.Common.LoggerFactory));
+            }
 
             if (options.Toggles.Enable == null)
+            {
                 throw new ArgumentNullException(nameof(options.Toggles.Enable));
+            }
 
             if (options.Toggles.Debug == null)
+            {
                 throw new ArgumentNullException(nameof(options.Toggles.Debug));
+            }
 
             if (string.IsNullOrWhiteSpace(options.Tracing.ServiceName))
+            {
                 throw new ArgumentNullException(nameof(options.Tracing.ServiceName));
+            }
 
             if (string.IsNullOrWhiteSpace(options.Tracing.TraceIdHeaderName))
+            {
                 options.Tracing.TraceIdHeaderName = DataDogOptions.DefaultTraceIdHeaderName;
+            }
 
             if (string.IsNullOrWhiteSpace(options.Tracing.ParentSpanIdHeaderName))
+            {
                 options.Tracing.ParentSpanIdHeaderName = DataDogOptions.DefaultParentSpanIdHeaderName;
+            }
 
             if (options.Toggles.Enable.FeatureEnabled)
             {
                 if (options.Toggles.Debug.FeatureEnabled)
+                {
                     StartupHelpers.SetupSourceListener(options.Common.ServiceProvider.GetRequiredService<TraceSource>());
+                }
 
                 var traceSourceFactory = options.Common.ServiceProvider.GetRequiredService<Func<TraceSourceArguments, TraceSource>>();
                 var logger = options.Common.LoggerFactory.CreateLogger<T>();
@@ -105,18 +121,26 @@ namespace Be.Vlaanderen.Basisregisters.Api
                         pathToCheck =>
                         {
                             if (string.IsNullOrWhiteSpace(pathToCheck))
+                            {
                                 pathToCheck = string.Empty;
+                            }
 
                             pathToCheck = pathToCheck.ToLowerInvariant();
 
                             if (pathToCheck == "/")
+                            {
                                 return false;
+                            }
 
                             if (pathToCheck == "/health")
+                            {
                                 return false;
+                            }
 
                             if (pathToCheck.StartsWith("/docs"))
+                            {
                                 return false;
+                            }
 
                             return true;
                         }),
@@ -148,7 +172,9 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     else
                     {
                         if (long.TryParse(traceIdHeader.ToString(), out var possibleTraceId))
+                        {
                             traceId = possibleTraceId;
+                        }
                     }
                 }
 
@@ -172,10 +198,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
             {
                 logger.LogDebug("Trying to parse Parent Span Id from {Headers}", request.Headers);
 
-                if (request.Headers.TryGetValue(parentSpanIdHeaderName, out var parentSpanIdHeader))
+                if (request.Headers.TryGetValue(parentSpanIdHeaderName, out var parentSpanIdHeader)
+                    && long.TryParse(parentSpanIdHeader.ToString(), out var possibleParentSpanId))
                 {
-                    if (long.TryParse(parentSpanIdHeader.ToString(), out var possibleParentSpanId))
-                        parentSpanId = possibleParentSpanId;
+                    parentSpanId = possibleParentSpanId;
                 }
 
                 logger.LogDebug("Parsed {ParsedParentSpanId}", parentSpanId);

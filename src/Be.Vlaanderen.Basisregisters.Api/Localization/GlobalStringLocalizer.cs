@@ -11,7 +11,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Localization
         private readonly IServiceProvider _serviceProvider;
         private readonly IDictionary<Type, IStringLocalizer> _localizers = new Dictionary<Type, IStringLocalizer>();
 
-        public static GlobalStringLocalizer Instance;
+        public static GlobalStringLocalizer Instance { get; set; }
 
         public GlobalStringLocalizer(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
@@ -22,7 +22,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Localization
             lock (_lock)
             {
                 if (!_localizers.ContainsKey(type))
-                    _localizers.Add(type, _serviceProvider.GetService<IStringLocalizer<T>>());
+                {
+                    _localizers.Add(type, _serviceProvider.GetRequiredService<IStringLocalizer<T>>());
+                }
             }
 
             return (IStringLocalizer<T>)_localizers[type];

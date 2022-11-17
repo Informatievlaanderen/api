@@ -50,7 +50,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
         public IAsyncEnumerator<T> GetEnumerator()
             => new AsyncEnumerator<T>(_queryable);
 
-        public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken)
+        public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
             => new AsyncEnumerator<T>(_queryable, cancellationToken);
     }
 
@@ -83,7 +83,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
             => Execute<TResult>(expression);
     }
 
-    internal class AsyncEnumerator<T> : IAsyncEnumerator<T>
+    internal class AsyncEnumerator<T> : IAsyncEnumerator<T>, IDisposable
     {
         private readonly IEnumerator<T> _enumerator;
         private readonly CancellationToken _cancellationToken;
@@ -104,7 +104,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
         public ValueTask<bool> MoveNextAsync()
         {
             if (_cancellationToken.IsCancellationRequested)
-                 _cancellationToken.ThrowIfCancellationRequested();
+            {
+                _cancellationToken.ThrowIfCancellationRequested();
+            }
 
             return new ValueTask<bool>(Task.FromResult(_enumerator.MoveNext()));
         }
@@ -115,18 +117,32 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Helpers
         public Task<bool> MoveNext(CancellationToken cancellationToken)
         {
             if (_cancellationToken.IsCancellationRequested)
+            {
                 _cancellationToken.ThrowIfCancellationRequested();
+            }
 
             return Task.FromResult(_enumerator.MoveNext());
         }
 
         public void Dispose()
-            => _enumerator.Dispose();
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
         public ValueTask DisposeAsync()
         {
-            Dispose();
-            return new ValueTask();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+            return ValueTask.CompletedTask;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _enumerator.Dispose();
+            }
         }
     }
 }

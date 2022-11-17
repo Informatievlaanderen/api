@@ -11,14 +11,30 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
         protected ExtractFileWriter(Encoding encoding, Stream contentStream)
         {
             if (null == encoding)
+            {
                 throw new ArgumentNullException(nameof(encoding));
+            }
 
             if (contentStream == null)
+            {
                 throw new ArgumentNullException(nameof(contentStream));
+            }
 
             Writer = new BinaryWriter(contentStream, encoding, leaveOpen: true);
         }
 
-        public void Dispose() => Writer.Dispose();
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Writer.Dispose();
+            }
+        }
     }
 }

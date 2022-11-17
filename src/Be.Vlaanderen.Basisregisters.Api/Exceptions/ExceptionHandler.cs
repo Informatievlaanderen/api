@@ -39,16 +39,22 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                     .ToList();
 
                 if (problemDetailMappings.Count == 1)
+                {
                     throw new ProblemDetailsException(problemDetailMappings.First().Map(problemDetailsException, _problemDetailsHelper));
+                }
 
                 if (problemDetailMappings.Count > 1)
+                {
                     _logger.LogWarning($"Multiple mappings for {nameof(ApiProblemDetailsException)} found. Skipping specific mapping.");
+                }
             }
 
             var exceptionHandler = _exceptionHandlers.FirstOrDefault(handler => handler.Handles(exception));
 
             if (exceptionHandler == null)
+            {
                 throw new ProblemDetailsException(HandleUnhandledException(exception));
+            }
 
             var problem = await exceptionHandler.GetApiProblemFor(exception);
             problem.ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(context);
@@ -82,11 +88,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             };
 
             if (exception != null)
+            {
                 _logger.LogError(0, exception, "[{ErrorNumber}] Unhandled exception!", problemResponse.ProblemInstanceUri);
+            }
 
             return problemResponse;
         }
 
-        private class UnhandledException : Exception { }
+        private sealed class UnhandledException : Exception { }
     }
 }

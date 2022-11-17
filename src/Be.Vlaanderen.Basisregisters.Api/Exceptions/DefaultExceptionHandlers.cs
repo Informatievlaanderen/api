@@ -20,13 +20,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             var typedException = Cast(exception);
             if (null == typedException)
+            {
                 throw new InvalidCastException("Could not cast exception to handled type!");
+            }
 
             var problem = GetApiProblemFor(typedException);
             return Task.FromResult(problem);
         }
 
-        private static T Cast(Exception exception) => exception as T;
+        private static T? Cast(Exception exception) => exception as T;
 
         protected abstract ProblemDetails GetApiProblemFor(T exception);
     }
@@ -41,10 +43,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             new ValidationExceptionHandler(problemDetailsHelper),
             new HttpRequestExceptionHandler(problemDetailsHelper),
             new DBConcurrencyExceptionHandler(problemDetailsHelper),
-            new NotImplementedExceptionHandler(problemDetailsHelper),
+            new NotImplementedExceptionHandler(problemDetailsHelper)
         };
 
-        private class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
+        private sealed class DomainExceptionHandler : DefaultExceptionHandler<DomainException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
@@ -62,7 +64,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 };
         }
 
-        private class ApiExceptionHandler : DefaultExceptionHandler<ApiException>
+        private sealed class ApiExceptionHandler : DefaultExceptionHandler<ApiException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
@@ -80,7 +82,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 };
         }
 
-        private class AggregateNotFoundExceptionHandler : DefaultExceptionHandler<AggregateNotFoundException>
+        private sealed class AggregateNotFoundExceptionHandler : DefaultExceptionHandler<AggregateNotFoundException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
@@ -99,7 +101,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         }
 
         // This will map HttpRequestException to the 503 Service Unavailable status code.
-        private class HttpRequestExceptionHandler : DefaultExceptionHandler<HttpRequestException>
+        private sealed class HttpRequestExceptionHandler : DefaultExceptionHandler<HttpRequestException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
@@ -118,7 +120,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         }
 
         // This will map DBConcurrencyException to the 409 Conflict status code.
-        private class DBConcurrencyExceptionHandler : DefaultExceptionHandler<DBConcurrencyException>
+        private sealed class DBConcurrencyExceptionHandler : DefaultExceptionHandler<DBConcurrencyException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 
@@ -137,7 +139,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         }
 
         // This will map NotImplementedException to the 501 Not Implemented status code.
-        private class NotImplementedExceptionHandler : DefaultExceptionHandler<NotImplementedException>
+        private sealed class NotImplementedExceptionHandler : DefaultExceptionHandler<NotImplementedException>
         {
             private readonly ProblemDetailsHelper _problemDetailsHelper;
 

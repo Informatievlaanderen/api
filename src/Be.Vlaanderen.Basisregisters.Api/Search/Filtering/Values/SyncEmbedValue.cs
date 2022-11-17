@@ -3,6 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Serialization;
     using System.Text.RegularExpressions;
     using FluentValidation;
     using FluentValidation.Results;
@@ -29,9 +30,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         private void Set(EmbedOption option, bool value)
         {
             if (value)
+            {
                 _value |= option;
+            }
             else
+            {
                 _value &= ~option;
+            }
         }
 
         public SyncEmbedValue()
@@ -55,11 +60,15 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         public static SyncEmbedValue Parse(string value)
         {
             if (value.IsNullOrWhiteSpace())
+            {
                 return new SyncEmbedValue(EmbedOption.None);
+            }
 
             if (AllowParseRegex.IsMatch(value)
                 && Enum.TryParse(typeof(EmbedOption), value, true, out var result))
+            {
                 return new SyncEmbedValue((EmbedOption)result);
+            }
 
             throw new InvalidOptionException(value);
         }
@@ -68,10 +77,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
         public static implicit operator SyncEmbedValue(string value)
             => Parse(value);
 
-        public class InvalidOptionException : ValidationException
+        [Serializable]
+        public sealed class InvalidOptionException : ValidationException
         {
             public InvalidOptionException(string argumentValue)
-                : base("Invalid embed option", GetFailures(argumentValue)) { }
+                : base("Invalid embed option", GetFailures(argumentValue))
+            { }
+
+            private InvalidOptionException(SerializationInfo info, StreamingContext context)
+                : base(info, context)
+            { }
 
             private static IEnumerable<ValidationFailure> GetFailures(string argumentValue)
                 => new[]

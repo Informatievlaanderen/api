@@ -10,7 +10,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
     public class JsonErrorActionFilter : IActionFilter, IOrderedFilter
     {
-        public void OnActionExecuted(ActionExecutedContext context) { }
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            // intentionally left blank
+        }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {

@@ -10,10 +10,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
         public ExtractFileName(string name, string extension)
         {
             if (string.IsNullOrWhiteSpace(name))
+            {
                 throw new ArgumentNullException(nameof(name));
+            }
 
             if (string.IsNullOrWhiteSpace(extension))
+            {
                 throw new ArgumentNullException(nameof(extension));
+            }
 
             _name = name;
             _extension = extension;
@@ -22,8 +26,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
         public override string ToString()
         {
             var extension = _extension.Trim();
-            if (false == extension.StartsWith('.'))
+            if (!extension.StartsWith('.'))
+            {
                 extension = "." + extension;
+            }
 
             var name = _name
                 .Trim()
@@ -36,8 +42,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
 
         public static implicit operator string(ExtractFileName name)
         {
-            if (null == name)
+            if (name is null)
+            {
                 throw new ArgumentNullException(nameof(name));
+            }
 
             return name.ToString();
         }

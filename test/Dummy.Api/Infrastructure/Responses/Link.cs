@@ -5,7 +5,7 @@ namespace Dummy.Api.Infrastructure.Responses
     [DataContract(Name = "Link", Namespace = "")]
     public class Link
     {
-        public class Relations
+        public static class Relations
         {
             public const string Home = "home";
             public const string ExampleAggregates = "example-aggregates";

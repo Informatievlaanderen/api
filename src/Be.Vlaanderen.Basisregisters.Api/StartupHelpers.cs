@@ -192,11 +192,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
 
                     if (result.Status != HealthStatus.Healthy)
-                        throw new Exception($"Databases healthcheck failed.");  
+                        throw new InvalidOperationException($"Databases healthcheck failed.");  
                 });
 
             if (result!.Status != HealthStatus.Healthy)
-                throw new Exception($"Databases not ready after {retryCount} retries, healthreport: {FormatHealthReport(result)}");
+                throw new InvalidOperationException($"Databases not ready after {retryCount} retries, healthreport: {FormatHealthReport(result)}");
         }
     }
 }

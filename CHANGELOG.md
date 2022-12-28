@@ -1,3 +1,26 @@
+## [18.3.1](https://github.com/informatievlaanderen/api/compare/v18.3.0...v18.3.1) (2022-12-28)
+
+
+### Bug Fixes
+
+* add nuget to dependabot ([3254665](https://github.com/informatievlaanderen/api/commit/3254665aff569b4091d1a1d7948e1c04a9578d23))
+* add parameter default from base ([e6e4b71](https://github.com/informatievlaanderen/api/commit/e6e4b71d0282d982e7dfe752bc53b9b366cf6ac2))
+* bump dependencies ([0a82335](https://github.com/informatievlaanderen/api/commit/0a823357b10a5b167f476c94077ef6a61fe49e87))
+* don't throw general exceptions ([af85de5](https://github.com/informatievlaanderen/api/commit/af85de5097d6239b5dc07e28983acc7bc4b7396d))
+* empty methods ([9534cd8](https://github.com/informatievlaanderen/api/commit/9534cd82d4e5d713b5854d172148f6ddae6b1909))
+* field to property ([6dee558](https://github.com/informatievlaanderen/api/commit/6dee558140605d4c541968905d8552ddc72fd1fe))
+* implement Dispose pattern correctly ([e6f118d](https://github.com/informatievlaanderen/api/commit/e6f118df09ac27dc3cbdec8e25c089fc243f7b16))
+* implement Serializable correctly ([f175345](https://github.com/informatievlaanderen/api/commit/f175345089c0a8bc94382be567be79cbb5bbe754))
+* make Attribute class name end with Attribute ([088f741](https://github.com/informatievlaanderen/api/commit/088f741025e879009680c37855743fafe4431967))
+* make UnhandledException public ([e59728e](https://github.com/informatievlaanderen/api/commit/e59728e9bbdf3adad1724f5af5ed7640c01e8bec))
+* make utility classes static ([16f0325](https://github.com/informatievlaanderen/api/commit/16f0325f8de83876b537995a9d019621e8c995be))
+* merge if's ([1c9b623](https://github.com/informatievlaanderen/api/commit/1c9b62394e5c4f9fbfe0485aac1d64886b1042f3))
+* remove redundant bool literals ([71d9cb8](https://github.com/informatievlaanderen/api/commit/71d9cb836b6668ef53fff8a4256586bbcbab3224))
+* rename EmbedOptions to EmbedOptions ([e1a01fd](https://github.com/informatievlaanderen/api/commit/e1a01fd3d49424ca25aac9de574791e8b029a54e))
+* rename parameter ([353c22f](https://github.com/informatievlaanderen/api/commit/353c22f5194ad027eb14611202ac3baf7ef47971))
+* seal private classes ([0201ce0](https://github.com/informatievlaanderen/api/commit/0201ce0f63a5d3429331f7c365f8e45c7e2bf3f1))
+* use VBR_SONAR_TOKEN ([22e8c8c](https://github.com/informatievlaanderen/api/commit/22e8c8cae0e56141c89feb6cbda04fe0c25fa987))
+
 # [18.3.0](https://github.com/informatievlaanderen/api/compare/v18.2.1...v18.3.0) (2022-11-02)
 
 

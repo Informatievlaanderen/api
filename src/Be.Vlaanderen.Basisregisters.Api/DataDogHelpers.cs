@@ -54,30 +54,11 @@ namespace Be.Vlaanderen.Basisregisters.Api
             this IApplicationBuilder app,
             DataDogOptions options)
         {
-            if (options.Common.ServiceProvider == null)
-            {
-                throw new ArgumentNullException(nameof(options.Common.ServiceProvider));
-            }
-
-            if (options.Common.LoggerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(options.Common.LoggerFactory));
-            }
-
-            if (options.Toggles.Enable == null)
-            {
-                throw new ArgumentNullException(nameof(options.Toggles.Enable));
-            }
-
-            if (options.Toggles.Debug == null)
-            {
-                throw new ArgumentNullException(nameof(options.Toggles.Debug));
-            }
-
-            if (string.IsNullOrWhiteSpace(options.Tracing.ServiceName))
-            {
-                throw new ArgumentNullException(nameof(options.Tracing.ServiceName));
-            }
+            ArgumentNullException.ThrowIfNull(options.Common.ServiceProvider);
+            ArgumentNullException.ThrowIfNull(options.Common.LoggerFactory);
+            ArgumentNullException.ThrowIfNull(options.Toggles.Enable);
+            ArgumentNullException.ThrowIfNull(options.Toggles.Debug);
+            ArgumentNullException.ThrowIfNull(options.Tracing.ServiceName);
 
             if (string.IsNullOrWhiteSpace(options.Tracing.TraceIdHeaderName))
             {

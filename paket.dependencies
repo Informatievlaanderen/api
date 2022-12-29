@@ -76,7 +76,7 @@ nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac 5.0.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 5.0.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 5.0.0
 
-nuget Be.Vlaanderen.Basisregisters.DependencyInjection 1.0.2
+nuget Be.Vlaanderen.Basisregisters.DependencyInjection 1.0.3
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac 4.2.2
 nuget Be.Vlaanderen.Basisregisters.EventHandling.Microsoft 4.2.2

@@ -1,3 +1,11 @@
+## [18.3.2](https://github.com/informatievlaanderen/api/compare/v18.3.1...v18.3.2) (2023-01-01)
+
+
+### Bug Fixes
+
+* bump DependencyInjection dependency ([7c63da4](https://github.com/informatievlaanderen/api/commit/7c63da4fb614214f23f5dab4f38839b0f0a3592a))
+* use Microsoft for datadog toggles ([c0eb64a](https://github.com/informatievlaanderen/api/commit/c0eb64adcd2a7423d827bfb51db8f45c4cad8c8b))
+
 ## [18.3.1](https://github.com/informatievlaanderen/api/compare/v18.3.0...v18.3.1) (2022-12-28)
 
 

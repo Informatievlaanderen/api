@@ -7,7 +7,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Threading.Tasks;
     using AggregateSource.SqlStreamStore;
     using Autofac;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
     using DataDog.Tracing;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Data.SqlClient;

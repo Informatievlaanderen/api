@@ -17,7 +17,7 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Logging;
     using Modules;
     using Microsoft.OpenApi.Models;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup

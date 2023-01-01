@@ -3,7 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System;
     using DataDog.Tracing;
     using DataDog.Tracing.AspNetCore;
-    using DataDog.Tracing.Autofac;
+    using DataDog.Tracing.Microsoft;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;

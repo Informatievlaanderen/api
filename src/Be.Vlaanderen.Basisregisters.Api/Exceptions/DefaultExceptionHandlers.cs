@@ -16,7 +16,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         public bool Handles(Exception exception) => null != Cast(exception);
 
-        public Task<ProblemDetails> GetApiProblemFor(Exception exception)
+        public Task<ProblemDetails> GetApiProblemFor(HttpContext context, Exception exception)
         {
             var typedException = Cast(exception);
             if (null == typedException)
@@ -24,13 +24,13 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 throw new InvalidCastException("Could not cast exception to handled type!");
             }
 
-            var problem = GetApiProblemFor(typedException);
+            var problem = GetApiProblemFor(context, typedException);
             return Task.FromResult(problem);
         }
 
         private static T? Cast(Exception exception) => exception as T;
 
-        protected abstract ProblemDetails GetApiProblemFor(T exception);
+        protected abstract ProblemDetails GetApiProblemFor(HttpContext context, T exception);
     }
 
     internal class DefaultExceptionHandlers
@@ -53,14 +53,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public DomainExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(DomainException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, DomainException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = StatusCodes.Status400BadRequest,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -71,14 +71,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public ApiExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(ApiException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, ApiException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = exception.StatusCode,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -89,14 +89,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public AggregateNotFoundExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(AggregateNotFoundException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, AggregateNotFoundException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = StatusCodes.Status400BadRequest,
                     Title = "Deze actie is niet geldig!",
                     Detail = $"De resource met id '{exception.Identifier}' werd niet gevonden.",
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -108,14 +108,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public HttpRequestExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(HttpRequestException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, HttpRequestException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = StatusCodes.Status503ServiceUnavailable,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -127,14 +127,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public DBConcurrencyExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(DBConcurrencyException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, DBConcurrencyException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = StatusCodes.Status409Conflict,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
 
@@ -146,14 +146,14 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             public NotImplementedExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
                 => _problemDetailsHelper = problemDetailsHelper;
 
-            protected override ProblemDetails GetApiProblemFor(NotImplementedException exception) =>
+            protected override ProblemDetails GetApiProblemFor(HttpContext context, NotImplementedException exception) =>
                 new ProblemDetails
                 {
                     HttpStatus = StatusCodes.Status501NotImplemented,
                     Title = ProblemDetails.DefaultTitle,
                     Detail = exception.Message,
                     ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor(exception),
-                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                    ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
                 };
         }
     }

@@ -6,6 +6,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using FluentValidation;
     using FluentValidation.Internal;
     using FluentValidation.Results;
+    using Microsoft.AspNetCore.Http;
     using ProblemDetails = BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = BasicApiProblem.ValidationProblemDetails;
 
@@ -16,11 +17,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public ValidationExceptionHandler(ProblemDetailsHelper problemDetailsHelper)
             => _problemDetailsHelper = problemDetailsHelper;
 
-        protected override ProblemDetails GetApiProblemFor(ValidationException exception)
+        protected override ProblemDetails GetApiProblemFor(HttpContext context, ValidationException exception)
             => new ValidationProblemDetails(exception)
             {
                 ProblemTypeUri = _problemDetailsHelper.GetExceptionTypeUriFor<ValidationException>(),
-                ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemInstanceUri = $"{_problemDetailsHelper.GetInstanceBaseUri(context)}/{ProblemDetails.GetProblemNumber()}"
             };
     }
 

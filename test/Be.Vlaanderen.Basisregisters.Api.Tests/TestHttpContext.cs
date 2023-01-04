@@ -34,6 +34,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
             // if this new DefaultHttpContext thing ever causes issues, add an Initialize method
             // to this TestHttpContextClass which properly sets up the response with TestHttpContext.
             Response = new DefaultHttpResponse(new DefaultHttpContext()) { Body = _responseStream };
+            Request = new TestHttpRequest();
         }
 
         public string ReadResponseBody() => Encoding.UTF8.GetString(_responseStream.ToArray());

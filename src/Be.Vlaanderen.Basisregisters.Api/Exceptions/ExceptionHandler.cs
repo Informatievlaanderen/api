@@ -41,7 +41,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
                 if (problemDetailMappings.Count == 1)
                 {
-                    throw new ProblemDetailsException(problemDetailMappings.First().Map(problemDetailsException, _problemDetailsHelper));
+                    throw new ProblemDetailsException(problemDetailMappings.First().Map(context, problemDetailsException, _problemDetailsHelper));
                 }
 
                 if (problemDetailMappings.Count > 1)
@@ -57,7 +57,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 throw new ProblemDetailsException(HandleUnhandledException(exception));
             }
 
-            var problem = await exceptionHandler.GetApiProblemFor(exception);
+            var problem = await exceptionHandler.GetApiProblemFor(context, exception);
             problem.ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(context);
 
             LogExceptionHandled(exception, problem, exceptionHandler.HandledExceptionType);

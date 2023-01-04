@@ -7,7 +7,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using System.Reflection.Emit;
     using Generators.Guid;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.Extensions.DependencyInjection;
     using ProblemDetails = BasicApiProblem.ProblemDetails;
 
     public class ProblemDetailsHelper
@@ -21,15 +20,22 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         private static readonly Guid ProblemDetailsSeed = Guid.Parse("21c33bd5-adfa-4f98-b07b-2b83bc00bc99");
 
-        public string GetInstanceBaseUri()
-            => $"{BaseUrl}/v1/foutmeldingen";
+        public string GetInstanceBaseUri(HttpContext httpContext)
+        {
+            if (httpContext.Request.Path.HasValue && httpContext.Request.Path.Value.ToLower().Contains("/v1/"))
+            {
+                return $"{BaseUrl}/v1/foutmeldingen";
+            }
+
+            return $"{BaseUrl}/v2/foutmeldingen";
+        }
 
         public string GetInstanceUri(HttpContext httpContext)
         {
             // this is the same behaviour that Asp.Net core uses
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
-            var problemBaseInstanceUri = GetInstanceBaseUri();
+            var problemBaseInstanceUri = GetInstanceBaseUri(httpContext);
             return !string.IsNullOrWhiteSpace(traceId)
                 ? $"{problemBaseInstanceUri}/{Deterministic.Create(ProblemDetailsSeed, traceId):N}"
                 : $"{problemBaseInstanceUri}/{ProblemDetails.GetProblemNumber()}";
@@ -67,7 +73,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         }
     }
 
-    public static class ProblemDetailsContentHelperExtensions 
+    public static class ProblemDetailsContentHelperExtensions
     {
         public static void SetTraceId(this ProblemDetails details, ProblemDetailsHelper problemDetailsHelper, HttpContext httpContext)
             => details.ProblemInstanceUri = problemDetailsHelper.GetInstanceUri(httpContext);

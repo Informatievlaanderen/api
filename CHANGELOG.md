@@ -1,3 +1,15 @@
+# [19.0.0](https://github.com/informatievlaanderen/api/compare/v18.3.2...v19.0.0) (2023-01-11)
+
+
+### Features
+
+* problem details base uri versioning ([751e715](https://github.com/informatievlaanderen/api/commit/751e715b25fa6a8f366904ef568bf0547eeb7f48))
+
+
+### BREAKING CHANGES
+
+* IExceptionHandler GetApiProblemFor has an additional HttpContext parameter.
+
 ## [18.3.2](https://github.com/informatievlaanderen/api/compare/v18.3.1...v18.3.2) (2023-01-01)
 
 

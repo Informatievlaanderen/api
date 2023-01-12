@@ -2,7 +2,8 @@ namespace Dummy.Api.Infrastructure.Modules
 {
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
+    using Be.Vlaanderen.Basisregisters.DependencyInjection;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -21,11 +22,7 @@ namespace Dummy.Api.Infrastructure.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            // containerBuilder
-            //     .RegisterModule(new LoggingModule(_configuration, _services));
-
-            builder
-                .RegisterModule(new DataDogModule(_configuration));
+            _services.RegisterModule(new DataDogModule(_configuration));
 
             builder
                 .Populate(_services);

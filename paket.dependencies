@@ -72,7 +72,6 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 4.0.2
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 5.0.3
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 5.0.3
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac 5.0.3
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft 5.0.3
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 5.0.3
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 5.0.3

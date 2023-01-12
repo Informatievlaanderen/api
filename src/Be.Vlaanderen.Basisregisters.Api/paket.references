@@ -64,7 +64,6 @@ Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc
 
 Be.Vlaanderen.Basisregisters.DataDog.Tracing
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore
-Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore

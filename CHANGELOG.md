@@ -1,3 +1,10 @@
+## [19.0.1](https://github.com/informatievlaanderen/api/compare/v19.0.0...v19.0.1) (2023-01-12)
+
+
+### Bug Fixes
+
+* replace datadog.tracing.autofac by microsoft ([a0deac7](https://github.com/informatievlaanderen/api/commit/a0deac7a05c6b78fbc780ce7719b252ab360e685))
+
 # [19.0.0](https://github.com/informatievlaanderen/api/compare/v18.3.2...v19.0.0) (2023-01-11)
 
 

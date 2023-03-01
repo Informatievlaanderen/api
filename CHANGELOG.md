@@ -1,3 +1,10 @@
+# [19.1.0](https://github.com/informatievlaanderen/api/compare/v19.0.1...v19.1.0) (2023-03-01)
+
+
+### Features
+
+* v2 response examples ([80fc5c1](https://github.com/informatievlaanderen/api/commit/80fc5c18ea437b98d82ac36e9bd3cb9ccaa8e669))
+
 ## [19.0.1](https://github.com/informatievlaanderen/api/compare/v19.0.0...v19.0.1) (2023-01-12)
 
 

@@ -20,26 +20,30 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         private static readonly Guid ProblemDetailsSeed = Guid.Parse("21c33bd5-adfa-4f98-b07b-2b83bc00bc99");
 
-        public string GetInstanceBaseUri(HttpContext httpContext)
+        public string GetInstanceUri(HttpContext httpContext, string? apiVersion = null)
         {
-            if (httpContext.Request.Path.HasValue && httpContext.Request.Path.Value.ToLower().Contains("/v1/"))
-            {
-                return $"{BaseUrl}/v1/foutmeldingen";
-            }
+            var foutmeldingUri = apiVersion is not null
+                ? GetFoutmeldingBaseUri(apiVersion)
+                : GetInstanceBaseUri(httpContext);
 
-            return $"{BaseUrl}/v2/foutmeldingen";
-        }
-
-        public string GetInstanceUri(HttpContext httpContext)
-        {
             // this is the same behaviour that Asp.Net core uses
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
-            var problemBaseInstanceUri = GetInstanceBaseUri(httpContext);
             return !string.IsNullOrWhiteSpace(traceId)
-                ? $"{problemBaseInstanceUri}/{Deterministic.Create(ProblemDetailsSeed, traceId):N}"
-                : $"{problemBaseInstanceUri}/{ProblemDetails.GetProblemNumber()}";
+                ? $"{foutmeldingUri}/{Deterministic.Create(ProblemDetailsSeed, traceId):N}"
+                : $"{foutmeldingUri}/{ProblemDetails.GetProblemNumber()}";
         }
+
+        public string GetInstanceBaseUri(HttpContext httpContext)
+        {
+            var apiVersion = httpContext.Request.Path.HasValue && httpContext.Request.Path.Value.ToLower().Contains("/v1/")
+                ? "v1"
+                : "v2";
+
+            return GetFoutmeldingBaseUri(apiVersion);
+        }
+
+        private string GetFoutmeldingBaseUri(string apiVersion) => $"{BaseUrl}/{apiVersion}/foutmeldingen";
 
         public string GetExceptionTypeUriFor<T>(T exception) where T : Exception
             => GetExceptionTypeUriFor<T>();

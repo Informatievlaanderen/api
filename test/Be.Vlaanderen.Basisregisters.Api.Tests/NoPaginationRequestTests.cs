@@ -49,8 +49,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(_queryableItems)
-                .PaginationInfo.HasNextPage
-                .Should().BeFalse();
+                .PaginationInfo
+                .HasNextPage(_queryableItems.Items.Count())
+                .Should()
+                .BeFalse();
         }
 
         [Fact]

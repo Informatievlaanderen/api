@@ -36,11 +36,11 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
             var itemsInRequestedPage = items
                 .Skip(Offset)
-                .Take(Limit + 1);
+                .Take(Limit);
 
             return new PagedQueryable<T>(
-                itemsInRequestedPage.Take(Limit),
-                new PaginationInfo(Offset, Limit, itemsInRequestedPage.Count() > Limit),
+                itemsInRequestedPage,
+                new PaginationInfo(Offset, Limit, true),
                 source.Sorting);
         }
     }

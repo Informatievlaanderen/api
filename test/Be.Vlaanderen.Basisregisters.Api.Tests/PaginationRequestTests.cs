@@ -103,7 +103,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.HasNextPage
+                .PaginationInfo
+                .HasNextPage(QueryableItems.Items.Count())
                 .Should().BeFalse();
         }
 
@@ -139,7 +140,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.HasNextPage
+                .PaginationInfo
+                .HasNextPage(QueryableItems.Items.Count())
                 .Should().BeFalse();
         }
 
@@ -178,7 +180,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(QueryableItems)
-                .PaginationInfo.HasNextPage
+                .PaginationInfo
+                .HasNextPage(QueryableItems.Items.Count())
                 .Should().BeTrue();
         }
 
@@ -244,8 +247,9 @@ namespace Be.Vlaanderen.Basisregisters.Api.Tests
         public void Then_the_pagination_info_total_items_should_be_equal_to_query_count()
         {
             Sut.Paginate(_queryableItems)
-                .PaginationInfo.HasNextPage
-                .Should().BeFalse();
+                .PaginationInfo
+                .HasNextPage(_queryableItems.Items.Count())
+                .Should().BeTrue(); //When limit reaches the end of the collection EXACTLY then an empty page will be shown if they follow the next urls
         }
     }
 

@@ -1,3 +1,17 @@
+# [20.0.0](https://github.com/informatievlaanderen/api/compare/v19.1.0...v20.0.0) (2023-03-11)
+
+
+### Performance Improvements
+
+* refactor pagination to gain performance GAWR-4574 ([06e593e](https://github.com/informatievlaanderen/api/commit/06e593e24226096de98589a84122021854ffdc00))
+
+
+### BREAKING CHANGES
+
+* Removed `HasNextPage` property from PaginationInfo and replaced it by a method.
+Side effect: when the collection EXACTLY hits the end with limit,
+then HasNextPage will return true while before it was false.
+
 # [19.1.0](https://github.com/informatievlaanderen/api/compare/v19.0.1...v19.1.0) (2023-03-01)
 
 

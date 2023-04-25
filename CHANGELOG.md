@@ -1,3 +1,10 @@
+## [20.0.1](https://github.com/informatievlaanderen/api/compare/v20.0.0...v20.0.1) (2023-04-25)
+
+
+### Bug Fixes
+
+* ForbiddenResponseExamples detail ([adff57e](https://github.com/informatievlaanderen/api/commit/adff57e19ca93b17e3febae98bfc2214ffc2270d))
+
 # [20.0.0](https://github.com/informatievlaanderen/api/compare/v19.1.0...v20.0.0) (2023-03-11)
 
 

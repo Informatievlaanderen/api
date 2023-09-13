@@ -1,3 +1,10 @@
+# [20.1.0](https://github.com/informatievlaanderen/api/compare/v20.0.1...v20.1.0) (2023-09-13)
+
+
+### Features
+
+* add application ld accepttype ([e4ae3a5](https://github.com/informatievlaanderen/api/commit/e4ae3a5a40205dc36c25d5fe8014c6f67cb94c23))
+
 ## [20.0.1](https://github.com/informatievlaanderen/api/compare/v20.0.0...v20.0.1) (2023-04-25)
 
 

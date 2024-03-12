@@ -1,6 +1,7 @@
 namespace Dummy.Api.Infrastructure
 {
     using System.Reflection;
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Localization;
     using Microsoft.AspNetCore.Mvc;

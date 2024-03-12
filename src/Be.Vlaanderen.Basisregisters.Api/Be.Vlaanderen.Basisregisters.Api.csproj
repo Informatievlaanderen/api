@@ -6,16 +6,20 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\net5.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net8.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\net5.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net8.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Destructurama.JsonNet">
       <HintPath>..\..\packages\Destructurama.JsonNet\lib\netstandard2.0\Destructurama.JsonNet.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="paket.template" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   <Import Project="..\..\.paket\Paket.Restore.targets" />

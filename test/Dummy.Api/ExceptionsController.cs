@@ -3,6 +3,7 @@ namespace Dummy.Api.Infrastructure
     using System;
     using System.Data;
     using System.Net.Http;
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.AggregateSource;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;

@@ -3,6 +3,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Asp.Versioning.ApiExplorer;
     using AspNetCore.Mvc.Middleware;
     using AspNetCore.Swagger.ReDoc;
     using DataDog.Tracing;
@@ -17,7 +18,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Localization;
     using Microsoft.AspNetCore.Diagnostics.HealthChecks;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Options;
     using Middleware.AddProblemJsonHeader;

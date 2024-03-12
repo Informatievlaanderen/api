@@ -2,6 +2,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
     using System.Reflection;
+    using Asp.Versioning.ApplicationModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
 

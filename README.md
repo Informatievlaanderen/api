@@ -1,4 +1,4 @@
-# Be.Vlaanderen.Basisregisters.Api [![Build Status](https://github.com/Informatievlaanderen/api/workflows/CI/badge.svg)](https://github.com/Informatievlaanderen/api/actions)
+# Be.Vlaanderen.Basisregisters.Api [![Build Status](https://github.com/Informatievlaanderen/api/workflows/Build/badge.svg)](https://github.com/Informatievlaanderen/api/actions)
 
 Lightweight infrastructure for doing command handling and eventsourcing using aggregates.
 

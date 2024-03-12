@@ -1,9 +1,9 @@
 namespace Dummy.Api.Infrastructure
 {
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Newtonsoft.Json.Converters;
     using Responses;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

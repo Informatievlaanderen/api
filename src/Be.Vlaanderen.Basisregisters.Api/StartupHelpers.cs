@@ -7,8 +7,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Threading.Tasks;
     using AggregateSource.SqlStreamStore;
     using Autofac;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
     using DataDog.Tracing;
+    using DataDog.Tracing.Autofac;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Data.SqlClient;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -192,7 +192,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     result = await healthCheckService.CheckHealthAsync(x => x.Tags.Contains(databaseTag));
 
                     if (result.Status != HealthStatus.Healthy)
-                        throw new InvalidOperationException($"Databases healthcheck failed.");  
+                        throw new InvalidOperationException($"Databases healthcheck failed.");
                 });
 
             if (result!.Status != HealthStatus.Healthy)

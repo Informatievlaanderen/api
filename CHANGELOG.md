@@ -1,3 +1,15 @@
+# [21.0.0](https://github.com/informatievlaanderen/api/compare/v20.1.0...v21.0.0) (2024-03-12)
+
+
+### Features
+
+* upgrade to net8 ([263f2e5](https://github.com/informatievlaanderen/api/commit/263f2e530d0a651f45cdcf97e934991c58d780d2))
+
+
+### BREAKING CHANGES
+
+* upgrade to net8
+
 # [20.1.0](https://github.com/informatievlaanderen/api/compare/v20.0.1...v20.1.0) (2023-09-13)
 
 

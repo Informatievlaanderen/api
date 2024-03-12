@@ -1,4 +1,4 @@
-Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
+Asp.Versioning.Mvc.ApiExplorer
 
 Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
@@ -63,8 +63,8 @@ Be.Vlaanderen.Basisregisters.AspNetCore.Swagger
 Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc
 
 Be.Vlaanderen.Basisregisters.DataDog.Tracing
+Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore
-Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore
 

@@ -7,6 +7,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.IO.Compression;
     using System.Linq;
     using System.Net.Http;
+    using Asp.Versioning.ApiExplorer;
+    using Asp.Versioning.ApplicationModels;
     using AspNetCore.Mvc.Formatters.Json;
     using AspNetCore.Mvc.Logging;
     using AspNetCore.Mvc.Middleware;
@@ -324,18 +326,18 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     opts.FallBackToParentUICultures = true;
                 })
 
-                .AddVersionedApiExplorer(cfg =>
-                {
-                    cfg.GroupNameFormat = "'v'VVV";
-                    cfg.SubstituteApiVersionInUrl = true;
-                })
 
                 .AddApiVersioning(cfg =>
                 {
                     cfg.ReportApiVersions = true;
-                    cfg.ErrorResponses = new ProblemDetailsResponseProvider();
                 })
+                .AddApiExplorer(cfg =>
+                {
+                    cfg.GroupNameFormat = "'v'VVV";
+                    cfg.SubstituteApiVersionInUrl = true;
+                });
 
+            services
                 .AddSwagger<T>(new SwaggerOptions
                 {
                     ApiInfoFunc = options.Swagger.ApiInfo,

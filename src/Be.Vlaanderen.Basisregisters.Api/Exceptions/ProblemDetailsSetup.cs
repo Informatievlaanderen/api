@@ -6,6 +6,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using ProblemDetails = BasicApiProblem.ProblemDetails;
+    using ProblemDetailsOptions = BasicApiProblem.ProblemDetailsOptions;
 
     public class ProblemDetailsSetup : IConfigureOptions<ProblemDetailsOptions>
     {

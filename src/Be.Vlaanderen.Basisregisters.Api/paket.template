@@ -15,7 +15,7 @@ licenseUrl https://opensource.org/licenses/MIT
 description Common API infrastructure and helpers.
 
 dependencies
-  framework: net6.0
+  framework: net8.0
     Be.Vlaanderen.Basisregisters.AggregateSource >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader >= LOCKEDVERSION
@@ -33,8 +33,8 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.DataDog.Tracing >= LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.EventHandling.Autofac >= LOCKEDVERSION
@@ -42,7 +42,7 @@ dependencies
     Be.Vlaanderen.Basisregisters.Aws.DistributedMutex >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic >= LOCKEDVERSION
 
-    Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= LOCKEDVERSION
+    Asp.Versioning.Mvc.ApiExplorer >= LOCKEDVERSION
 
     Microsoft.EntityFrameworkCore >= LOCKEDVERSION
 
@@ -88,8 +88,8 @@ dependencies
     Serilog.Formatting.Compact >= LOCKEDVERSION
 
 files
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.dll => lib\net6.0
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.pdb => lib\net6.0
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.xml => lib\net6.0
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Api.xml => content
-  bin\Release\net6.0\Destructurama.JsonNet.dll => lib\net6.0
+ Be.Vlaanderen.Basisregisters.Api.dll => lib\net8.0
+ Be.Vlaanderen.Basisregisters.Api.pdb => lib\net8.0
+ Be.Vlaanderen.Basisregisters.Api.xml => lib\net8.0
+ Be.Vlaanderen.Basisregisters.Api.xml => content
+ Destructurama.JsonNet.dll => lib\net8.0

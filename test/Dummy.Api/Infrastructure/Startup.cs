@@ -4,9 +4,11 @@ namespace Dummy.Api.Infrastructure
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using Asp.Versioning.ApiExplorer;
     using Be.Vlaanderen.Basisregisters.Api;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Configuration;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -17,7 +19,6 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Logging;
     using Modules;
     using Microsoft.OpenApi.Models;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup

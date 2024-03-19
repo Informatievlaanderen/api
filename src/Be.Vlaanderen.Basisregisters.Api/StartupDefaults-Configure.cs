@@ -127,6 +127,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class MiddlewareHookOptions
         {
+            public bool EnableFluentValidation { get; set; } = true;
             public Action<FluentValidationMvcConfiguration>? FluentValidation { get; set; }
             public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
             public Action<AuthorizationOptions> Authorization { get; set; }
@@ -258,13 +259,16 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             mvcBuilder
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization);
 
-                .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization)
-
-                .AddFluentValidation(
+            if(options.MiddlewareHooks.EnableFluentValidation)
+            {
+                mvcBuilder.AddFluentValidation(
                     options.MiddlewareHooks.FluentValidation
-                    ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()))
+                    ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()));
+            }
 
+            mvcBuilder
                 .AddCors(cfg =>
                 {
                     cfg.AddPolicy(StartupHelpers.AllowAnyOrigin, corsPolicy => corsPolicy

@@ -1,3 +1,10 @@
+# [21.1.0](https://github.com/informatievlaanderen/api/compare/v21.0.0...v21.1.0) (2024-03-19)
+
+
+### Features
+
+* add toggle to disable fluentvalidation ([74e3bab](https://github.com/informatievlaanderen/api/commit/74e3bab092a64585e9b866ea4588f946c3fe0fec))
+
 # [21.0.0](https://github.com/informatievlaanderen/api/compare/v20.1.0...v21.0.0) (2024-03-12)
 
 

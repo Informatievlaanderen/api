@@ -335,6 +335,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 {
                     cfg.ReportApiVersions = true;
                 })
+                .AddMvc()
                 .AddApiExplorer(cfg =>
                 {
                     cfg.GroupNameFormat = "'v'VVV";

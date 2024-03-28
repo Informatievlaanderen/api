@@ -1,3 +1,15 @@
+# [22.0.0](https://github.com/informatievlaanderen/api/compare/v21.1.0...v22.0.0) (2024-03-28)
+
+
+### Bug Fixes
+
+* remove use of UseMvc() to enable versioned attribute routing ([9e5b732](https://github.com/informatievlaanderen/api/commit/9e5b732a5a4e26f6abd9709b7235f0171912be6a))
+
+
+### BREAKING CHANGES
+
+* UseMvc() is removed and replaced with attribute routing
+
 # [21.1.0](https://github.com/informatievlaanderen/api/compare/v21.0.0...v21.1.0) (2024-03-19)
 
 

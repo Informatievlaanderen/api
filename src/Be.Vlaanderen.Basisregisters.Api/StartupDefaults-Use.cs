@@ -122,6 +122,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<IApplicationBuilder> AfterApiExceptionHandler { get; set; }
             public Action<IApplicationBuilder> AfterMiddleware { get; set; }
             public Action<IApplicationBuilder> AfterResponseCompression { get; set; }
+            public Action<IApplicationBuilder> AfterRouting { get; set; }
+            public Action<IApplicationBuilder> AfterEndpoints { get; set; }
             public Action<IApplicationBuilder> AfterMvc { get; set; }
             public Action<IApplicationBuilder> AfterSwagger { get; set; }
             public Action<IApplicationBuilder> AfterRequestLocalization { get; set; }
@@ -273,6 +275,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
             UseRoutingAndEndpoints(app, options);
+            options.MiddlewareHooks.AfterMvc?.Invoke(app);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
                 options.Common.ApplicationContainer,
@@ -289,12 +292,13 @@ namespace Be.Vlaanderen.Basisregisters.Api
             // Since upgrade to dotnet8, that breaks ApiVersioning via attribute routing
 
             app.UseRouting();
+            options.MiddlewareHooks.AfterRouting?.Invoke(app);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            options.MiddlewareHooks.AfterMvc?.Invoke(app);
+            options.MiddlewareHooks.AfterEndpoints?.Invoke(app);
         }
     }
 }

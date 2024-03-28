@@ -272,8 +272,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             });
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
-            app.UseMvc();
-            options.MiddlewareHooks.AfterMvc?.Invoke(app);
+            UseRoutingAndEndpoints(app, options);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
                 options.Common.ApplicationContainer,
@@ -281,6 +280,21 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 options.Common.ServiceProvider.GetService<TraceAgent>());
 
             return app;
+        }
+
+        private static void UseRoutingAndEndpoints(IApplicationBuilder app, StartupUseOptions options)
+        {
+            // NOTE 2024-03-28:
+            // Do not use UseMvc() instead of UseRouting()+UseEndpoints()
+            // Since upgrade to dotnet8, that breaks ApiVersioning via attribute routing
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            options.MiddlewareHooks.AfterMvc?.Invoke(app);
         }
     }
 }

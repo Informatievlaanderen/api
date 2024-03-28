@@ -122,6 +122,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<IApplicationBuilder> AfterApiExceptionHandler { get; set; }
             public Action<IApplicationBuilder> AfterMiddleware { get; set; }
             public Action<IApplicationBuilder> AfterResponseCompression { get; set; }
+            public Action<IApplicationBuilder> AfterRouting { get; set; }
+            public Action<IApplicationBuilder> AfterEndpoints { get; set; }
             public Action<IApplicationBuilder> AfterMvc { get; set; }
             public Action<IApplicationBuilder> AfterSwagger { get; set; }
             public Action<IApplicationBuilder> AfterRequestLocalization { get; set; }
@@ -272,7 +274,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             });
             options.MiddlewareHooks.AfterSwagger?.Invoke(app);
 
-            app.UseMvc();
+            UseRoutingAndEndpoints(app, options);
             options.MiddlewareHooks.AfterMvc?.Invoke(app);
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
@@ -281,6 +283,22 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 options.Common.ServiceProvider.GetService<TraceAgent>());
 
             return app;
+        }
+
+        private static void UseRoutingAndEndpoints(IApplicationBuilder app, StartupUseOptions options)
+        {
+            // NOTE 2024-03-28:
+            // Do not use UseMvc() instead of UseRouting()+UseEndpoints()
+            // Since upgrade to dotnet8, that breaks ApiVersioning via attribute routing
+
+            app.UseRouting();
+            options.MiddlewareHooks.AfterRouting?.Invoke(app);
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            options.MiddlewareHooks.AfterEndpoints?.Invoke(app);
         }
     }
 }

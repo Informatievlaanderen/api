@@ -243,8 +243,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
                         cfg.Filters.Add(new JsonErrorActionFilter());
                     }
 
-                    cfg.EnableEndpointRouting = false;
-
                     foreach (var actionModelConvention in options.ActionModelConventions)
                     {
                         cfg.Conventions.Add(actionModelConvention);
@@ -254,8 +252,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 });
 
             options.MiddlewareHooks.AfterMvcCore?.Invoke(mvcBuilder);
-
-
 
             mvcBuilder
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

@@ -70,12 +70,6 @@ nuget Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger 5.0.0
 nuget Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc 5.0.0
 
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 6.0.0
-
 nuget Be.Vlaanderen.Basisregisters.EventHandling.Autofac 5.0.0
 
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 9.0.0

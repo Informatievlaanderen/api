@@ -1,21 +1,14 @@
 namespace Be.Vlaanderen.Basisregisters.Api
 {
     using System;
-    using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using AggregateSource.SqlStreamStore;
     using Autofac;
-    using DataDog.Tracing;
-    using DataDog.Tracing.Autofac;
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.Data.SqlClient;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Primitives;
-    using Newtonsoft.Json;
     using Polly;
     using Serilog;
     using SqlStreamStore;
@@ -27,16 +20,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public static void RegisterApplicationLifetimeHandling(
             IContainer applicationContainer,
-            IHostApplicationLifetime appLifetime,
-            TraceAgent traceAgent)
+            IHostApplicationLifetime appLifetime)
         {
             appLifetime.ApplicationStarted.Register(() => Log.Information("Application started."));
 
             appLifetime.ApplicationStopping.Register(() =>
             {
-                traceAgent?.OnCompleted();
-                traceAgent?.Completion.Wait();
-
                 Log.Information("Application stopping.");
                 Log.CloseAndFlush();
             });
@@ -102,62 +91,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
                     streamStore.CreateTable().GetAwaiter().GetResult();
                 });
-        }
-
-        [Obsolete("Please migrate to UseDataDog<T>(this IApplicationBuilder app, DataDogOptions options")]
-        public static IApplicationBuilder UseDatadog<T>(
-            this IApplicationBuilder app,
-            IServiceProvider serviceProvider,
-            ILoggerFactory loggerFactory,
-            ApiDataDogToggle datadogToggle,
-            ApiDebugDataDogToggle debugDataDogToggle,
-            string serviceName,
-            string traceIdHeaderName = DataDogOptions.DefaultTraceIdHeaderName,
-            Func<StringValues, long> traceIdGenerator = null,
-            Func<string, bool> shouldTracePath = null,
-            string parentSpanIdHeaderName = DataDogOptions.DefaultParentSpanIdHeaderName)
-        {
-            return app.UseDataDog<T>(new DataDogOptions
-            {
-                Common =
-                {
-                    ServiceProvider = serviceProvider,
-                    LoggerFactory = loggerFactory
-                },
-                Toggles =
-                {
-                    Enable = datadogToggle,
-                    Debug = debugDataDogToggle
-                },
-                Tracing =
-                {
-                    ServiceName = serviceName,
-                    TraceIdHeaderName = traceIdHeaderName,
-                    ParentSpanIdHeaderName = parentSpanIdHeaderName,
-                    TraceIdGenerator = traceIdGenerator,
-                    ShouldTracePath = shouldTracePath
-                }
-            });
-        }
-
-        public static void SetupSourceListener(TraceSource source)
-        {
-            var serializer = new JsonSerializer { Formatting = Formatting.Indented };
-
-            source.Subscribe(t =>
-            {
-                var sb = new StringBuilder("========== Begin Trace ==========");
-
-                using (var writer = new StringWriter(sb))
-                {
-                    writer.WriteLine();
-                    serializer.Serialize(writer, t);
-                    writer.WriteLine("========== End Trace ==========");
-                    writer.Flush();
-                }
-
-                Console.WriteLine(sb.ToString());
-            });
         }
 
         public static async Task CheckDatabases(

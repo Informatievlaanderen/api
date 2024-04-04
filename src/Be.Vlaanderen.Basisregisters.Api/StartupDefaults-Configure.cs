@@ -14,7 +14,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using AspNetCore.Mvc.Middleware;
     using AspNetCore.Swagger;
     using BasicApiProblem;
-    using DataDog.Tracing.AspNetCore;
     using Exceptions;
     using FluentValidation;
     using Microsoft.AspNetCore.Builder;
@@ -235,8 +234,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
                     //cfg.Filters.Add(new CorsAuthorizationFilterFactory(StartupHelpers.AllowSpecificOrigin));
 
                     cfg.Filters.Add<OperationCancelledExceptionFilterAttribute>();
-
-                    cfg.Filters.Add(new DataDogTracingFilter());
 
                     if (options.EnableJsonErrorActionFilter)
                     {

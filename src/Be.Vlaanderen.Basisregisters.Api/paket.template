@@ -32,11 +32,6 @@ dependencies
     Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql >= LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.EventHandling.Autofac >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.ProblemDetails >= LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.Aws.DistributedMutex >= LOCKEDVERSION

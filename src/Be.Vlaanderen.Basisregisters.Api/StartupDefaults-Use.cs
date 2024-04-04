@@ -6,7 +6,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Asp.Versioning.ApiExplorer;
     using AspNetCore.Mvc.Middleware;
     using AspNetCore.Swagger.ReDoc;
-    using DataDog.Tracing;
     using Exceptions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -279,8 +278,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             StartupHelpers.RegisterApplicationLifetimeHandling(
                 options.Common.ApplicationContainer,
-                options.Common.ApplicationLifetime,
-                options.Common.ServiceProvider.GetService<TraceAgent>());
+                options.Common.ApplicationLifetime);
 
             return app;
         }

@@ -1,3 +1,15 @@
+# [23.0.0](https://github.com/informatievlaanderen/api/compare/v22.0.0...v23.0.0) (2024-04-05)
+
+
+### Code Refactoring
+
+* remove datadog packages ([577f00e](https://github.com/informatievlaanderen/api/commit/577f00ef67f39e04ef5a789e96dbea4ca53e1dd4))
+
+
+### BREAKING CHANGES
+
+* remove datadog packages
+
 # [22.0.0](https://github.com/informatievlaanderen/api/compare/v21.1.0...v22.0.0) (2024-03-28)
 
 

@@ -114,6 +114,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class MiddlewareHookOptions
         {
+            public bool EnableAuthorization { get; set; } = false;
+
             public HealthCheckOptions HealthChecks { get; set; }
 
             public Action<IApplicationBuilder> AfterProblemDetails { get; set; }
@@ -122,6 +124,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             public Action<IApplicationBuilder> AfterMiddleware { get; set; }
             public Action<IApplicationBuilder> AfterResponseCompression { get; set; }
             public Action<IApplicationBuilder> AfterRouting { get; set; }
+            public Action<IApplicationBuilder> AfterAuthorization { get; set; }
             public Action<IApplicationBuilder> AfterEndpoints { get; set; }
             public Action<IApplicationBuilder> AfterMvc { get; set; }
             public Action<IApplicationBuilder> AfterSwagger { get; set; }
@@ -291,6 +294,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             app.UseRouting();
             options.MiddlewareHooks.AfterRouting?.Invoke(app);
+
+            if (options.MiddlewareHooks.EnableAuthorization)
+            {
+                app.UseAuthorization();
+                options.MiddlewareHooks.AfterAuthorization?.Invoke(app);
+            }
 
             app.UseEndpoints(endpoints =>
             {

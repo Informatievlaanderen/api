@@ -1,3 +1,10 @@
+# [23.1.0](https://github.com/informatievlaanderen/api/compare/v23.0.0...v23.1.0) (2024-04-08)
+
+
+### Features
+
+* use authorization ([4c012e8](https://github.com/informatievlaanderen/api/commit/4c012e836f8e34e065884acdfcc2d90e4c7e28b4))
+
 # [23.0.0](https://github.com/informatievlaanderen/api/compare/v22.0.0...v23.0.0) (2024-04-05)
 
 

@@ -1,3 +1,10 @@
+# [23.2.0](https://github.com/informatievlaanderen/api/compare/v23.1.0...v23.2.0) (2024-09-19)
+
+
+### Features
+
+* update swagger packages ([ff7dd4b](https://github.com/informatievlaanderen/api/commit/ff7dd4be826181ef73f10d7fbc843aeb95d4abb2))
+
 # [23.1.0](https://github.com/informatievlaanderen/api/compare/v23.0.0...v23.1.0) (2024-04-08)
 
 

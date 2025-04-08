@@ -11,12 +11,12 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
     public class ProblemDetailsSetup : IConfigureOptions<ProblemDetailsOptions>
     {
         private ProblemDetailsHelper ProblemDetailsHelper { get; }
-        private IHostingEnvironment Environment { get; }
+        private IWebHostEnvironment Environment { get; }
         private IHttpContextAccessor HttpContextAccessor { get; }
         private ApiBehaviorOptions ApiOptions { get; }
 
         public ProblemDetailsSetup(
-            IHostingEnvironment environment,
+            IWebHostEnvironment environment,
             IHttpContextAccessor httpContextAccessor,
             IOptions<ApiBehaviorOptions> apiOptions,
             ProblemDetailsHelper problemDetailsHelper)
@@ -32,7 +32,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
             options.MapStatusCode = MapStatusCode;
 
             // keep consistent with asp.net core 2.2 conventions that adds a tracing value
-            options.OnBeforeWriteDetails = (ctx, details) => details.SetTraceId(ProblemDetailsHelper, HttpContextAccessor.HttpContext);
+            options.OnBeforeWriteDetails = (ctx, details) => details.SetTraceId(ProblemDetailsHelper, HttpContextAccessor.HttpContext!);
         }
 
         private ProblemDetails MapStatusCode(HttpContext context, int statusCode)
@@ -40,8 +40,8 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 ? new ProblemDetails
                 {
                     HttpStatus = statusCode,
-                    ProblemTypeUri = errorData.Link,
-                    Title = errorData.Title,
+                    ProblemTypeUri = errorData.Link ?? string.Empty,
+                    Title = errorData.Title ?? string.Empty,
                     Detail = string.Empty,
                     ProblemInstanceUri = ProblemDetailsHelper.GetInstanceUri(context)
                 }

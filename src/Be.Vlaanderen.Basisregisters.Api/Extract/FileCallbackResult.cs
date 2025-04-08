@@ -15,7 +15,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Extract
         private readonly Func<Stream, ActionContext, Task> _callback;
 
         public FileCallbackResult(MediaTypeHeaderValue contentType, Func<Stream, ActionContext, Task> callback)
-            : base(contentType?.ToString()) => _callback = callback ?? throw new ArgumentNullException(nameof(callback));
+            : base(contentType.ToString()) => _callback = callback ?? throw new ArgumentNullException(nameof(callback));
 
         public override Task ExecuteResultAsync(ActionContext context)
         {

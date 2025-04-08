@@ -15,7 +15,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Sorting
         public static void AddSortingResponse(this HttpResponse response, string sortBy, SortOrder sortOrder)
         {
             var sortingHeader = new SortingHeader(sortBy.ToLowerInvariant(), sortOrder);
-            response.Headers.Add(HeaderName, JsonConvert.SerializeObject(sortingHeader));
+            response.Headers.Append(HeaderName, JsonConvert.SerializeObject(sortingHeader));
         }
     }
 }

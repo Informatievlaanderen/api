@@ -30,7 +30,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         public static async Task ValidateAndThrowAsync<T>(
             this IValidator<T> validator,
             T instance,
-            string ruleSet = null,
+            string? ruleSet = null,
             CancellationToken cancellationToken = default)
         {
             if (instance == null)

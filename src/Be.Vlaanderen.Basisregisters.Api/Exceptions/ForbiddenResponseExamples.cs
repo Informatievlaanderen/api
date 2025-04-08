@@ -28,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 HttpStatus = StatusCodes.Status403Forbidden,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "U beschikt niet over de correcte rechten.",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, ApiVersion)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext!, ApiVersion)
             };
     }
 

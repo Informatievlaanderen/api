@@ -1,3 +1,15 @@
+# [24.0.0](https://github.com/informatievlaanderen/api/compare/v23.2.0...v24.0.0) (2025-04-08)
+
+
+### Code Refactoring
+
+* use renovate and nuget + update pipeline ([7721759](https://github.com/informatievlaanderen/api/commit/772175974efcc2be73b107cd4e95051733ac4bc9))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 9
+
 # [23.2.0](https://github.com/informatievlaanderen/api/compare/v23.1.0...v23.2.0) (2024-09-19)
 
 

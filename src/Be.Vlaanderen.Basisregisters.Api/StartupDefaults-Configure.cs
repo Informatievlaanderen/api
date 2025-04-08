@@ -51,10 +51,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class CorsOptions
         {
-            public string[] Origins { get; set; } = null;
-            public string[] Methods { get; set; } = null;
-            public string[] Headers { get; set; } = null;
-            public string[] ExposedHeaders { get; set; } = null;
+            public string[]? Origins { get; set; } = null;
+            public string[]? Methods { get; set; } = null;
+            public string[]? Headers { get; set; } = null;
+            public string[]? ExposedHeaders { get; set; } = null;
         }
 
         public ServerOptions Server { get; } = new ServerOptions();

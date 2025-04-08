@@ -25,7 +25,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.ETag
                 throw new ArgumentNullException(nameof(context));
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status412PreconditionFailed;
-            context.HttpContext.Response.Headers.Add(HeaderNames.RetryAfter, _retryAfterSeconds.ToString());
+            context.HttpContext.Response.Headers.Append(HeaderNames.RetryAfter, _retryAfterSeconds.ToString());
         }
     }
 }

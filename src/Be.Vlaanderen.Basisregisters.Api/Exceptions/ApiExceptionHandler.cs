@@ -123,7 +123,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                         if (exception is TargetInvocationException && exception.InnerException != null)
                             exception = exception.InnerException;
 
-                        await exceptionHandler.HandleException(exception, context);
+                        await exceptionHandler.HandleException(exception!, context);
                     });
             });
 

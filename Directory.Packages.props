@@ -28,7 +28,7 @@
         <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
         <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
         <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageVersion Include="Destructurama.JsonNet" Version="3.0.0" />
+        <PackageVersion Include="Destructurama.JsonNet" Version="4.0.2" />
         <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.3" />
 
         <PackageVersion Include="Serilog" Version="4.2.0" />

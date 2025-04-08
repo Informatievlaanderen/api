@@ -9,6 +9,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Pagination
 
         /// <summary>Add the 'X-Pagination' response header</summary>
         public static void AddPaginationResponse(this HttpResponse response, PaginationInfo paginationInfo)
-            => response.Headers.Add(HeaderName, JsonConvert.SerializeObject(paginationInfo));
+            => response.Headers.Append(HeaderName, JsonConvert.SerializeObject(paginationInfo));
     }
 }

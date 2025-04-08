@@ -28,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Als de If-Match header niet overeenkomt met de laatste ETag.",
                 ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:precondition-failed",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, ApiVersion)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext!, ApiVersion)
             };
     }
 

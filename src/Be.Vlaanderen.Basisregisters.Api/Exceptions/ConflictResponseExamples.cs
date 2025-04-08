@@ -29,7 +29,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Er is een conflict met de laatste versie van deze resource.",
                 ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:conflict",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, ApiVersion)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext!, ApiVersion)
             };
     }
 

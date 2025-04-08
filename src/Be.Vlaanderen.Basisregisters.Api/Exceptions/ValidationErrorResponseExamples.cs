@@ -28,7 +28,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
                 new ValidationFailure("Naam", "Veld mag niet groter zijn dan 100 karakters.")
             }))
             {
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext!)
             };
     }
 }

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+  <Import Project="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -12,15 +12,81 @@
     <DocumentationFile>bin\Release\net8.0\Be.Vlaanderen.Basisregisters.Api.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <PackageId>Be.Vlaanderen.Basisregisters.Api</PackageId>
+    <Title>Be.Vlaanderen.Basisregisters.Api</Title>
+    <Authors>Basisregisters Vlaanderen</Authors>
+    <Owners>Digitaal Vlaanderen</Owners>
+    <Copyright>Copyright (c) Digitaal Vlaanderen</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Informatievlaanderen/api</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <Description>Common API infrastructure and helpers.</Description>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Destructurama.JsonNet">
-      <HintPath>..\..\packages\Destructurama.JsonNet\lib\netstandard2.0\Destructurama.JsonNet.dll</HintPath>
-    </Reference>
+    <None Include="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="paket.template" CopyToOutputDirectory="Always" />
-  </ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
 
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Localization" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" />
+    <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" />
+    <PackageReference Include="System.Text.Encoding.CodePages" />
+
+    <PackageReference Include="Polly" />
+    <PackageReference Include="SqlStreamStore" />
+    <PackageReference Include="SqlStreamStore.MsSql" />
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+
+    <PackageReference Include="Destructurama.JsonNet" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Settings.Configuration" />
+    <PackageReference Include="Serilog.Extensions.Logging" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.File" />
+    <PackageReference Include="Serilog.Enrichers.Thread" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Formatting.Compact" />
+
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AggregateSource" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.ModelBinding.GuidHeader" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Formatters.Json" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationId" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToLogContext" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddCorrelationIdToResponse" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddHttpSecurityHeaders" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddRemoteIpAddress" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.AddVersionHeader" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.DefaultResponseCompressionQuality" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware.EnableRequestRewind" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.ProblemDetails" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.Aws.DistributedMutex" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic" />
+
+    <PackageReference Include="SourceLink.Embed.AllSourceFiles" PrivateAssets="all" />
+    <PackageReference Include="SourceLink.Copy.PdbFiles" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

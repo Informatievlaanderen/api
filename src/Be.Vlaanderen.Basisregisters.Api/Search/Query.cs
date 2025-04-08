@@ -59,7 +59,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
             FilteringHeader<TFilter> filtering,
             SortingHeader sorting,
             IPaginationRequest paginationRequest,
-            Expression<Func<TInput, TOutput>> transformation = null)
+            Expression<Func<TInput, TOutput>>? transformation = null)
             where TInput: T
         {
             if (filtering == null)

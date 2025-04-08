@@ -1,8 +1,8 @@
 namespace Be.Vlaanderen.Basisregisters.Api.ETag
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Net.Http.Headers;
 
@@ -42,7 +42,7 @@ namespace Be.Vlaanderen.Basisregisters.Api.ETag
             }
             else
             {
-                context.HttpContext.Response.Headers.Add(HeaderNames.ETag, etag.ToString());
+                context.HttpContext.Response.Headers.Append(HeaderNames.ETag, etag.ToString());
             }
         }
     }

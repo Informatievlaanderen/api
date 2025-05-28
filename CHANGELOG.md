@@ -1,3 +1,10 @@
+# [24.1.0](https://github.com/informatievlaanderen/api/compare/v24.0.0...v24.1.0) (2025-05-28)
+
+
+### Features
+
+* add CountAsync to Query to avoid sorting ([741aacc](https://github.com/informatievlaanderen/api/commit/741aaccf59c19adaea90247af4d29360faad6f6e))
+
 # [24.0.0](https://github.com/informatievlaanderen/api/compare/v23.2.0...v24.0.0) (2025-04-08)
 
 

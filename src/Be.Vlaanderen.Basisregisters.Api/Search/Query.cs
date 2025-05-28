@@ -3,7 +3,10 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
     using System;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Filtering;
+    using Microsoft.EntityFrameworkCore;
     using Pagination;
     using Sorting;
 
@@ -77,6 +80,16 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search
                 .WithSorting(sorting, Sorting)
                 .WithPagination(paginationRequest)
                 .WithTransformation(transformation);
+        }
+
+        public Task<int> CountAsync(
+            FilteringHeader<TFilter> filtering,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(filtering);
+
+            return Filter(filtering)
+                .CountAsync(cancellationToken);
         }
     }
 }

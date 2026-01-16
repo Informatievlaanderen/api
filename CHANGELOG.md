@@ -1,3 +1,10 @@
+# [24.2.0](https://github.com/informatievlaanderen/api/compare/v24.1.0...v24.2.0) (2026-01-16)
+
+
+### Features
+
+* add cloudevent batch AcceptType ([4fb1489](https://github.com/informatievlaanderen/api/commit/4fb1489d5d46b226fbd41d897bcb84a7d059342e))
+
 # [24.1.0](https://github.com/informatievlaanderen/api/compare/v24.0.0...v24.1.0) (2025-05-28)
 
 

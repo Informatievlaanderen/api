@@ -12,7 +12,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
         Ld,
         JsonProblem,
         Xml,
-        Atom
+        Atom,
+        JsonCloudEventsBatch,
     }
 
     public static class AcceptTypes
@@ -21,9 +22,10 @@ namespace Be.Vlaanderen.Basisregisters.Api
         public const string Json = MediaTypeNames.Application.Json;
         public const string JsonLd = "application/ld+json";
         public const string Ld = "application/ld";
-        public const string JsonProblem = "application/problem+json";
+        public const string JsonProblem = MediaTypeNames.Application.ProblemJson;
         public const string Xml = MediaTypeNames.Application.Xml;
         public const string Atom = "application/atom+xml";
-        public const string XmlProblem = "application/problem+xml";
+        public const string XmlProblem = MediaTypeNames.Application.ProblemXml;
+        public const string JsonCloudEventsBatch = "application/cloudevents-batch+json";
     }
 }

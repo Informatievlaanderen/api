@@ -1,3 +1,10 @@
+# [24.3.0](https://github.com/informatievlaanderen/api/compare/v24.2.0...v24.3.0) (2026-01-28)
+
+
+### Features
+
+* add changefeedresult ([4e23117](https://github.com/informatievlaanderen/api/commit/4e2311797f4018dbaa3e6e3b17c5d012d0434489))
+
 # [24.2.0](https://github.com/informatievlaanderen/api/compare/v24.1.0...v24.2.0) (2026-01-16)
 
 

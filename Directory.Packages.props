@@ -62,7 +62,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic" Version="5.0.0" />
 
         <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="9.0.3" />
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageVersion Include="xunit" Version="2.9.3" />
         <PackageVersion Include="xunit.categories" Version="3.0.1" />
         <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2" />

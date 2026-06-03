@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Be.Vlaanderen.Basisregisters.Build.Pipeline</id>
-    <version>8.0.1</version>
+    <version>9.0.1</version>
     <title>Be.Vlaanderen.Basisregisters.Build.Pipeline</title>
     <authors>Basisregisters Vlaanderen</authors>
     <license type="expression">MIT</license>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/Informatievlaanderen/build-pipeline</projectUrl>
     <description>Contains generic files for Basisregisters Vlaanderen pipelines.</description>
     <copyright>Copyright (c) Digitaal Vlaanderen</copyright>
-    <repository type="git" commit="210551d8cdcb0616e0337944ca26b755a99dfe1a" />
+    <repository type="git" commit="9f5a04fd2274c2e588509d97aa8afc0ac3561214" />
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>

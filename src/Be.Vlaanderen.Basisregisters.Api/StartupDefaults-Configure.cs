@@ -32,7 +32,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Localization;
     using Microsoft.Net.Http.Headers;
-    using Microsoft.OpenApi.Models;
+    using Microsoft.OpenApi;
     using Search.Filtering;
     using Search.Pagination;
     using Search.Sorting;

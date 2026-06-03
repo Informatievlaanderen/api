@@ -43,6 +43,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" />
     <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" />
     <PackageReference Include="System.Text.Encoding.CodePages" />

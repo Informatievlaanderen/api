@@ -15,7 +15,7 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Microsoft.OpenApi.Models;
+    using Microsoft.OpenApi;
     using Modules;
 
     /// <summary>Represents the startup process for the application.</summary>

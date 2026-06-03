@@ -1,3 +1,15 @@
+# [25.0.0](https://github.com/informatievlaanderen/api/compare/v24.3.0...v25.0.0) (2026-06-03)
+
+
+### Features
+
+* update packages + upgrade to dotnet 10 ([009e9e9](https://github.com/informatievlaanderen/api/commit/009e9e9a28aa1230646f94d9acf2ca06cca882d3))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 10
+
 # [24.3.0](https://github.com/informatievlaanderen/api/compare/v24.2.0...v24.3.0) (2026-01-28)
 
 

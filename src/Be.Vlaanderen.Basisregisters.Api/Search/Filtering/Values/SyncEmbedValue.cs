@@ -84,10 +84,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Search.Filtering
                 : base("Invalid embed option", GetFailures(argumentValue))
             { }
 
-            private InvalidOptionException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
-            { }
-
             private static IEnumerable<ValidationFailure> GetFailures(string argumentValue)
                 => new[]
                 {

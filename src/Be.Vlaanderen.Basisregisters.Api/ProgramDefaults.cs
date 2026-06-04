@@ -6,7 +6,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
-    using Amazon;
     using AspNetCore.Mvc.Formatters.Json;
     using Aws.DistributedMutex;
     using Destructurama;
@@ -15,6 +14,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using Serilog;
@@ -32,7 +32,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             Key = key;
         }
 
-        public X509Certificate2 ToCertificate() => new X509Certificate2(Name, Key);
+        public X509Certificate2 ToCertificate() => X509Certificate2.CreateFromEncryptedPemFile(Name, Key);
     }
 
     public class ProgramOptions
@@ -75,8 +75,8 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
     public static class ProgramDefaults
     {
-        public static IWebHostBuilder UseDefaultForApi<T>(
-            this IWebHostBuilder hostBuilder,
+        public static IHostBuilder UseDefaultForApi<T>(
+            this IHostBuilder hostBuilder,
             ProgramOptions options) where T : class
         {
             SelfLog.Enable(Console.WriteLine);
@@ -87,76 +87,81 @@ namespace Be.Vlaanderen.Basisregisters.Api
             ConfigureJsonSerializerSettings();
             ConfigureAppDomainExceptions();
 
-            var environment = hostBuilder.GetSetting("environment");
+            hostBuilder.ConfigureWebHost(webHostBuilder =>
+            {
+                var environment = webHostBuilder.GetSetting("environment");
 
-            return hostBuilder
-                .UseKestrel(x =>
-                {
-                    x.AddServerHeader = false;
+                webHostBuilder
+                    .UseKestrel(x =>
+                    {
+                        x.AddServerHeader = false;
 
-                    // Needs to be bigger than traefik timeout, which is 90seconds
-                    // https://github.com/containous/traefik/issues/3237
-                    x.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(120);
+                        // Needs to be bigger than traefik timeout, which is 90seconds
+                        // https://github.com/containous/traefik/issues/3237
+                        x.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(120);
 
-                    if (environment == "Development")
-                        AddDevelopmentPorts(
-                            x,
-                            options.Hosting.HttpPort,
-                            options.Hosting.HttpsPort,
-                            options.Hosting.HttpsCertificate?.Invoke());
-                })
-                .UseSockets()
-                .CaptureStartupErrors(true)
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseWebRoot("wwwroot")
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    var env = hostingContext.HostingEnvironment;
+                        if (environment == "Development")
+                            AddDevelopmentPorts(
+                                x,
+                                options.Hosting.HttpPort,
+                                options.Hosting.HttpsPort,
+                                options.Hosting.HttpsCertificate?.Invoke());
+                    })
+                    .UseSockets()
+                    .CaptureStartupErrors(true)
+                    .UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseWebRoot("wwwroot")
+                    .ConfigureAppConfiguration((hostingContext, config) =>
+                    {
+                        var env = hostingContext.HostingEnvironment;
 
-                    config
-                        .SetBasePath(env.ContentRootPath)
-                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                        .AddJsonFile($"appsettings.{env.EnvironmentName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
-                        .AddJsonFile($"appsettings.{Environment.MachineName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
-                        .AddEnvironmentVariables()
-                        .AddCommandLine(options.Runtime.CommandLineArgs ?? new string[0]);
+                        config
+                            .SetBasePath(env.ContentRootPath)
+                            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                            .AddJsonFile($"appsettings.{env.EnvironmentName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
+                            .AddJsonFile($"appsettings.{Environment.MachineName.ToLowerInvariant()}.json", optional: true, reloadOnChange: false)
+                            .AddEnvironmentVariables()
+                            .AddCommandLine(options.Runtime.CommandLineArgs ?? new string[0]);
 
-                    options.MiddlewareHooks.ConfigureAppConfiguration?.Invoke(hostingContext, config);
-                })
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    var loggerConfiguration = new LoggerConfiguration()
-                        .ReadFrom.Configuration(hostingContext.Configuration);
+                        options.MiddlewareHooks.ConfigureAppConfiguration?.Invoke(hostingContext, config);
+                    })
+                    .ConfigureLogging((hostingContext, logging) =>
+                    {
+                        var loggerConfiguration = new LoggerConfiguration()
+                            .ReadFrom.Configuration(hostingContext.Configuration);
 
-                    if (options.Logging.WriteTextToConsole)
-                        loggerConfiguration = loggerConfiguration.WriteTo.Console();
+                        if (options.Logging.WriteTextToConsole)
+                            loggerConfiguration = loggerConfiguration.WriteTo.Console();
 
-                    if (options.Logging.WriteJsonToConsole)
-                        loggerConfiguration = loggerConfiguration.WriteTo.Console(new RenderedCompactJsonFormatter());
+                        if (options.Logging.WriteJsonToConsole)
+                            loggerConfiguration = loggerConfiguration.WriteTo.Console(new RenderedCompactJsonFormatter());
 
-                    loggerConfiguration = loggerConfiguration
-                        .Enrich.FromLogContext()
-                        .Enrich.WithMachineName()
-                        .Enrich.WithThreadId()
-                        .Enrich.WithEnvironmentUserName()
-                        .Destructure.JsonNetTypes();
+                        loggerConfiguration = loggerConfiguration
+                            .Enrich.FromLogContext()
+                            .Enrich.WithMachineName()
+                            .Enrich.WithThreadId()
+                            .Enrich.WithEnvironmentUserName()
+                            .Destructure.JsonNetTypes();
 
-                    options.MiddlewareHooks.ConfigureSerilog?.Invoke(hostingContext, loggerConfiguration);
+                        options.MiddlewareHooks.ConfigureSerilog?.Invoke(hostingContext, loggerConfiguration);
 
-                    var logger = Log.Logger = loggerConfiguration.CreateLogger();
+                        var logger = Log.Logger = loggerConfiguration.CreateLogger();
 
-                    logging.AddSerilog(logger);
+                        logging.AddSerilog(logger);
 
-                    options.MiddlewareHooks.ConfigureLogging?.Invoke(hostingContext, logging);
-                })
-                .ConfigureServices((hostingContext, services) =>
-                {
-                    services.AddSingleton(options);
-                })
-                .UseStartup<T>();
+                        options.MiddlewareHooks.ConfigureLogging?.Invoke(hostingContext, logging);
+                    })
+                    .ConfigureServices((hostingContext, services) =>
+                    {
+                        services.AddSingleton(options);
+                    })
+                    .UseStartup<T>();
+            });
+
+            return hostBuilder;
         }
 
-        public static void RunWithLock<T>(this IWebHostBuilder webHostBuilder) where T : class
+        public static void RunWithLock<T>(this IHostBuilder webHostBuilder) where T : class
         {
             var webHost = webHostBuilder.Build();
             var services = webHost.Services;
@@ -184,7 +189,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
             // that as a valid config argument. The 2 lines below prevent that.
             if (commandLineArgs != null &&
                 commandLineArgs.Any() &&
-                commandLineArgs[0].EndsWith($"{Path.GetFileNameWithoutExtension(typeof(T).Assembly.CodeBase)}.exe"))
+                commandLineArgs[0].EndsWith($"{Path.GetFileNameWithoutExtension(typeof(T).Assembly.Location)}.exe"))
                 commandLineArgs = commandLineArgs.Skip(1).ToArray();
 
             return commandLineArgs;

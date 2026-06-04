@@ -38,6 +38,9 @@ namespace Microsoft.AspNetCore.Http.Internal
         private IHttpResponseFeature HttpResponseFeature =>
             _features.Fetch(ref _features.Cache.Response, _nullResponseFeature);
 
+        private IHttpResponseBodyFeature HttpResponseBodyFeature =>
+            HttpContext.Features.Get<IHttpResponseBodyFeature>() ?? new StreamResponseBodyFeature(Stream.Null);
+
         private IResponseCookiesFeature ResponseCookiesFeature =>
             _features.Fetch(ref _features.Cache.Cookies, _newResponseCookiesFeature);
 
@@ -57,8 +60,8 @@ namespace Microsoft.AspNetCore.Http.Internal
 
         public override Stream Body
         {
-            get { return HttpResponseFeature.Body; }
-            set { HttpResponseFeature.Body = value; }
+            get { return HttpResponseBodyFeature.Stream; }
+            set { HttpContext.Features.Set<IHttpResponseBodyFeature>(new StreamResponseBodyFeature(value)); }
         }
 
         public override long? ContentLength

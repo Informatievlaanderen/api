@@ -29,7 +29,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class CommonOptions
         {
-            public IContainer ApplicationContainer { get; set; }
+            public ILifetimeScope ApplicationContainer { get; set; }
             public IServiceProvider ServiceProvider { get; set; }
             public IWebHostEnvironment HostingEnvironment { get; set; }
             public IHostApplicationLifetime ApplicationLifetime { get; set; }
@@ -168,7 +168,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
             if (options.Common.HostingEnvironment.IsDevelopment())
                 app
                     .UseDeveloperExceptionPage()
-                    .UseDatabaseErrorPage()
                     .UseBrowserLink();
 
             app.UseCors(policyName: options.Api.DefaultCorsPolicy);

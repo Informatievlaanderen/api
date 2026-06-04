@@ -16,10 +16,5 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             Details = problemDetails ?? throw new ArgumentNullException(nameof(problemDetails));
         }
-
-        /// <inheritdoc />
-        protected ApiProblemDetailsException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

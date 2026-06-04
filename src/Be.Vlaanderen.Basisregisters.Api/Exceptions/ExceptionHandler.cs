@@ -101,10 +101,6 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
         {
             public UnhandledException()
             { }
-
-            private UnhandledException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
-            { }
         }
     }
 }

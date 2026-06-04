@@ -5,10 +5,10 @@ namespace Dummy.Api.Infrastructure
     using System.Linq;
     using System.Reflection;
     using Asp.Versioning.ApiExplorer;
-    using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.Api;
     using Configuration;
+    using FluentValidation;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -16,7 +16,6 @@ namespace Dummy.Api.Infrastructure
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi;
-    using Modules;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -24,15 +23,13 @@ namespace Dummy.Api.Infrastructure
         private const string DefaultCulture = "en-GB";
         private const string SupportedCultures = "en-GB;en-US;en;nl-BE;nl;fr-BE;fr";
 
-        private IContainer _applicationContainer;
-
         private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration) => _configuration = configuration;
 
         /// <summary>Configures services for the application.</summary>
         /// <param name="services">The collection of services to configure the application with.</param>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
@@ -79,16 +76,9 @@ namespace Dummy.Api.Infrastructure
                             .ToArray()
                     },
                     MiddlewareHooks =
-                    {
-                        FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>()
-                    }
-                });
-
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new ApiModule(services));
-            _applicationContainer = containerBuilder.Build();
-
-            return new AutofacServiceProvider(_applicationContainer);
+                    { }
+                })
+                .AddValidatorsFromAssemblyContaining<Startup>();
         }
 
         public void Configure(
@@ -106,7 +96,7 @@ namespace Dummy.Api.Infrastructure
                 {
                     Common =
                     {
-                        ApplicationContainer = _applicationContainer,
+                        ApplicationContainer = serviceProvider.GetAutofacRoot(),
                         ServiceProvider = serviceProvider,
                         HostingEnvironment = env,
                         ApplicationLifetime = appLifetime,

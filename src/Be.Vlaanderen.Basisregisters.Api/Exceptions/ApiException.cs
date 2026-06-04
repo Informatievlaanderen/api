@@ -27,10 +27,5 @@ namespace Be.Vlaanderen.Basisregisters.Api.Exceptions
 
         /// <inheritdoc />
         public ApiException(string message, int statusCode, Exception inner) : base(message, inner) => StatusCode = statusCode;
-
-        /// <inheritdoc />
-        protected ApiException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

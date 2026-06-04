@@ -127,7 +127,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
         public class MiddlewareHookOptions
         {
             public bool EnableFluentValidation { get; set; } = true;
-            public Action<FluentValidationMvcConfiguration>? FluentValidation { get; set; }
             public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
             public Action<AuthorizationOptions> Authorization { get; set; }
 
@@ -207,7 +206,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             services
                 .AddHttpContextAccessor()
-
+                .AddDatabaseDeveloperPageExceptionFilter()
                 .ConfigureOptions<ProblemDetailsSetup>()
                 .AddProblemDetails(cfg =>
                 {
@@ -251,14 +250,12 @@ namespace Be.Vlaanderen.Basisregisters.Api
             options.MiddlewareHooks.AfterMvcCore?.Invoke(mvcBuilder);
 
             mvcBuilder
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization);
 
             if(options.MiddlewareHooks.EnableFluentValidation)
             {
-                mvcBuilder.AddFluentValidation(
-                    options.MiddlewareHooks.FluentValidation
-                    ?? (fv => fv.RegisterValidatorsFromAssemblyContaining<T>()));
+                services.AddFluentValidationAutoValidation();
+                services.AddFluentValidationClientsideAdapters();
             }
 
             mvcBuilder

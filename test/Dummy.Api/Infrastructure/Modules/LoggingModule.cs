@@ -9,7 +9,7 @@ namespace Dummy.Api.Infrastructure.Modules
     using Serilog;
     using Serilog.Debugging;
 
-    public class LoggingModule : Module
+    public class LoggingModule
     {
         public LoggingModule(
             IConfiguration configuration,

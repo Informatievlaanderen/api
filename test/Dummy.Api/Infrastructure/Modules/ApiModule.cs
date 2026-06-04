@@ -7,19 +7,9 @@ namespace Dummy.Api.Infrastructure.Modules
 
     public class ApiModule : Module
     {
-        private readonly IServiceCollection _services;
-
-        public ApiModule(IServiceCollection services)
-        {
-            _services = services;
-        }
-
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ProblemDetailsHelper>();
-
-            builder
-                .Populate(_services);
         }
     }
 }

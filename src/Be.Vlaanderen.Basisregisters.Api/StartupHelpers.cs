@@ -19,7 +19,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
         public const string AllowSpecificOrigin = "AllowSpecificOrigin";
 
         public static void RegisterApplicationLifetimeHandling(
-            IContainer applicationContainer,
+            ILifetimeScope lifetimeScope,
             IHostApplicationLifetime appLifetime)
         {
             appLifetime.ApplicationStarted.Register(() => Log.Information("Application started."));
@@ -30,7 +30,7 @@ namespace Be.Vlaanderen.Basisregisters.Api
                 Log.CloseAndFlush();
             });
 
-            appLifetime.ApplicationStopped.Register(applicationContainer.Dispose);
+            appLifetime.ApplicationStopped.Register(lifetimeScope.Dispose);
 
             Console.CancelKeyPress += (sender, eventArgs) =>
             {

@@ -1,30 +1,36 @@
 namespace Dummy.Api.Infrastructure
 {
-    using Microsoft.AspNetCore.Hosting;
+    using Autofac;
+    using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Microsoft.Extensions.Hosting;
+    using Modules;
 
     public static class Program
     {
-        public static void Main(string[] args) => CreateWebHostBuilder(args).Build().Run();
+        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-            => new WebHostBuilder()
-                .UseDefaultForApi<Startup>(
-                    new ProgramOptions
+        public static IHostBuilder CreateHostBuilder(string[] args)
+            => new HostBuilder()
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory(cb =>
+                {
+                    cb.RegisterModule(new ApiModule());
+                }))
+                .UseDefaultForApi<Startup>(new ProgramOptions
+                {
+                    Hosting =
                     {
-                        Hosting =
-                        {
-                            HttpPort = 8000
-                        },
-                        Logging =
-                        {
-                            WriteTextToConsole = false,
-                            WriteJsonToConsole = true
-                        },
-                        Runtime =
-                        {
-                            CommandLineArgs = args
-                        }
-                    });
+                        HttpPort = 8000
+                    },
+                    Logging =
+                    {
+                        WriteTextToConsole = false,
+                        WriteJsonToConsole = true
+                    },
+                    Runtime =
+                    {
+                        CommandLineArgs = args
+                    }
+                });
     }
 }

@@ -1,3 +1,17 @@
+# [26.0.0](https://github.com/informatievlaanderen/api/compare/v25.0.0...v26.0.0) (2026-06-04)
+
+
+### Bug Fixes
+
+* obsolete warnings ([4f1cbc6](https://github.com/informatievlaanderen/api/commit/4f1cbc6d06208dc47ca3eeca32f10350a09d0599))
+
+
+### BREAKING CHANGES
+
+* this will remove FluentValidation mvc middleware hook
+Use `services.AddValidatorsFromAssemblyContaining<SomeValidator>();`
+* use ILifetimeScope instead of IContainer
+
 # [25.0.0](https://github.com/informatievlaanderen/api/compare/v24.3.0...v25.0.0) (2026-06-03)
 
 

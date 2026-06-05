@@ -19,7 +19,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.DependencyInjection;
-    using FluentValidation.AspNetCore;
     using Localization;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Localization;
@@ -126,7 +125,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
         public class MiddlewareHookOptions
         {
-            public bool EnableFluentValidation { get; set; } = true;
             public Action<MvcDataAnnotationsLocalizationOptions> DataAnnotationsLocalization { get; set; }
             public Action<AuthorizationOptions> Authorization { get; set; }
 
@@ -251,12 +249,6 @@ namespace Be.Vlaanderen.Basisregisters.Api
 
             mvcBuilder
                 .AddDataAnnotationsLocalization(options.MiddlewareHooks.DataAnnotationsLocalization);
-
-            if(options.MiddlewareHooks.EnableFluentValidation)
-            {
-                services.AddFluentValidationAutoValidation();
-                services.AddFluentValidationClientsideAdapters();
-            }
 
             mvcBuilder
                 .AddCors(cfg =>

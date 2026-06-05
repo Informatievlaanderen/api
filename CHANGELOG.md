@@ -1,3 +1,15 @@
+# [27.0.0](https://github.com/informatievlaanderen/api/compare/v26.0.0...v27.0.0) (2026-06-05)
+
+
+### Code Refactoring
+
+* remove FluentValidation.AspNetCore ([b92a844](https://github.com/informatievlaanderen/api/commit/b92a844878aecf74a816491a9d9328955977d552))
+
+
+### BREAKING CHANGES
+
+* No more automatic validation via FluentValidation.AspNetCore.
+
 # [26.0.0](https://github.com/informatievlaanderen/api/compare/v25.0.0...v26.0.0) (2026-06-04)
 
 
